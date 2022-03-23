@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="PageModuleTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="30pt" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="Parameter" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="Arial" />
+    </Style>
+</ResourceDictionary>

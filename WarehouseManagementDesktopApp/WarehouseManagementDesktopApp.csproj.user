@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\GoodExport\GoodExportLayOutView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\GoodExport\GoodExportView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\GoodExport\ProcessingGoodExportView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\GoodLocations\GoodLocationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\GoodReceipts\GoodReceiptOrderView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\GoodReceipts\GoodReceiptView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Login\LoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\MenuButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Style\ComboBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Style\ListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Style\Text.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Style\Button.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Style\TextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GoodExport\GoodExportLayOutView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GoodExport\GoodExportView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GoodExport\ProcessingGoodExportView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GoodLocations\GoodLocationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GoodReceipts\GoodReceiptOrderView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GoodReceipts\GoodReceiptView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

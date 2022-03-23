@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "202a854b-5be5-45ae-b658-cad5e43bbbbc": {
+      "ProjectGuid": "202a854b-5be5-45ae-b658-cad5e43bbbbc",
+      "DisplayName": "WarehouseManagementDesktopApp",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "ab6e71c0-4129-405b-821e-14f109e8a786": {
+      "ProjectGuid": "ab6e71c0-4129-405b-821e-14f109e8a786",
+      "DisplayName": "WarehouseManagementDesktopApp.Core",
+      "ColorIndex": 1
+    },
+    "0b49cd87-0955-4abf-94db-0aea1c0146d0": {
+      "ProjectGuid": "0b49cd87-0955-4abf-94db-0aea1c0146d0",
+      "DisplayName": "WarehouseManagementDesktopApp.Core",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

@@ -1,0 +1,51 @@
+﻿<UserControl
+    x:Class="WarehouseManagementDesktopApp.Resources.Components.MenuButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Resources.Components"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
+    x:Name="root"
+    d:DesignHeight="32"
+    d:DesignWidth="500"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    mc:Ignorable="d">
+    <Grid>
+        <Button
+            x:Name="MainButton"
+            HorizontalContentAlignment="Left"
+            Click="OnClick"
+            Command="{Binding Command}"
+            Cursor="Hand"
+            Style="{StaticResource MenuButton}">
+            <Button.Content>
+                <WrapPanel HorizontalAlignment="Left">
+                    <materialDesign:PackIcon
+                        Width="{Binding Path=ActualWidth, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='0.2'}"
+                        Height="{Binding Path=ActualHeight, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='1'}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Cursor="Hand"
+                        Foreground="#fff"
+                        Kind="{Binding IconValue, ElementName=root}"
+                        MouseDown="OnClick" />
+                    <Grid Width="{Binding Path=ActualWidth, ElementName=MainButton, Converter={tools:RatioConverter}, ConverterParameter='0.02'}" />
+                    <TextBlock
+                        x:Name="ContentValue"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="{Binding Path=ActualWidth, ElementName=MainButton, Converter={tools:RatioConverter}, ConverterParameter='0.101'}"
+                        Text="{Binding ContentText, ElementName=root}" />
+                </WrapPanel>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>
+

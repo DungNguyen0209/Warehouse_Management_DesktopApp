@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="WarehouseManagementDesktopApp.Views.GoodExport.ProcessingGoodExportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Views.GoodExport"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
+             Width="1267.2"
+             Height="824"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             TextElement.FontSize="13"
+             TextElement.FontWeight="Regular"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d"
+             x:Name="ProccessingGoodReceipt">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <materialDesign:Card Grid.Column="0"
+                             Width="600"
+                             Margin="40"
+                             HorizontalAlignment="Center"
+                             HorizontalContentAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Margin="0,7"
+                               FontSize="30"
+                               Style="{StaticResource PageModuleTitle}">
+                            <Bold>
+                                ĐƠN HÀNG ĐANG ĐƯỢC XỬ LÝ
+                            </Bold>
+                    </TextBlock>
+                    <Grid Width="400"
+                          Height="8"
+                          Background="#FF00294D" />
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Column="1"
+                             Width="600"
+                             Margin="40"
+                             HorizontalAlignment="Center"
+                             HorizontalContentAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Margin="0,7"
+                               FontSize="30"
+                               Style="{StaticResource PageModuleTitle}">
+                            <Bold>
+                                ĐƠN HÀNG CẦN ĐƯỢC XỬ LÝ 
+                            </Bold>
+                    </TextBlock>
+                    <Grid Width="400"
+                          Height="8"
+                          Background="#FF00294D" />
+                </StackPanel>
+            </Grid>
+        </materialDesign:Card>
+
+    </Grid>
+</UserControl>
