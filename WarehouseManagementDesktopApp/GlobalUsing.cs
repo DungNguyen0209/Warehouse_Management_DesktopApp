@@ -23,7 +23,13 @@ global using System.Windows.Navigation;
 global using System.Windows.Shapes;
 global using WarehouseManagementDesktopApp.Core.Domain.Models.Views;
 global using WarehouseManagementDesktopApp.Core.ViewModel.BaseViewModels;
-
+global using WarehouseManagementDesktopApp.Core.Services.Interfaces;
+global using WarehouseManagementDesktopApp.Core.Services;
+global using System.Windows.Media.Media3D;
+global using FontAwesome.WPF;
+global using System.Reflection.Metadata;
+global using WarehouseManagementDesktopApp.Core.Domain.Models.Resources;
+global using WarehouseManagementDesktopApp.Resources.Components;
 #endregion
 
 #region HostBuilder

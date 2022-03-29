@@ -9,4 +9,3 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ref\WarehouseManagementDesktopApp.Core.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.pdb
-E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.csproj.AssemblyReference.cache

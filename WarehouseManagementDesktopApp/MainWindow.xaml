@@ -13,6 +13,7 @@
         xmlns:uc2="clr-namespace:WarehouseManagementDesktopApp.Views.GoodReceipts"
         xmlns:uc3="clr-namespace:WarehouseManagementDesktopApp.Views.GoodExport"
         xmlns:uc4="clr-namespace:WarehouseManagementDesktopApp.Views.GoodLocations"
+        xmlns:Behaviors="clr-namespace:WarehouseManagementDesktopApp.Behaviors"
         x:Name="Main_Window"
         Title="MainWindow"
         d:DesignHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={tools:RatioConverter}, ConverterParameter='0.9'}"
@@ -150,7 +151,8 @@
                  Grid.Column="1"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Top"
-                 Stretch="Fill">
+                 StretchDirection="Both"
+                 Stretch="Uniform">
 
             <ContentControl x:Name="ViewPanel" Content="{Binding CurrentViewModel}">
                 <ContentControl.Resources>
@@ -166,9 +168,9 @@
                     <DataTemplate DataType="{x:Type viewmodels:GoodExportLayOutViewModel}">
                         <uc3:GoodExportLayOutView />
                     </DataTemplate>
-                    <!--<DataTemplate DataType="{x:Type viewmodels:GoodLocationViewModel}">
-                        <uc4:GoodLocationView GoodLocationViewModel="{Binding CurrentViewModel}"/>
-                    </DataTemplate>-->
+                    <DataTemplate DataType="{x:Type viewmodels:GoodLocationViewModel}">
+                        <uc4:GoodLocationView />
+                    </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
         </Viewbox>

@@ -22,6 +22,15 @@
           "lib/netstandard2.0/DevExpress.Data.v21.2.dll": {}
         }
       },
+      "FontAwesome.WPF/4.7.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net40/FontAwesome.WPF.dll": {}
+        }
+      },
       "MaterialDesignColors/2.0.4": {
         "type": "package",
         "compile": {
@@ -955,6 +964,29 @@
         "lib/net452/DevExpress.Data.v21.2.xml",
         "lib/netstandard2.0/DevExpress.Data.v21.2.dll",
         "lib/netstandard2.0/DevExpress.Data.v21.2.xml"
+      ]
+    },
+    "FontAwesome.WPF/4.7.0.9": {
+      "sha512": "SXE080rnyWMm9Dt0BZzMxh89/o9teuSaqL1N+0O/XM/F/HU8JuZA4XaEKxjBigwZPHHU3/udTa0QMYCHkmH43Q==",
+      "type": "package",
+      "path": "fontawesome.wpf/4.7.0.9",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fontawesome.wpf.4.7.0.9.nupkg.sha512",
+        "fontawesome.wpf.nuspec",
+        "lib/net35/FontAwesome.WPF.dll",
+        "lib/net35/FontAwesome.WPF.xml",
+        "lib/net40/FontAwesome.WPF.dll",
+        "lib/net40/FontAwesome.WPF.xml",
+        "lib/uap10.0/FontAwesome.UWP.XML",
+        "lib/uap10.0/FontAwesome.UWP.dll",
+        "lib/uap10.0/FontAwesome.UWP.pri",
+        "lib/uap10.0/FontAwesome.UWP/FontAwesome.otf",
+        "lib/wp81/FontAwesome.WIN81.dll",
+        "lib/wp81/FontAwesome.WIN81.xml",
+        "tools/install.ps1"
       ]
     },
     "MaterialDesignColors/2.0.4": {
@@ -3054,6 +3086,7 @@
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
       "DevExpress.Data >= 21.2.6",
+      "FontAwesome.WPF >= 4.7.0.9",
       "MaterialDesignColors >= 2.0.4",
       "MaterialDesignThemes >= 4.3.0",
       "Microsoft.Extensions.Hosting >= 6.0.1",
@@ -3104,6 +3137,10 @@
             "target": "Package",
             "version": "[21.2.6, )"
           },
+          "FontAwesome.WPF": {
+            "target": "Package",
+            "version": "[4.7.0.9, )"
+          },
           "MaterialDesignColors": {
             "target": "Package",
             "version": "[2.0.4, )"
@@ -3146,5 +3183,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'FontAwesome.WPF 4.7.0.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "FontAwesome.WPF",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
 }

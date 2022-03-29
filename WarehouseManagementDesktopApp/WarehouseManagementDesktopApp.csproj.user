@@ -7,6 +7,18 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Resources\Components\Cabinet.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Resources\Components\Cube.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Resources\Components\EmptyCabinet.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Resources\Components\EmptyCube.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\GoodExport\GoodExportLayOutView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +43,18 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\Cabinet.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\Cube.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\EmptyCabinet.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\EmptyCube.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Components\MenuButton.xaml">

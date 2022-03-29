@@ -44,7 +44,8 @@
                 <TextBox
                     Grid.Column="1"
                     Margin="25,5,25,5"
-                    BorderThickness="2" />
+                    BorderThickness="2"
+                    Text="{Binding Path=Id}" />
             </Grid>
             <Grid Grid.Row="1" Margin="0,40,0,40">
                 <Grid.ColumnDefinitions>
@@ -60,7 +61,8 @@
                 <TextBox
                     Grid.Column="1"
                     Margin="25,5,25,5"
-                    BorderThickness="2" />
+                    BorderThickness="2"
+                    Text="{Binding Path=Name}" />
             </Grid>
             <Grid Grid.Row="2" Margin="0,40,0,40">
                 <Grid.ColumnDefinitions>
@@ -77,25 +79,27 @@
                     Grid.Column="1"
                     Margin="25,2,25,2"
                     materialDesign:HintAssist.Hint="Vị Trí"
-                    Style="{StaticResource ComboBoxStyle}" />
+                    Style="{StaticResource ComboBoxStyle}"
+                    Text="{Binding Testdepth}">
+                    <ComboBoxItem>2</ComboBoxItem>
+                    <ComboBoxItem>3</ComboBoxItem>
+                    <ComboBoxItem>4</ComboBoxItem>
+                </ComboBox>
             </Grid>
             <Button
                 Grid.Row="4"
                 Width="200"
                 Height="50"
-                Style="{StaticResource MenuButton}"
-                Command="{Binding SearchCommand}">
+                Command="{Binding SearchCommand}"
+                Style="{StaticResource MenuButton}">
                 Tìm Kiếm
             </Button>
         </Grid>
-        <materialDesign:Card Grid.Column="1"
-                             Margin="20,20,20,20"
-                             HorizontalContentAlignment="Center">
-            <Image x:Name="img2"
-                   Grid.Row="1"
-                   Height="{Binding Path=ActualHeight, ElementName=Heading_panel, Converter={tools:RatioConverter}, ConverterParameter='0.1'}"
-                   Source="/Resources/images/bin.png"
-                   Stretch="None" />
+        <materialDesign:Card
+            Grid.Column="1"
+            Margin="20,50,20,50"
+            HorizontalContentAlignment="Center">
+            <Canvas Name="Slotpanel" />
         </materialDesign:Card>
 
     </Grid>

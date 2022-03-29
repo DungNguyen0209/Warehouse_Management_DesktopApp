@@ -83,3 +83,12 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\GoodExport\ProcessingGoodExportView.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\GoodLocations\GoodLocationView.g.cs
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\GoodLocations\GoodLocationView.baml
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\FontAwesome.WPF.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\Cube.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\Cube.baml
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\EmptyCube.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\EmptyCube.baml
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\Cabinet.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\Cabinet.baml
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\EmptyCabinet.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\EmptyCabinet.baml

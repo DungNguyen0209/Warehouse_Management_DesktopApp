@@ -9,6 +9,7 @@ namespace WarehouseManagementDesktopApp.HostBuilder
 
             {
                 services.AddTransient<NavigationStore>();
+                services.AddSingleton<IGoodSlotService, GoodSlotService>();
                 //services.AddTransient<ISignalRService, SignalRService>();
 
             });

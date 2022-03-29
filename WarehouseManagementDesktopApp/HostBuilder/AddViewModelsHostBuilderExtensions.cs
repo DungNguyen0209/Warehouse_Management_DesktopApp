@@ -26,7 +26,7 @@ namespace WarehouseManagementDesktopApp.HostBuilder
                 services.AddSingleton<MainViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var MainStore = serviceprovider.GetRequiredService<NavigationStore>();
-                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationNavigationService(serviceprovider, MainStore));
+                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateGoodReceiptOrderNavigationService(serviceprovider, MainStore), CreateGoodLocationNavigationService(serviceprovider, MainStore));
                 });
             });
 

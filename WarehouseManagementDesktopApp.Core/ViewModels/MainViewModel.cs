@@ -11,7 +11,6 @@
         public MainViewModel(NavigationStore navigationStore, INavigationService _LogingnavigationService, INavigationService _GoodReceiptnavigationService, INavigationService _GoodLocationnavigationService)
         {
             _navigationStore = navigationStore;
-            CurrentViewModel = new LoginViewModel();
             LoggingCommand = new NavigateCommand(_LogingnavigationService);
             GoodReceiptCommand = new NavigateCommand(_GoodReceiptnavigationService);
             GoodlocationCommand = new NavigateCommand(_GoodLocationnavigationService);

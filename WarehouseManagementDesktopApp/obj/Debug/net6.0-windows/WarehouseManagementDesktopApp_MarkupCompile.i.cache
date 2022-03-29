@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\App.xaml
-14566718837
+18450644910
 2142465577
-19-972254227
-230-731057629
-MainWindow.xaml;Resources\Components\MenuButton.xaml;Resources\Style\Button.xaml;Resources\Style\ComboBox.xaml;Resources\Style\ListView.xaml;Resources\Style\Text.xaml;Resources\Style\TextBox.xaml;Views\GoodExport\GoodExportLayOutView.xaml;Views\GoodExport\GoodExportView.xaml;Views\GoodExport\ProcessingGoodExportView.xaml;Views\GoodLocations\GoodLocationView.xaml;Views\GoodReceipts\GoodReceiptOrderView.xaml;Views\GoodReceipts\GoodReceiptView.xaml;Views\Login\LoginView.xaml;
+25461331448
+231816031482
+MainWindow.xaml;Resources\Components\Cabinet.xaml;Resources\Components\Cube.xaml;Resources\Components\EmptyCabinet.xaml;Resources\Components\EmptyCube.xaml;Resources\Components\MenuButton.xaml;Resources\Style\Button.xaml;Resources\Style\ComboBox.xaml;Resources\Style\ListView.xaml;Resources\Style\Text.xaml;Resources\Style\TextBox.xaml;Views\GoodExport\GoodExportLayOutView.xaml;Views\GoodExport\GoodExportView.xaml;Views\GoodExport\ProcessingGoodExportView.xaml;Views\GoodLocations\GoodLocationView.xaml;Views\GoodReceipts\GoodReceiptOrderView.xaml;Views\GoodReceipts\GoodReceiptView.xaml;Views\Login\LoginView.xaml;
 
-True
+False
 

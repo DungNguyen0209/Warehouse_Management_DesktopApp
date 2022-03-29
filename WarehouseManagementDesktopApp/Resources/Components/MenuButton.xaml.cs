@@ -94,5 +94,10 @@ namespace WarehouseManagementDesktopApp.Resources.Components
             MainButton.IsEnabled = true;
             RaiseEvent(new RoutedEventArgs(ClickEvent));
         }
+
+        private void RaiseCustomRoutedEvent()
+        {
+            RaiseEvent(new RoutedEventArgs(ClickEvent));
+        }
     }
 }

@@ -1,6 +1,10 @@
 ﻿
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\App.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\MainWindow.xaml;;
+FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\Cabinet.xaml;;
+FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\Cube.xaml;;
+FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\EmptyCabinet.xaml;;
+FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\EmptyCube.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\MenuButton.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Views\GoodExport\GoodExportLayOutView.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Views\GoodExport\GoodExportView.xaml;;

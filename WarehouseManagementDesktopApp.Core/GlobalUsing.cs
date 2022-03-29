@@ -8,7 +8,7 @@ global using WarehouseManagementDesktopApp.Core.Domain.Stores;
 global using WarehouseManagementDesktopApp.Core.Service.Interfaces;
 global using WarehouseManagementDesktopApp.Core.ViewModel.Commands;
 global using System.Collections.ObjectModel;
-
+global using WarehouseManagementDesktopApp.Core.Services.Interfaces;
 
 #region Command
 global using System.ComponentModel;

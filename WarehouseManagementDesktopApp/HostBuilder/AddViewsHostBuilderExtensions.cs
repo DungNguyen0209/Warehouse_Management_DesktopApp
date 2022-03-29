@@ -1,4 +1,6 @@
-﻿namespace WarehouseManagementDesktopApp.HostBuilder
+﻿using WarehouseManagementDesktopApp.Views.GoodLocations;
+
+namespace WarehouseManagementDesktopApp.HostBuilder
 {
     public static class AddViewsHostBuilderExtensions
     {
@@ -7,6 +9,7 @@
             host.ConfigureServices(services =>
             {
                 services.AddSingleton<MainWindow>(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
+
 
             });
 
