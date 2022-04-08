@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="DataGrid"
+           x:Key="DataGrid">
+        <Setter Property="RowBackground"
+                Value="#FFBAD3E0"></Setter>
+        <Setter Property="AlternatingRowBackground"
+                Value="#E4F0FF"></Setter>
+        <Setter Property="AutoGenerateColumns"
+                Value="False"></Setter>
+        <Setter Property="GridLinesVisibility"
+                Value="None"></Setter>
+        <Setter Property="HorizontalScrollBarVisibility"
+                Value="Visible"></Setter>
+        <Setter Property="VerticalScrollBarVisibility"
+                Value="Visible"></Setter>
+        <Setter Property="EnableColumnVirtualization"
+                Value="False"></Setter>
+        <Setter Property="CanUserAddRows"
+                Value="False"></Setter>
+    </Style>
+    <Style TargetType="{x:Type DataGridColumnHeader}"
+           x:Key="DataGridColumnHeader">
+        <Setter Property="Background"
+                Value="CadetBlue"></Setter>
+        <Setter Property="FontWeight"
+                Value="DemiBold"></Setter>
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="Foreground"
+                Value="White"></Setter>
+        <Setter Property="Height"
+                Value="25"></Setter>
+    </Style>
+    <Style TargetType="DataGridCell"
+           x:Key="DataGridCell">
+
+        <Style.Triggers>
+
+            <Trigger Property="IsSelected"
+                     Value="True">
+
+                <Setter Property="Background"
+                        Value="White" />
+
+            </Trigger>
+
+        </Style.Triggers>
+
+    </Style>
+
+</ResourceDictionary>

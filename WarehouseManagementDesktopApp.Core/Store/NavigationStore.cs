@@ -3,7 +3,7 @@
     public class NavigationStore
     {
         private ViewModel.BaseViewModels.BaseViewModel _currentViewModel;
-        public ViewModel.BaseViewModels.BaseViewModel CurrentViewModel
+        public virtual ViewModel.BaseViewModels.BaseViewModel CurrentViewModel
         {
             get => _currentViewModel;
             set
@@ -16,7 +16,7 @@
 
         public event Action CurrentViewModelChanged;
 
-        private void OnCurrentViewModelChanged()
+        public virtual void OnCurrentViewModelChanged()
         {
             CurrentViewModelChanged?.Invoke();
         }

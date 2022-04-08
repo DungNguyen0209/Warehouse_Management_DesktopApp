@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="WarehouseManagementDesktopApp.Views.History.HistoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Views.History"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
+             xmlns:viewmodels="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
+             Width="1267.2"
+             Height="741.6"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             TextElement.FontSize="13"
+             TextElement.FontWeight="Regular"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d">
+    <Grid Margin="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3.5*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="2.5*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <WrapPanel HorizontalAlignment="Right"
+                           VerticalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center"
+                               Style="{StaticResource HeadingText}">Chế độ xem</TextBlock>
+
+                    <ComboBox Width="200"
+                              Margin="25,5,0,5"
+                              materialDesign:HintAssist.Hint="Chế độ"
+                              Style="{StaticResource ComboBoxStyle}">
+                        <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}">
+                            Nhập Lại
+                        </ComboBoxItem>
+                        <ComboBoxItem Style="{StaticResource ComboBoxItemStyle}">
+                            Nhập Mới
+                        </ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+                <Grid Grid.Row="1">
+                    <WrapPanel HorizontalAlignment="Right"
+                               VerticalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Center"
+                                   Style="{StaticResource HeadingText}">Ngày Bắt Đầu</TextBlock>
+
+                        <DatePicker Width="200"
+                                    Margin="15,5,0,5"
+                                    materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                                    Style="{StaticResource DatePicker}"></DatePicker>
+                    </WrapPanel>
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <WrapPanel HorizontalAlignment="Right"
+                           VerticalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center"
+                               Style="{StaticResource HeadingText}">Mã Sản Phẩm</TextBlock>
+
+                    <ComboBox Width="200"
+                              Margin="25,5,0,5"
+                              materialDesign:HintAssist.Hint="Mã Hàng"
+                              Style="{StaticResource ComboBoxStyle}" />
+                </WrapPanel>
+                <Grid Grid.Row="1">
+                    <WrapPanel HorizontalAlignment="Right"
+                               VerticalAlignment="Center">
+                        <TextBlock HorizontalAlignment="Center"
+                                   Style="{StaticResource HeadingText}">Ngày Kết Thúc</TextBlock>
+
+                        <DatePicker Width="200"
+                                    Margin="22,5,0,5"
+                                    materialDesign:HintAssist.Hint="Ngày bắt đầu"
+                                    Style="{StaticResource DatePicker}"></DatePicker>
+                    </WrapPanel>
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0"
+                        Width="170"
+                        Height="60"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource MenuButton}">
+                    Truy xuất
+                </Button>
+                <Button Grid.Row="1"
+                        Width="170"
+                        Height="60"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource MenuButton}">
+                    Xuất Excel
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <materialDesign:Card Margin="10,10,10,10" />
+        </Grid>
+    </Grid>
+</UserControl>

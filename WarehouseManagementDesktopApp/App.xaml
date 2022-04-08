@@ -15,7 +15,14 @@
                 <ResourceDictionary Source="/Resources/style/ListView.xaml" />
                 <ResourceDictionary Source="/Resources/style/ComboBox.xaml" />
                 <ResourceDictionary Source="/Resources/style/TextBox.xaml" />
+                <ResourceDictionary Source="/Resources/style/DatePicker.xaml" />
+                <ResourceDictionary Source="/Resources/style/DataGrid.xaml" />
+                <ResourceDictionary Source="/Resources/style/Scroll.xaml" />
+                <ResourceDictionary Source="/Resources/style/Fonts.xaml" />
+                <ResourceDictionary Source="/Resources/style/Colors.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush"
+                             Color="#3cc1f4"></SolidColorBrush>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

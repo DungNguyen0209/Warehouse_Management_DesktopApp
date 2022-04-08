@@ -62,7 +62,7 @@ namespace WarehouseManagementDesktopApp.Views.GoodLocations
                     for (int k = 1; k <= width; k++)
                     {
                         int marginRight = (700 - width * 45) / 2 + k * 45-15*j;
-                        int marginBottom = 200 - j * 20 +50*i;
+                        int marginBottom = 10 - j * 20 +(80+8*depth)*i;
                         if (k== 3 && i== height && j== depth)
                         {
                             CubeGenerate.CreateEmptyBasket(Slotpanel, marginRight, marginBottom);

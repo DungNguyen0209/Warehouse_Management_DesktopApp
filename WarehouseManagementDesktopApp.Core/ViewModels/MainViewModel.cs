@@ -7,13 +7,19 @@
         public ICommand LoggingCommand { get; set; }
 
         public ICommand GoodReceiptCommand { get; set; }
+        public ICommand GoodExportCommand { get; set; }
         public ICommand GoodlocationCommand { get; set; }
-        public MainViewModel(NavigationStore navigationStore, INavigationService _LogingnavigationService, INavigationService _GoodReceiptnavigationService, INavigationService _GoodLocationnavigationService)
+        public ICommand ReportCommand { get; set; }
+        public ICommand HistoryCommand { get; set; }
+        public MainViewModel(NavigationStore navigationStore, INavigationService _LogingnavigationService, INavigationService _GoodReceiptnavigationService,INavigationService _GoodExportnavigationService ,INavigationService _GoodLocationnavigationService, INavigationService _ReportnavigationService, INavigationService _HistorynavigationService)
         {
             _navigationStore = navigationStore;
             LoggingCommand = new NavigateCommand(_LogingnavigationService);
             GoodReceiptCommand = new NavigateCommand(_GoodReceiptnavigationService);
+            GoodExportCommand = new NavigateCommand(_GoodExportnavigationService);
             GoodlocationCommand = new NavigateCommand(_GoodLocationnavigationService);
+            ReportCommand = new NavigateCommand(_ReportnavigationService);
+            HistoryCommand = new NavigateCommand(_HistorynavigationService);
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 

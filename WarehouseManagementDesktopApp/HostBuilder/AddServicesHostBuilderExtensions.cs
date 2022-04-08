@@ -1,5 +1,4 @@
-﻿
-namespace WarehouseManagementDesktopApp.HostBuilder
+﻿namespace WarehouseManagementDesktopApp.HostBuilder
 {
     public static class AddServicesHostBuilderExtensions
     {
@@ -9,6 +8,8 @@ namespace WarehouseManagementDesktopApp.HostBuilder
 
             {
                 services.AddTransient<NavigationStore>();
+                services.AddSingleton<GoodReceiptNavigationStore>();
+                services.AddSingleton<LoginNavigationStore>();
                 services.AddSingleton<IGoodSlotService, GoodSlotService>();
                 //services.AddTransient<ISignalRService, SignalRService>();
 

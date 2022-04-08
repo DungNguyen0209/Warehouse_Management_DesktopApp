@@ -28,16 +28,16 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Margin="2,0,1,0"
+            <Button Margin="0,0,1,0"
                     Grid.Column="0"
                     Style="{StaticResource MenuButton}"
                     Command="{Binding GoodExportnavigationCommand}">XUẤT KHO</Button>
-            <Button Margin="1,0,2,1"
+            <Button Margin="1,0,0,1"
                     Grid.Column="1"
                     Style="{StaticResource MenuButton}"
                     Command="{Binding ProcessingGoodExportCommand}">XỬ LÝ</Button>
         </Grid>
-        <Grid Grid.Row="1">
+        <Viewbox Grid.Row="1">
             <ContentControl Content="{Binding CurrentViewModel}">
                 <ContentControl.Resources>
                     <DataTemplate DataType="{x:Type viewmodels:GoodExportViewModel}">
@@ -48,6 +48,6 @@
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>
-        </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>

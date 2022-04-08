@@ -1,6 +1,4 @@
-﻿using WarehouseManagementDesktopApp.Core.ViewModel.BaseViewModels;
-
-namespace WarehouseManagementDesktopApp.HostBuilder
+﻿namespace WarehouseManagementDesktopApp.HostBuilder
 {
     public static class AddViewModelsHostBuilderExtensions
     {
@@ -9,14 +7,34 @@ namespace WarehouseManagementDesktopApp.HostBuilder
             host.ConfigureServices(services =>
 
             {
-                services.AddSingleton<LoginViewModel>();
-                services.AddSingleton<GoodReceiptViewModel>();
-                services.AddSingleton<GoodReceiptOrderViewModel>();
+                services.AddSingleton<LoginViewModel>((IServiceProvider serviceprovider) =>
+                {
+                    var LoginStore = serviceprovider.GetRequiredService<LoginNavigationStore>();
+                    return new LoginViewModel(LoginStore, CreateGoodReceiptNavigationService(serviceprovider, LoginStore));
+                });
+                services.AddSingleton<GoodReceiptOrderViewModel>((IServiceProvider serviceprovider) =>
+                {
+                    var goodReceiptStore = serviceprovider.GetRequiredService<GoodReceiptNavigationStore>();
+                    return new GoodReceiptOrderViewModel(goodReceiptStore, CreateGoodReceiptNavigationService(serviceprovider, goodReceiptStore));
+                });
                 services.AddSingleton<GoodExportViewModel>();
                 services.AddSingleton<GoodLocationViewModel>();
                 services.AddSingleton<ProcessingGoodExportViewModel>();
+                services.AddSingleton<ReportViewModel>();
+                services.AddSingleton<HistoryViewModel>();
 
-                services.AddSingleton<GoodReceiptOrderViewModel>();
+                services.AddSingleton<GoodReceiptViewModel>((IServiceProvider serviceprovider) =>
+                {
+                    var goodReceiptStore = serviceprovider.GetRequiredService<GoodReceiptNavigationStore>();
+                    return new GoodReceiptViewModel(goodReceiptStore, CreateGoodReceiptOrderNavigationService(serviceprovider, goodReceiptStore));
+                });
+                services.AddSingleton<GoodReceiptLayOutViewModel>((IServiceProvider serviceprovider) =>
+                {
+                    var goodReceiptLayOutrStore = serviceprovider.GetRequiredService<GoodReceiptNavigationStore>();
+                    var goodReceiptLayOutViewModel = new GoodReceiptLayOutViewModel(goodReceiptLayOutrStore);
+                    goodReceiptLayOutViewModel.CurrentViewModel = serviceprovider.GetRequiredService<GoodReceiptViewModel>();
+                    return goodReceiptLayOutViewModel;
+                });
 
                 services.AddSingleton<GoodExportLayOutViewModel>((IServiceProvider serviceprovider) =>
                 {
@@ -26,13 +44,14 @@ namespace WarehouseManagementDesktopApp.HostBuilder
                 services.AddSingleton<MainViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var MainStore = serviceprovider.GetRequiredService<NavigationStore>();
-                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateGoodReceiptOrderNavigationService(serviceprovider, MainStore), CreateGoodLocationNavigationService(serviceprovider, MainStore));
+                    MainStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginViewModel>();   
+                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore));
                 });
             });
 
             return host;
         }
-        private static INavigationService CreateLoginNavigationService(IServiceProvider serviceProvider,NavigationStore store)
+        private static INavigationService CreateLoginNavigationService(IServiceProvider serviceProvider, NavigationStore store)
         {
             return new NavigationService<LoginViewModel>(
                 store,
@@ -73,6 +92,30 @@ namespace WarehouseManagementDesktopApp.HostBuilder
             return new NavigationService<GoodLocationViewModel>(
                 store,
                 () => serviceProvider.GetRequiredService<GoodLocationViewModel>());
+        }
+        private static INavigationService CreateLayOutGoodRecieptNavigationService(IServiceProvider serviceProvider, NavigationStore store)
+        {
+            return new NavigationService<GoodReceiptLayOutViewModel>(
+                store,
+                () => serviceProvider.GetRequiredService<GoodReceiptLayOutViewModel>());
+        }
+        private static INavigationService CreateReportNavigationService(IServiceProvider serviceProvider, NavigationStore store)
+        {
+            return new NavigationService<ReportViewModel>(
+                store,
+                () => serviceProvider.GetRequiredService<ReportViewModel>());
+        }
+        private static INavigationService CreateHistoryNavigationService(IServiceProvider serviceProvider, NavigationStore store)
+        {
+            return new NavigationService<HistoryViewModel>(
+                store,
+                () => serviceProvider.GetRequiredService<HistoryViewModel>());
+        }
+        private static INavigationService CreateNotifyNavigationService(IServiceProvider serviceProvider, NavigationStore store)
+        {
+            return new NavigationService<LoginViewModel>(
+                store,
+                () => serviceProvider.GetRequiredService<LoginViewModel>());
         }
     }
 }

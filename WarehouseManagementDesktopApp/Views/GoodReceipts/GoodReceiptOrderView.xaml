@@ -3,9 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Views.GoodReceipts"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
     xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
     x:Name="GoodReceiptOrder"
     Width="1267.2"
@@ -25,25 +27,24 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Button Grid.Column="1"
-                Height="80"
                 Width="80"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
+                Height="80"
                 Margin="20,0,0,0"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Background="#FF00294D"
-                Style="{DynamicResource MaterialDesignFloatingActionLightButton}">
+                Style="{StaticResource MoveBackButton}">
             <materialDesign:PackIcon Width="100"
                                      Height="50"
                                      HorizontalAlignment="Center"
                                      Foreground="#fff"
                                      Kind="ArrowBack"
                                      Opacity="1" />
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <prism:InvokeCommandAction Command="{Binding NavigateGoodReceiptView}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </Button>
         <Grid Grid.Row="0">
-            <Grid Width="700"
-                  Height="80">
+            <Grid Width="700" Height="80">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="9*" />
                     <ColumnDefinition Width="1*" />
@@ -57,15 +58,15 @@
                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                     BorderThickness="0"
                     FontSize="30" />
-                <Border BorderBrush="Black"
-                        CornerRadius="30,0,0,30"
-                        BorderThickness="1,1,0,1">
-                </Border>
+                <Border
+                    BorderBrush="Black"
+                    BorderThickness="1,1,0,1"
+                    CornerRadius="30,0,0,30" />
                 <Grid Grid.Column="1">
-                    <Border BorderBrush="Black"
-                            CornerRadius="0,30,30,0"
-                            BorderThickness="0,1,1,1">
-                    </Border>
+                    <Border
+                        BorderBrush="Black"
+                        BorderThickness="0,1,1,1"
+                        CornerRadius="0,30,30,0" />
                     <Button
                         Grid.Column="1"
                         HorizontalAlignment="Right"
@@ -86,45 +87,52 @@
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3.5*"></ColumnDefinition>
-                <ColumnDefinition Width="6.5*"></ColumnDefinition>
+                <ColumnDefinition Width="3.5*" />
+                <ColumnDefinition Width="6.5*" />
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <materialDesign:Card Grid.Column="1"
-                                     Width="800"
-                                     Height="400"
-                                     HorizontalAlignment="Center"
-                                     HorizontalContentAlignment="Center">
-                </materialDesign:Card>
+                <materialDesign:Card
+                    Grid.Column="1"
+                    Width="800"
+                    Height="400"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center" />
                 <Grid Grid.Row="1">
-                    <Button Style="{StaticResource MenuButton}"
-                            Width="200" Height="80">Hoàn Thành</Button>
+                    <Button
+                        Width="200"
+                        Height="80"
+                        Style="{StaticResource MenuButton}">
+                        Hoàn Thành
+                    </Button>
                 </Grid>
-                </Grid>
-            <materialDesign:Card Grid.Column="0"
-                                 Width="400"
-                                 HorizontalAlignment="Center"
-                                 HorizontalContentAlignment="Center">
+            </Grid>
+            <materialDesign:Card
+                Grid.Column="0"
+                Width="400"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0">
-                        <TextBlock Margin="0,7"
-                                   Style="{StaticResource PageModuleTitle}"
-                                   FontSize="30">
-                                <Bold>
-                                    Đơn Hiện Có Trong Ngày
-                                </Bold>
+                        <TextBlock
+                            Margin="0,7"
+                            FontSize="30"
+                            Style="{StaticResource PageModuleTitle}">
+                            <Bold>
+                                Đơn Hiện Có Trong Ngày
+                            </Bold>
                         </TextBlock>
-                        <Grid Width="200"
-                              Height="8"
-                              Background="#FF00294D" />
+                        <Grid
+                            Width="200"
+                            Height="8"
+                            Background="#FF00294D" />
                     </StackPanel>
                 </Grid>
             </materialDesign:Card>

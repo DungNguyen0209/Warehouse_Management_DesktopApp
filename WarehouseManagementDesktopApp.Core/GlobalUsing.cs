@@ -2,12 +2,15 @@
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Text;
+global using System.Windows;
 global using System.Threading.Tasks;
 global using WarehouseManagementDesktopApp.Core.ViewModel.BaseViewModels;
 global using WarehouseManagementDesktopApp.Core.Domain.Stores;
 global using WarehouseManagementDesktopApp.Core.Service.Interfaces;
 global using WarehouseManagementDesktopApp.Core.ViewModel.Commands;
 global using System.Collections.ObjectModel;
+global using WarehouseManagementDesktopApp.Core.Store;
+global using WarehouseManagementDesktopApp.Core.ValueConverter;
 global using WarehouseManagementDesktopApp.Core.Services.Interfaces;
 
 #region Command

@@ -3,12 +3,13 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
 {
     public class GoodReceiptViewModel: ViewModel.BaseViewModels.BaseViewModel
     {
-        public ObservableCollection<GoodReceiptView> ProductItemsSource { get; set; }
-        public GoodReceiptViewModel()
+        private readonly GoodReceiptNavigationStore _navigationStore;
+        public ViewModel.BaseViewModels.BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
+        public ICommand NavigateGoodReceiptOrderView { get; set; }
+        public GoodReceiptViewModel(GoodReceiptNavigationStore navigationStore, INavigationService _GoodReceiptOrdernavigationService)
         {
-            ProductItemsSource = new ObservableCollection<GoodReceiptView>();
-            var item = new GoodReceiptView() { Id = "1", Name = "Minh Dũng nè", Quantity = 1, Unit = "cái" };
-            ProductItemsSource.Add(item);
+            _navigationStore = navigationStore;
+            NavigateGoodReceiptOrderView = new NavigateCommand(_GoodReceiptOrdernavigationService);
         }
 
     }

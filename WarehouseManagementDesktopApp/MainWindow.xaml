@@ -7,13 +7,15 @@
         xmlns:component="clr-namespace:WarehouseManagementDesktopApp.Resources.Components"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:prism="http://prismlibrary.com/" 
-        xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
         xmlns:viewmodels="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
         xmlns:uc="clr-namespace:WarehouseManagementDesktopApp.Views.Login"
         xmlns:uc2="clr-namespace:WarehouseManagementDesktopApp.Views.GoodReceipts"
         xmlns:uc3="clr-namespace:WarehouseManagementDesktopApp.Views.GoodExport"
         xmlns:uc4="clr-namespace:WarehouseManagementDesktopApp.Views.GoodLocations"
         xmlns:Behaviors="clr-namespace:WarehouseManagementDesktopApp.Behaviors"
+        xmlns:uc5="clr-namespace:WarehouseManagementDesktopApp.Views.Report"
+        xmlns:uc6="clr-namespace:WarehouseManagementDesktopApp.Views.History"
+        xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
         x:Name="Main_Window"
         Title="MainWindow"
         d:DesignHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={tools:RatioConverter}, ConverterParameter='0.9'}"
@@ -91,8 +93,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <component:MenuButton x:Name="Loginbtn"
-                                              Grid.ColumnSpan="2"
-                                              ContentText="ĐĂNG NHẬP">
+                                              ContentText="TRANG CHỦ">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <prism:InvokeCommandAction Command="{Binding LoggingCommand}" />
@@ -113,8 +114,14 @@
                     </Grid>
                     <Grid Grid.Row="2">
                         <component:MenuButton x:Name="Supervisorbtn"
-                                              ContentText="GIÁM SÁT"
-                                              IconValue="Airplay" />
+                                              ContentText="XUẤT KHO"
+                                              IconValue="Truck">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <prism:InvokeCommandAction Command="{Binding GoodExportCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </component:MenuButton>
                     </Grid>
                     <Grid Grid.Row="3">
                         <component:MenuButton x:Name="Reporttn"
@@ -130,12 +137,24 @@
                     <Grid Grid.Row="4">
                         <component:MenuButton x:Name="Alertbtn"
                                               ContentText="BÁO CÁO"
-                                              IconValue="Alert" />
+                                              IconValue="Paper">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <prism:InvokeCommandAction Command="{Binding ReportCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </component:MenuButton>
                     </Grid>
                     <Grid Grid.Row="5">
                         <component:MenuButton x:Name="Historybtn"
                                               ContentText="LỊCH SỬ"
-                                              IconValue="History" />
+                                              IconValue="History">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <prism:InvokeCommandAction Command="{Binding HistoryCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </component:MenuButton>
                     </Grid>
                     <Grid Grid.Row="6">
                         <component:MenuButton x:Name="Helpbtn"                                              
@@ -159,17 +178,20 @@
                     <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                         <uc:LoginView />
                     </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewmodels:GoodReceiptViewModel}">
-                        <uc2:GoodReceiptView />
-                    </DataTemplate>
-                    <DataTemplate DataType="{x:Type viewmodels:GoodReceiptOrderViewModel}">
-                        <uc2:GoodReceiptOrderView />
+                    <DataTemplate DataType="{x:Type viewmodels:GoodReceiptLayOutViewModel}">
+                        <uc2:GoodReceiptLayOutView />
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:GoodExportLayOutViewModel}">
                         <uc3:GoodExportLayOutView />
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type viewmodels:GoodLocationViewModel}">
                         <uc4:GoodLocationView />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:ReportViewModel}">
+                        <uc5:ReportView />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:HistoryViewModel}">
+                        <uc6:HistoryView />
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>

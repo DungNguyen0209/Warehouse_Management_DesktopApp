@@ -10,4 +10,8 @@
     <None Remove="ViewModels\GoodReceipt\hqbk1qe4.le5~" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\ChatMessage\" />
+  </ItemGroup>
+
 </Project>

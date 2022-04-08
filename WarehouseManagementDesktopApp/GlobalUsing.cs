@@ -10,6 +10,9 @@ global using System.Threading.Tasks;
 global using System.Windows;
 global using WarehouseManagementDesktopApp.HostBuilder;
 global using WarehouseManagementDesktopApp.Core.ViewModels;
+global using System.Collections.ObjectModel;
+global using System.ComponentModel;
+global using System.Runtime.CompilerServices;
 #endregion
 
 #region View
@@ -26,7 +29,6 @@ global using WarehouseManagementDesktopApp.Core.ViewModel.BaseViewModels;
 global using WarehouseManagementDesktopApp.Core.Services.Interfaces;
 global using WarehouseManagementDesktopApp.Core.Services;
 global using System.Windows.Media.Media3D;
-global using FontAwesome.WPF;
 global using System.Reflection.Metadata;
 global using WarehouseManagementDesktopApp.Core.Domain.Models.Resources;
 global using WarehouseManagementDesktopApp.Resources.Components;
@@ -40,4 +42,5 @@ global using System.Text;
 global using WarehouseManagementDesktopApp.Core.ValueConverter;
 global using WarehouseManagementDesktopApp.Core.Domain.Stores;
 global using Microsoft.Extensions.Configuration;
+global using WarehouseManagementDesktopApp.Core.Store;
 #endregion

@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Resources.Components"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
-    x:Name="root"
+             xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
+             x:Name="root"
     d:DesignHeight="32"
     d:DesignWidth="500"
     Background="{DynamicResource MaterialDesignPaper}"
@@ -32,7 +32,6 @@
                         Height="{Binding Path=ActualHeight, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='1'}"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        Cursor="Hand"
                         Foreground="#fff"
                         Kind="{Binding IconValue, ElementName=root}"
                         MouseDown="OnClick" />

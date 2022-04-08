@@ -19,6 +19,12 @@
     <Compile Update="Resources\Components\EmptyCube.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Resources\Components\Message\ChatMessageListControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Resources\Components\Message\MessageListItemControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\GoodExport\GoodExportLayOutView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,13 +37,28 @@
     <Compile Update="Views\GoodLocations\GoodLocationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\GoodReceipts\GoodReceiptLayOutView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\GoodReceipts\GoodReceiptOrderView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\GoodReceipts\GoodReceiptView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\History\HistoryView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Login\LoginLayOutView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Login\LoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Login\NotifyView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Report\ReportView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -60,10 +81,25 @@
     <Page Update="Resources\Components\MenuButton.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\Components\Message\ChatMessageListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\Message\MessageListItemControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Resources\Style\ComboBox.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\Style\DataGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Style\Datepicker.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Resources\Style\ListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Style\Scroll.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Style\Text.xaml">
@@ -87,13 +123,28 @@
     <Page Update="Views\GoodLocations\GoodLocationView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\GoodReceipts\GoodReceiptLayOutView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\GoodReceipts\GoodReceiptOrderView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\GoodReceipts\GoodReceiptView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\History\HistoryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login\LoginLayOutView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Login\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login\NotifyView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Report\ReportView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

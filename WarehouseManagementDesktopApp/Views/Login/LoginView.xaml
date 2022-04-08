@@ -71,14 +71,11 @@
                     </Grid>
                     <Grid Grid.Row="3"
                           x:Name="Grid1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
                         <Grid Grid.Column="0">
                             <Viewbox>
                                 <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
                                         Background="#FF3564A0"
+                                        Margin="30"
                                         ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                                         Height="{Binding Path=ActualHeight, ElementName=Grid1, Converter={tools:RatioConverter}, ConverterParameter='0.25'}"
                                         Width="{Binding Path=ActualWidth, ElementName=Grid1, Converter={tools:RatioConverter}, ConverterParameter='0.3'}"
@@ -86,21 +83,6 @@
                                     <Viewbox>
                                         <TextBlock Foreground="White"
                                                    FontSize="20">Đăng Nhập</TextBlock>
-                                    </Viewbox>
-                                </Button>
-                            </Viewbox>
-                        </Grid>
-                        <Grid Grid.Column="1">
-                            <Viewbox>
-                                <Button Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                        Background="#FF3564A0"
-                                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
-                                        Height="{Binding Path=ActualHeight, ElementName=Grid1, Converter={tools:RatioConverter}, ConverterParameter='0.25'}"
-                                        Width="{Binding Path=ActualWidth, ElementName=Grid1, Converter={tools:RatioConverter}, ConverterParameter='0.3'}"
-                                        CommandParameter="{Binding ElementName=loginWindow}">
-                                    <Viewbox>
-                                        <TextBlock Foreground="White"
-                                                   FontSize="20">Thoát</TextBlock>
                                     </Viewbox>
                                 </Button>
                             </Viewbox>

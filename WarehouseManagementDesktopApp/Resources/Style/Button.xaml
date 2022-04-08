@@ -26,7 +26,36 @@
         <Setter Property="FontSize" Value="20pt" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Center"></Setter>
+        <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="Height" Value="auto" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="#FF3564A0" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="MoveBackButton"
+           BasedOn="{StaticResource MaterialDesignFloatingActionLightButton}"
+           TargetType="Button">
+        <Setter Property="HorizontalAlignment"
+                Value="Left"></Setter>
+        <Setter Property="VerticalAlignment"
+                Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment"
+                Value="Center"></Setter>
+        <Setter Property="Background"
+                Value="#FF00294D"></Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="#FF3564A0" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
