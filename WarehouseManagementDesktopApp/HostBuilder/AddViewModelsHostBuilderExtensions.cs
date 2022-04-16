@@ -7,10 +7,23 @@
             host.ConfigureServices(services =>
 
             {
+                services.AddSingleton<ChatMessageListDesignModel>();
                 services.AddSingleton<LoginViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var LoginStore = serviceprovider.GetRequiredService<LoginNavigationStore>();
-                    return new LoginViewModel(LoginStore, CreateGoodReceiptNavigationService(serviceprovider, LoginStore));
+                    return new LoginViewModel(LoginStore, CreateNotifyNavigationService(serviceprovider, LoginStore));
+                });
+                services.AddSingleton<NotifyViewModel>((IServiceProvider serviceprovider) =>
+                {
+                    var LoginStore = serviceprovider.GetRequiredService<LoginNavigationStore>();
+                    return new NotifyViewModel(LoginStore, CreateLoginNavigationService(serviceprovider, LoginStore),serviceprovider.GetRequiredService<ChatMessageListDesignModel>());
+                });
+                services.AddSingleton<LoginLayOutViewModel>((IServiceProvider serviceprovider) =>
+                {
+                    var LoginStore = serviceprovider.GetRequiredService<LoginNavigationStore>();
+                    LoginStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginViewModel>();
+                    return new LoginLayOutViewModel(LoginStore);
+
                 });
                 services.AddSingleton<GoodReceiptOrderViewModel>((IServiceProvider serviceprovider) =>
                 {
@@ -44,13 +57,21 @@
                 services.AddSingleton<MainViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var MainStore = serviceprovider.GetRequiredService<NavigationStore>();
-                    MainStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginViewModel>();   
-                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore));
+                    MainStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginLayOutViewModel>();   
+                    return new MainViewModel(MainStore, CreateLayOutNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore));
                 });
             });
 
             return host;
         }
+
+        private static INavigationService CreateLayOutNavigationService(IServiceProvider serviceprovider, NavigationStore store)
+        {
+            return new NavigationService<LoginLayOutViewModel>(
+                store,
+                () => serviceprovider.GetRequiredService<LoginLayOutViewModel>());
+        }
+
         private static INavigationService CreateLoginNavigationService(IServiceProvider serviceProvider, NavigationStore store)
         {
             return new NavigationService<LoginViewModel>(
@@ -113,9 +134,9 @@
         }
         private static INavigationService CreateNotifyNavigationService(IServiceProvider serviceProvider, NavigationStore store)
         {
-            return new NavigationService<LoginViewModel>(
+            return new NavigationService<NotifyViewModel>(
                 store,
-                () => serviceProvider.GetRequiredService<LoginViewModel>());
+                () => serviceProvider.GetRequiredService<NotifyViewModel>());
         }
     }
 }

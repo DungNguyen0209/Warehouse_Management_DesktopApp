@@ -8,7 +8,7 @@ public class SentByMeToBackgroundConverter : BaseValueConverter<SentByMeToBackgr
 {
     public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (bool)value ? Application.Current.FindResource("WordVeryLightBlueBrush") : Application.Current.FindResource("ForegroundLightBrush");
+        return (bool)value ? Application.Current.FindResource("NotifyPanelColorBrush") : Application.Current.FindResource("WordGreenBrush");
     }
 
     public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

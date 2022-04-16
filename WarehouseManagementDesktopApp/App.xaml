@@ -21,8 +21,7 @@
                 <ResourceDictionary Source="/Resources/style/Fonts.xaml" />
                 <ResourceDictionary Source="/Resources/style/Colors.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <SolidColorBrush x:Key="PrimaryHueLightBrush"
-                             Color="#3cc1f4"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#3cc1f4" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

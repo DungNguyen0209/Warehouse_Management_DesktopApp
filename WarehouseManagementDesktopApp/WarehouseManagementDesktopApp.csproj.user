@@ -22,7 +22,7 @@
     <Compile Update="Resources\Components\Message\ChatMessageListControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Resources\Components\Message\MessageListItemControl.xaml.cs">
+    <Compile Update="Resources\Components\Message\ChatMessageListItemControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\GoodExport\GoodExportLayOutView.xaml.cs">
@@ -61,6 +61,9 @@
     <Compile Update="Views\Report\ReportView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Shaw\ShawPlanView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -84,7 +87,7 @@
     <Page Update="Resources\Components\Message\ChatMessageListControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Resources\Components\Message\MessageListItemControl.xaml">
+    <Page Update="Resources\Components\Message\ChatMessageListItemControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Style\ComboBox.xaml">
@@ -145,6 +148,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Report\ReportView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Shaw\ShawPlanView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

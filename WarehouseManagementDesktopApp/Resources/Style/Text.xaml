@@ -6,15 +6,11 @@
         <Setter Property="FontSize" Value="30pt" />
         <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
-    <Style x:Key="HeadingText"
-           TargetType="TextBlock">
-        <Setter Property="FontSize"
-                Value="30" />
-        <Setter Property="VerticalAlignment"
-                Value="Center" />
-        <Setter Property="FontWeight" Value="Medium"></Setter>
-        <Setter Property="FontFamily"
-                Value="Arial" />
+    <Style x:Key="HeadingText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="FontFamily" Value="Arial" />
     </Style>
     <Style x:Key="Parameter" TargetType="TextBlock">
         <Setter Property="FontSize" Value="25" />

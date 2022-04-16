@@ -52,11 +52,11 @@
                         Height="8"
                         Background="#FF00294D" />
                 </StackPanel>
-                <Viewbox
+                <Grid
                     Grid.Row="1"
-                    Margin="0,15,0,0"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top"
+                    Margin="0,10,0,0">
                     <DataGrid
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
@@ -175,7 +175,7 @@
                             </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                </Viewbox>
+                </Grid>
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card

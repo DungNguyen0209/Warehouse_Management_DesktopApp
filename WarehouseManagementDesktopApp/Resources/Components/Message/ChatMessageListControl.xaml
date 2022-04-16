@@ -4,20 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WarehouseManagementDesktopApp"
+             xmlns:viewmodel="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
              xmlns:uc="clr-namespace:WarehouseManagementDesktopApp.Resources.Components.Message"
+             x:Name="root"
+             mc:Ignorable="d"
+             d:DataContext="{x:Static viewmodel:ChatMessageListDesignModel.Instance}"
              d:DesignHeight="600"
-             d:DesignWidth="300">
+             Width="1267.2">
 
-    <Grid 
-          VerticalAlignment="Bottom">
+    <Grid
+        VerticalAlignment="Top">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Items}">
+            <Grid Width="1267.2">
+                <ItemsControl ItemsSource="{Binding Items}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <uc:MessageListItemControl uc:AnimateSlideInFromBottomOnLoadProperty.Value="{Binding NewItem}" />
+                        <uc:ChatMessageListItemControl HorizontalAlignment="Left"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            </Grid>
         </ScrollViewer>
-    </Grid>
+    </Grid>       
 </UserControl>

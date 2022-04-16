@@ -1,5 +1,8 @@
 ﻿
 
+using System.Globalization;
+using System.Threading;
+
 namespace WarehouseManagementDesktopApp
 {
     /// <summary>

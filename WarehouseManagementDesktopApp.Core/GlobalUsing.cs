@@ -13,6 +13,7 @@ global using WarehouseManagementDesktopApp.Core.Store;
 global using WarehouseManagementDesktopApp.Core.ValueConverter;
 global using WarehouseManagementDesktopApp.Core.Services.Interfaces;
 
+
 #region Command
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;

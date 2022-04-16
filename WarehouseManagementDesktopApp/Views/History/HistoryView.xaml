@@ -58,6 +58,7 @@
 
                         <DatePicker Width="200"
                                     Margin="15,5,0,5"
+                                    Language="vi-VN"
                                     materialDesign:HintAssist.Hint="Ngày bắt đầu"
                                     Style="{StaticResource DatePicker}"></DatePicker>
                     </WrapPanel>
