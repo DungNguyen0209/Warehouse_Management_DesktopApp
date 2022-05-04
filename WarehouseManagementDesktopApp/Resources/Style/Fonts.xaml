@@ -12,12 +12,9 @@
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
     </Style>
 
-    <Style x:Key="BaseTextBlockStyle"
-           TargetType="{x:Type TextBlock}">
-        <Setter Property="FontFamily"
-                Value="{StaticResource LatoThin}" />
-        <Setter Property="FontSize"
-                Value="{StaticResource FontSizeRegular}" />
+    <Style x:Key="BaseTextBlockStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource LatoThin}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
     </Style>
 
     <system:Double x:Key="FontSizeSmaller">10</system:Double>

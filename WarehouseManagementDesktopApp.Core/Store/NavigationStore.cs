@@ -1,24 +1,24 @@
-﻿namespace WarehouseManagementDesktopApp.Core.Domain.Stores
+﻿namespace WarehouseManagementDesktopApp.Core.Domain.Stores;
+#pragma warning disable CS8618
+public class NavigationStore
 {
-    public class NavigationStore
+    private BaseViewModel _currentViewModel;
+    public virtual BaseViewModel CurrentViewModel
     {
-        private ViewModel.BaseViewModels.BaseViewModel _currentViewModel;
-        public virtual ViewModel.BaseViewModels.BaseViewModel CurrentViewModel
+        get => _currentViewModel;
+        set
         {
-            get => _currentViewModel;
-            set
-            {
-                _currentViewModel?.Dispose();
-                _currentViewModel = value;
-                OnCurrentViewModelChanged();
-            }
-        }
-
-        public event Action CurrentViewModelChanged;
-
-        public virtual void OnCurrentViewModelChanged()
-        {
-            CurrentViewModelChanged?.Invoke();
+            _currentViewModel?.Dispose();
+            _currentViewModel = value;
+            OnCurrentViewModelChanged();
         }
     }
+
+    public event Action CurrentViewModelChanged;
+
+    public virtual void OnCurrentViewModelChanged()
+    {
+        CurrentViewModelChanged?.Invoke();
+    }
 }
+#pragma warning restore

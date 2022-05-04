@@ -13,6 +13,8 @@ global using WarehouseManagementDesktopApp.Core.ViewModels;
 global using System.Collections.ObjectModel;
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Sqlite;
 #endregion
 
 #region View
@@ -24,13 +26,11 @@ global using System.Windows.Media;
 global using System.Windows.Media.Imaging;
 global using System.Windows.Navigation;
 global using System.Windows.Shapes;
-global using WarehouseManagementDesktopApp.Core.Domain.Models.Views;
 global using WarehouseManagementDesktopApp.Core.ViewModel.BaseViewModels;
 global using WarehouseManagementDesktopApp.Core.Services.Interfaces;
 global using WarehouseManagementDesktopApp.Core.Services;
 global using System.Windows.Media.Media3D;
-global using System.Reflection.Metadata;
-global using WarehouseManagementDesktopApp.Core.Domain.Models.Resources;
+global using System.Reflection.Metadata; 
 global using WarehouseManagementDesktopApp.Resources.Components;
 #endregion
 
@@ -43,4 +43,9 @@ global using WarehouseManagementDesktopApp.Core.ValueConverter;
 global using WarehouseManagementDesktopApp.Core.Domain.Stores;
 global using Microsoft.Extensions.Configuration;
 global using WarehouseManagementDesktopApp.Core.Store;
+#endregion
+#region Persistance
+global using Persistence.SqliteDB.Domain.Interfaces;
+global using Persistence.SqliteDB.Repositories;
+global using Persistence.SqliteDB.Context;
 #endregion

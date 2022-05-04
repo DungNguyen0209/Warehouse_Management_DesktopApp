@@ -20,7 +20,12 @@
       "ProjectGuid": "0b49cd87-0955-4abf-94db-0aea1c0146d0",
       "DisplayName": "WarehouseManagementDesktopApp.Core",
       "ColorIndex": 2
+    },
+    "36d32c43-98f0-4cee-a624-454c9c264969": {
+      "ProjectGuid": "36d32c43-98f0-4cee-a624-454c9c264969",
+      "DisplayName": "Persistence.SqliteDB",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }

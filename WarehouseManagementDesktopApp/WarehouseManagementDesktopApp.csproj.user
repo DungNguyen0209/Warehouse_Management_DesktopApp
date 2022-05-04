@@ -7,10 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Resources\Components\AutoCompleteTextBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Resources\Components\Cabinet.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Resources\Components\Cube.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Resources\Components\DialogGoodIssue.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Resources\Components\EmptyCabinet.xaml.cs">
@@ -25,6 +31,9 @@
     <Compile Update="Resources\Components\Message\ChatMessageListItemControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Resources\Components\Message\MessageBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\GoodExport\GoodExportLayOutView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,7 +43,13 @@
     <Compile Update="Views\GoodExport\ProcessingGoodExportView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\GoodLocations\GoodLocationLayOutView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\GoodLocations\GoodLocationView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\GoodLocations\UpdateGoodLocationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\GoodReceipts\GoodReceiptLayOutView.xaml.cs">
@@ -69,10 +84,16 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\Components\AutoCompleteTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Resources\Components\Cabinet.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Components\Cube.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\DialogGoodIssue.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Components\EmptyCabinet.xaml">
@@ -88,6 +109,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Components\Message\ChatMessageListItemControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\Message\MessageBox.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Style\ComboBox.xaml">
@@ -123,7 +147,13 @@
     <Page Update="Views\GoodExport\ProcessingGoodExportView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\GoodLocations\GoodLocationLayOutView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\GoodLocations\GoodLocationView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\GoodLocations\UpdateGoodLocationView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\GoodReceipts\GoodReceiptLayOutView.xaml">

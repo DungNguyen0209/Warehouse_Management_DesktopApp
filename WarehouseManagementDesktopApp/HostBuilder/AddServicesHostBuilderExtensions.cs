@@ -1,4 +1,7 @@
-﻿namespace WarehouseManagementDesktopApp.HostBuilder
+﻿using Persistence.SqliteDB.Domain.Interfaces;
+using Persistence.SqliteDB.Repositories;
+
+namespace WarehouseManagementDesktopApp.HostBuilder
 {
     public static class AddServicesHostBuilderExtensions
     {
@@ -11,7 +14,7 @@
                 services.AddSingleton<GoodReceiptNavigationStore>();
                 services.AddSingleton<LoginNavigationStore>();
                 services.AddSingleton<IGoodSlotService, GoodSlotService>();
-                //services.AddTransient<ISignalRService, SignalRService>();
+                services.AddSingleton<IExcelExporter, ExcelExporterService>();
 
             });
 

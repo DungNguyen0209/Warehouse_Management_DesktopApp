@@ -1,4 +1,5 @@
-﻿namespace WarehouseManagementDesktopApp.HostBuilder
+﻿
+namespace WarehouseManagementDesktopApp.HostBuilder
 {
     public static class AddDbContextHostBuilderExtensions
     {
@@ -6,7 +7,17 @@
         {
             host.ConfigureServices((context, services) =>
             {
-               // services.AddSingleton<ApplicationDbContext>(new ApplicationDbContext());
+                //Action<DbContextOptionsBuilder> configureDbContext = o => o.UseSqlite("Data Source=SqLite.db");
+                services.AddDbContext<ApplicationDbContext>();
+                //services.AddSingleton<ApplicationDBContextFactory>(new ApplicationDBContextFactory());
+                services.AddScoped<IProductRepository, ProductRepository>(serviceproviders =>
+                {
+                    return new ProductRepository(serviceproviders.GetRequiredService<ApplicationDbContext>());
+                });
+                services.AddScoped<IUnitOfWork, UnitOfWork>((serviceproviders =>
+                {
+                    return new UnitOfWork(serviceproviders.GetRequiredService<ApplicationDbContext>());
+                }));
             });
 
             return host;

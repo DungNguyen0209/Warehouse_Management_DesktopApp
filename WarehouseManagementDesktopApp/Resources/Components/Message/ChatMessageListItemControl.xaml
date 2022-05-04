@@ -24,9 +24,11 @@
             <!--  Chat message container  -->
             <Grid>
 
-                <Grid.Triggers>
+                <!--<Grid.Triggers>
 
-                    <!--  Mouse over shows time  -->
+                -->
+                <!--  Mouse over shows time  -->
+                <!--
                     <EventTrigger RoutedEvent="MouseEnter">
                         <BeginStoryboard>
                             <Storyboard Storyboard.TargetName="ExtraDetails" Storyboard.TargetProperty="Opacity">
@@ -35,7 +37,9 @@
                         </BeginStoryboard>
                     </EventTrigger>
 
-                    <!--  Mouse leave hides time  -->
+                -->
+                <!--  Mouse leave hides time  -->
+                <!--
                     <EventTrigger RoutedEvent="MouseLeave">
                         <BeginStoryboard>
                             <Storyboard Storyboard.TargetName="ExtraDetails" Storyboard.TargetProperty="Opacity">
@@ -44,7 +48,7 @@
                         </BeginStoryboard>
                     </EventTrigger>
 
-                </Grid.Triggers>
+                </Grid.Triggers>-->
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -56,15 +60,16 @@
 
                 <materialDesign:Card
                     Width="300"
-                    Height="70"
+                    Height="90"
                     Padding="15"
                     Background="{Binding SentByMe, Converter={converter:SentByMeToBackgroundConverter}}"
                     UniformCornerRadius="15">
                     <TextBlock
                         VerticalAlignment="Center"
+                        Cursor="Hand"
                         FontFamily="{StaticResource LatoRegular}"
-                        FontSize="14"
-                        FontWeight="Bold"
+                        FontSize="20"
+                        FontWeight="Medium"
                         Foreground="#231F1F"
                         Text="{Binding Message}"
                         TextWrapping="Wrap" />
@@ -90,13 +95,12 @@
                     Name="ExtraDetails"
                     Grid.Row="2"
                     HorizontalAlignment="{Binding SentByMe, Converter={converter:SentByMeToAlignmentConverter}, ConverterParameter=True}"
-                    Opacity="0"
                     Orientation="Horizontal">
 
                     <!--  Sent time  -->
                     <TextBlock
                         Margin="0,0,15,0"
-                        FontFamily="{StaticResource LatoRegular}"
+                        FontFamily="{StaticResource MaterialDesignFont}"
                         FontSize="{StaticResource FontSizeSmall}"
                         Foreground="#231F1F"
                         Text="{Binding MessageSentTime, Converter={converter:TimeToDisplayTimeConverter}}" />

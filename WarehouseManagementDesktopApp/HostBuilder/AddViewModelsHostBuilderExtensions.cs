@@ -7,7 +7,9 @@
             host.ConfigureServices(services =>
 
             {
-                services.AddSingleton<ChatMessageListDesignModel>();
+                services.AddTransient<ChatMessageListDesignModel>();
+                services.AddTransient<DialogGoodIssueViewModel>();
+                services.AddTransient<MessageBoxViewModel>();
                 services.AddSingleton<LoginViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var LoginStore = serviceprovider.GetRequiredService<LoginNavigationStore>();
@@ -28,10 +30,14 @@
                 services.AddSingleton<GoodReceiptOrderViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var goodReceiptStore = serviceprovider.GetRequiredService<GoodReceiptNavigationStore>();
-                    return new GoodReceiptOrderViewModel(goodReceiptStore, CreateGoodReceiptNavigationService(serviceprovider, goodReceiptStore));
+                    return new GoodReceiptOrderViewModel(goodReceiptStore, CreateGoodReceiptNavigationService(serviceprovider, goodReceiptStore),serviceprovider.GetRequiredService<IExcelExporter>(), serviceprovider.GetRequiredService<ChatMessageListDesignModel>());
                 });
-                services.AddSingleton<GoodExportViewModel>();
+                services.AddSingleton<GoodExportViewModel>((IServiceProvider serviceprovider) =>
+                {
+                    return new GoodExportViewModel(serviceprovider.GetRequiredService<DialogGoodIssueViewModel>());
+                });
                 services.AddSingleton<GoodLocationViewModel>();
+                services.AddSingleton<UpdateGoodLocationViewModel>();
                 services.AddSingleton<ProcessingGoodExportViewModel>();
                 services.AddSingleton<ReportViewModel>();
                 services.AddSingleton<HistoryViewModel>();
@@ -39,7 +45,7 @@
                 services.AddSingleton<GoodReceiptViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var goodReceiptStore = serviceprovider.GetRequiredService<GoodReceiptNavigationStore>();
-                    return new GoodReceiptViewModel(goodReceiptStore, CreateGoodReceiptOrderNavigationService(serviceprovider, goodReceiptStore));
+                    return new GoodReceiptViewModel(goodReceiptStore, CreateGoodReceiptOrderNavigationService(serviceprovider, goodReceiptStore),serviceprovider.GetRequiredService<IProductRepository>(), serviceprovider.GetRequiredService<IUnitOfWork>()) ;
                 });
                 services.AddSingleton<GoodReceiptLayOutViewModel>((IServiceProvider serviceprovider) =>
                 {
@@ -54,15 +60,35 @@
                     var goodExportStore = serviceprovider.GetRequiredService<NavigationStore>();
                     return new GoodExportLayOutViewModel(goodExportStore, CreateGoodExportNavigationService(serviceprovider, goodExportStore), CreateProcessGoodExportNavigationService(serviceprovider, goodExportStore));
                 });
+                services.AddSingleton<GoodLocationLayOutViewModel>((IServiceProvider serviceprovider) =>
+                {
+                    var goodLocationStore = serviceprovider.GetRequiredService<NavigationStore>();
+                    goodLocationStore.CurrentViewModel = serviceprovider.GetRequiredService<GoodLocationViewModel>();
+                    return new GoodLocationLayOutViewModel(goodLocationStore,CreateGoodLocationNavigationService(serviceprovider,goodLocationStore),CreateUpdateLocationNavigationService(serviceprovider,goodLocationStore));
+                });
                 services.AddSingleton<MainViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var MainStore = serviceprovider.GetRequiredService<NavigationStore>();
                     MainStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginLayOutViewModel>();   
-                    return new MainViewModel(MainStore, CreateLayOutNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore));
+                    return new MainViewModel(MainStore, CreateLayOutNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationLayOutNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore));
                 });
             });
 
             return host;
+        }
+
+        private static INavigationService CreateGoodLocationNavigationService(IServiceProvider serviceprovider, NavigationStore store)
+        {
+            return new NavigationService<GoodLocationViewModel>(
+                store,
+                () => serviceprovider.GetRequiredService<GoodLocationViewModel>());
+        }
+
+        private static INavigationService CreateUpdateLocationNavigationService(IServiceProvider serviceprovider, NavigationStore store)
+        {
+            return new NavigationService<UpdateGoodLocationViewModel>(
+                store,
+                () => serviceprovider.GetRequiredService<UpdateGoodLocationViewModel>());
         }
 
         private static INavigationService CreateLayOutNavigationService(IServiceProvider serviceprovider, NavigationStore store)
@@ -108,11 +134,11 @@
                 store,
                 () => serviceProvider.GetRequiredService<ProcessingGoodExportViewModel>());
         }
-        private static INavigationService CreateGoodLocationNavigationService(IServiceProvider serviceProvider, NavigationStore store)
+        private static INavigationService CreateGoodLocationLayOutNavigationService(IServiceProvider serviceProvider, NavigationStore store)
         {
-            return new NavigationService<GoodLocationViewModel>(
+            return new NavigationService<GoodLocationLayOutViewModel>(
                 store,
-                () => serviceProvider.GetRequiredService<GoodLocationViewModel>());
+                () => serviceProvider.GetRequiredService<GoodLocationLayOutViewModel>());
         }
         private static INavigationService CreateLayOutGoodRecieptNavigationService(IServiceProvider serviceProvider, NavigationStore store)
         {

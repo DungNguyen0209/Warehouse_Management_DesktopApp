@@ -8,9 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
     x:Name="GoodLocation"
-    Width="1267.2"
-    Height="824"
-    Background="{DynamicResource MaterialDesignPaper}"
+             Width="1267.2"
+             Height="741.6"
+             Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
@@ -44,7 +44,8 @@
                 <TextBox
                     Grid.Column="1"
                     Margin="25,5,25,5"
-                    BorderThickness="2"
+                    FontSize="25"
+                    Style="{StaticResource TextBoxNormal}"
                     Text="{Binding Path=Id}" />
             </Grid>
             <Grid Grid.Row="1" Margin="0,40,0,40">
@@ -61,7 +62,8 @@
                 <TextBox
                     Grid.Column="1"
                     Margin="25,5,25,5"
-                    BorderThickness="2"
+                    FontSize="25"
+                    Style="{StaticResource TextBoxNormal}"
                     Text="{Binding Path=Name}" />
             </Grid>
             <Grid Grid.Row="2" Margin="0,40,0,40">

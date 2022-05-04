@@ -1,5 +1,6 @@
 ﻿
 
+using Persistence.SqliteDB;
 using System.Globalization;
 using System.Threading;
 
@@ -20,6 +21,7 @@ namespace WarehouseManagementDesktopApp
         public static IHostBuilder CreateHostBuilder(string[] args = null)
         {
             return Host.CreateDefaultBuilder(args)
+                        .AddDbContext()
                         .AddServices()
                         .AddViewModels()
                         .AddViews();

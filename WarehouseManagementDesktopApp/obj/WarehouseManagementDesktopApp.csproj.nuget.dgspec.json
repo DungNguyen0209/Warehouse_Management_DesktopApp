@@ -4,14 +4,14 @@
     "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.csproj": {}
   },
   "projects": {
-    "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.csproj": {
+    "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\Infrastructure.SqliteDB\\Persistence.SqliteDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.csproj",
-        "projectName": "WarehouseManagementDesktopApp",
-        "projectPath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.csproj",
+        "projectUniqueName": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\Infrastructure.SqliteDB\\Persistence.SqliteDB.csproj",
+        "projectName": "Persistence.SqliteDB",
+        "projectPath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\Infrastructure.SqliteDB\\Persistence.SqliteDB.csproj",
         "packagesPath": "C:\\Users\\Dung'PC\\.nuget\\packages\\",
-        "outputPath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\obj\\",
+        "outputPath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\Infrastructure.SqliteDB\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Dung'PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,13 +40,115 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "dependencies": {
+            "Microsoft.Data.Sqlite.Core": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.Extensions.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.csproj",
+        "projectName": "WarehouseManagementDesktopApp",
+        "projectPath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.csproj",
+        "packagesPath": "C:\\Users\\Dung'PC\\.nuget\\packages\\",
+        "outputPath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Dung'PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\Infrastructure.SqliteDB\\Persistence.SqliteDB.csproj": {
+                "projectPath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\Infrastructure.SqliteDB\\Persistence.SqliteDB.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
             "DevExpress.Data": {
               "target": "Package",
               "version": "[21.2.6, )"
             },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            },
             "FontAwesome.WPF": {
               "target": "Package",
-              "version": "[4.7.0.9, )"
+              "version": "[4.7.0.9, )",
+              "noWarn": [
+                "NU1701"
+              ]
             },
             "MaterialDesignColors": {
               "target": "Package",
@@ -56,13 +158,35 @@
               "target": "Package",
               "version": "[4.3.0, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[6.0.1, )"
             },
+            "Notify": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            },
             "Prism.Wpf": {
               "target": "Package",
               "version": "[8.1.97, )"
+            },
+            "PropertyChanged.Fody": {
+              "target": "Package",
+              "version": "[3.4.0, )"
             },
             "System.Interactive.Async": {
               "target": "Package",

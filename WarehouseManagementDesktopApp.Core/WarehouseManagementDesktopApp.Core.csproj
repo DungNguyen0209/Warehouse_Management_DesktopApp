@@ -20,9 +20,25 @@
 
   <ItemGroup>
     <PackageReference Include="DevExpress.Data" Version="21.2.6" />
-    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="EPPlus" Version="6.0.3" />
+    <PackageReference Include="EPPlus.Extensions" Version="2.0.1" />
+    <PackageReference Include="MaterialDesignColors" Version="2.0.4" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="OfficeOpenXml.Core.ExcelPackage" Version="1.0.0" />
+    <PackageReference Include="Syncfusion.XlsIO.Wpf" Version="20.1.0.50" />
     <PackageReference Include="System.Interactive.Async" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Persistence.SqliteDB">
+      <HintPath>..\Infrastructure.SqliteDB\bin\Debug\net6.0-windows\ref\Persistence.SqliteDB.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

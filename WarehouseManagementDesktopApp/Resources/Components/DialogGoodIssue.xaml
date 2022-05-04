@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="WarehouseManagementDesktopApp.Resources.Components.DialogGoodIssue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Resources.Components"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewmodel="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
+             xmlns:uc="clr-namespace:WarehouseManagementDesktopApp.Resources.Components.Message"
+             d:DataContext="{x:Static viewmodel:DialogGoodIssueViewModel.Instance}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             TextElement.FontSize="13"
+             TextElement.FontWeight="Regular"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="450">
+    <Grid>
+        <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Margin="0,7"
+                       FontSize="30"
+                       Style="{StaticResource PageModuleTitle}">
+                            <Bold>
+                                Đơn Hiện Có Trong Ngày
+                            </Bold>
+            </TextBlock>
+            <Grid Width="200"
+                  Height="8"
+                  Background="#FF00294D" />
+        </StackPanel>
+        <Grid Margin="0,30,0,0" VerticalAlignment="Top" Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <ItemsControl ItemsSource="{Binding Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <uc:ChatMessageListItemControl HorizontalAlignment="Center" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+    </Grid>
+</UserControl>

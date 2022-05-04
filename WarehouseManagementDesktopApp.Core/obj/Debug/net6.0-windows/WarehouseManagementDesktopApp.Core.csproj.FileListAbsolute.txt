@@ -2,7 +2,6 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\ref\WarehouseManagementDesktopApp.Core.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.pdb
-E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.csproj.AssemblyReference.cache
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.GeneratedMSBuildEditorConfig.editorconfig
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.AssemblyInfoInputs.cache
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.AssemblyInfo.cs
@@ -10,3 +9,8 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ref\WarehouseManagementDesktopApp.Core.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.pdb
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.csproj.AssemblyReference.cache
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\Persistence.SqliteDB.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.csproj.CopyComplete
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.runtimeconfig.json
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.genruntimeconfig.cache

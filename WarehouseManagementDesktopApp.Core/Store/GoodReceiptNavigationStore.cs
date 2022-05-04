@@ -8,6 +8,7 @@ namespace WarehouseManagementDesktopApp.Core.Store
 {
     public class GoodReceiptNavigationStore : NavigationStore
     {
+    #pragma warning disable CS8618
         private ViewModel.BaseViewModels.BaseViewModel _currentViewModel;
         public override ViewModel.BaseViewModels.BaseViewModel CurrentViewModel
         {
@@ -26,5 +27,6 @@ namespace WarehouseManagementDesktopApp.Core.Store
         {
             GoodReceiptCurrentViewModelChanged?.Invoke();
         }
+#pragma warning restore
     }
 }

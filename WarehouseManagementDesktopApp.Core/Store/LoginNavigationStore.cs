@@ -1,25 +1,25 @@
-﻿namespace WarehouseManagementDesktopApp.Core.Store
+﻿namespace WarehouseManagementDesktopApp.Core.Store;
+#pragma warning disable CS8618
+public class LoginNavigationStore : NavigationStore
 {
-    public class LoginNavigationStore:NavigationStore
+    private BaseViewModel _currentViewModel;
+    public override BaseViewModel CurrentViewModel
     {
-        private ViewModel.BaseViewModels.BaseViewModel _currentViewModel;
-        public override ViewModel.BaseViewModels.BaseViewModel CurrentViewModel
+        get => _currentViewModel;
+        set
         {
-            get => _currentViewModel;
-            set
-            {
-                _currentViewModel?.Dispose();
-                _currentViewModel = value;
-                OnCurrentViewModelChanged();
-            }
+            _currentViewModel?.Dispose();
+            _currentViewModel = value;
+            OnCurrentViewModelChanged();
         }
-
-        public event Action LoginCurrentViewModelChanged;
-
-        public override void OnCurrentViewModelChanged()
-        {
-            LoginCurrentViewModelChanged?.Invoke();
-        }
-
     }
+
+    public event Action LoginCurrentViewModelChanged;
+
+    public override void OnCurrentViewModelChanged()
+    {
+        LoginCurrentViewModelChanged?.Invoke();
+    }
+
 }
+#pragma warning restore
