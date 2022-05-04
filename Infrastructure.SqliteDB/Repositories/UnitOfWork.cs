@@ -14,23 +14,8 @@ public class UnitOfWork : IUnitOfWork
 
     public async Task SaveChangeAsync()
     {
-        _context.Entry(_context).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-        //await _context.SaveChangesAsync();
     }
-    //private bool disposed = false;
-
-    //protected virtual void Dispose(bool disposing)
-    //{
-    //    if (!this.disposed)
-    //    {
-    //        if (disposing)
-    //        {
-    //            _context.Dispose();
-    //        }
-    //    }
-    //    this.disposed = true;
-    //}
     public void DetachChange()
     {
         var changedEntriesCopy = _context.ChangeTracker.Entries()

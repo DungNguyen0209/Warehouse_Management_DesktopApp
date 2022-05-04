@@ -27,7 +27,7 @@ public class ProcessingGoodExportOrderDatabaseService: IProcessingGoodExportOrde
 
     public async void Update(ProcessingGoodExportOrder processingGoodExportOrder)
     {
-        await Task.Run(() => _repository.UpdateAsync(processingGoodExportOrder)); 
+         _repository.UpdateAsync(processingGoodExportOrder); 
         await _unitOfWork.SaveChangeAsync();
 
     }

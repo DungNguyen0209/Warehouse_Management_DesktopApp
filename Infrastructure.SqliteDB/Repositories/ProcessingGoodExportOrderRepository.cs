@@ -10,7 +10,7 @@ public class ProcessingGoodExportOrderRepository : IProcessingGoodExportOrderRep
 
     public void DeleteAsync()
     {
-        _context.processingGoodExportOrders.FromSqlRaw<ProcessingGoodExportOrder>("TRUNCATE TABLE [processingGoodExportOrders]");
+        _context.Database.ExecuteSqlRaw("DELETE FROM [processingGoodExportOrders]");
     }
 
     //public async void InsertAsync(ProcessingGoodExportOrder data)
@@ -26,6 +26,6 @@ public class ProcessingGoodExportOrderRepository : IProcessingGoodExportOrderRep
 
     public void UpdateAsync(ProcessingGoodExportOrder data)
     {
-        _context.Update<ProcessingGoodExportOrder>(data);
+         _context.processingGoodExportOrders.Update(data);
     }
 }

@@ -15,6 +15,10 @@ global using System.ComponentModel;
 global using System.Runtime.CompilerServices;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Sqlite;
+global using WarehouseManagementDesktopApp.Core.Services.Interfaces.ILocalDatabaseService;
+global using WarehouseManagementDesktopApp.Core.Domain.Mapping;
+global using AutoMapper;
+
 #endregion
 
 #region View
@@ -43,6 +47,7 @@ global using WarehouseManagementDesktopApp.Core.ValueConverter;
 global using WarehouseManagementDesktopApp.Core.Domain.Stores;
 global using Microsoft.Extensions.Configuration;
 global using WarehouseManagementDesktopApp.Core.Store;
+global using WarehouseManagementDesktopApp.Core.Services.LocalDatabaseService;
 #endregion
 #region Persistance
 global using Persistence.SqliteDB.Domain.Interfaces;

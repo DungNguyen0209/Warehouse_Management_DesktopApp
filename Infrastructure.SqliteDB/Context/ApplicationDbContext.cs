@@ -10,6 +10,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<FormulaListGoodIssue> formulaListGoodIssues { get; set; }
     public DbSet<IssueBasket> issueBaskets { get; set; }
+    public DbSet<IssueBasketList> issueBasketLists { get; set; }
     public DbSet<ProcessingGoodExportOrder> processingGoodExportOrders { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -23,19 +24,23 @@ public class ApplicationDbContext : DbContext
                     .HasKey(s => s.id);
         modelBuilder.Entity<FormulaListGoodIssue>()
                     .HasKey(s => s.Id);
+
         modelBuilder.Entity<IssueBasket>()
                     .HasKey(s => s.Id);
+        modelBuilder.Entity<IssueBasketList>()
+            .HasKey(s => s.Id);
+        modelBuilder.Entity<IssueBasketList>()
+            .HasMany<IssueBasket>(s => s.Baskets);
+
         modelBuilder.Entity<ProcessingGoodExportOrder>()
                     .HasKey(s => s.Id);
         modelBuilder.Entity<ProcessingGoodExportOrder>()
                     .HasMany<FormulaListGoodIssue>(g => g.formulaListGoodIssues)
-                    .WithOne(s => s.ProcessingGoodExportOrder)
-                    .HasForeignKey(s => s.ProcessingGoodExportOrderId)
+                    .WithOne()
                     .OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<ProcessingGoodExportOrder>()
-                   .HasMany<IssueBasket>(g => g.issueBaskets)
-                   .WithOne(s => s.ProcessingGoodExportOrder)
-                   .HasForeignKey(s => s.ProcessingGoodExportOrderId)
+                   .HasMany<IssueBasketList>(g => g.issueBasketLists)
+                   .WithOne()
                    .OnDelete(DeleteBehavior.Cascade);
     }
 

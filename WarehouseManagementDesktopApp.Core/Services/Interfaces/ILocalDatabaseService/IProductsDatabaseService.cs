@@ -4,5 +4,5 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces.ILocalDatabaseS
 
 public interface IProductsDatabaseService
 {
-    IList<Product> LoadSuggestName(string firstname);
+    public Task<IList<Product>>? LoadSuggestName(string firstname);
 }

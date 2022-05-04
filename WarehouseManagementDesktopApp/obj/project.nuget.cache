@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PlnIT2JpE96baq/+tADRxnJt2EWCvTb3q26D0VpbOedpWpt7OBL1QWiGGZQzVlw8x6t19ETUr9TrEIHv4jju1Q==",
+  "dgSpecHash": "bn0ru6Yi0XMRwz9xcM94Z614RP8PWSKrhvHu0qLsE0IZw8HkLxmMgKhqFJO2+mN0XqLRVZlrdZrqdVPQm35GXg==",
   "success": true,
   "projectFilePath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dung'PC\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\devexpress.data\\21.2.6\\devexpress.data.21.2.6.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\epplus\\6.0.3\\epplus.6.0.3.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\epplus.interfaces\\6.0.0\\epplus.interfaces.6.0.0.nupkg.sha512",
@@ -14,7 +15,7 @@
     "C:\\Users\\Dung'PC\\.nuget\\packages\\materialdesigncolors\\2.0.4\\materialdesigncolors.2.0.4.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\materialdesignthemes\\4.3.0\\materialdesignthemes.4.3.0.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
-    "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.4\\microsoft.data.sqlite.core.6.0.4.nupkg.sha512",

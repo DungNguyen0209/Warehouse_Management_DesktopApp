@@ -7,23 +7,9 @@ public class AutoCompleteTextBoxViewModel : BaseViewModel
     public static AutoCompleteTextBoxViewModel Instance => new AutoCompleteTextBoxViewModel();
     private string _text = "";
     private string _hinttext = "Items";
-    private int _selectedIndexItem;
-    private bool dropDown = false;
-    public bool DropDown { get => dropDown; set { dropDown = value; OnPropertyChanged(); } }
+    private bool _dropDown = false;
+    public bool DropDown { get => _dropDown; set { _dropDown = value; OnPropertyChanged(); } }
     private ObservableCollection<string>? _suggestionSource = new ObservableCollection<string>();
-    //public bool TabEvent
-    //{
-    //    get { return _tabenter; }
-    //    set
-    //    {
-    //        _tabenter = value;
-    //        OnPropertyChanged();
-    //        if (_tabenter == true)
-    //        {
-    //            TextChanged?.Invoke();
-    //        }
-    //    }
-    //}
     public string Text
     {
         get => _text;
@@ -47,8 +33,9 @@ public class AutoCompleteTextBoxViewModel : BaseViewModel
         set
         {
             _suggestionSource = value;
+            OnPropertyChanged();
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-            if (_suggestionSource.Count == 0)
+            if (_suggestionSource == null)
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
             {
                 DropDown = false;
@@ -57,7 +44,6 @@ public class AutoCompleteTextBoxViewModel : BaseViewModel
             {
                 DropDown = true;
             }    
-            OnPropertyChanged("SuggestionSource");
         }
     }
     public event TextChanged TextChanged;

@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="DevExpress.Data" Version="21.2.6" />
     <PackageReference Include="EPPlus" Version="6.0.3" />
 	<PackageReference Include="FontAwesome.WPF" Version="4.7.0.9">

@@ -14,19 +14,10 @@ public class ProductsDatabaseService: IProductsDatabaseService
         _productRepository = productRepository;
         _unitOfWork = unitOfWork;
     }
-    public IList<Product> LoadSuggestName (string firstname)
+    public async Task<IList<Product>?> LoadSuggestName (string firstname)
     {
-        try
-        {
-        var list = _productRepository.LoadAsyncSuggestName(firstname).Result;
-        _unitOfWork.SaveChangeAsync();
+        var list = await _productRepository.LoadAsyncSuggestName(firstname);
         return list;
-        }
-        catch (Exception ex)
-        {
-            _unitOfWork.DetachChange();
-            return null;
-        }
     }
 
 }

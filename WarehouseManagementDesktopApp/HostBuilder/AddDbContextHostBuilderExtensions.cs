@@ -14,6 +14,10 @@ namespace WarehouseManagementDesktopApp.HostBuilder
                 {
                     return new ProductRepository(serviceproviders.GetRequiredService<ApplicationDbContext>());
                 });
+                services.AddScoped<IProcessingGoodExportOrderRepository, ProcessingGoodExportOrderRepository>(serviceproviders =>
+                 {
+                     return new ProcessingGoodExportOrderRepository(serviceproviders.GetRequiredService<ApplicationDbContext>());
+                 });
                 services.AddScoped<IUnitOfWork, UnitOfWork>((serviceproviders =>
                 {
                     return new UnitOfWork(serviceproviders.GetRequiredService<ApplicationDbContext>());

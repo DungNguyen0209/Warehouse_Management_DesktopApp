@@ -10,8 +10,6 @@ public class IssueBasket
     public string? Actual { get; set; }
 
     public bool? IsChecked { get; set; }
-    public int ProcessingGoodExportOrderId { get; set; }
-    public ProcessingGoodExportOrder ProcessingGoodExportOrder { get; set; }
 #pragma warning restore
 }
 

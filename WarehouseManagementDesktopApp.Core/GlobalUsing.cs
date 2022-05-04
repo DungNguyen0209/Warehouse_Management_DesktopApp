@@ -24,7 +24,8 @@ global using System.IO;
 global using EPPlus;
 global using WarehouseManagementDesktopApp.Core.Services.Interfaces.ILocalDatabaseService;
 global using MaterialDesignThemes.Wpf;
-
+global using  AutoMapper;
+global using WarehouseManagementDesktopApp.Core.Domain.Mapping;
 #region Command
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;

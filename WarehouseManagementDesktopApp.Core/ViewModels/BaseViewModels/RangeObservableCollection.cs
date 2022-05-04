@@ -26,4 +26,13 @@ public class RangeObservableCollection<T> : ObservableCollection<T>
         _suppressNotification = false;
         OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
     }
+    public static ICollection<T> ConvertToCollection (RangeObservableCollection<T> data)
+    {
+        ICollection<T> result = new List<T>();
+        foreach(var item in data)
+        {
+            result.Add(item);
+        }
+        return result;
+    }
 }

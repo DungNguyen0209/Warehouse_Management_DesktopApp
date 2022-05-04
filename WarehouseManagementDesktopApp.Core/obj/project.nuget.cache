@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "15kr57y4XAIobS8fywZwm/0/ztzmn9BwGCzjvCIiN5H2Ngq6KcQrhhZ/ARmCUmGbxdBw6poXA2QrKnOnomHh+Q==",
+  "dgSpecHash": "R/+SySZG8Rc2KQvK9gkGh4hK7R55mWcxaOC1UIRUtd5wfcza15rSbmtI9a7HMaebectZZz/nlLZSGQd1g7euDg==",
   "success": true,
   "projectFilePath": "E:\\LVTN\\Warehouse_DesktopApp\\WarehouseManagementDesktopApp\\WarehouseManagementDesktopApp.Core\\WarehouseManagementDesktopApp.Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dung'PC\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\Dung'PC\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\devexpress.data\\21.2.6\\devexpress.data.21.2.6.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\epplus\\6.0.3\\epplus.6.0.3.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\epplus.extensions\\2.0.1\\epplus.extensions.2.0.1.nupkg.sha512",
@@ -13,6 +15,7 @@
     "C:\\Users\\Dung'PC\\.nuget\\packages\\materialdesigncolors\\2.0.4\\materialdesigncolors.2.0.4.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\materialdesignthemes\\4.3.0\\materialdesignthemes.4.3.0.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.4\\microsoft.entityframeworkcore.6.0.4.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.4\\microsoft.entityframeworkcore.abstractions.6.0.4.nupkg.sha512",
     "C:\\Users\\Dung'PC\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.4\\microsoft.entityframeworkcore.analyzers.6.0.4.nupkg.sha512",

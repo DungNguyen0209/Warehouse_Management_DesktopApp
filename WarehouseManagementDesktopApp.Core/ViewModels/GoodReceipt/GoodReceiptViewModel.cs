@@ -8,8 +8,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
 {
     public class GoodReceiptViewModel: ViewModel.BaseViewModels.BaseViewModel
     {
-        private readonly IProductRepository _productRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductsDatabaseService _productsDatabaseService;
         private readonly GoodReceiptNavigationStore _navigationStore;
         private int _selected;
         
@@ -48,11 +47,10 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         public ICommand SearchCommand { get; set; }
         public ICommand UploadCommand { get; set; }
         public ICommand SelectionCommand { get; set; }
-        public GoodReceiptViewModel(GoodReceiptNavigationStore navigationStore, INavigationService _GoodReceiptOrdernavigationService,IProductRepository productRepository, IUnitOfWork unitOfWork)
+        public GoodReceiptViewModel(GoodReceiptNavigationStore navigationStore, INavigationService _GoodReceiptOrdernavigationService, IProductsDatabaseService productsDatabaseService)
         {
             _navigationStore = navigationStore;
-            _productRepository = productRepository;
-            _unitOfWork = unitOfWork;
+            _productsDatabaseService = productsDatabaseService;
             NavigateGoodReceiptOrderView = new NavigateCommand(_GoodReceiptOrdernavigationService);
             AutoCompleteTextBoxDC = new AutoCompleteTextBoxViewModel() { HintText = "Tên SP" };
             AutoCompleteTextBoxDC.TextChanged += CheckTextSource;
@@ -75,16 +73,18 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
 
             if (!string.IsNullOrEmpty(AutoCompleteTextBoxDC.Text))
             {
-
-                var productlist = await _productRepository.LoadAsyncSuggestName(typedString);
-                //Product product = new Product() { Name = "Minh Dung",IdProduct = "sp1" ,id = 2};
-                //_productRepository.InsertAsync(product);
-                //await _unitOfWork.SaveChangeAsync();
+#pragma warning disable CS8602
+                var productlist = await _productsDatabaseService.LoadSuggestName(typedString);
+#pragma warning restore
+                if(productlist!= null)
+                {
                 foreach (var item in productlist)
                 {
                     autoList.Add(item.Name);
                 }
                 AutoCompleteTextBoxDC.SuggestionSource = autoList;
+
+                }
 
             }
 

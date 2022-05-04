@@ -467,18 +467,12 @@
                                                                            TargetType="CheckBox">
                                                                         <Setter Property="HorizontalAlignment"
                                                                                 Value="Center" />
+                                                                    <Setter Property="IsHitTestVisible" Value="False"></Setter>
                                                                     <Setter Property="VerticalAlignment"
                                                                                 Value="Center" />
-                                                                        <Setter Property="Width"
-                                                                                Value="50" />
-                                                                    <Style.Triggers>
-                                                                        <DataTrigger Binding="{Binding Path=IsFinished}"
-                                                                                     Value="True">
-                                                                            <Setter Property="IsChecked"
-                                                                                    Value="True" />
-                                                                        </DataTrigger>
-                                                                    </Style.Triggers>
-                                                                    </Style>
+                                                                    <Setter Property="Width"
+                                                                            Value="50" />
+                                                                </Style>
                                                                 </CheckBox.Style>
                                                             </CheckBox>
                                                         </DataTemplate>
