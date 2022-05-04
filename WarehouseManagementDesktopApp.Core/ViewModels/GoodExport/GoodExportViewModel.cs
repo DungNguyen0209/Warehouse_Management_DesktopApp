@@ -10,12 +10,14 @@ public class GoodExportViewModel : BaseViewModel
     private bool _isDialogOpen = false;
     private string _sumActual = String.Empty;
     private string _choosenItemId = String.Empty;
+    private string _goodIssueId = String.Empty;
     private bool _isMessageDialogOpen = false;
     private int _issueBasketSelectedIndex;
     private RangeObservableCollection<FormulaListInGoodIssueForViewModel> _formulaPlannedList = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
     private RangeObservableCollection<IssueBasketForViewModel> _issueBasketList = new RangeObservableCollection<IssueBasketForViewModel>();
     private int _selectedIndexItem;
     public string ChoosenItemId { get => _choosenItemId; set { _choosenItemId = value; OnPropertyChanged(); } }
+    public string GoodIssueId { get => _goodIssueId; set { _goodIssueId = value; OnPropertyChanged();} }
     public bool IsDialogOpen { get => _isDialogOpen; set { _isDialogOpen = value; OnPropertyChanged(); } }
     public bool IsMessageDialogOpen { get => _isMessageDialogOpen; set { _isMessageDialogOpen = value; OnPropertyChanged(); } }
     public MessageBoxViewModel MessageBox { get; set; }
@@ -184,7 +186,7 @@ public class GoodExportViewModel : BaseViewModel
 
     private async void UpdateDatabase()
     {
-        this.ProcessingGoodExportOrder.orderId = ChoosenItemId;
+        this.ProcessingGoodExportOrder.orderId = GoodIssueId;
         EditFormulaInDatabase();
         _processingGoodExportOrderDatabaseService.Update(this.ProcessingGoodExportOrder);
     }

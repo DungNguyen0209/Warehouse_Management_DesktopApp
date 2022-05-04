@@ -46,7 +46,7 @@ namespace Persistence.SqliteDB.Migrations
                     PlannedMass = table.Column<string>(type: "TEXT", nullable: false),
                     PlannedQuantity = table.Column<string>(type: "TEXT", nullable: false),
                     Actual = table.Column<string>(type: "TEXT", nullable: true),
-                    ProcessingGoodExportOrderId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ProcessingGoodExportOrderId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,7 +55,8 @@ namespace Persistence.SqliteDB.Migrations
                         name: "FK_formulaListGoodIssues_processingGoodExportOrders_ProcessingGoodExportOrderId",
                         column: x => x.ProcessingGoodExportOrderId,
                         principalTable: "processingGoodExportOrders",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,7 +65,7 @@ namespace Persistence.SqliteDB.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    ProcessingGoodExportOrderId = table.Column<int>(type: "INTEGER", nullable: true)
+                    ProcessingGoodExportOrderId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,7 +74,8 @@ namespace Persistence.SqliteDB.Migrations
                         name: "FK_issueBasketLists_processingGoodExportOrders_ProcessingGoodExportOrderId",
                         column: x => x.ProcessingGoodExportOrderId,
                         principalTable: "processingGoodExportOrders",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,7 +90,7 @@ namespace Persistence.SqliteDB.Migrations
                     Mass = table.Column<string>(type: "TEXT", nullable: false),
                     Actual = table.Column<string>(type: "TEXT", nullable: true),
                     IsChecked = table.Column<bool>(type: "INTEGER", nullable: true),
-                    IssueBasketListId = table.Column<int>(type: "INTEGER", nullable: true)
+                    IssueBasketListId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -97,7 +99,8 @@ namespace Persistence.SqliteDB.Migrations
                         name: "FK_issueBaskets_issueBasketLists_IssueBasketListId",
                         column: x => x.IssueBasketListId,
                         principalTable: "issueBasketLists",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

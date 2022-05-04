@@ -20,12 +20,22 @@ public class ProcessingGoodExportOrderRepository : IProcessingGoodExportOrderRep
 
     public async Task<List<ProcessingGoodExportOrder>> LoadAsync()
     {
-       var data = await _context.processingGoodExportOrders.ToListAsync();
+        var data = await _context.processingGoodExportOrders.ToListAsync();
         return data;
     }
 
-    public void UpdateAsync(ProcessingGoodExportOrder data)
+    public async void UpdateAsync(ProcessingGoodExportOrder data)
     {
-         _context.processingGoodExportOrders.Update(data);
+        if (_context.processingGoodExportOrders.Any(s => s.orderId == data.orderId))
+        {
+
+            _context.processingGoodExportOrders.Update(data);
+        }
+        else
+        {
+            var count = _context.processingGoodExportOrders.Count();
+            data.Id = count+1;
+            _context.processingGoodExportOrders.Add(data);
+        }
     }
 }

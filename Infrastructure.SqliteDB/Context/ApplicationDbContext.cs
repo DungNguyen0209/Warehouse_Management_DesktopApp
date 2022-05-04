@@ -28,19 +28,21 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<IssueBasket>()
                     .HasKey(s => s.Id);
         modelBuilder.Entity<IssueBasketList>()
-            .HasKey(s => s.Id);
+                    .HasKey(s => s.Id);
         modelBuilder.Entity<IssueBasketList>()
-            .HasMany<IssueBasket>(s => s.Baskets);
+                    .HasMany<IssueBasket>(s => s.Baskets);
 
         modelBuilder.Entity<ProcessingGoodExportOrder>()
                     .HasKey(s => s.Id);
         modelBuilder.Entity<ProcessingGoodExportOrder>()
                     .HasMany<FormulaListGoodIssue>(g => g.formulaListGoodIssues)
-                    .WithOne()
+                    .WithOne(s => s.ProcessingGoodExportOrder)
+                    .HasForeignKey(s => s.ProcessingGoodExportOrderId)
                     .OnDelete(DeleteBehavior.Cascade);
         modelBuilder.Entity<ProcessingGoodExportOrder>()
                    .HasMany<IssueBasketList>(g => g.issueBasketLists)
-                   .WithOne()
+                   .WithOne(s => s.ProcessingGoodExportOrder)
+                   .HasForeignKey(s => s.ProcessingGoodExportOrderId)
                    .OnDelete(DeleteBehavior.Cascade);
     }
 

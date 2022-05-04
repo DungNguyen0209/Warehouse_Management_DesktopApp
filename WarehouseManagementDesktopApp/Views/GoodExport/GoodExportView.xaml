@@ -156,6 +156,7 @@
                                    Style="{StaticResource Parameter}">Mã đơn xuất kho</TextBlock>
                         <TextBox Grid.Column="1"
                                  Margin="1,80,1,90"
+                                 Text="{Binding GoodIssueId}"
                                  materialDesign:HintAssist.Hint="Mã Đơn"
                                  Style="{StaticResource SearchBox}" />
                     </Grid>
