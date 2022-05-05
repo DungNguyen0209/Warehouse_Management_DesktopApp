@@ -17,7 +17,7 @@ public class GoodExportViewModel : BaseViewModel
     private RangeObservableCollection<IssueBasketForViewModel> _issueBasketList = new RangeObservableCollection<IssueBasketForViewModel>();
     private int _selectedIndexItem;
     public string ChoosenItemId { get => _choosenItemId; set { _choosenItemId = value; OnPropertyChanged(); } }
-    public string GoodIssueId { get => _goodIssueId; set { _goodIssueId = value; OnPropertyChanged();} }
+    public string GoodIssueId { get => _goodIssueId; set { _goodIssueId = value; OnPropertyChanged(); } }
     public bool IsDialogOpen { get => _isDialogOpen; set { _isDialogOpen = value; OnPropertyChanged(); } }
     public bool IsMessageDialogOpen { get => _isMessageDialogOpen; set { _isMessageDialogOpen = value; OnPropertyChanged(); } }
     public MessageBoxViewModel MessageBox { get; set; }
@@ -29,7 +29,19 @@ public class GoodExportViewModel : BaseViewModel
     public string SumActual { get => _sumActual; set { _sumActual = value; OnPropertyChanged(); } }
 
     ProcessingGoodExportOrder ProcessingGoodExportOrder { get; set; }
-    public RangeObservableCollection<FormulaListInGoodIssueForViewModel> FormulaPlannedList { get => _formulaPlannedList; set { _formulaPlannedList = value; OnPropertyChanged(); } }
+    public RangeObservableCollection<FormulaListInGoodIssueForViewModel> FormulaPlannedList
+    {
+        get => _formulaPlannedList;
+        set
+        {
+            _formulaPlannedList = value;
+            if (this.ProcessingGoodExportOrder.orderId != GoodIssueId)
+            {
+                EditFormulaInDatabase();
+            }
+            OnPropertyChanged();
+        }
+    }
     public RangeObservableCollection<IssueBasketForViewModel> IssueBasketList
     {
         get => _issueBasketList;
@@ -43,7 +55,6 @@ public class GoodExportViewModel : BaseViewModel
             }
         }
     }
-
 
     public int SelectedIndexItem
     {
@@ -71,7 +82,7 @@ public class GoodExportViewModel : BaseViewModel
     }
 
 
-    public GoodExportViewModel(DialogGoodIssueViewModel dialogGoodIssue,IProcessingGoodExportOrderDatabaseService processingGoodExportOrderDatabaseService, IMapper mapper)
+    public GoodExportViewModel(DialogGoodIssueViewModel dialogGoodIssue, IProcessingGoodExportOrderDatabaseService processingGoodExportOrderDatabaseService, IMapper mapper)
     {
         DialogGoodIssue = dialogGoodIssue;
         _mapper = mapper;
@@ -85,14 +96,21 @@ public class GoodExportViewModel : BaseViewModel
         {
             orderId = ChoosenItemId,
             formulaListGoodIssues = new List<FormulaListGoodIssue>(),
-            issueBasketLists = new List<IssueBasketList>(),
         };
-        FormulaPlannedList.Add(new FormulaListInGoodIssueForViewModel() { ProductId = "111", PlannedMass = "100", PlannedQuantity = "20", ProductName = "AICHOOO", Actual = "0", IsFinished = false });
-        FormulaPlannedList.Add(new FormulaListInGoodIssueForViewModel() { ProductId = "112", PlannedMass = "110", PlannedQuantity = "40", ProductName = "AICHOOO", Actual = "0", IsFinished = false });
+        LoadData();
         SearchCommand = new RelayCommand(async () => Search());
+        OnPropertyChanged("FormulaPlannedList");
         FinishCommand = new RelayCommand(async () => FinishEntryIssue());
     }
-
+    #region testing
+    private void Testing()
+    {
+        RangeObservableCollection<FormulaListInGoodIssueForViewModel> test = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
+        test.Add(new FormulaListInGoodIssueForViewModel() { ProductId = "111", PlannedMass = "100", PlannedQuantity = "20", ProductName = "AICHOOO", Actual = "0", IsFinished = false });
+        test.Add(new FormulaListInGoodIssueForViewModel() { ProductId = "112", PlannedMass = "110", PlannedQuantity = "40", ProductName = "AICHOOO", Actual = "0", IsFinished = false });
+        this.FormulaPlannedList = test;
+    }
+    #endregion
     private void FinishEntryIssue()
     {
         if (SumActual == FormulaPlannedList[_selectedIndexItem].Actual)
@@ -102,11 +120,10 @@ public class GoodExportViewModel : BaseViewModel
         else
         {
             FormulaPlannedList[_selectedIndexItem].IsFinished = false;
-            this.MessageBox.ContentText = "Thực xuất không tương thích  !";
+            this.MessageBox.ContentText = "Thực xuất không tương thích !";
             this.MessageBox.Icon = PackIconKind.Warning;
             IsMessageDialogOpen = true;
         }
-        EditGoodIssueInDatabase();
         UpdateDatabase();
 
     }
@@ -118,8 +135,8 @@ public class GoodExportViewModel : BaseViewModel
         {
             if (item.IsChecked)
             {
-                if(!String.IsNullOrEmpty(item.Actual) && int.TryParse(item.Actual, out _))
-                sum += Convert.ToInt32(item.Actual);
+                if (!String.IsNullOrEmpty(item.Actual) && int.TryParse(item.Actual, out _))
+                    sum += Convert.ToInt32(item.Actual);
             }
         }
         SumActual = Convert.ToString(sum);
@@ -131,29 +148,43 @@ public class GoodExportViewModel : BaseViewModel
     private void SortBasket()
     {
         this.IssueBasketList.Clear();
+        int basketsum = 0;
         RangeObservableCollection<IssueBasketForViewModel> issueBaskets = new RangeObservableCollection<IssueBasketForViewModel>();
-        IssueBasketForViewModel item1 = new IssueBasketForViewModel()
+        #region Testing data
+        //RangeObservableCollection<IssueBasketForViewModel> issueBaskets = new RangeObservableCollection<IssueBasketForViewModel>();
+        //IssueBasketForViewModel item1 = new IssueBasketForViewModel()
+        //{
+        //    BasketId = "LR123",
+        //    ProductionDate = "22-2-2022",
+        //    Quantity = "12",
+        //    Mass = "20"
+        //};
+        //IssueBasketForViewModel item2 = new IssueBasketForViewModel()
+        //{
+        //    BasketId = "LR1234",
+        //    ProductionDate = "22-2-2022",
+        //    Quantity = "23",
+        //    Mass = "30"
+        //};
+        //IssueBasketForViewModel item3 = new IssueBasketForViewModel()
+        //{
+        //    BasketId = "LR12345",
+        //    ProductionDate = "22-2-2022",
+        //    Quantity = "25",
+        //    Mass = "50"
+        //};
+        //issueBaskets.AddRange(new List<IssueBasketForViewModel>() { item1, item2, item3 });
+        #endregion
+        foreach (var item in this.ProcessingGoodExportOrder.formulaListGoodIssues[_selectedIndexItem].Baskets)
         {
-            BasketId = "LR123",
-            ProductionDate = "22-2-2022",
-            Quantity = "12",
-            Mass = "20"
-        };
-        IssueBasketForViewModel item2 = new IssueBasketForViewModel()
-        {
-            BasketId = "LR1234",
-            ProductionDate = "22-2-2022",
-            Quantity = "23",
-            Mass = "30"
-        };
-        IssueBasketForViewModel item3 = new IssueBasketForViewModel()
-        {
-            BasketId = "LR12345",
-            ProductionDate = "22-2-2022",
-            Quantity = "25",
-            Mass = "50"
-        };
-        issueBaskets.AddRange(new List<IssueBasketForViewModel>() { item1, item2, item3 });
+            var data = _mapper.Map<IssueBasketForViewModel>(item);
+            if(data.IsChecked)
+            {
+                basketsum += Convert.ToInt32(data.Actual);
+            }
+            issueBaskets.Add(data);
+        }
+        SumActual = Convert.ToString(basketsum);
         IssueBasketList = issueBaskets;
     }
 
@@ -165,30 +196,62 @@ public class GoodExportViewModel : BaseViewModel
     }
     private void EditFormulaInDatabase()
     {
-        foreach(var item in FormulaPlannedList)
+        int i = 1;
+        foreach (var item in FormulaPlannedList)
         {
-            FormulaListGoodIssue miniitem = _mapper.Map<FormulaListInGoodIssueForViewModel,FormulaListGoodIssue>(item);
+            FormulaListGoodIssue miniitem = _mapper.Map<FormulaListInGoodIssueForViewModel, FormulaListGoodIssue>(item);
+            miniitem.Id = i;
             this.ProcessingGoodExportOrder.formulaListGoodIssues.Add(miniitem);
+            i++;
         }
-        // _processingGoodExportOrderDatabaseService.Update()
+        foreach (var item in this.ProcessingGoodExportOrder.formulaListGoodIssues)
+        {
+            item.Baskets = new List<IssueBasket>();
+        }
     }
     private void EditGoodIssueInDatabase()
     {
-        ICollection<IssueBasket> issue  = new List<IssueBasket>();
-        foreach(var item in IssueBasketList)
+        this.ProcessingGoodExportOrder.formulaListGoodIssues[_selectedIndexItem].Baskets.Clear();
+        foreach (var item in IssueBasketList)
         {
             IssueBasket issueBasket = _mapper.Map<IssueBasketForViewModel, IssueBasket>(item);
-            issue.Add(issueBasket);
+            this.ProcessingGoodExportOrder.formulaListGoodIssues[_selectedIndexItem].Baskets.Add(issueBasket);
         }
 
-        this.ProcessingGoodExportOrder.issueBasketLists.Add(new IssueBasketList() { Baskets = issue, Id = _selectedIndexItem });
     }
 
     private async void UpdateDatabase()
     {
         this.ProcessingGoodExportOrder.orderId = GoodIssueId;
-        EditFormulaInDatabase();
+        EditGoodIssueInDatabase();
         _processingGoodExportOrderDatabaseService.Update(this.ProcessingGoodExportOrder);
+    }
+    private async void LoadData()
+    {
+        var previousdata = await _processingGoodExportOrderDatabaseService.GetAll();
+        if (previousdata != null)
+        {
+            var data = previousdata.Last();
+            this.ProcessingGoodExportOrder = data;
+            GoodIssueId = data.orderId;
+            RangeObservableCollection<FormulaListInGoodIssueForViewModel> formulaListGoodIssuesprevious = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
+            foreach (var item in data.formulaListGoodIssues)
+            {
+                formulaListGoodIssuesprevious.Add(_mapper.Map<FormulaListGoodIssue, FormulaListInGoodIssueForViewModel>(item));
+            }
+            this.FormulaPlannedList = formulaListGoodIssuesprevious;
+            //foreach (var item in data.issueBasketLists)
+            //{
+            //    ObservableCollection<IssueBasketForViewModel> entry = new ObservableCollection<IssueBasketForViewModel>();
+            //    foreach (var miniitem in item.Baskets)
+            //    {
+            //        IssueBasketForViewModel issueBasket = _mapper.Map<IssueBasket, IssueBasketForViewModel>(miniitem);
+            //        entry.Add(issueBasket);
+            //    }
+            //    issueBasketForViewModelsprevious.Add(entry);
+            //}
+        }
+
     }
 }
 

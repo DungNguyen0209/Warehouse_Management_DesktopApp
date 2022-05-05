@@ -58,6 +58,7 @@
                 services.AddSingleton<GoodExportLayOutViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var goodExportStore = serviceprovider.GetRequiredService<NavigationStore>();
+                    goodExportStore.CurrentViewModel = serviceprovider.GetRequiredService<GoodExportViewModel>();
                     return new GoodExportLayOutViewModel(goodExportStore, CreateGoodExportNavigationService(serviceprovider, goodExportStore), CreateProcessGoodExportNavigationService(serviceprovider, goodExportStore));
                 });
                 services.AddSingleton<GoodLocationLayOutViewModel>((IServiceProvider serviceprovider) =>

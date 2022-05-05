@@ -11,4 +11,3 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.Sqlite
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Debug\net6.0-windows\ref\Persistence.SqliteDB.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Debug\net6.0-windows\Persistence.SqliteDB.pdb
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Debug\net6.0-windows\Persistence.SqliteDB.genruntimeconfig.cache
-E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Debug\net6.0-windows\Persistence.SqliteDB.csproj.AssemblyReference.cache

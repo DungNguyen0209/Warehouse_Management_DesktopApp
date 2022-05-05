@@ -10,8 +10,8 @@ public class IssueBasket
     public string? Actual { get; set; }
 
     public bool? IsChecked { get; set; }
-    public int IssueBasketListId { get; set; }
-    public IssueBasketList IssueBasketList { get; set; }
+    public int FormulaListGoodIssueId { get; set; }
+    public FormulaListGoodIssue FormulaListGoodIssue { get; set; }
 #pragma warning restore
 }
 

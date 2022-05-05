@@ -65,10 +65,10 @@ namespace Persistence.SqliteDB.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool?>("IsChecked")
+                    b.Property<int>("FormulaListGoodIssueId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("IssueBasketListId")
+                    b.Property<bool?>("IsChecked")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Mass")
@@ -85,25 +85,9 @@ namespace Persistence.SqliteDB.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IssueBasketListId");
+                    b.HasIndex("FormulaListGoodIssueId");
 
                     b.ToTable("issueBaskets");
-                });
-
-            modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.GoodExport.IssueBasketList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProcessingGoodExportOrderId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProcessingGoodExportOrderId");
-
-                    b.ToTable("issueBasketLists");
                 });
 
             modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.GoodExport.ProcessingGoodExportOrder", b =>
@@ -152,27 +136,16 @@ namespace Persistence.SqliteDB.Migrations
 
             modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.GoodExport.IssueBasket", b =>
                 {
-                    b.HasOne("Persistence.SqliteDB.Domain.Model.GoodExport.IssueBasketList", "IssueBasketList")
+                    b.HasOne("Persistence.SqliteDB.Domain.Model.GoodExport.FormulaListGoodIssue", "FormulaListGoodIssue")
                         .WithMany("Baskets")
-                        .HasForeignKey("IssueBasketListId")
+                        .HasForeignKey("FormulaListGoodIssueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("IssueBasketList");
+                    b.Navigation("FormulaListGoodIssue");
                 });
 
-            modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.GoodExport.IssueBasketList", b =>
-                {
-                    b.HasOne("Persistence.SqliteDB.Domain.Model.GoodExport.ProcessingGoodExportOrder", "ProcessingGoodExportOrder")
-                        .WithMany("issueBasketLists")
-                        .HasForeignKey("ProcessingGoodExportOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ProcessingGoodExportOrder");
-                });
-
-            modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.GoodExport.IssueBasketList", b =>
+            modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.GoodExport.FormulaListGoodIssue", b =>
                 {
                     b.Navigation("Baskets");
                 });
@@ -180,8 +153,6 @@ namespace Persistence.SqliteDB.Migrations
             modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.GoodExport.ProcessingGoodExportOrder", b =>
                 {
                     b.Navigation("formulaListGoodIssues");
-
-                    b.Navigation("issueBasketLists");
                 });
 #pragma warning restore 612, 618
         }

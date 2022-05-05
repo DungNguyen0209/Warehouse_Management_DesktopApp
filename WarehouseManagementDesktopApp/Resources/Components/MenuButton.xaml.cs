@@ -53,6 +53,15 @@ namespace WarehouseManagementDesktopApp.Resources.Components
             set { SetValue(ContentTextProperty, value); }
 
         }
+
+        //public static readonly DependencyProperty DataContextCustomProperty =
+        //    DependencyProperty.Register("DataContextCustom", typeof(object), typeof(MenuButton), new PropertyMetadata());
+        //public object DataContextCustom
+        //{
+        //    get { return (object)GetValue(DataContextCustomProperty); }
+        //    set { SetValue(DataContextCustomProperty, value); }
+
+        //}
         #endregion
 
 
@@ -68,11 +77,14 @@ namespace WarehouseManagementDesktopApp.Resources.Components
             remove { RemoveHandler(ClickEvent, value); }
         }
 
+
+
         #endregion
         public MenuButton()
         {
             InitializeComponent();
             Content = ContentText;
+            //this.DataContext = DataContextCustom;
         }
 
         public void UpdateMinimizedUI()

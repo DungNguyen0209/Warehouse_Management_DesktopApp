@@ -9,6 +9,7 @@ public class FormulaListGoodIssue
     public string PlannedMass { get; set; }
     public string PlannedQuantity { get; set; }
     public string? Actual { get; set; }
+    public IList<IssueBasket> Baskets { get; set; }
     public int ProcessingGoodExportOrderId { get; set; }
     public ProcessingGoodExportOrder ProcessingGoodExportOrder { get; set; }
 #pragma warning restore
