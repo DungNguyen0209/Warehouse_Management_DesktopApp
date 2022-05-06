@@ -21,7 +21,6 @@ public class GoodExportViewModel : BaseViewModel
     public bool IsDialogOpen { get => _isDialogOpen; set { _isDialogOpen = value; OnPropertyChanged(); } }
     public bool IsMessageDialogOpen { get => _isMessageDialogOpen; set { _isMessageDialogOpen = value; OnPropertyChanged(); } }
     public MessageBoxViewModel MessageBox { get; set; }
-
     public DialogGoodIssueViewModel DialogGoodIssue { get; set; }
     public ICommand ActualChanged { get; set; }
     public ICommand SearchCommand { get; set; }

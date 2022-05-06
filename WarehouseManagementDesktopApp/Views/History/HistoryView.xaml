@@ -118,7 +118,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <materialDesign:Card Margin="10,10,10,10" />
+            <materialDesign:Card Margin="10,10,10,10" ></materialDesign:Card>
         </Grid>
     </Grid>
 </UserControl>

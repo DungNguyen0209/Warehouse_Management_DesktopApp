@@ -8,6 +8,8 @@
 
             {
                 services.AddTransient<ChatMessageListDesignModel>();
+                services.AddTransient<LocationCardItemViewModel>();
+                services.AddTransient<LocationCardItemListViewModel>();
                 services.AddTransient<DialogGoodIssueViewModel>();
                 services.AddTransient<MessageBoxViewModel>();
                 services.AddSingleton<LoginViewModel>((IServiceProvider serviceprovider) =>

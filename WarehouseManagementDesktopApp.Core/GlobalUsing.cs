@@ -15,7 +15,6 @@ global using WarehouseManagementDesktopApp.Core.ValueConverter;
 global using WarehouseManagementDesktopApp.Core.Services.Interfaces;
 global using WarehouseManagementDesktopApp.Core.Domain.Communication;
 global using WarehouseManagementDesktopApp.Core.Domain.ViewModel;
-global using DevExpress.Utils.CommonDialogs.Internal;
 global using Microsoft.Win32;
 global using OfficeOpenXml;
 global using OfficeOpenXml.Drawing;

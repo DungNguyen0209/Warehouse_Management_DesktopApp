@@ -25,6 +25,15 @@
     <Compile Update="Resources\Components\EmptyCube.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Resources\Components\GoodLocationUpdateDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Resources\Components\LocationCard\LocationCardItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Resources\Components\LocationCard\LocationCardItemList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Resources\Components\Message\ChatMessageListControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,6 +109,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Components\EmptyCube.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\GoodLocationUpdateDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\LocationCard\LocationCardItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\LocationCard\LocationCardItemList.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Components\MenuButton.xaml">

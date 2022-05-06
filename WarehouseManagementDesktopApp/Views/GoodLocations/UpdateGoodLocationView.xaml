@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Views.GoodLocations"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
+             xmlns:locationcard="clr-namespace:WarehouseManagementDesktopApp.Resources.Components.LocationCard"
+             xmlns:uc1="clr-namespace:WarehouseManagementDesktopApp.Resources.Components"
              x:Name="root"
              Width="1267.2"
              Height="741.6"
@@ -18,65 +20,74 @@
              TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="7*" />
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0"
-              Margin="0,100,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  Margin="0,20,0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="6*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Center"
-                           FontSize="20"
-                           Style="{StaticResource Parameter}">
-                    Mã Sản Phẩm
-                </TextBlock>
-                <TextBox Grid.Column="1"
-                         Margin="25,5,25,5"
-                         Style="{StaticResource TextBoxNormal}"
-                         Text="{Binding Path=Id}" />
-            </Grid>
-            <Grid Grid.Row="1"
-                  Margin="0,20,0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="6*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Center"
-                           FontSize="20"
-                           Style="{StaticResource Parameter}">
-                    Tên Sản Phẩm
-                </TextBlock>
-                <TextBox Grid.Column="1"
-                         Margin="25,5,25,5"
-                         Style="{StaticResource TextBoxNormal}"
-                         Text="{Binding Path=Name}" />
-            </Grid>
-            <Grid Grid.Row="2"
-                  Margin="0,20,0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="6*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Center"
-                           FontSize="20"
-                           Style="{StaticResource Parameter}">
-                    Vị Trí Kệ
-                </TextBlock>
-                <ComboBox Grid.Column="1"
+        <Grid>
+            <materialDesign:DialogHost x:Name="DialogBox"
+                                       Grid.Row="1"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       DialogTheme="Inherit"
+                                       IsOpen="{Binding IsDialogOpen}">
+                <materialDesign:DialogHost.DialogContent>
+                    <Grid Background="{StaticResource SistrainColorBrush}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="18*" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                              Background="{StaticResource SistrainColorBrush}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="1"
+                                    HorizontalAlignment="Right"
+                                    Background="{StaticResource SistrainColorBrush}"
+                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                    Content="{materialDesign:PackIcon Kind=CloseBox,
+                                                                  Size=18}"
+                                    Foreground="White"
+                                    IsCancel="True"
+                                    Style="{StaticResource MaterialDesignFlatButton}" />
+                        </Grid>
+
+                        <Viewbox Grid.Row="1"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Bottom">
+                            <!--  Visibility="{Binding Path=VisibilityAddView, Converter={StaticResource BooleanToVisibilityConverter}}">  -->
+                            <uc1:GoodLocationUpdateDialog DataContext="{Binding GoodLocationUpdateDialog}" />
+                        </Viewbox>
+                    </Grid>
+                </materialDesign:DialogHost.DialogContent>
+                <Border ClipToBounds="True">
+                    <Grid>
+                        <materialDesign:ColorZone Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                                  Mode="PrimaryMid" />
+                    </Grid>
+                </Border>
+            </materialDesign:DialogHost>
+        </Grid>
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6.5*"></RowDefinition>
+            <RowDefinition Height="3.5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="7*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"
+                  Margin="0,50,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    
+                <ComboBox
                           Margin="25,2,25,2"
                           materialDesign:HintAssist.Hint="Vị Trí Kệ"
                           Style="{StaticResource ComboBoxStyle}"
@@ -88,19 +99,8 @@
                     <ComboBoxItem>E</ComboBoxItem>
                     <ComboBoxItem>F</ComboBoxItem>
                 </ComboBox>
-            </Grid>
-            <Grid Grid.Row="3"
-                  Margin="0,20,0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="6*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Center"
-                           FontSize="20"
-                           Style="{StaticResource Parameter}">
-                    Vị Trí Ô
-                </TextBlock>
-                <ComboBox Grid.Column="1"
+                </Grid>
+                <ComboBox Grid.Row="2"
                           Margin="25,2,25,2"
                           materialDesign:HintAssist.Hint="Vị Trí Ô"
                           Style="{StaticResource ComboBoxStyle}"
@@ -112,82 +112,77 @@
                     <ComboBoxItem>E</ComboBoxItem>
                     <ComboBoxItem>F</ComboBoxItem>
                 </ComboBox>
-            </Grid>
-            <Grid Grid.Row="4"
-                  Margin="0,20,0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="6*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Center"
-                           FontSize="20"
-                           Style="{StaticResource Parameter}">
-                    Chọn Số Lô
-                </TextBlock>
-                <ComboBox Grid.Column="1"
-                          Margin="25,2,25,2"
-                          materialDesign:HintAssist.Hint="Chọn Số Lô"
-                          Style="{StaticResource ComboBoxStyle}"
-                          Text="{Binding Testdepth}">
-                    <ComboBoxItem>A</ComboBoxItem>
-                    <ComboBoxItem>B</ComboBoxItem>
-                    <ComboBoxItem>C</ComboBoxItem>
-                    <ComboBoxItem>D</ComboBoxItem>
-                    <ComboBoxItem>E</ComboBoxItem>
-                    <ComboBoxItem>F</ComboBoxItem>
-                </ComboBox>
+                <Grid Grid.Row="3">
+                    <Button Grid.Row="4"
+                            Width="200"
+                            Height="50"
+                            Command="{Binding SearchCommand}"
+                            Style="{StaticResource MenuButton}">
+                        Tìm Kiếm
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="4" Margin="20,30,20,50">
+                    <materialDesign:Card>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                                <materialDesign:Card Height="25" Width="25" Background="{StaticResource WordGreenBrush}"></materialDesign:Card>
+                                <Grid Grid.Column="1">
+                                    <TextBlock Style="{StaticResource Parameter}">Cột trống rổ</TextBlock>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:Card Height="25"
+                                                     Width="25"
+                                                     Background="{StaticResource WordRedBrush}"></materialDesign:Card>
+                                <Grid Grid.Column="1">
+                                    <TextBlock Style="{StaticResource Parameter}">Cột còn rổ</TextBlock>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        
+                    </materialDesign:Card>
+                </Grid>
             </Grid>
 
-            <Grid Grid.Row="5"
-                  Margin="0,20,0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="6*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="Center"
-                           FontSize="20"
-                           Style="{StaticResource Parameter}">
-                    Số Cột Một Lô
-                </TextBlock>
-                <ComboBox Grid.Column="1"
-                          Margin="25,2,25,2"
-                          materialDesign:HintAssist.Hint="Số Cột"
-                          Style="{StaticResource ComboBoxStyle}"
-                          Text="{Binding Testdepth}">
-                    <ComboBoxItem>A</ComboBoxItem>
-                    <ComboBoxItem>B</ComboBoxItem>
-                    <ComboBoxItem>C</ComboBoxItem>
-                    <ComboBoxItem>D</ComboBoxItem>
-                    <ComboBoxItem>E</ComboBoxItem>
-                    <ComboBoxItem>F</ComboBoxItem>
-                </ComboBox>
-            </Grid>
-            <Grid Grid.Row="6">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0"
-                        Width="150"
-                        Height="50"
-                        Command="{Binding SearchCommand}"
-                        Style="{StaticResource MenuButton}">
-                    Thêm
-                </Button>
-                <Button Grid.Column="1"
-                    Width="150"
-                    Height="50"
-                    Command="{Binding SearchCommand}"
-                    Style="{StaticResource MenuButton}">
-                    Xoá
-                </Button>
-            </Grid>
+            <materialDesign:Card Grid.Column="1"
+                                 Margin="20,20,20,20"
+                                 HorizontalContentAlignment="Center">
+                <Canvas Name="BasketSlotpanel" />
+            </materialDesign:Card>
+
         </Grid>
-        <materialDesign:Card Grid.Column="1"
-                             Margin="20,20,20,20"
-                             HorizontalContentAlignment="Center">
-            <Canvas Name="Slotpanel" />
-        </materialDesign:Card>
-
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="7*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Button Grid.Row="4"
+                        Width="200"
+                        Height="100"
+                        Command="{Binding ConfirmCommand}"
+                        Style="{StaticResource MenuButton}">
+                    Xác Nhận
+                </Button>
+            </Grid>
+            <materialDesign:Card Grid.Column="1"
+                                 HorizontalAlignment="Left"
+                                 Margin="20,20,20,20">
+                <locationcard:LocationCardItemList DataContext="{Binding LocationCardItemList}"></locationcard:LocationCardItemList>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
     </Grid>
 </UserControl>

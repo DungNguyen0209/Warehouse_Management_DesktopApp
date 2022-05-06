@@ -1,4 +1,4 @@
-﻿
+﻿E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\App.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\MainWindow.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\AutoCompleteTextBox.xaml;;
@@ -7,6 +7,9 @@ FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementD
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\DialogGoodIssue.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\EmptyCabinet.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\EmptyCube.xaml;;
+FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\GoodLocationUpdateDialog.xaml;;
+FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\LocationCard\LocationCardItem.xaml;;
+FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\LocationCard\LocationCardItemList.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\MenuButton.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\Message\ChatMessageListControl.xaml;;
 FE:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\Resources\Components\Message\ChatMessageListItemControl.xaml;;

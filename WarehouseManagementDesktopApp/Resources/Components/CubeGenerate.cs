@@ -235,7 +235,16 @@
             Canvas.SetBottom(cube, setBottom);
             Canvas.SetRight(cube, setRight);
             canvas.Children.Add(cube);
-        }    
+        }
+        public static void CreateBasketForUpdateLocation(Canvas canvas, double setRight, double setBottom)
+        {
+            Cabinet cube = new Cabinet();
+            cube.Height = 60;
+            cube.Width = 60;
+            Canvas.SetBottom(cube, setBottom);
+            Canvas.SetRight(cube, setRight);
+            canvas.Children.Add(cube);
+        }
         public static void CreateEmptyBasket(Canvas canvas, double setRight, double setBottom)
         {
             EmptyCabinet cube = new EmptyCabinet();

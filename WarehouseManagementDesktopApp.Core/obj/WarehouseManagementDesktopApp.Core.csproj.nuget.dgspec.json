@@ -48,10 +48,6 @@
               "target": "Package",
               "version": "[11.0.0, )"
             },
-            "DevExpress.Data": {
-              "target": "Package",
-              "version": "[21.2.6, )"
-            },
             "EPPlus": {
               "target": "Package",
               "version": "[6.0.3, )"
@@ -85,6 +81,10 @@
             "OfficeOpenXml.Core.ExcelPackage": {
               "target": "Package",
               "version": "[1.0.0, )"
+            },
+            "PropertyChanged.Fody": {
+              "target": "Package",
+              "version": "[3.4.0, )"
             },
             "Syncfusion.XlsIO.Wpf": {
               "target": "Package",
