@@ -15,6 +15,8 @@ public class UpdateGoodLocationViewModel : BaseViewModel
     public string Depth { get => _depth; set { _depth = value; OnPropertyChanged(); } }
     public LocationCardItemListViewModel LocationCardItemList { get; set; }
     public GoodLocationUpdateDialogViewModel GoodLocationUpdateDialog { get; set; }
+    public event EventHandler<List<int>> AddImageEvent;
+
     public UpdateGoodLocationViewModel()
     {
         SearchCommand = new RelayCommand(() => TextAddImage());
@@ -37,11 +39,9 @@ public class UpdateGoodLocationViewModel : BaseViewModel
         GoodLocationUpdateDialog.ProductId = LocationCardItemList.Items[id].ProductId;
         GoodLocationUpdateDialog.ProductName = LocationCardItemList.Items[id].ProductName;
     }
-
-    public Action<int, int, int> AddImageEvent;
     private void TextAddImage()
     {
         // AddImageEvent?.Invoke(Convert.ToInt32(_row), Convert.ToInt32(_column), Convert.ToInt32(_depth));
-        AddImageEvent.Invoke(8, 8, 8);
+        AddImageEvent?.Invoke(this, new List<int> { 8,8,8});
     }
 }

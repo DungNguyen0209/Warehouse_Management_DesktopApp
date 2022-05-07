@@ -5,6 +5,9 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
     public class MainViewModel : ViewModel.BaseViewModels.BaseViewModel
     {
         private readonly NavigationStore _navigationStore;
+        private IMapper _mapper;
+        private readonly IApiService _apiService;
+        private readonly IProductsDatabaseService _productsDatabaseService;
         private bool _isDialogOpen = false;
         public ViewModel.BaseViewModels.BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
         public bool IsDialogOpen { get => _isDialogOpen; set { _isDialogOpen = value; OnPropertyChanged(); } }
@@ -16,9 +19,12 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         public ICommand ReportCommand { get; set; }
         public ICommand HistoryCommand { get; set; }
         public MessageBoxViewModel MessageBox { get; set; }
-        public MainViewModel(NavigationStore navigationStore, INavigationService _LogingnavigationService, INavigationService _GoodReceiptnavigationService,INavigationService _GoodExportnavigationService ,INavigationService _GoodLocationnavigationService, INavigationService _ReportnavigationService, INavigationService _HistorynavigationService)
+        public MainViewModel(NavigationStore navigationStore, INavigationService _LogingnavigationService, INavigationService _GoodReceiptnavigationService,INavigationService _GoodExportnavigationService ,INavigationService _GoodLocationnavigationService, INavigationService _ReportnavigationService, INavigationService _HistorynavigationService, IApiService apiService,IProductsDatabaseService productsDatabaseService,IMapper mapper)
         {
+            _apiService = apiService;
+            _productsDatabaseService = productsDatabaseService;
             _navigationStore = navigationStore;
+            _mapper = mapper;
             MessageBox = new MessageBoxViewModel()
             {
                 ContentText = "You are Confirm",
@@ -37,8 +43,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
 
         private void Close()
         {
-            Console.WriteLine("/n Minh DUng dep trai vl /n ");
-            //IsDialogOpen = false;
+            IsDialogOpen = false;
         }
 
         private void OnCurrentViewModelChanged()

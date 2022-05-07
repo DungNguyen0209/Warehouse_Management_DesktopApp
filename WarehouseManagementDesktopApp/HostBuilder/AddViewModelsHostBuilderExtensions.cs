@@ -14,8 +14,7 @@
                 services.AddTransient<MessageBoxViewModel>();
                 services.AddSingleton<LoginViewModel>((IServiceProvider serviceprovider) =>
                 {
-                    var LoginStore = serviceprovider.GetRequiredService<LoginNavigationStore>();
-                    return new LoginViewModel(LoginStore, CreateNotifyNavigationService(serviceprovider, LoginStore));
+                    return new LoginViewModel(serviceprovider.GetRequiredService<IOidcClientService>());
                 });
                 services.AddSingleton<NotifyViewModel>((IServiceProvider serviceprovider) =>
                 {
@@ -72,8 +71,8 @@
                 services.AddSingleton<MainViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var MainStore = serviceprovider.GetRequiredService<NavigationStore>();
-                    MainStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginLayOutViewModel>();   
-                    return new MainViewModel(MainStore, CreateLayOutNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationLayOutNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore));
+                    MainStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginViewModel>();   
+                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationLayOutNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore),serviceprovider.GetRequiredService<IApiService>(),serviceprovider.GetRequiredService<IProductsDatabaseService>(),serviceprovider.GetRequiredService<IMapper>());
                 });
             });
 

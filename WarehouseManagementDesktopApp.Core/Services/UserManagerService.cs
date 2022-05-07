@@ -25,17 +25,18 @@ namespace WarehouseManagementDesktopApp.Core.Services
         }
         public async Task<ServiceResponse> Login(string username, string password)
         {
-            var result = await _apiService.LogInAsync(username, password);
-            if (result.Success)
-            {
-                user = result.Resource;
-                LoginHandlers?.Invoke(user.lastName);
-                return ServiceResponse.Successful();
-            }
-            else
-            {
-                return ServiceResponse.Failed(result.Error);
-            }
+            //var result = await _apiService.LogInAsync(username, password);
+            //if (result.Success)
+            //{
+            //    user = result.Resource;
+            //    LoginHandlers?.Invoke(user.lastName);
+            //    return ServiceResponse.Successful();
+            //}
+            //else
+            //{
+            //    return ServiceResponse.Failed(result.Error);
+            //}
+            return ServiceResponse.Successful();
         }
         public void Logout()
         {

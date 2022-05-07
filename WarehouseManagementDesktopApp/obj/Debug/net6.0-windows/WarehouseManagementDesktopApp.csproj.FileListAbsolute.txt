@@ -138,7 +138,6 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\GoodExport\ProcessingGoodExportView.g.cs
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\GoodLocations\GoodLocationLayOutView.g.cs
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\GoodReceipts\GoodReceiptLayOutView.g.cs
-E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\Login\LoginLayOutView.g.cs
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\Login\LoginView.g.cs
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\App.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\MainWindow.baml
@@ -165,7 +164,6 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\GoodReceipts\GoodReceiptOrderView.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\GoodReceipts\GoodReceiptView.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\History\HistoryView.baml
-E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\Login\LoginLayOutView.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\Login\LoginView.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\Login\NotifyView.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Views\Report\ReportView.baml
@@ -181,3 +179,12 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\ref\WarehouseManagementDesktopApp.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.pdb
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.genruntimeconfig.cache
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\IdentityModel.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\IdentityModel.OidcClient.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Core.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.WinForms.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Wpf.dll

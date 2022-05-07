@@ -18,6 +18,7 @@
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\6.0.4\build\net6.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\6.0.4\build\net6.0\Microsoft.EntityFrameworkCore.Design.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_Web_WebView2 Condition=" '$(PkgMicrosoft_Web_WebView2)' == '' ">C:\Users\Dung'PC\.nuget\packages\microsoft.web.webview2\1.0.1210.30</PkgMicrosoft_Web_WebView2>
     <PkgMaterialDesignThemes Condition=" '$(PkgMaterialDesignThemes)' == '' ">C:\Users\Dung'PC\.nuget\packages\materialdesignthemes\4.3.0</PkgMaterialDesignThemes>
   </PropertyGroup>
 </Project>

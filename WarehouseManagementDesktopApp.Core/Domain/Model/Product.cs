@@ -9,9 +9,13 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model
     public class Product
     {
 #pragma warning disable CS8618
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public double PiecesPerKilogram { get; set; }
-        public EUnit UnitOfMeasurement { get; set; }
+        public string itemId { get; set; }
+        public string name { get; set; }
+        public int piecesPerKilogram { get; set; }
+        public int minimumStockLevel { get; set; }
+        public int maximumStockLevel { get; set; }
+        public int unit { get; set; }
+        public int itemSource { get; set; }
+        public string? manager { get; set; }
     }
 }

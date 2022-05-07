@@ -228,7 +228,7 @@ public class GoodExportViewModel : BaseViewModel
     private async void LoadData()
     {
         var previousdata = await _processingGoodExportOrderDatabaseService.GetAll();
-        if (previousdata != null)
+        if (!(previousdata.Count() == 0 ) || (previousdata != null ))
         {
             var data = previousdata.Last();
             this.ProcessingGoodExportOrder = data;

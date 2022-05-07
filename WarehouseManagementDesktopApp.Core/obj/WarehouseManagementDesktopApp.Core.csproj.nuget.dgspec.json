@@ -56,6 +56,10 @@
               "target": "Package",
               "version": "[2.0.1, )"
             },
+            "IdentityModel.OidcClient": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "MaterialDesignColors": {
               "target": "Package",
               "version": "[2.0.4, )"
@@ -73,6 +77,10 @@
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[6.0.1, )"
+            },
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.1210.30, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -93,6 +101,10 @@
             "System.Interactive.Async": {
               "target": "Package",
               "version": "[6.0.1, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
             }
           },
           "imports": [

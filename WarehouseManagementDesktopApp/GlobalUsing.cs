@@ -18,6 +18,8 @@ global using Microsoft.EntityFrameworkCore.Sqlite;
 global using WarehouseManagementDesktopApp.Core.Services.Interfaces.ILocalDatabaseService;
 global using WarehouseManagementDesktopApp.Core.Domain.Mapping;
 global using AutoMapper;
+global using IdentityModel.OidcClient.Browser;
+global using Microsoft.Web.WebView2.Wpf;
 
 #endregion
 

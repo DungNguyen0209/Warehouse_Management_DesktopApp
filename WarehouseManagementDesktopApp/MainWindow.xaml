@@ -247,8 +247,8 @@
 
                 <ContentControl x:Name="ViewPanel" Content="{Binding CurrentViewModel}">
                     <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type viewmodels:LoginLayOutViewModel}">
-                            <uc:LoginLayOutView />
+                        <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+                            <uc:LoginView/>
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type viewmodels:GoodReceiptLayOutViewModel}">
                             <uc2:GoodReceiptLayOutView />

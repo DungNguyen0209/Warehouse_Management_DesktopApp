@@ -14,6 +14,16 @@ public class ProductsDatabaseService: IProductsDatabaseService
         _productRepository = productRepository;
         _unitOfWork = unitOfWork;
     }
+
+    public void Clear()
+    {
+        _productRepository.ClearAll();
+    }
+    public async void Insert(List<Product> products)
+    {
+        await Task.Run(()=> _productRepository.InsertAsync(products));
+         await _unitOfWork.SaveChangeAsync();
+    }
     public async Task<IList<Product>?> LoadSuggestName (string firstname)
     {
         var list = await _productRepository.LoadAsyncSuggestName(firstname);

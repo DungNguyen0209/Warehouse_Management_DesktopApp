@@ -5,6 +5,10 @@ global using System.Text;
 global using System.Windows;
 global using System.Threading.Tasks;
 global using Newtonsoft.Json;
+global using System.Net;
+global using System.Net.Http;
+global using System.Net.Http.Headers;
+global using System.Threading;
 global using WarehouseManagementDesktopApp.Core.ViewModel.BaseViewModels;
 global using WarehouseManagementDesktopApp.Core.Domain.Stores;
 global using WarehouseManagementDesktopApp.Core.Service.Interfaces;
@@ -25,6 +29,8 @@ global using WarehouseManagementDesktopApp.Core.Services.Interfaces.ILocalDataba
 global using MaterialDesignThemes.Wpf;
 global using  AutoMapper;
 global using WarehouseManagementDesktopApp.Core.Domain.Mapping;
+global using IdentityModel.OidcClient.Browser;
+global using Microsoft.Web.WebView2.Wpf;
 #region Command
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;

@@ -12,7 +12,8 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
 {
     public interface IApiService
     {
-        Task<ServiceResourceResponse<WarehouseEmployee>> LogInAsync (string username, string password);
+        //Task<ServiceResourceResponse<WarehouseEmployee>> LogInAsync (string username, string password);
+        Task<ServiceResponse> LogInAsync(string? token, Error error);
         void LogOut();
 
 

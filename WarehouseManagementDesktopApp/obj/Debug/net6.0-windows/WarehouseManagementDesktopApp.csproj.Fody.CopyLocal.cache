@@ -4,6 +4,8 @@ C:\Users\Dung'PC\.nuget\packages\epplus.interfaces\6.0.0\lib\net6.0\EPPlus.Inter
 C:\Users\Dung'PC\.nuget\packages\epplus.system.drawing\6.0.0\lib\net6.0\EPPlus.System.Drawing.dll
 C:\Users\Dung'PC\.nuget\packages\fontawesome.wpf\4.7.0.9\lib\net40\FontAwesome.WPF.dll
 C:\Users\Dung'PC\.nuget\packages\humanizer.core\2.8.26\lib\netstandard2.0\Humanizer.dll
+C:\Users\Dung'PC\.nuget\packages\identitymodel\5.2.0\lib\net5.0\IdentityModel.dll
+C:\Users\Dung'PC\.nuget\packages\identitymodel.oidcclient\5.0.0\lib\netstandard2.0\IdentityModel.OidcClient.dll
 C:\Users\Dung'PC\.nuget\packages\materialdesigncolors\2.0.4\lib\netcoreapp3.1\MaterialDesignColors.dll
 C:\Users\Dung'PC\.nuget\packages\materialdesignthemes\4.3.0\lib\netcoreapp3.1\MaterialDesignThemes.Wpf.dll
 C:\Users\Dung'PC\.nuget\packages\microsoft.bcl.asyncinterfaces\6.0.0\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll
@@ -50,7 +52,11 @@ C:\Users\Dung'PC\.nuget\packages\microsoft.identitymodel.protocols\6.8.0\lib\net
 C:\Users\Dung'PC\.nuget\packages\microsoft.identitymodel.protocols.openidconnect\6.8.0\lib\netstandard2.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Dung'PC\.nuget\packages\microsoft.identitymodel.tokens\6.8.0\lib\netstandard2.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Dung'PC\.nuget\packages\microsoft.io.recyclablememorystream\2.2.0\lib\net5.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Dung'PC\.nuget\packages\microsoft.web.webview2\1.0.1210.30\lib\netcoreapp3.0\Microsoft.Web.WebView2.Core.dll
+C:\Users\Dung'PC\.nuget\packages\microsoft.web.webview2\1.0.1210.30\lib\netcoreapp3.0\Microsoft.Web.WebView2.WinForms.dll
+C:\Users\Dung'PC\.nuget\packages\microsoft.web.webview2\1.0.1210.30\lib\netcoreapp3.0\Microsoft.Web.WebView2.Wpf.dll
 C:\Users\Dung'PC\.nuget\packages\microsoft.xaml.behaviors.wpf\1.1.31\lib\net5.0-windows7.0\Microsoft.Xaml.Behaviors.dll
+C:\Users\Dung'PC\.nuget\packages\newtonsoft.json\13.0.1\lib\netstandard2.0\Newtonsoft.Json.dll
 C:\Users\Dung'PC\.nuget\packages\prism.core\8.1.97\lib\net5.0\Prism.dll
 C:\Users\Dung'PC\.nuget\packages\prism.wpf\8.1.97\lib\net5.0-windows7.0\Prism.Wpf.dll
 C:\Users\Dung'PC\.nuget\packages\sqlitepclraw.bundle_e_sqlite3\2.0.6\lib\netstandard2.0\SQLitePCLRaw.batteries_v2.dll
@@ -66,6 +72,9 @@ C:\Users\Dung'PC\.nuget\packages\microsoft.data.sqlclient.sni.runtime\2.1.1\runt
 C:\Users\Dung'PC\.nuget\packages\microsoft.data.sqlclient.sni.runtime\2.1.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Dung'PC\.nuget\packages\microsoft.data.sqlclient.sni.runtime\2.1.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Dung'PC\.nuget\packages\microsoft.data.sqlclient.sni.runtime\2.1.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\Dung'PC\.nuget\packages\microsoft.web.webview2\1.0.1210.30\runtimes\win-arm64\native\WebView2Loader.dll
+C:\Users\Dung'PC\.nuget\packages\microsoft.web.webview2\1.0.1210.30\runtimes\win-x64\native\WebView2Loader.dll
+C:\Users\Dung'PC\.nuget\packages\microsoft.web.webview2\1.0.1210.30\runtimes\win-x86\native\WebView2Loader.dll
 C:\Users\Dung'PC\.nuget\packages\sqlitepclraw.lib.e_sqlite3\2.0.6\runtimes\alpine-x64\native\libe_sqlite3.so
 C:\Users\Dung'PC\.nuget\packages\sqlitepclraw.lib.e_sqlite3\2.0.6\runtimes\linux-arm\native\libe_sqlite3.so
 C:\Users\Dung'PC\.nuget\packages\sqlitepclraw.lib.e_sqlite3\2.0.6\runtimes\linux-arm64\native\libe_sqlite3.so

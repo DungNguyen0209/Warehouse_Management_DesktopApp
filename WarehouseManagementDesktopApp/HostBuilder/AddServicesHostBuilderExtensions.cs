@@ -14,8 +14,10 @@ namespace WarehouseManagementDesktopApp.HostBuilder
                 services.AddTransient<NavigationStore>();
                 services.AddSingleton<GoodReceiptNavigationStore>();
                 services.AddSingleton<LoginNavigationStore>();
+                services.AddSingleton<WebBrowserContainer>();
                 services.AddSingleton<IGoodSlotService, GoodSlotService>();
                 services.AddSingleton<IExcelExporter, ExcelExporterService>();
+                services.AddSingleton<IApiService, ApiService>();
                 services.AddSingleton<IProductsDatabaseService, ProductsDatabaseService>((services =>
                 {
                     return new ProductsDatabaseService(services.GetRequiredService<IProductRepository>(), services.GetRequiredService<IUnitOfWork>());
@@ -27,11 +29,20 @@ namespace WarehouseManagementDesktopApp.HostBuilder
                 var mapperConfig = new MapperConfiguration(mc =>
                 {
                     mc.AllowNullCollections = true;
-                    mc.AddProfile(new ModelAndModelForView());
+                    mc.AddProfiles(new Profile[] { new ModelAndModelForView(), new LogicModelandDatabasModel()});
                 });
 
                 IMapper mapper = mapperConfig.CreateMapper();
                 services.AddSingleton(mapper);
+                services.AddSingleton<EmbeddedBrowserService>();
+                services.AddSingleton<IOidcClientService, OidcClientService>((services =>
+                {
+                    return new OidcClientService(services.GetRequiredService<IApiService>(),services.GetRequiredService<EmbeddedBrowserService>());
+                }));
+                services.AddSingleton<IStartProgramService, StartProgramService>((services =>
+                {
+                    return new StartProgramService(services.GetRequiredService<IApiService>(), services.GetRequiredService<IProductsDatabaseService>(), services.GetRequiredService<IMapper>(), services.GetRequiredService<WebBrowserContainer>(), services.GetRequiredService<IOidcClientService>());
+                }));
             });
 
             return host;

@@ -11,15 +11,14 @@ public class ProductRepository:IProductRepository
         _context = context;
     }
 
-    public void DeleteAsync(Product product)
+    public void ClearAll()
     {
-        _context.Remove<Product>(product);
+        _context.Products.FromSqlRaw("DELETE FROM [Products]");
     }
 
-    public  void InsertAsync(Product product)
+    public async void InsertAsync(List<Product> product)
     {
-         _context.Products.Add(product);
-        _context.SaveChanges();
+        await _context.Products.AddRangeAsync(product);
     }
 
     public async Task<List<Product>> LoadAsyncSuggestName(string name)

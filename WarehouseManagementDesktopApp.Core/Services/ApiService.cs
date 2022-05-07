@@ -1,11 +1,5 @@
-﻿using WarehouseManagementDesktopApp.Core.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using WarehouseManagementDesktopApp.Core.Domain.Model;
-using Newtonsoft.Json;
-using WarehouseManagementDesktopApp.Core.Domain.Communication;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
@@ -15,63 +9,79 @@ namespace WarehouseManagementDesktopApp.Core.Services
 {
     public class ApiService : IApiService
     {
-        private readonly HttpClient _httpClient;
+        private  readonly HttpClient _httpClient;
         //private const string serverUrl = "http://192.168.1.13:8081";
         //private const string serverUrl = "https://hung-anh-storage-web-api.herokuapp.com";
-        private const string serverUrl = "https://storagewebapi20210714122113.azurewebsites.net";
+        //private const string serverUrl = "https://storagewebapi20210714122113.azurewebsites.net";
+        private const string serverUrl = "https://cha-warehouse-management.azurewebsites.net";
         private string token = "";
         public ApiService()
         {
             _httpClient = new HttpClient();
         }
 
-        public async Task<ServiceResourceResponse<WarehouseEmployee>> LogInAsync(string username, string password)
+        //public async Task<ServiceResourceResponse<WarehouseEmployee>> LogInAsync(string username, string password)
+        //{
+        //    ServiceResourceResponse<WarehouseEmployee> result;
+
+        //    var loginCredential = new LoginRequest(username, password);
+        //    var json = JsonConvert.SerializeObject(loginCredential);
+
+        //    try
+        //    {
+        //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //        string url = $"{serverUrl}/api/auth";
+        //        var response = await _httpClient.PostAsync(url, content);
+        //        string responseBody = await response.Content.ReadAsStringAsync();
+
+        //        switch (response.StatusCode)
+        //        {
+        //            case HttpStatusCode.OK:
+        //                var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
+
+        //                token = loginResponse.Token.AuthToken;
+        //                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+        //                result = new ServiceResourceResponse<WarehouseEmployee>(loginResponse.Employee);
+        //                return result;
+        //            case HttpStatusCode.BadRequest:
+        //                var error = new Error("Api.Login", "Tên đăng nhập hoặc mật khẩu không hợp lệ.");
+        //                result = new ServiceResourceResponse<WarehouseEmployee>(error);
+        //                return result;
+        //            default:
+        //                error = new Error("Api.Login", "Đã có lỗi xảy ra. Không thể thực hiện đăng nhập.");
+        //                result = new ServiceResourceResponse<WarehouseEmployee>(error);
+        //                return result;
+        //        }
+        //    }
+        //    catch (HttpRequestException ex)
+        //    {
+        //        var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+        //        result = new ServiceResourceResponse<WarehouseEmployee>(error);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var error = new Error("Api.Login", "Đã có lỗi xảy ra. Không thể thực hiện đăng nhập.");
+        //        result = new ServiceResourceResponse<WarehouseEmployee>(error);
+        //        return result;
+        //    }
+        //    return result;
+        //}
+        public async Task<ServiceResponse> LogInAsync(string? token,Error error)
         {
-            ServiceResourceResponse<WarehouseEmployee> result;
-
-            var loginCredential = new LoginRequest(username, password);
-            var json = JsonConvert.SerializeObject(loginCredential);
-
-            try
+            await Task.Delay(1);
+            if(string.IsNullOrEmpty(error.Message))
             {
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                string url = $"{serverUrl}/api/auth";
-                var response = await _httpClient.PostAsync(url, content);
-                string responseBody = await response.Content.ReadAsStringAsync();
-
-                switch (response.StatusCode)
-                {
-                    case HttpStatusCode.OK:
-                        var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseBody);
-
-                        token = loginResponse.Token.AuthToken;
-                        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-                        result = new ServiceResourceResponse<WarehouseEmployee>(loginResponse.Employee);
-                        return result;
-                    case HttpStatusCode.BadRequest:
-                        var error = new Error("Api.Login", "Tên đăng nhập hoặc mật khẩu không hợp lệ.");
-                        result = new ServiceResourceResponse<WarehouseEmployee>(error);
-                        return result;
-                    default:
-                        error = new Error("Api.Login", "Đã có lỗi xảy ra. Không thể thực hiện đăng nhập.");
-                        result = new ServiceResourceResponse<WarehouseEmployee>(error);
-                        return result;
-                }
+                this.token = token;
+                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.token);
+                return ServiceResponse.Successful();
             }
-            catch (HttpRequestException ex)
+            else
             {
-                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<WarehouseEmployee>(error);
+                this.token = string.Empty;
+                return ServiceResponse.Failed(error);
             }
-            catch (Exception ex)
-            {
-                var error = new Error("Api.Login", "Đã có lỗi xảy ra. Không thể thực hiện đăng nhập.");
-                result = new ServiceResourceResponse<WarehouseEmployee>(error);
-                return result;
-            }
-            return result;
         }
         public void LogOut()
         {
@@ -84,13 +94,18 @@ namespace WarehouseManagementDesktopApp.Core.Services
             ServiceResourceResponse<QueryResult<Product>> result;
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/products/?Page=1&ItemsPerPage=100");
+                HttpResponseMessage response = await _httpClient.GetAsync("https://cha-warehouse-management.azurewebsites.net/api/items/");
+                response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
-                        var products = JsonConvert.DeserializeObject<QueryResult<Product>>(responseBody);
-                        result = new ServiceResourceResponse<QueryResult<Product>>(products);
+                        var product = JsonConvert.DeserializeObject<List<Product>>(responseBody);
+#pragma warning disable CS8601 // Possible null reference assignment.
+                        QueryResult<Product> queryResult = new QueryResult<Product> { Items = product };
+#pragma warning restore CS8601 // Possible null reference assignment.
+                              //var products = JsonConvert.DeserializeObject<QueryResult<Product>>(responseBody);
+                        result = new ServiceResourceResponse<QueryResult<Product>>(queryResult);
                         return result;
                     default:
                         var error = new Error("Api.Product.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");

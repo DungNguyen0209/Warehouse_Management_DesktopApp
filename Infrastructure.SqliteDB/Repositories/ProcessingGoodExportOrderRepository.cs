@@ -12,7 +12,7 @@ public class ProcessingGoodExportOrderRepository : IProcessingGoodExportOrderRep
     {
         if(_context.processingGoodExportOrders.Count()>0)
         {
-        _context.Database.ExecuteSqlRaw("DELETE FROM [processingGoodExportOrders]");
+        _context.processingGoodExportOrders.FromSqlRaw("DELETE FROM [processingGoodExportOrders]");
         }
     }
 
