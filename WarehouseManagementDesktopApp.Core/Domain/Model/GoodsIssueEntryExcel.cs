@@ -14,8 +14,5 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model
         public int TotalQuantity { get; set; }
         public string Note { get; set; }
 
-        public GoodsIssueEntryExcel()
-        {
-        }
     }
 }

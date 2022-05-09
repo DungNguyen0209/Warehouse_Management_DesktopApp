@@ -7,6 +7,8 @@ public class GoodExportViewModel : BaseViewModel
 {
     private readonly IProcessingGoodExportOrderDatabaseService _processingGoodExportOrderDatabaseService;
     private readonly IMapper _mapper;
+    private readonly IExcelExporter _excelExporter;
+    private readonly IApiService _apiService;
     private bool _isDialogOpen = false;
     private string _sumActual = String.Empty;
     private string _choosenItemId = String.Empty;
@@ -16,6 +18,8 @@ public class GoodExportViewModel : BaseViewModel
     private RangeObservableCollection<FormulaListInGoodIssueForViewModel> _formulaPlannedList = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
     private RangeObservableCollection<IssueBasketForViewModel> _issueBasketList = new RangeObservableCollection<IssueBasketForViewModel>();
     private int _selectedIndexItem;
+    private bool loadExcelFlag { get; set; }
+    private bool postExcelFlag { get; set; }
     public string ChoosenItemId { get => _choosenItemId; set { _choosenItemId = value; OnPropertyChanged(); } }
     public string GoodIssueId { get => _goodIssueId; set { _goodIssueId = value; OnPropertyChanged(); } }
     public bool IsDialogOpen { get => _isDialogOpen; set { _isDialogOpen = value; OnPropertyChanged(); } }
@@ -25,6 +29,8 @@ public class GoodExportViewModel : BaseViewModel
     public ICommand ActualChanged { get; set; }
     public ICommand SearchCommand { get; set; }
     public ICommand FinishCommand { get; set; }
+    public ICommand UploadFile { get; set; }
+    public ICommand PostGoodReceiptToServer { get; set; }
     public string SumActual { get => _sumActual; set { _sumActual = value; OnPropertyChanged(); } }
 
     ProcessingGoodExportOrder ProcessingGoodExportOrder { get; set; }
@@ -62,7 +68,10 @@ public class GoodExportViewModel : BaseViewModel
         {
             _selectedIndexItem = value;
             OnPropertyChanged();
+            if(FormulaPlannedList.Count()>0)
+            {
             ChoosenItemId = FormulaPlannedList[_selectedIndexItem].ProductId;
+            }
             SortBasket();
         }
     }
@@ -81,11 +90,13 @@ public class GoodExportViewModel : BaseViewModel
     }
 
 
-    public GoodExportViewModel(DialogGoodIssueViewModel dialogGoodIssue, IProcessingGoodExportOrderDatabaseService processingGoodExportOrderDatabaseService, IMapper mapper)
+    public GoodExportViewModel(DialogGoodIssueViewModel dialogGoodIssue, IProcessingGoodExportOrderDatabaseService processingGoodExportOrderDatabaseService, IExcelExporter excelExporter, IMapper mapper, IApiService apiService)
     {
         DialogGoodIssue = dialogGoodIssue;
+        _excelExporter = excelExporter;
         _mapper = mapper;
         _processingGoodExportOrderDatabaseService = processingGoodExportOrderDatabaseService;
+        _apiService = apiService;
         MessageBox = new MessageBoxViewModel()
         {
             ContentText = "You are Confirm",
@@ -100,6 +111,44 @@ public class GoodExportViewModel : BaseViewModel
         SearchCommand = new RelayCommand(async () => Search());
         OnPropertyChanged("FormulaPlannedList");
         FinishCommand = new RelayCommand(async () => FinishEntryIssue());
+        UploadFile = new RelayCommand(async () => ReadExcel());
+        PostGoodReceiptToServer = new RelayCommand(async () => PostServerGoodReceipt());
+    }
+
+    private async void PostServerGoodReceipt()
+    {
+        await RunCommandAsync(postExcelFlag, async () =>
+        {
+            GoodIssueEntry goodIssueEntry = new GoodIssueEntry()
+            {
+                entries = new List<ProductEntry>(),
+            };
+            goodIssueEntry.goodsReceiptId = GoodIssueId;
+            goodIssueEntry.timestamp = DateTime.Now.ToString("yyyy-MM-dd");
+            goodIssueEntry.approverId = "";
+            foreach(var item in FormulaPlannedList)
+            {
+                var converitem = _mapper.Map<ProductEntry>(item);
+                if(String.IsNullOrEmpty(item.PlannedMass))
+                { 
+                    converitem.TotalQuantity = Convert.ToInt16(item.PlannedQuantity);
+                }
+                else
+                {
+                    converitem.TotalQuantity = Convert.ToInt16(item.PlannedMass);
+                }    
+                goodIssueEntry.entries.Add(converitem);
+            }
+            var result =await _apiService.PostGoodsReceipts(goodIssueEntry);
+            if(result.Success)
+            {
+                FormulaPlannedList.Clear();
+            }    
+            else
+            {
+               
+            }    
+        });
     }
     #region testing
     private void Testing()
@@ -108,6 +157,19 @@ public class GoodExportViewModel : BaseViewModel
         test.Add(new FormulaListInGoodIssueForViewModel() { ProductId = "111", PlannedMass = "100", PlannedQuantity = "20", ProductName = "AICHOOO", Actual = "0", IsFinished = false });
         test.Add(new FormulaListInGoodIssueForViewModel() { ProductId = "112", PlannedMass = "110", PlannedQuantity = "40", ProductName = "AICHOOO", Actual = "0", IsFinished = false });
         this.FormulaPlannedList = test;
+    }
+    private async void ReadExcel()
+    {
+        await RunCommandAsync(loadExcelFlag, async () =>
+        {
+            ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> response = _excelExporter.ReadReceipt();
+        foreach (var item in response.Resource)
+        {
+            var convertitem = _mapper.Map<FormulaListInGoodIssueForViewModel>(item);
+            FormulaPlannedList.Add(convertitem);
+        }
+        GoodIssueId = _excelExporter.FilePath;
+        });
     }
     #endregion
     private void FinishEntryIssue()
@@ -228,7 +290,7 @@ public class GoodExportViewModel : BaseViewModel
     private async void LoadData()
     {
         var previousdata = await _processingGoodExportOrderDatabaseService.GetAll();
-        if (!(previousdata.Count() == 0 ) || (previousdata != null ))
+        if ((previousdata.Count() > 0 ) && (previousdata != null ))
         {
             var data = previousdata.Last();
             this.ProcessingGoodExportOrder = data;

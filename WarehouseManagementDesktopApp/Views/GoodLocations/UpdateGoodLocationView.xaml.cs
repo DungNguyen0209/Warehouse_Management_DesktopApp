@@ -23,35 +23,22 @@ public partial class UpdateGoodLocationView : UserControl
     public UpdateGoodLocationView()
     {
         InitializeComponent();
+        var a = BasketSlotpanel.ActualWidth;
+        var b = BasketSlotpanel.Height;
         UpdateGoodLocationViewModel updateGoodLocationViewModel = new UpdateGoodLocationViewModel();
         this.DataContext = updateGoodLocationViewModel;
         updateGoodLocationViewModel.AddImageEvent += UpdatUI;
 
 
     }
-    //private void UpdatUI(int row, int column, int depth)
-    //{
-    //    BasketSlotpanel.Children.Clear();
-    //    int halfofdepth = depth / 2;
 
-    //    for (int j = 1; j <= row; j++)
-    //    {
-
-    //        for (int k = 1; k <= column; k++)
-    //        {
-    //            double marginright = (BasketSlotpanel.ActualWidth - column * 60 + 30 * (column - 1)) / 2 + (k - 1) * 50;
-    //            double marginbottom = (BasketSlotpanel.ActualHeight - row * 50) / 2 + (j - 1) * 25;
-    //            CubeGenerate.CreateBasketForUpdateLocation(BasketSlotpanel, marginright, marginbottom);
-    //        }
-    //    }
-    //}
     private void UpdatUI(object? sender, List<int> data)
     {
-        BasketSlotpanel.Children.Clear();
+        //BasketSlotpanel.Children.Clear();
         var row = data[0];
         var column = data[1];
         var depth = data[2];
-        int halfofdepth = depth / 2;        
+        int halfofdepth = depth / 2;
         for (int j = 1; j <= row; j++)
         {
 
@@ -59,7 +46,7 @@ public partial class UpdateGoodLocationView : UserControl
             {
                 double marginright = (BasketSlotpanel.ActualWidth - column * 60 + 30 * (column - 1)) / 2 + (k - 1) * 50;
                 double marginbottom = (BasketSlotpanel.ActualHeight - row * 50) / 2 + (j - 1) * 25;
-                CubeGenerate.CreateBasketForUpdateLocation(BasketSlotpanel, marginright, marginbottom);
+                //CubeGenerate.CreateBasketForUpdateLocation(BasketSlotpanel, marginright, marginbottom);
             }
         }
     }

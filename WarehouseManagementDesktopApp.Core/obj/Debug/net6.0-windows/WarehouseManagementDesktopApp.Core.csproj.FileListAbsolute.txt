@@ -18,3 +18,8 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\runtimes\win-x86\native\WebView2Loader.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\runtimes\win-x64\native\WebView2Loader.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core_MarkupCompile.cache
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\Cabinet.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core_MarkupCompile.lref
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\Cabinet.baml
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.g.resources

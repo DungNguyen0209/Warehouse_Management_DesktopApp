@@ -31,6 +31,8 @@ global using  AutoMapper;
 global using WarehouseManagementDesktopApp.Core.Domain.Mapping;
 global using IdentityModel.OidcClient.Browser;
 global using Microsoft.Web.WebView2.Wpf;
+global using Persistence.SqliteDB.Domain.Model.GoodExport;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.API.GoodIssue;
 #region Command
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;

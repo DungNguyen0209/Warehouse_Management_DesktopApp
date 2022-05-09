@@ -35,7 +35,7 @@
                 });
                 services.AddSingleton<GoodExportViewModel>((IServiceProvider serviceprovider) =>
                 {
-                    return new GoodExportViewModel(serviceprovider.GetRequiredService<DialogGoodIssueViewModel>(),serviceprovider.GetRequiredService<IProcessingGoodExportOrderDatabaseService>(), serviceprovider.GetRequiredService<IMapper>());
+                    return new GoodExportViewModel(serviceprovider.GetRequiredService<DialogGoodIssueViewModel>(),serviceprovider.GetRequiredService<IProcessingGoodExportOrderDatabaseService>(),serviceprovider.GetRequiredService<IExcelExporter>(), serviceprovider.GetRequiredService<IMapper>(),serviceprovider.GetRequiredService<IApiService>());
                 });
                 services.AddSingleton<GoodLocationViewModel>();
                 services.AddSingleton<UpdateGoodLocationViewModel>();

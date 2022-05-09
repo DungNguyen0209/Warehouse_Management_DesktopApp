@@ -156,11 +156,13 @@
                 </Grid>
             </Grid>
 
-            <materialDesign:Card Grid.Column="1"
-                                 Margin="20,20,20,20"
-                                 HorizontalContentAlignment="Center">
-                <Canvas Name="BasketSlotpanel" />
-            </materialDesign:Card>
+                <materialDesign:Card Grid.Column="1"
+                                     Margin="20,20,20,20"
+                                     Name="BasketSlotpanel"
+                                     Content="{Binding Content}"
+                                     HorizontalContentAlignment="Center"
+                                     VerticalAlignment="Center">
+                </materialDesign:Card>
 
         </Grid>
         <Grid Grid.Row="1">

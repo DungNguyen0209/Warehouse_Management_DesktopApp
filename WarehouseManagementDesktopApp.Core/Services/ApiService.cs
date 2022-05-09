@@ -270,7 +270,47 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
-        public async Task<ServiceResponse> PostGoodsReceipts(GoodsReceiptPost resource)
+        //public async Task<ServiceResponse> PostGoodsReceipts(GoodsReceiptPost resource)
+        //{
+        //    ServiceResponse result;
+        //    var json = JsonConvert.SerializeObject(resource);
+        //    try
+        //    {
+        //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        //        string url = $"{serverUrl}/api/goodsreceipts/";
+        //        var response = await _httpClient.PostAsync(url, content);
+
+        //        switch (response.StatusCode)
+        //        {
+        //            case HttpStatusCode.OK:
+        //                return ServiceResponse.Successful();
+        //            case HttpStatusCode.BadRequest:
+        //                string responseBody = await response.Content.ReadAsStringAsync();
+        //                var serverError = JsonConvert.DeserializeObject<ServerError>(responseBody);
+        //                var error = new Error("Api.GoodsReceipts.Post", serverError.Message);
+        //                return ServiceResponse.Failed(error);
+        //            case HttpStatusCode.Unauthorized:
+        //                error = new Error("Api.GoodsReceipts.Post", "Vui lòng đăng nhập.");
+        //                return ServiceResponse.Failed(error);
+        //            default:
+        //                error = new Error("Api.GoodsReceiptse.Post", "Đã có lỗi xảy ra. Không thể Kết nối với Server.");
+        //                return ServiceResponse.Failed(error);
+        //        }
+        //    }
+        //    catch (HttpRequestException ex)
+        //    {
+        //        var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+        //        result = new ServiceResourceResponse<WarehouseEmployee>(error);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var error = new Error("Api.GoodsReceipts.Post", "Đã có lỗi xảy ra. Không thể gửi dữ liệu về Server được.");
+        //        result = ServiceResponse.Failed(error);
+        //        return result;
+        //    }
+        //    return result;
+        //}
+        public async Task<ServiceResponse> PostGoodsReceipts(GoodIssueEntry resource)
         {
             ServiceResponse result;
             var json = JsonConvert.SerializeObject(resource);

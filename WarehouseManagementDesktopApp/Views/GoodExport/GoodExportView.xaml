@@ -178,6 +178,7 @@
                     Grid.Column="2"
                     Height="55"
                     Margin="20,0,15,0"
+                    Command="{Binding UploadFile}"
                     Style="{StaticResource MenuButton}">
                     Tải Excel
                 </Button>
@@ -192,6 +193,7 @@
                     Grid.Column="4"
                     Height="55"
                     Margin="20,0,15,0"
+                    Command="{Binding PostGoodReceiptToServer}"
                     Style="{StaticResource MenuButton}">
                     Xuất Excel
                 </Button>

@@ -23,7 +23,7 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
 
 
         Task<ServiceResourceResponse<Basket>> GetBasketById(string basketId);
-        Task<ServiceResponse> PostGoodsReceipts(GoodsReceiptPost resource);
+        Task<ServiceResponse> PostGoodsReceipts(GoodIssueEntry resource);
         Task<ServiceResponse> PutBasket(string id, GoodsReceiptEntryPutAPI entry);
         Task<ServiceResponse> PostNewBasket(NewBasket newBasket);
 
