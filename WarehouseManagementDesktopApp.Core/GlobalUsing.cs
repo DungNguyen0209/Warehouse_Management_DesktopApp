@@ -33,6 +33,9 @@ global using IdentityModel.OidcClient.Browser;
 global using Microsoft.Web.WebView2.Wpf;
 global using Persistence.SqliteDB.Domain.Model.GoodExport;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.API.GoodIssue;
+global using WarehouseManagementDesktopApp.Core.Domain.Model;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.Api;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.API;
 #region Command
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;

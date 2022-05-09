@@ -20,7 +20,7 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model.Api
     public class HistoryEntries
     {
         public DateTime TimeStamp { get; set; }
-        public WarehouseEmployee Employee { get; set; }
+        public Manager Employee { get; set; }
         public IEnumerable<GoodsReceiptEntries> Entries { get; set; } = new List<GoodsReceiptEntries>();
     }
 }

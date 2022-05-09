@@ -10,4 +10,5 @@ public  interface IStartProgramService
 {
     void LoadProgram();
     void LoadLoginView();
+    Action FinishLogin { get; set; }
 }

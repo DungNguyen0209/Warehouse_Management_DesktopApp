@@ -27,6 +27,21 @@ public partial class MessageBox : Window
         set { SetValue(ContentTextProperty, value); }
 
     }
+    //public static readonly DependencyProperty IconProperty =
+    //       DependencyProperty.Register("Icon", typeof(PackIconKind), typeof(MessageBox), new PropertyMetadata(PackIconKind.CheckboxesBlankCircleOutline));
+    //public PackIconKind Icon
+    //{
+    //    get { return (PackIconKind)GetValue(IconProperty); }
+    //    set { SetValue(IconProperty, value); }
+    //}
+    public static readonly DependencyProperty IsWarningProperty =
+       DependencyProperty.Register("IsWarning", typeof(bool), typeof(MessageBox), new PropertyMetadata(true));
+    public bool IsWarning
+    {
+        get { return (bool)GetValue(IsWarningProperty); }
+        set { SetValue(IsWarningProperty, value); }
+    }
+
     public MessageBox()
     {
         InitializeComponent();

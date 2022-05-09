@@ -9,7 +9,7 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model.Api
     public class GoodsReceiptGet
     {
         public DateTime Timestamp { get; set; }
-        public WarehouseEmployee Employee { get; set; }
+        public Manager Employee { get; set; }
         public List<GetAllGoodsReceipt> Entries { get; set; }
     }
     public class GetAllGoodsReceipt

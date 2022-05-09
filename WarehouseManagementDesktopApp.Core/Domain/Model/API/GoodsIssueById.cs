@@ -21,7 +21,7 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model.Api
         public EUnit ProductUnitOfMeasurement { get; set; }
         public int TotalQuantity { get; set; }
         public double TotalMass { get; set; }
-        public WarehouseEmployee Employee { get; set; }
+        public Manager Employee { get; set; }
         public IEnumerable<GoodsIssueEntryBasketById> Baskets { get; set; }
         public string Note { get; set; }
     }
@@ -40,7 +40,7 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model.Api
     {
         public string Id { get; set; }
         public DateTime TimeStamp { get; set; }
-        public WarehouseEmployee ShiftLeader { get; set; }
+        public Manager ShiftLeader { get; set; }
         public IEnumerable<GoodsIssueEntryById> Entries { get; set; } = new List<GoodsIssueEntryById>();
     }
 

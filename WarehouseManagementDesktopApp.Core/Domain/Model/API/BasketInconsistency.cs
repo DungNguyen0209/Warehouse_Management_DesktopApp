@@ -19,7 +19,7 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model.Api
         public double NewMass { get; set; }
         public string Note { get; set; }
         public Boolean IsFixed { get; set; }
-        public WarehouseEmployee Reporter { get; set; }
+        public Manager Reporter { get; set; }
 
         public BasketInconsistency()
         {

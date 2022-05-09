@@ -1,4 +1,6 @@
 ﻿namespace WarehouseManagementDesktopApp.Core.Services;
+using MessageBox = WarehouseManagementDesktopApp.Core.ComponentUI.MessageBox;
+using Product = Persistence.SqliteDB.Model.Product;
 
 public class StartProgramService:IStartProgramService
 {
@@ -7,7 +9,7 @@ public class StartProgramService:IStartProgramService
     private readonly IMapper _mapper;
     private readonly IOidcClientService _idcClientService;
     private readonly WebBrowserContainer _webBrowserContainer;
-
+    public Action FinishLogin { get; set; }
     public StartProgramService(IApiService apiService, IProductsDatabaseService roductsDatabaseService, IMapper mapper, WebBrowserContainer webBrowserContainer,IOidcClientService oidcClientService)
     {
         _idcClientService = oidcClientService;
@@ -15,10 +17,18 @@ public class StartProgramService:IStartProgramService
         _apiService = apiService;
         _productsDatabaseService = roductsDatabaseService;
         _mapper = mapper;
+        _apiService.LoginCompleteAction += StartLoadProduct;
     }
+
+    private void StartLoadProduct()
+    {
+        FinishLogin?.Invoke();
+        Thread thread = new Thread(LoadProduct);
+        thread.Start();
+    }
+
     public async void LoadLoginView()
     {
-        _webBrowserContainer.View = _idcClientService.Window;
         await Task.Delay(10);
         await Task.Run(()=>_idcClientService.LoginAsync());
     }

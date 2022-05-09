@@ -1,4 +1,5 @@
 ﻿using Persistence.SqliteDB.Model;
+using Product = Persistence.SqliteDB.Model.Product;
 
 namespace WarehouseManagementDesktopApp.Core.Services.Interfaces.ILocalDatabaseService;
 

@@ -14,7 +14,7 @@ public class Item
     public double minimunStockLevel { get; set; }
     public EUnit unit { get; set; }
     public EItemSource itemSource { get; set; }
-    public WarehouseEmployee manager { get; set; }
+    public Manager manager { get; set; }
 
 }
 #pragma warning restore

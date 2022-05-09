@@ -32,14 +32,7 @@ namespace WarehouseManagementDesktopApp
         {
             _host.Start();
             MainWindow window = _host.Services.GetRequiredService<MainWindow>();
-            var loginbrowser = _host.Services.GetRequiredService<LoginViewModel>();
-            var startupservice = _host.Services.GetRequiredService<IStartProgramService>();
             window.Show();
-           // startupservice.LoadLoginView();
-            //Thread thread = new Thread(startupservice.LoadProgram);
-            //thread.Start();
-
-
             base.OnStartup(e);
         }
 

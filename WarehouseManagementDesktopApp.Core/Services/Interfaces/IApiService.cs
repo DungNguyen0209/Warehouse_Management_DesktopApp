@@ -13,6 +13,7 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
     public interface IApiService
     {
         //Task<ServiceResourceResponse<WarehouseEmployee>> LogInAsync (string username, string password);
+        Action LoginCompleteAction { get; set; }
         Task<ServiceResponse> LogInAsync(string? token, Error error);
         void LogOut();
 
@@ -23,12 +24,12 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
 
 
         Task<ServiceResourceResponse<Basket>> GetBasketById(string basketId);
-        Task<ServiceResponse> PostGoodsReceipts(GoodIssueEntry resource);
+        Task<ServiceResponse> PostGoodsReceipts(GoodReceiptEntry resource);
         Task<ServiceResponse> PutBasket(string id, GoodsReceiptEntryPutAPI entry);
         Task<ServiceResponse> PostNewBasket(NewBasket newBasket);
 
 
-        Task<ServiceResponse> PostGoodsIssue(GoodsIssueResource resource);
+        Task<ServiceResponse> PostGoodsIssue(GoodIssueEntry resource);
         Task<ServiceResponse> PatchGoodsIssueEntryBasket(List<PatchGoodsIssueEntryBasket> resource, string goodsIssueId);
         Task<ServiceResourceResponse<GoodsIssueById>> GetGoodsIssueById(string goodsIssueId);
 

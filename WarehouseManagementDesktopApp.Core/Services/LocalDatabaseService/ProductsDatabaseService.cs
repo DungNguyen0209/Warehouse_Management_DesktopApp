@@ -1,5 +1,6 @@
 ﻿using Persistence.SqliteDB.Domain.Interfaces;
 using Persistence.SqliteDB.Model;
+using Product = Persistence.SqliteDB.Model.Product;
 using WarehouseManagementDesktopApp.Core.Services.Interfaces.ILocalDatabaseService;
 
 namespace WarehouseManagementDesktopApp.Core.Services;
@@ -15,9 +16,10 @@ public class ProductsDatabaseService: IProductsDatabaseService
         _unitOfWork = unitOfWork;
     }
 
-    public void Clear()
+    public async void Clear()
     {
         _productRepository.ClearAll();
+        await _unitOfWork.SaveChangeAsync();
     }
     public async void Insert(List<Product> products)
     {

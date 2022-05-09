@@ -71,8 +71,8 @@ public class GoodExportViewModel : BaseViewModel
             if(FormulaPlannedList.Count()>0)
             {
             ChoosenItemId = FormulaPlannedList[_selectedIndexItem].ProductId;
-            }
             SortBasket();
+            }
         }
     }
 
@@ -115,6 +115,47 @@ public class GoodExportViewModel : BaseViewModel
         PostGoodReceiptToServer = new RelayCommand(async () => PostServerGoodReceipt());
     }
 
+    //private async void PostServerGoodReceipt()
+    //{
+    //    await RunCommandAsync(postExcelFlag, async () =>
+    //    {
+    //        GoodIssueEntry goodIssueEntry = new GoodIssueEntry()
+    //        {
+    //            entries = new List<ProductEntry>(),
+    //        };
+    //        goodIssueEntry.goodsReceiptId = GoodIssueId;
+    //        goodIssueEntry.timestamp = DateTime.Now.ToString("yyyy-MM-dd");
+    //        goodIssueEntry.approverId = "";
+    //        foreach(var item in FormulaPlannedList)
+    //        {
+    //            var converitem = _mapper.Map<ProductEntry>(item);
+    //            if(String.IsNullOrEmpty(item.PlannedMass))
+    //            { 
+    //                converitem.TotalQuantity = Convert.ToInt16(item.PlannedQuantity);
+    //            }
+    //            else
+    //            {
+    //                converitem.TotalQuantity = Convert.ToInt16(item.PlannedMass);
+    //            }    
+    //            goodIssueEntry.entries.Add(converitem);
+    //        }
+    //        var result =await _apiService.PostGoodsReceipts(goodIssueEntry);
+    //        if(result.Success)
+    //        {
+    //            FormulaPlannedList.Clear();
+    //        }    
+    //        else
+    //        {
+    //            MessageBox messageBox = new MessageBox()
+    //            {
+    //                IsWarning = false,
+    //                ContentText = "Lỗi Trong Qúa Trình Truy Xuất Server"
+    //            };
+    //            messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+    //            messageBox.Show();
+    //        }    
+    //    });
+    //}
     private async void PostServerGoodReceipt()
     {
         await RunCommandAsync(postExcelFlag, async () =>
@@ -123,35 +164,43 @@ public class GoodExportViewModel : BaseViewModel
             {
                 entries = new List<ProductEntry>(),
             };
-            goodIssueEntry.goodsReceiptId = GoodIssueId;
+            goodIssueEntry.goodsIssueId = GoodIssueId;
             goodIssueEntry.timestamp = DateTime.Now.ToString("yyyy-MM-dd");
-            goodIssueEntry.approverId = "";
-            foreach(var item in FormulaPlannedList)
+            foreach (var item in FormulaPlannedList)
             {
                 var converitem = _mapper.Map<ProductEntry>(item);
-                if(String.IsNullOrEmpty(item.PlannedMass))
-                { 
+                if (!String.IsNullOrEmpty(item.PlannedMass))
+                {
                     converitem.TotalQuantity = Convert.ToInt16(item.PlannedQuantity);
                 }
                 else
                 {
                     converitem.TotalQuantity = Convert.ToInt16(item.PlannedMass);
-                }    
+                }
                 goodIssueEntry.entries.Add(converitem);
             }
-            var result =await _apiService.PostGoodsReceipts(goodIssueEntry);
-            if(result.Success)
+            var result = await _apiService.PostGoodsIssue(goodIssueEntry);
+            if (result.Success)
             {
+                MessageBox messageBox = new MessageBox()
+                {
+                    IsWarning = false,
+                    ContentText = "Truy xuất thành công"
+                };
+                messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                messageBox.Show();
                 FormulaPlannedList.Clear();
-            }    
+            }
             else
             {
                 MessageBox messageBox = new MessageBox()
                 {
-                    ContentText = "Lỗi Trong Qúa Trình Truy Xuất Server"
+                    IsWarning = false,
+                    ContentText = result.Error.Message
                 };
+                messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 messageBox.Show();
-            }    
+            }
         });
     }
     #region testing

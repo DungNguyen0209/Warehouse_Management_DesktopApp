@@ -36,9 +36,8 @@ public class EmbeddedBrowserService: IBrowser
             }
         };
         signinWindow.Content = webView;
-        BrowserWindow?.Invoke(webView);
         // Sua o day
-
+        BrowserWindow?.Invoke(webView);
         // Initialization
         await webView.EnsureCoreWebView2Async(null);
 

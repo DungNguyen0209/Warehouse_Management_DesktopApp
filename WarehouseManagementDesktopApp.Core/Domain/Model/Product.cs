@@ -14,8 +14,8 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model
         public int piecesPerKilogram { get; set; }
         public int minimumStockLevel { get; set; }
         public int maximumStockLevel { get; set; }
-        public int unit { get; set; }
+        public EUnit unit { get; set; }
         public int itemSource { get; set; }
-        public string? manager { get; set; }
+        public Manager manager { get; set; }
     }
 }

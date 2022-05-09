@@ -13,13 +13,13 @@ namespace WarehouseManagementDesktopApp.Core.Services
     {
         public event Action<string> LoginHandlers;
         private readonly IApiService _apiService;
-        private WarehouseEmployee user;
+        private Manager user;
 
         public UserManagerService (IApiService apiService)
         {
             this._apiService = apiService;
         }    
-        public WarehouseEmployee GetUser()
+        public Manager GetUser()
         {
             return user;
         }

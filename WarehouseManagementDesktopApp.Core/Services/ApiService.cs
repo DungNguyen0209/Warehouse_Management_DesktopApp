@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net;
 using WarehouseManagementDesktopApp.Core.Domain.Model.Api;
+using WarehouseManagementDesktopApp.Core.Domain.Model.API;
 
 namespace WarehouseManagementDesktopApp.Core.Services
 {
@@ -15,6 +16,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
         //private const string serverUrl = "https://storagewebapi20210714122113.azurewebsites.net";
         private const string serverUrl = "https://cha-warehouse-management.azurewebsites.net";
         private string token = "";
+        public Action LoginCompleteAction { get; set; }
         public ApiService()
         {
             _httpClient = new HttpClient();
@@ -75,6 +77,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             {
                 this.token = token;
                  _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.token);
+                LoginCompleteAction?.Invoke();
                 return ServiceResponse.Successful();
             }
             else
@@ -94,7 +97,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             ServiceResourceResponse<QueryResult<Product>> result;
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync("https://cha-warehouse-management.azurewebsites.net/api/items/");
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/items/");
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
                 switch (response.StatusCode)
@@ -220,7 +223,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             catch (HttpRequestException ex)
             {
                 var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<WarehouseEmployee>(error);
+                result = new ServiceResourceResponse<Manager>(error);
             }
             catch (Exception ex)
             {
@@ -260,7 +263,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             catch (HttpRequestException ex)
             {
                 var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<WarehouseEmployee>(error);
+                result = new ServiceResourceResponse<Manager>(error);
             }
             catch (Exception ex)
             {
@@ -310,7 +313,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
         //    }
         //    return result;
         //}
-        public async Task<ServiceResponse> PostGoodsReceipts(GoodIssueEntry resource)
+        public async Task<ServiceResponse> PostGoodsReceipts(GoodReceiptEntry resource)
         {
             ServiceResponse result;
             var json = JsonConvert.SerializeObject(resource);
@@ -340,7 +343,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             catch (HttpRequestException ex)
             {
                 var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<WarehouseEmployee>(error);
+                result = new ServiceResourceResponse<Manager>(error);
             }
             catch (Exception ex)
             {
@@ -351,7 +354,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             return result;
         }
 
-        public async Task<ServiceResponse> PostGoodsIssue(GoodsIssueResource resource)
+        public async Task<ServiceResponse> PostGoodsIssue(GoodIssueEntry resource)
         {
             ServiceResponse result;
             var json = JsonConvert.SerializeObject(resource);
@@ -381,7 +384,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             catch (HttpRequestException ex)
             {
                 var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<WarehouseEmployee>(error);
+                result = new ServiceResourceResponse<Manager>(error);
             }
             catch (Exception ex)
             {
@@ -425,7 +428,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             catch (HttpRequestException ex)
             {
                 var error = new Error("Api.Connection", $"Đã có lỗi xảy ra. Không thể kết nối được với server vì: {ex.Message}");
-                result = new ServiceResourceResponse<WarehouseEmployee>(error);
+                result = new ServiceResourceResponse<Manager>(error);
             }
             catch (Exception ex)
             {

@@ -17,7 +17,7 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
         void Logout();
 
 
-        WarehouseEmployee GetUser();
+        Manager GetUser();
 
 
         event Action<string> LoginHandlers;

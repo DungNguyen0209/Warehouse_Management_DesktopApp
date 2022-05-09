@@ -31,7 +31,7 @@
                 services.AddSingleton<GoodReceiptOrderViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var goodReceiptStore = serviceprovider.GetRequiredService<GoodReceiptNavigationStore>();
-                    return new GoodReceiptOrderViewModel(goodReceiptStore, CreateGoodReceiptNavigationService(serviceprovider, goodReceiptStore),serviceprovider.GetRequiredService<IExcelExporter>(), serviceprovider.GetRequiredService<ChatMessageListDesignModel>());
+                    return new GoodReceiptOrderViewModel(goodReceiptStore, CreateGoodReceiptNavigationService(serviceprovider, goodReceiptStore),serviceprovider.GetRequiredService<IExcelExporter>(), serviceprovider.GetRequiredService<ChatMessageListDesignModel>(), serviceprovider.GetRequiredService<IApiService>(), serviceprovider.GetRequiredService<IMapper>());
                 });
                 services.AddSingleton<GoodExportViewModel>((IServiceProvider serviceprovider) =>
                 {
@@ -72,7 +72,7 @@
                 {
                     var MainStore = serviceprovider.GetRequiredService<NavigationStore>();
                     MainStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginViewModel>();   
-                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationLayOutNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore),serviceprovider.GetRequiredService<IApiService>(),serviceprovider.GetRequiredService<IProductsDatabaseService>(),serviceprovider.GetRequiredService<IMapper>());
+                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationLayOutNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore),serviceprovider.GetRequiredService<IApiService>(),serviceprovider.GetRequiredService<IProductsDatabaseService>(),serviceprovider.GetRequiredService<IMapper>(),serviceprovider.GetRequiredService<IStartProgramService>());
                 });
             });
 
