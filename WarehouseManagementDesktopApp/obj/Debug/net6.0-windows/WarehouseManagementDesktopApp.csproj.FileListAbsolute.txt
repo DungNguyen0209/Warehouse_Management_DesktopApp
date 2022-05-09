@@ -188,3 +188,9 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Core.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.WinForms.dll
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Microsoft.Web.WebView2.Wpf.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\EPPlus.Extensions.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\OfficeOpenXml.Core.ExcelPackage.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Syncfusion.Compression.Base.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Syncfusion.Licensing.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Syncfusion.XlsIO.Base.dll

@@ -23,3 +23,8 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core_MarkupCompile.lref
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\Cabinet.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.g.resources
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\ControlBar.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\MessageBox.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\ControlBar.baml
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\MessageBox.baml
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs

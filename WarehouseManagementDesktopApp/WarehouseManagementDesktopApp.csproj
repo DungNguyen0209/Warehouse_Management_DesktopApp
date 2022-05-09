@@ -61,12 +61,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure.SqliteDB\Persistence.SqliteDB.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="WarehouseManagementDesktopApp.Core">
-      <HintPath>..\WarehouseManagementDesktopApp.Core\bin\Debug\net6.0-windows\WarehouseManagementDesktopApp.Core.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\WarehouseManagementDesktopApp.Core\WarehouseManagementDesktopApp.Core.csproj" />
   </ItemGroup>
 
 </Project>

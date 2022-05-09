@@ -13,8 +13,8 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 38-1462135354
 5-1695859445
 42-915144638
-262908398394
+268-76432741
 MainWindow.xaml;Resources\Components\AutoCompleteTextBox.xaml;Resources\Components\Cabinet.xaml;Resources\Components\Cube.xaml;Resources\Components\DialogGoodIssue.xaml;Resources\Components\EmptyCabinet.xaml;Resources\Components\EmptyCube.xaml;Resources\Components\GoodLocationUpdateDialog.xaml;Resources\Components\LocationCard\LocationCardItem.xaml;Resources\Components\LocationCard\LocationCardItemList.xaml;Resources\Components\MenuButton.xaml;Resources\Components\Message\ChatMessageListControl.xaml;Resources\Components\Message\ChatMessageListItemControl.xaml;Resources\Components\Message\MessageBox.xaml;Resources\Style\Button.xaml;Resources\Style\Colors.xaml;Resources\Style\ComboBox.xaml;Resources\Style\DataGrid.xaml;Resources\Style\Datepicker.xaml;Resources\Style\Fonts.xaml;Resources\Style\ListView.xaml;Resources\Style\Scroll.xaml;Resources\Style\Text.xaml;Resources\Style\TextBox.xaml;Views\GoodExport\GoodExportLayOutView.xaml;Views\GoodExport\GoodExportView.xaml;Views\GoodExport\ProcessingGoodExportView.xaml;Views\GoodLocations\GoodLocationLayOutView.xaml;Views\GoodLocations\GoodLocationView.xaml;Views\GoodLocations\UpdateGoodLocationView.xaml;Views\GoodReceipts\GoodReceiptLayOutView.xaml;Views\GoodReceipts\GoodReceiptOrderView.xaml;Views\GoodReceipts\GoodReceiptView.xaml;Views\History\HistoryView.xaml;Views\Login\LoginView.xaml;Views\Login\NotifyView.xaml;Views\Report\ReportView.xaml;Views\Shaw\ShawPlanView.xaml;
 
-True
+False
 

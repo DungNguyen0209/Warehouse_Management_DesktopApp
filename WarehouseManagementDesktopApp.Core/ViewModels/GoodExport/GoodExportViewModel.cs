@@ -1,5 +1,5 @@
 ﻿using Persistence.SqliteDB.Domain.Model.GoodExport;
-
+using MessageBox = WarehouseManagementDesktopApp.Core.ComponentUI.MessageBox;
 namespace WarehouseManagementDesktopApp.Core.ViewModels;
 #pragma warning disable CS8618
 
@@ -146,7 +146,11 @@ public class GoodExportViewModel : BaseViewModel
             }    
             else
             {
-               
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Lỗi Trong Qúa Trình Truy Xuất Server"
+                };
+                messageBox.Show();
             }    
         });
     }
