@@ -16,7 +16,7 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d"
-             d:DesignHeight="450"
+             d:DesignHeight="700"
              d:DesignWidth="450">
     <Grid>
         <Grid>
@@ -40,9 +40,14 @@
                 <Grid
                       VerticalAlignment="Center"
                       Grid.Row="1">
-                    <materialDesign:Card Width="400" Height="250">
+                    <materialDesign:Card Width="400" Height="600">
                         <Grid>
                             <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
@@ -69,13 +74,113 @@
                                     <ColumnDefinition Width="6*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock Style="{StaticResource Parameter}" FontSize="20">Tên Sản Phẩm</TextBlock>
+                                    <TextBlock Style="{StaticResource Parameter}"
+                                               FontSize="20">Tên Sản Phẩm</TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <TextBox Width="150" Height="40" Style="{StaticResource MaterialDesignTextBox}" Text="{Binding ProductName}"></TextBox>
+                                    <TextBox Width="150"
+                                             Height="40"
+                                             Style="{StaticResource MaterialDesignTextBox}"
+                                             Text="{Binding ProductName}"></TextBox>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <TextBlock Style="{StaticResource Parameter}"
+                                               FontSize="20">Khối Lượng Đơn</TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <TextBox Width="150"
+                                             Height="40"
+                                             Style="{StaticResource MaterialDesignTextBox}"
+                                             Text="{Binding PiecesPerKilogram}"></TextBox>
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <TextBlock Style="{StaticResource Parameter}"
+                                               FontSize="20">Tồn Tối Thiểu</TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <TextBox Width="150"
+                                             Height="40"
+                                             Style="{StaticResource MaterialDesignTextBox}"
+                                             Text="{Binding MinimumStockLevel}"></TextBox>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <TextBlock Style="{StaticResource Parameter}"
+                                               FontSize="20">Tồn Tối Đa</TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <TextBox Width="150"
+                                             Height="40"
+                                             Style="{StaticResource MaterialDesignTextBox}"
+                                             Text="{Binding MaximumStockLevel}"></TextBox>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <TextBlock Style="{StaticResource Parameter}"
+                                               FontSize="20">Đơn Vị</TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <ComboBox Width="150"
+                                             Height="40"
+                                              IsEditable="True"
+                                             Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                             SelectedIndex="{Binding Unit}">
+                                        <ComboBoxItem IsSelected="True">
+                                            Cái
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            KG
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <TextBlock Style="{StaticResource Parameter}"
+                                               FontSize="20">Bộ Phận</TextBlock>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <ComboBox Width="150"
+                                              Height="40"
+                                              IsEditable="True"
+                                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                              SelectedIndex="{Binding ItemSource}">
+                                        <ComboBoxItem IsSelected="True">
+                                            NỘI BỘ
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            BÊN NGOÀI
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="7">
                                 <Grid Grid.Row="1">
                                     <Button Width="170"
                                             Height="50"
@@ -87,7 +192,6 @@
                                 </Grid>
                             </Grid>
                         </Grid>
-                        
                     </materialDesign:Card>
                     
                 </Grid>

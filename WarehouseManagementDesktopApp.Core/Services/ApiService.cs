@@ -122,6 +122,46 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
+        public async Task<ServiceResponse> PostNewProduct(NewProduct resource)
+        {
+            ServiceResponse result;
+            var json = JsonConvert.SerializeObject(resource);
+            try
+            {
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                string url = $"{serverUrl}/api/items/";
+                var response = await _httpClient.PostAsync(url, content);
+
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        return ServiceResponse.Successful();
+                    case HttpStatusCode.BadRequest:
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        var serverError = JsonConvert.DeserializeObject<ServerError>(responseBody);
+                        var error = new Error("Api.Product.Post", serverError.Message);
+                        return ServiceResponse.Failed(error);
+                    case HttpStatusCode.Unauthorized:
+                        error = new Error("Api.Product.Post", "Vui lòng đăng nhập.");
+                        return ServiceResponse.Failed(error);
+                    default:
+                        error = new Error("Api.Product.Post", "Đã có lỗi xảy ra.");
+                        return ServiceResponse.Failed(error);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Manager>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GoodsIssue.Post", "Đã có lỗi xảy ra. Không thể gửi dữ liệu về Server được.");
+                result = ServiceResponse.Failed(error);
+                return result;
+            }
+            return result;
+        }
         public async Task<ServiceResourceResponse<QueryResult<Product>>> GetProductById(string productId)
         { 
             ServiceResourceResponse<QueryResult<Product>> result;
@@ -315,6 +355,46 @@ namespace WarehouseManagementDesktopApp.Core.Services
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 string url = $"{serverUrl}/api/goodsreceipts/";
                 var response = await _httpClient.PostAsync(url, content);
+
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        return ServiceResponse.Successful();
+                    case HttpStatusCode.BadRequest:
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        var serverError = JsonConvert.DeserializeObject<ServerError>(responseBody);
+                        var error = new Error("Api.GoodsReceipts.Post", serverError.Message);
+                        return ServiceResponse.Failed(error);
+                    case HttpStatusCode.Unauthorized:
+                        error = new Error("Api.GoodsReceipts.Post", "Vui lòng đăng nhập.");
+                        return ServiceResponse.Failed(error);
+                    default:
+                        error = new Error("Api.GoodsReceiptse.Post", "Đã có lỗi xảy ra. Không thể Kết nối với Server.");
+                        return ServiceResponse.Failed(error);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Manager>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GoodsReceipts.Post", "Đã có lỗi xảy ra. Không thể gửi dữ liệu về Server được.");
+                result = ServiceResponse.Failed(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResponse> PathSliceItem(string shelfId,int rowId, int cellId ,int sliceId, string productId)
+        {
+            ServiceResponse result;
+            var json = JsonConvert.SerializeObject(productId);
+            try
+            {
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                string url = $"{serverUrl}/api/shelves/{shelfId}/cells/{rowId}/{cellId}/slices/{sliceId}" ;
+                var response = await _httpClient.PatchAsync(url, content);
 
                 switch (response.StatusCode)
                 {

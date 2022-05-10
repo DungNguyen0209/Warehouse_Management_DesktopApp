@@ -29,16 +29,18 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0"
-                    Margin="0,0,1,0"
-                    Command="{Binding GooLocationnavigationCommand}"
-                    Style="{StaticResource MenuButton}">
+            <Button
+                Grid.Column="0"
+                Margin="0,0,1,0"
+                Command="{Binding GooLocationnavigationCommand}"
+                Style="{StaticResource MenuButton}">
                 Kiểm Tra Vị Trí
             </Button>
-            <Button Grid.Column="1"
-                    Margin="1,0,0,1"
-                    Command="{Binding UpdateGoodLocationnavigationCommand}"
-                    Style="{StaticResource MenuButton}">
+            <Button
+                Grid.Column="1"
+                Margin="1,0,0,1"
+                Command="{Binding UpdateGoodLocationnavigationCommand}"
+                Style="{StaticResource MenuButton}">
                 Cập Nhật Vị Trí
             </Button>
         </Grid>

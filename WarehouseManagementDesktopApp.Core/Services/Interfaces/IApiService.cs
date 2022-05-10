@@ -16,14 +16,13 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
         Action LoginCompleteAction { get; set; }
         Task<ServiceResponse> LogInAsync(string? token, Error error);
         void LogOut();
-
-
         Task<ServiceResourceResponse<QueryResult<Product>>> GetAllProduct();
+        Task<ServiceResponse> PostNewProduct(NewProduct resource);
         Task<ServiceResourceResponse<Shelf>> GetShelf(string shelfId);
         Task<ServiceResourceResponse<QueryResult<Product>>> GetProductById(string productId);
         Task<ServiceResourceResponse<IEnumerable<StorageSlot>>> GetStorageID();
 
-
+        Task<ServiceResponse> PathSliceItem(string shelfId, int rowId, int cellId, int sliceId, string productId);
         Task<ServiceResourceResponse<Basket>> GetBasketById(string basketId);
         Task<ServiceResponse> PostGoodsReceipts(GoodReceiptEntry resource);
         Task<ServiceResponse> PutBasket(string id, GoodsReceiptEntryPutAPI entry);

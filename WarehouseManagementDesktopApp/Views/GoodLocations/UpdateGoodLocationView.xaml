@@ -47,7 +47,9 @@
                                                                   Size=18}"
                                     Foreground="White"
                                     IsCancel="True"
-                                    Style="{StaticResource MaterialDesignFlatButton}" />
+                                    Style="{StaticResource MaterialDesignFlatButton}">
+  
+                            </Button>
                         </Grid>
 
                         <Viewbox Grid.Row="1"
@@ -202,7 +204,7 @@
             <materialDesign:Card Grid.Column="1"
                                  HorizontalAlignment="Left"
                                  Margin="20,20,20,20">
-                <locationcard:LocationCardItemList DataContext="{Binding LocationCardItemList}"></locationcard:LocationCardItemList>
+                <locationcard:LocationCardItemList  HorizontalAlignment="Center" DataContext="{Binding LocationCardItemList}"></locationcard:LocationCardItemList>
             </materialDesign:Card>
         </Grid>
     </Grid>

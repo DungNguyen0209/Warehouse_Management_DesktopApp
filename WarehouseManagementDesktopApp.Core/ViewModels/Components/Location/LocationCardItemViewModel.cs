@@ -33,7 +33,7 @@ public class LocationCardItemViewModel:BaseViewModel
 
     private void IRaiseEvent()
     {
-      if(IsEmptySpace)
+      if(!IsEmptySpace)
         {
             Click?.Invoke(Id);
         }

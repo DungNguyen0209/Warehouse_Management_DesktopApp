@@ -37,6 +37,7 @@ global using WarehouseManagementDesktopApp.Core.Domain.Model;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.Api;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.API;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.API.Storage;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.API.Item;
 #region Command
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;
