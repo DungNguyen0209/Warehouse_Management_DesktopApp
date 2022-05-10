@@ -1,11 +1,4 @@
 ﻿
-using WarehouseManagementDesktopApp.Core.Domain.Model;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net;
-using WarehouseManagementDesktopApp.Core.Domain.Model.Api;
-using WarehouseManagementDesktopApp.Core.Domain.Model.API;
-
 namespace WarehouseManagementDesktopApp.Core.Services
 {
     public class ApiService : IApiService
@@ -394,6 +387,39 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
+        public async Task<ServiceResourceResponse<Shelf>> GetShelf(string shelfId)
+        {
+            ServiceResourceResponse<Shelf> result;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/shelves/" + shelfId);
+                string responseBody = await response.Content.ReadAsStringAsync();
+                    switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var products = JsonConvert.DeserializeObject<Shelf>(responseBody);
+                        result = new ServiceResourceResponse<Shelf>(products);
+                        return result;
+                    default:
+                        var error = new Error("Api.Shelf.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<Shelf>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Shelf>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GetGoodsIssueById.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<Shelf>(error);
+                return result;
+            }
+            return result;
+        }
+
         public async Task<ServiceResponse> PatchGoodsIssueEntryBasket (List<PatchGoodsIssueEntryBasket> resource, string goodsIssueId)
         {
             ServiceResponse result;

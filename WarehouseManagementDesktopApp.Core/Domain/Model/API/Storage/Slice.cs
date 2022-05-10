@@ -3,6 +3,6 @@
 public class Slice
 {
     public int id { get; set; }
-    public Product? product { get; set; }
-    public List<SliceLevel>? levels  { get; set; }
+    public Product item { get; set; }
+    public List<Slot> slots { get; set; }
 }

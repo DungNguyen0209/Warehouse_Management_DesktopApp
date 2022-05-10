@@ -2,7 +2,7 @@
 
 public class Cell
 {
-    public int row { get; set; }
-    public int column { get; set; }
+    public int rowId { get; set; }
+    public int id { get; set; }
     public List<Slice>? slices { get; set; }
 }

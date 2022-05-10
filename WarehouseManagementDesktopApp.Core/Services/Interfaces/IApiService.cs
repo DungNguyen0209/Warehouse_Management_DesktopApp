@@ -19,6 +19,7 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
 
 
         Task<ServiceResourceResponse<QueryResult<Product>>> GetAllProduct();
+        Task<ServiceResourceResponse<Shelf>> GetShelf(string shelfId);
         Task<ServiceResourceResponse<QueryResult<Product>>> GetProductById(string productId);
         Task<ServiceResourceResponse<IEnumerable<StorageSlot>>> GetStorageID();
 

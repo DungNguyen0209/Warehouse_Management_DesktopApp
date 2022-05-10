@@ -80,9 +80,13 @@
                   Margin="0,50,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
+
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="150"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
@@ -91,7 +95,7 @@
                           Margin="25,2,25,2"
                           materialDesign:HintAssist.Hint="Vị Trí Kệ"
                           Style="{StaticResource ComboBoxStyle}"
-                          Text="{Binding Testdepth}">
+                          Text="{Binding SelfId}">
                     <ComboBoxItem>A</ComboBoxItem>
                     <ComboBoxItem>B</ComboBoxItem>
                     <ComboBoxItem>C</ComboBoxItem>
@@ -100,11 +104,27 @@
                     <ComboBoxItem>F</ComboBoxItem>
                 </ComboBox>
                 </Grid>
-                <ComboBox Grid.Row="2"
+                    <Grid Grid.Row="2">
+
+                        <ComboBox Margin="25,2,25,2"
+                                  IsEditable="True"
+                                  materialDesign:HintAssist.Hint="Vị Trí Hàng"
+                                  Style="{StaticResource ComboBoxStyle}"
+                                  Text="{Binding RowId}">
+                            <ComboBoxItem>A</ComboBoxItem>
+                            <ComboBoxItem>B</ComboBoxItem>
+                            <ComboBoxItem>C</ComboBoxItem>
+                            <ComboBoxItem>D</ComboBoxItem>
+                            <ComboBoxItem>E</ComboBoxItem>
+                            <ComboBoxItem>F</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                    <ComboBox Grid.Row="4"
+                              IsEditable="True"
                           Margin="25,2,25,2"
                           materialDesign:HintAssist.Hint="Vị Trí Ô"
                           Style="{StaticResource ComboBoxStyle}"
-                          Text="{Binding Testdepth}">
+                          Text="{Binding CellId}">
                     <ComboBoxItem>A</ComboBoxItem>
                     <ComboBoxItem>B</ComboBoxItem>
                     <ComboBoxItem>C</ComboBoxItem>
@@ -112,7 +132,7 @@
                     <ComboBoxItem>E</ComboBoxItem>
                     <ComboBoxItem>F</ComboBoxItem>
                 </ComboBox>
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="5">
                     <Button Grid.Row="4"
                             Width="200"
                             Height="50"
@@ -121,7 +141,7 @@
                         Tìm Kiếm
                     </Button>
                 </Grid>
-                <Grid Grid.Row="4" Margin="20,30,20,50">
+                <Grid Grid.Row="6" Margin="20,30,20,10">
                     <materialDesign:Card>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -165,7 +185,7 @@
                 </materialDesign:Card>
 
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="7*" />

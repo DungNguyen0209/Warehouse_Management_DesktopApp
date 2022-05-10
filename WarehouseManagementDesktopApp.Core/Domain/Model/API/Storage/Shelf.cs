@@ -2,6 +2,7 @@
 
 public  class Shelf
 {
-    public int id { get; set; }
-    public List<Row> rows   { get; set; }
+    public string shelfId { get; set; }
+    public int priority { get; set; }
+    public List<Cell> cells { get; set; }
 }

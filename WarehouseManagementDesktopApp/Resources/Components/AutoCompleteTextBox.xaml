@@ -23,17 +23,17 @@
 
     <Viewbox>
 
-        <ComboBox Width="200"
-                  Height="30"
-                  Padding="0,-10,0,0"
-                  HorizontalContentAlignment="Center"
-                  VerticalContentAlignment="Top"
-                  materialDesign:HintAssist.Hint="{Binding HintText}"
-                  IsEditable="True"
-                  ItemsSource="{Binding SuggestionSource}"
-                  IsDropDownOpen="{Binding DropDown}"
-                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                  Text="{Binding Text}">
-        </ComboBox>
+        <ComboBox
+            Width="200"
+            Height="30"
+            Padding="0,-10,0,0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Top"
+            materialDesign:HintAssist.Hint="{Binding HintText}"
+            IsDropDownOpen="{Binding DropDown}"
+            IsEditable="True"
+            ItemsSource="{Binding SuggestionSource}"
+            Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+            Text="{Binding Text}" />
     </Viewbox>
 </UserControl>

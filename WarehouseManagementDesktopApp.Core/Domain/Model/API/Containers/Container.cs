@@ -8,7 +8,7 @@ public class Container
     public double plannedQuantity { get; set; }
     public double actualQuantity { get; set; }
     public DateTime productionDate { get; set; }
-    public Item item { get; set; }
+    public Product item { get; set; }
     public Slot location { get; set; }
     public ContainerType containerType { get; set; } 
 
