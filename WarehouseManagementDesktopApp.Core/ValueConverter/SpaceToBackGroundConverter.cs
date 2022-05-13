@@ -6,7 +6,8 @@ public class SpaceToBackGroundConverter : IValueConverter
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (bool)value ? Application.Current.FindResource("WordGreenBrush") : Application.Current.FindResource("WordRedBrush");
+
+        return (bool)value ? Application.Current.FindResource("WordRedBrush") : Application.Current.FindResource("WordGreenBrush");
 
     }
 

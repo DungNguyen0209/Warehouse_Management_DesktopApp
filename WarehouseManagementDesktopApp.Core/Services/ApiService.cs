@@ -3,7 +3,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
 {
     public class ApiService : IApiService
     {
-        private  readonly HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
         //private const string serverUrl = "http://192.168.1.13:8081";
         //private const string serverUrl = "https://hung-anh-storage-web-api.herokuapp.com";
         //private const string serverUrl = "https://storagewebapi20210714122113.azurewebsites.net";
@@ -63,13 +63,13 @@ namespace WarehouseManagementDesktopApp.Core.Services
         //    }
         //    return result;
         //}
-        public async Task<ServiceResponse> LogInAsync(string? token,Error error)
+        public async Task<ServiceResponse> LogInAsync(string? token, Error error)
         {
             await Task.Delay(1);
-            if(string.IsNullOrEmpty(error.Message))
+            if (string.IsNullOrEmpty(error.Message))
             {
                 this.token = token;
-                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.token);
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.token);
                 LoginCompleteAction?.Invoke();
                 return ServiceResponse.Successful();
             }
@@ -84,9 +84,9 @@ namespace WarehouseManagementDesktopApp.Core.Services
             token = "";
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
-      
+
         public async Task<ServiceResourceResponse<QueryResult<Product>>> GetAllProduct()
-        {            
+        {
             ServiceResourceResponse<QueryResult<Product>> result;
             try
             {
@@ -100,7 +100,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
 #pragma warning disable CS8601 // Possible null reference assignment.
                         QueryResult<Product> queryResult = new QueryResult<Product> { Items = product };
 #pragma warning restore CS8601 // Possible null reference assignment.
-                              //var products = JsonConvert.DeserializeObject<QueryResult<Product>>(responseBody);
+                        //var products = JsonConvert.DeserializeObject<QueryResult<Product>>(responseBody);
                         result = new ServiceResourceResponse<QueryResult<Product>>(queryResult);
                         return result;
                     default:
@@ -118,6 +118,42 @@ namespace WarehouseManagementDesktopApp.Core.Services
             {
                 var error = new Error("Api.Product.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
                 result = new ServiceResourceResponse<QueryResult<Product>>(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResourceResponse<Product>> GetProductbyId(string id)
+        {
+            ServiceResourceResponse<Product> result;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/items/{id}");
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var product = JsonConvert.DeserializeObject<Product>(responseBody);
+#pragma warning disable CS8601 // Possible null reference assignment.
+#pragma warning restore CS8601 // Possible null reference assignment.
+                        //var products = JsonConvert.DeserializeObject<QueryResult<Product>>(responseBody);
+                        result = new ServiceResourceResponse<Product>(product);
+                        return result;
+                    default:
+                        var error = new Error("Api.Product.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<Product>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Product>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.Product.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<Product>(error);
                 return result;
             }
             return result;
@@ -163,7 +199,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             return result;
         }
         public async Task<ServiceResourceResponse<QueryResult<Product>>> GetProductById(string productId)
-        { 
+        {
             ServiceResourceResponse<QueryResult<Product>> result;
             try
             {
@@ -194,34 +230,34 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
-        public async Task<ServiceResourceResponse<Basket>> GetBasketById (string basketId)
+        public async Task<ServiceResourceResponse<List<Container>>> GetContainerByProductId(string Id)
         {
-            ServiceResourceResponse<Basket> result;
+            ServiceResourceResponse<List<Container>> result;
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/baskets/" + basketId);
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/containers?itemId=" + Id);
                 string responseBody = await response.Content.ReadAsStringAsync();
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
-                        var basket = JsonConvert.DeserializeObject<Basket>(responseBody);
-                        result = new ServiceResourceResponse<Basket>(basket);
+                        var basket = JsonConvert.DeserializeObject<List<Container>>(responseBody);
+                        result = new ServiceResourceResponse<List<Container>>(basket);
                         return result;
                     default:
                         var error = new Error("Api.Basket.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
-                        result = new ServiceResourceResponse<Basket>(error);
+                        result = new ServiceResourceResponse<List<Container>>(error);
                         return result;
                 }
             }
             catch (HttpRequestException ex)
             {
                 var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<Basket>(error);
+                result = new ServiceResourceResponse<List<Container>>(error);
             }
             catch (Exception ex)
             {
                 var error = new Error("Api.Basket.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
-                result = new ServiceResourceResponse<Basket>(error);
+                result = new ServiceResourceResponse<List<Container>>(error);
                 return result;
             }
             return result;
@@ -386,14 +422,15 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
-        public async Task<ServiceResponse> PathSliceItem(string shelfId,int rowId, int cellId ,int sliceId, string productId)
+        // Location
+        public async Task<ServiceResponse> PathSliceItem(string shelfId, int rowId, int cellId, int sliceId, string productId)
         {
             ServiceResponse result;
             var json = JsonConvert.SerializeObject(productId);
             try
             {
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                string url = $"{serverUrl}/api/shelves/{shelfId}/cells/{rowId}/{cellId}/slices/{sliceId}" ;
+                string url = $"{serverUrl}/api/shelves/{shelfId}/cells/{rowId}/{cellId}/slices/{sliceId}";
                 var response = await _httpClient.PatchAsync(url, content);
 
                 switch (response.StatusCode)
@@ -426,7 +463,71 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
-
+        public async Task<ServiceResourceResponse<Cell>> GetCell(string shelfId,int rowId,int cellId)
+        {
+            ServiceResourceResponse<Cell> result;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/shelves/{shelfId}/cells/{rowId}/{cellId}");
+                string responseBody = await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var cell = JsonConvert.DeserializeObject<Cell>(responseBody);
+                        result = new ServiceResourceResponse<Cell>(cell);
+                        return result;
+                    default:
+                        var error = new Error("Api.Shelf.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<Cell>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Cell>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GetGoodsIssueById.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<Cell>(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResourceResponse<Shelf>> GetShelf(string shelfId)
+        {
+            ServiceResourceResponse<Shelf> result;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/shelves/" + shelfId);
+                string responseBody = await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var products = JsonConvert.DeserializeObject<Shelf>(responseBody);
+                        result = new ServiceResourceResponse<Shelf>(products);
+                        return result;
+                    default:
+                        var error = new Error("Api.Shelf.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<Shelf>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Shelf>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GetGoodsIssueById.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<Shelf>(error);
+                return result;
+            }
+            return result;
+        }
+        // GoodIssue
         public async Task<ServiceResponse> PostGoodsIssue(GoodIssueEntry resource)
         {
             ServiceResponse result;
@@ -467,53 +568,26 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
-        public async Task<ServiceResourceResponse<Shelf>> GetShelf(string shelfId)
-        {
-            ServiceResourceResponse<Shelf> result;
-            try
-            {
-                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/shelves/" + shelfId);
-                string responseBody = await response.Content.ReadAsStringAsync();
-                    switch (response.StatusCode)
-                {
-                    case HttpStatusCode.OK:
-                        var products = JsonConvert.DeserializeObject<Shelf>(responseBody);
-                        result = new ServiceResourceResponse<Shelf>(products);
-                        return result;
-                    default:
-                        var error = new Error("Api.Shelf.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
-                        result = new ServiceResourceResponse<Shelf>(error);
-                        return result;
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<Shelf>(error);
-            }
-            catch (Exception ex)
-            {
-                var error = new Error("Api.GetGoodsIssueById.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
-                result = new ServiceResourceResponse<Shelf>(error);
-                return result;
-            }
-            return result;
-        }
 
-        public async Task<ServiceResponse> PatchGoodsIssueEntryBasket (List<PatchGoodsIssueEntryBasket> resource, string goodsIssueId)
+        public async Task<ServiceResponse> PatchGoodsIssueEntryContainer(List<IssueEntryContainer> resource, string goodsIssueId)
         {
             ServiceResponse result;
-            var httpRequestMessage = new HttpRequestMessage
-            {
-                Method = new HttpMethod("PATCH"),
-                RequestUri = new Uri(serverUrl + $"/api/goodsissues/"+ goodsIssueId + "/baskets"),
-                Content = new StringContent(JsonConvert.SerializeObject(resource), Encoding.UTF8, "application/json")
-            };
-            httpRequestMessage.Headers.Add("Authorization", "Bearer " + token);
-            var r = await httpRequestMessage.Content.ReadAsStringAsync();
-            var response = await _httpClient.SendAsync(httpRequestMessage);
+            //var httpRequestMessage = new HttpRequestMessage
+            //{
+            //    Method = new HttpMethod("PATCH"),
+            //    RequestUri = new Uri(serverUrl + $"/api/goodsissues/"+ goodsIssueId + "/containers"),
+            //    Content = new StringContent(JsonConvert.SerializeObject(resource), Encoding.UTF8, "application/json")
+            //};
+            //httpRequestMessage.Headers.Add("Authorization", "Bearer " + token);
+            //var r = await httpRequestMessage.Content.ReadAsStringAsync();
+            //var response = await _httpClient.SendAsync(httpRequestMessage);
+
+            var json = JsonConvert.SerializeObject(resource);
             try
             {
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                string url = $"{serverUrl}/api/goodsissues/{goodsIssueId}/containers";
+                var response = await _httpClient.PatchAsync(url, content);
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
@@ -544,7 +618,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
-        public async Task<ServiceResourceResponse<GoodsIssueById>> GetGoodsIssueById (string goodsIssueId)
+        public async Task<ServiceResourceResponse<GoodsIssueById>> GetGoodsIssueById(string goodsIssueId)
         {
             ServiceResourceResponse<GoodsIssueById> result;
             try
@@ -572,6 +646,41 @@ namespace WarehouseManagementDesktopApp.Core.Services
             {
                 var error = new Error("Api.GetGoodsIssueById.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
                 result = new ServiceResourceResponse<GoodsIssueById>(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResourceResponse<GoodIssueFromServer>> GetGoodsIssueByTime(DateTime date)
+        {
+            ServiceResourceResponse<GoodIssueFromServer> result;
+            string startDateString = date.AddDays(-3).ToString("yyyy-MM-dd");
+            string endDateString = date.AddDays(5).ToString("yyyy-MM-dd");
+            try
+            {
+                var url = $"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=10&StartTime={startDateString}&EndTime={endDateString}";
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=10&StartTime={startDateString}&EndTime={endDateString}");
+                string responseBody = await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var products = JsonConvert.DeserializeObject<GoodIssueFromServer>(responseBody);
+                        result = new ServiceResourceResponse<GoodIssueFromServer>(products);
+                        return result;
+                    default:
+                        var error = new Error("Api.GetGoodsIssueByTime.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<GoodIssueFromServer>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<GoodIssueFromServer>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GetGoodsIssueByTime.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<GoodIssueFromServer>(error);
                 return result;
             }
             return result;
@@ -609,115 +718,155 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
-        public async Task<ServiceResourceResponse<QueryStockCard<StockCardEntry>>> GetAllStockCard (DateTime? startTime, string product)
+        public async Task<ServiceResourceResponse<List<Stockcardentries>>> GetAllStockCard(DateTime? startTime, DateTime? stopTime, string product)
         {
-            ServiceResourceResponse<QueryStockCard<StockCardEntry>> result;
-            string queryString = "";
-            if (startTime != null && product!= null)
+            ServiceResourceResponse<List<Stockcardentries>> result;
+            string starttimequery = "";
+            string stoptimequery = "";
+
+            if (startTime != null && product != null)
             {
-                queryString = startTime.Value.ToString("yyyy-MM-dd");
+                starttimequery = startTime.Value.ToString("yyyy-MM-dd");
+                stoptimequery = stopTime.Value.ToString("yyyy-MM-dd");
             }
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/stockcards/?StartTime=" + queryString + "&ProductId=" + product);
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/stockcardentries/?StartTime=" + starttimequery + "&EndTime=" + stoptimequery + "&ItemId=" + product);
                 string responseBody = await response.Content.ReadAsStringAsync();
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
-                        var stockCards = JsonConvert.DeserializeObject<QueryStockCard<StockCardEntry>>(responseBody);
-                        result = new ServiceResourceResponse<QueryStockCard<StockCardEntry>>(stockCards);
+                        var stockCards = JsonConvert.DeserializeObject<List<Stockcardentries>>(responseBody);
+                        result = new ServiceResourceResponse<List<Stockcardentries>>(stockCards);
                         return result;
                     default:
                         var error = new Error("Api.GetAllStockCard.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
-                        result = new ServiceResourceResponse<QueryStockCard<StockCardEntry>>(error);
+                        result = new ServiceResourceResponse<List<Stockcardentries>>(error);
                         return result;
                 }
             }
             catch (HttpRequestException ex)
             {
                 var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<QueryStockCard<StockCardEntry>>(error);
+                result = new ServiceResourceResponse<List<Stockcardentries>>(error);
             }
             catch (Exception ex)
             {
                 var error = new Error("Api.GetAllStockCard.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
-                result = new ServiceResourceResponse<QueryStockCard<StockCardEntry>>(error);
+                result = new ServiceResourceResponse<List<Stockcardentries>>(error);
                 return result;
             }
             return result;
         }
-        public async Task<ServiceResourceResponse<QueryResult<HistoryEntries>>> GetGoodsReceipt(DateTime startTime,DateTime stopTime)
+        public async Task<ServiceResourceResponse<GoodReceiptReport>> GetGoodsReceipt(DateTime startTime, DateTime stopTime)
         {
-            ServiceResourceResponse<QueryResult<HistoryEntries>> result;
-            
-            string startDateString = startTime.ToString("yyyy-MM-dd");
-            string endDateString = stopTime.AddDays(1).ToString("yyyy-MM-dd");
-            try
-            {
-                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsreceipts/?Page=1&ItemsPerPage=1000&StartTime={startDateString}&StopTime={endDateString}");
-                string responseBody = await response.Content.ReadAsStringAsync();
-                switch (response.StatusCode)
-                {
-                    case HttpStatusCode.OK:
-                        var goodsReceipt = JsonConvert.DeserializeObject<QueryResult<HistoryEntries>>(responseBody);
-                        result = new ServiceResourceResponse<QueryResult<HistoryEntries>>(goodsReceipt);
-                        return result;
-                    default:
-                        var error = new Error("Api.GetGoodsReceipt.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
-                        result = new ServiceResourceResponse<QueryResult<HistoryEntries>>(error);
-                        return result;
-                }
-            }
-            catch (HttpRequestException ex)
-            {
-                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<QueryResult<HistoryEntries>>(error);
-            }
-            catch (Exception ex)
-            {
-                var error = new Error("Api.GetGoodsReceipt.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
-                result = new ServiceResourceResponse<QueryResult<HistoryEntries>>(error);
-                return result;
-            }
-            return result;
-        }
-        public async Task<ServiceResourceResponse<QueryResult<HistoryGoodsIssue>>> GetGoodsIssue (DateTime startTime, DateTime stopTime)
-        {
-            ServiceResourceResponse<QueryResult<HistoryGoodsIssue>> result;
+            ServiceResourceResponse<GoodReceiptReport> result;
 
             string startDateString = startTime.ToString("yyyy-MM-dd");
             string endDateString = stopTime.AddDays(1).ToString("yyyy-MM-dd");
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=1000&StartTime={startDateString}&StopTime={ endDateString}");
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsreceipts/?Page=1&ItemsPerPage=100&StartTime={startDateString}&EndTime={endDateString}");
                 string responseBody = await response.Content.ReadAsStringAsync();
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.OK:
-                        var goodsIssue = JsonConvert.DeserializeObject<QueryResult<HistoryGoodsIssue>>(responseBody);
-                        result = new ServiceResourceResponse<QueryResult<HistoryGoodsIssue>>(goodsIssue);
+                        var goodsReceipt = JsonConvert.DeserializeObject<GoodReceiptReport>(responseBody);
+                        result = new ServiceResourceResponse<GoodReceiptReport>(goodsReceipt);
+                        return result;
+                    default:
+                        var error = new Error("Api.GetGoodsReceipt.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<GoodReceiptReport>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<GoodReceiptReport>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GetGoodsReceipt.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<GoodReceiptReport>(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResourceResponse<GoodExportReport>> GetGoodsIssue(DateTime startTime, DateTime stopTime)
+        {
+            ServiceResourceResponse<GoodExportReport> result;
+
+            string startDateString = startTime.ToString("yyyy-MM-dd");
+            string endDateString = stopTime.AddDays(1).ToString("yyyy-MM-dd");
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=10&StartTime={startDateString}&EndTime={ endDateString}");
+                string responseBody = await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var goodsIssue = JsonConvert.DeserializeObject<GoodExportReport>(responseBody);
+                        result = new ServiceResourceResponse<GoodExportReport>(goodsIssue);
                         return result;
                     default:
                         var error = new Error("Api.GetGoodsIssue.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
-                        result = new ServiceResourceResponse<QueryResult<HistoryGoodsIssue>>(error);
+                        result = new ServiceResourceResponse<GoodExportReport>(error);
                         return result;
                 }
             }
             catch (HttpRequestException ex)
             {
                 var error = new Error("Api.Connection", $"Đã có lỗi xảy ra. Không thể kết nối được với Server.");
-                result = new ServiceResourceResponse<QueryResult<HistoryGoodsIssue>>(error);
+                result = new ServiceResourceResponse<GoodExportReport>(error);
             }
             catch (Exception ex)
             {
                 var error = new Error("Api.GetGoodsIssue.Get", $"Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
-                result = new ServiceResourceResponse<QueryResult<HistoryGoodsIssue>>(error);
+                result = new ServiceResourceResponse<GoodExportReport>(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResourceResponse<GoodReceiptReport>> GetUnfinishedGoodsReceipt(DateTime startTime, DateTime stopTime)
+        {
+            ServiceResourceResponse<GoodReceiptReport> result;
+
+            string startDateString = startTime.ToString("yyyy-MM-dd");
+            string endDateString = stopTime.AddDays(1).ToString("yyyy-MM-dd");
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsreceipts/?Page=1&ItemsPerPage=100&StartTime={startDateString}&EndTime={endDateString}");
+                string responseBody = await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var goodsReceipt = JsonConvert.DeserializeObject<GoodReceiptReport>(responseBody);
+                        var unfinisheddata = goodsReceipt.items.Where(s => s.confirmed == false).ToList();
+
+                        result = new ServiceResourceResponse<GoodReceiptReport>(goodsReceipt);
+                        return result;
+                    default:
+                        var error = new Error("Api.GetGoodsReceipt.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<GoodReceiptReport>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<GoodReceiptReport>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GetGoodsReceipt.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<GoodReceiptReport>(error);
                 return result;
             }
             return result;
         }
 
-        public async Task<ServiceResourceResponse<List<BasketInconsistency>>> GetUnfixedInconsistencies ()
+        public async Task<ServiceResourceResponse<List<BasketInconsistency>>> GetUnfixedInconsistencies()
         {
             ServiceResourceResponse<List<BasketInconsistency>> result;
             try

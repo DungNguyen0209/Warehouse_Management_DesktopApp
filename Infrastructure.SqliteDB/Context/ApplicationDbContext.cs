@@ -10,6 +10,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<FormulaListGoodIssue> formulaListGoodIssues { get; set; }
     public DbSet<IssueBasket> issueBaskets { get; set; }
+    public DbSet<ContainerLocation> containerLocations { get; set; }
     public DbSet<ProcessingGoodExportOrder> processingGoodExportOrders { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -37,7 +38,9 @@ public class ApplicationDbContext : DbContext
                     .HasMany<FormulaListGoodIssue>(g => g.formulaListGoodIssues)
                     .WithOne(s => s.ProcessingGoodExportOrder)
                     .HasForeignKey(s => s.ProcessingGoodExportOrderId)
-                    .OnDelete(DeleteBehavior.Cascade);;
+                    .OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<ContainerLocation>()
+                    .HasKey(s => s.Id);
     }
 
 }

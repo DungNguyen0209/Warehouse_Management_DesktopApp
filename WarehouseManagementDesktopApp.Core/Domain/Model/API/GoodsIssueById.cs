@@ -9,21 +9,19 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model.Api
 
     public class GoodsIssueById
     {
-        public string Id { get; set; }
-        public DateTime Timestamp { get; set; }
-        public IEnumerable<GoodsIssueEntryById> Entries { get; set; }
+        public string goodsIssueId { get; set; }
+        public DateTime timestamp { get; set; }
+        public bool confirmed { get; set; }
+        public IEnumerable<GoodsIssueEntryById> entries { get; set; }
     }
 
     public class GoodsIssueEntryById
     {
-        public string ProductId { get; set; }
-        public string ProductName { get; set; }
-        public EUnit ProductUnitOfMeasurement { get; set; }
-        public int TotalQuantity { get; set; }
-        public double TotalMass { get; set; }
-        public Manager Employee { get; set; }
-        public IEnumerable<GoodsIssueEntryBasketById> Baskets { get; set; }
-        public string Note { get; set; }
+        public Manager employee { get; set; }
+        public Product item { get; set; }
+        public double TotalQuantity { get; set; }
+        public IEnumerable<object> containers { get; set; }
+        public string note { get; set; }
     }
 
     public class GoodsIssueEntryBasketById
@@ -48,9 +46,5 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model.Api
     {
         public string BasketId { get; set; }
         public int Quantity { get; set; }
-
-        public PatchGoodsIssueEntryBasket()
-        {
-        }
     }
 }

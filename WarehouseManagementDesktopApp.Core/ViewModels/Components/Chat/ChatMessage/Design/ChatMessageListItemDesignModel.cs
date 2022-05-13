@@ -13,9 +13,8 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         /// A single instance of the design model
         /// </summary>
         public static ChatMessageListItemDesignModel Instance => new ChatMessageListItemDesignModel();
-
+        public ICommand ClickCommand { get; set; }
         #endregion
-
         #region Constructor
 
         /// <summary>
@@ -30,6 +29,12 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             SentByMe = true;
             MessageSentTime = DateTimeOffset.Now;
             MessageReadTime = DateTimeOffset.Now.Subtract(TimeSpan.FromDays(1.3));
+            ClickCommand = new RelayCommand(async () => RaiseEvents());
+        }
+
+        private async void RaiseEvents()
+        {
+            ClickEvent?.Invoke(Id);
         }
 
         #endregion

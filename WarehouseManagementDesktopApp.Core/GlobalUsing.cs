@@ -38,6 +38,15 @@ global using WarehouseManagementDesktopApp.Core.Domain.Model.Api;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.API;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.API.Storage;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.API.Item;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.Resource;
+global using Container = WarehouseManagementDesktopApp.Core.Domain.Model.API.Containers.Container;
+global using MessageBox = WarehouseManagementDesktopApp.Core.ComponentUI.MessageBox;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.API.History;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.API.Report;
+global using WarehouseManagementDesktopApp.Core.Domain.View;
+global using WarehouseManagementDesktopApp.Core.Domain.View.Report;
+global using Persistence.SqliteDB.Domain.Model;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.API.Containers;
 #region Command
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;

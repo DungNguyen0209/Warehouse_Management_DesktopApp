@@ -5,7 +5,7 @@ namespace WarehouseManagementDesktopApp.Core.Services;
 public class OidcClientService: IOidcClientService
 {
     private readonly IApiService _apiService;
-    private Error _error;
+    private Error _error = new Error();
     private OidcClient OidcClient { get; set; }
     private OidcClientOptions OidcConfigure { get; set; }
     public Error Error { get=>_error; set=>_error=value; }

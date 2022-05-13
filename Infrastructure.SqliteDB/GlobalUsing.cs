@@ -8,4 +8,5 @@ global using Microsoft.EntityFrameworkCore;
 global using Persistence.SqliteDB.Domain.Model.GoodExport;
 global using Persistence.SqliteDB.Context;
 global using Persistence.SqliteDB.Domain.Interfaces;
+global using Persistence.SqliteDB.Domain.Model;
 

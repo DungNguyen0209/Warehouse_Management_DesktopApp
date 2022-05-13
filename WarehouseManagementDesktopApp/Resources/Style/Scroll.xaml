@@ -129,7 +129,7 @@
                 </Track.DecreaseRepeatButton>
                 <Track.Thumb>
                     <Thumb
-                        Margin="-8,0,0,0"
+                        Margin="5,0,0,0"
                         Background="{StaticResource HorizontalNormalBrush}"
                         BorderBrush="{StaticResource HorizontalNormalBorderBrush}"
                         Style="{StaticResource ScrollBarThumb}" />
@@ -172,7 +172,7 @@
                 </Track.DecreaseRepeatButton>
                 <Track.Thumb>
                     <Thumb
-                        Margin="-55,0,-45,0"
+                        Margin="-5,0,-5,0"
                         Background="{StaticResource NormalBrush}"
                         BorderBrush="{StaticResource NormalBorderBrush}"
                         Style="{StaticResource ScrollBarThumb}" />

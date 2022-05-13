@@ -4,6 +4,8 @@
              xmlns:converter="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter;assembly=WarehouseManagementDesktopApp.Core"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Resources.Components.Message"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:prism="http://prismlibrary.com/"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodel="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
@@ -66,15 +68,20 @@
                                      Padding="15"
                                      Background="White"
                                      materialDesign:ThemeAssist.Theme="Dark"
-                                     UniformCornerRadius="15">
-                    <TextBlock VerticalAlignment="Center"
-                               Cursor="Hand"
-                               FontFamily="Arial"
-                               FontSize="17"
-                               FontWeight="UltraLight"
-                               Foreground="{StaticResource SistrainColorBrush}"
-                               Text="{Binding Message}"
-                               TextWrapping="Wrap" />
+                                     UniformCornerRadius="35">
+                    <Button Background="Transparent"
+                            Command="{Binding ClickCommand}"
+                            BorderBrush="Transparent">
+
+                        <TextBlock VerticalAlignment="Center"
+                                   Cursor="Hand"
+                                   FontFamily="Arial"
+                                   FontSize="17"
+                                   FontWeight="UltraLight"
+                                   Foreground="{StaticResource SistrainColorBrush}"
+                                   Text="{Binding Message}"
+                                   TextWrapping="Wrap" />
+                    </Button>
                 </materialDesign:Card>
 
 

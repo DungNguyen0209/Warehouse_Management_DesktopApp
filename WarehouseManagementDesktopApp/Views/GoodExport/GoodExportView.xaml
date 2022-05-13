@@ -186,6 +186,7 @@
                     Grid.Column="3"
                     Height="55"
                     Margin="20,0,15,0"
+                    Command="{Binding UpdateContainerCommand}"
                     Style="{StaticResource MenuButton}">
                     Cập nhật
                 </Button>
@@ -531,7 +532,7 @@
                             </Grid>
                             <Grid Grid.Row="2">
 
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                     <Border>
                                         <DataGrid
                                             Margin="5,5,5,10"

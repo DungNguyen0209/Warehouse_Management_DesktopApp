@@ -28,3 +28,5 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\ControlBar.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\MessageBox.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\EmptyCabinet.g.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp.Core\obj\Debug\net6.0-windows\ComponentUI\EmptyCabinet.baml

@@ -26,6 +26,10 @@ namespace WarehouseManagementDesktopApp.HostBuilder
                 {
                     return new ProcessingGoodExportOrderDatabaseService(services.GetRequiredService<IProcessingGoodExportOrderRepository>(), services.GetRequiredService<IUnitOfWork>());
                 }));
+                services.AddSingleton<ILocationDatabaseService, LocationDatabaseService>((services =>
+                {
+                    return new LocationDatabaseService( services.GetRequiredService<IUnitOfWork>(), services.GetRequiredService<ILocationRepository>(), services.GetRequiredService<IMapper>()) ;
+                }));
                 var mapperConfig = new MapperConfiguration(mc =>
                 {
                     mc.AllowNullCollections = true;

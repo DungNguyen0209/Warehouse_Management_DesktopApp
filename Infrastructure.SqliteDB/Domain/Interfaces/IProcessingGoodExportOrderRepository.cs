@@ -3,7 +3,7 @@
 public interface IProcessingGoodExportOrderRepository
 {
     //public void InsertAsync(ProcessingGoodExportOrder data);
-    public void DeleteAsync();
-    public Task<List<ProcessingGoodExportOrder>> LoadAsync();
-    public  void UpdateAsync(ProcessingGoodExportOrder data);
+      Task DeleteAsync();
+     Task<List<ProcessingGoodExportOrder>> LoadAsync();
+      Task UpdateAsync(ProcessingGoodExportOrder data);
 }

@@ -9,6 +9,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
     public class GoodReceiptViewModel: ViewModel.BaseViewModels.BaseViewModel
     {
         private readonly IProductsDatabaseService _productsDatabaseService;
+        private readonly IApiService _apiService;
         private readonly GoodReceiptNavigationStore _navigationStore;
         private int _selected;
         
@@ -47,7 +48,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         public ICommand SearchCommand { get; set; }
         public ICommand UploadCommand { get; set; }
         public ICommand SelectionCommand { get; set; }
-        public GoodReceiptViewModel(GoodReceiptNavigationStore navigationStore, INavigationService _GoodReceiptOrdernavigationService, IProductsDatabaseService productsDatabaseService)
+        public GoodReceiptViewModel(GoodReceiptNavigationStore navigationStore, INavigationService _GoodReceiptOrdernavigationService, IProductsDatabaseService productsDatabaseService, IApiService apiService)
         {
             _navigationStore = navigationStore;
             _productsDatabaseService = productsDatabaseService;
@@ -62,6 +63,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             GoodsReceiptList.Add(goodsReceipt1);
             GoodsReceiptList.Add(goodsReceipt2);
             SaveCommand = new RelayCommand(async () => await Save());
+            _apiService = apiService;
         }
 
         private async void CheckTextSource()

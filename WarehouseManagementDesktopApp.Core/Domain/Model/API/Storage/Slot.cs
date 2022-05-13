@@ -1,5 +1,4 @@
-﻿using Container = WarehouseManagementDesktopApp.Core.Domain.Model.API.Containers.Container;
-namespace WarehouseManagementDesktopApp.Core.Domain.Model.API.Storage;
+﻿namespace WarehouseManagementDesktopApp.Core.Domain.Model.API.Storage;
 
 public  class Slot
 {

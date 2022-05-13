@@ -1,6 +1,4 @@
-﻿
-
-namespace WarehouseManagementDesktopApp.Core.Domain.Mapping;
+﻿namespace WarehouseManagementDesktopApp.Core.Domain.Mapping;
 
 public class ModelAndModelForView : Profile
 {
@@ -18,5 +16,6 @@ public class ModelAndModelForView : Profile
         CreateMap<ProductEntry, FormulaListInGoodIssueForViewModel>()
             .ReverseMap()
             .ForMember(dest => dest.itemId, expression => expression.MapFrom(src => src.ProductId));
+
     }
 }

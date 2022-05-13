@@ -1,46 +1,47 @@
-﻿<UserControl x:Class="WarehouseManagementDesktopApp.Core.ComponentUI.ControlBar"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Core.ComponentUI"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:prism="http://prismlibrary.com/"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:viewmodel="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
-             d:DataContext="{x:Static viewmodel:ControlBarViewModel.Instance}"
-             Name="ucControlBar"
-             mc:Ignorable="d">
+﻿<UserControl
+    x:Class="WarehouseManagementDesktopApp.Core.ComponentUI.ControlBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Core.ComponentUI"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:viewmodel="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
+    Name="ucControlBar"
+    d:DataContext="{x:Static viewmodel:ControlBarViewModel.Instance}"
+    mc:Ignorable="d">
     <Grid>
-        <materialDesign:ColorZone Mode="PrimaryLight" Background="{StaticResource SistrainColorBrush}">
+        <materialDesign:ColorZone Background="{StaticResource SistrainColorBrush}" Mode="PrimaryLight">
             <DockPanel>
-                <StackPanel DockPanel.Dock="Right"
-                            Background="Transparent"
-                            Orientation="Horizontal">
+                <StackPanel
+                    Background="Transparent"
+                    DockPanel.Dock="Right"
+                    Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
-                            <Setter Property="Margin"
-                                    Value="2 4 2 4"></Setter>
-                            <Setter Property="Width"
-                                    Value="40"></Setter>
+                            <Setter Property="Margin" Value="2,4,2,4" />
+                            <Setter Property="Width" Value="40" />
                         </Style>
                     </StackPanel.Resources>
-                    <Button Command="{Binding CloseWindowCommand}"
-                            ToolTip="Đóng"
-                            ToolBar.OverflowMode="AsNeeded"
-                            Background="OrangeRed">
+                    <Button
+                        Background="OrangeRed"
+                        Command="{Binding CloseWindowCommand}"
+                        ToolBar.OverflowMode="AsNeeded"
+                        ToolTip="Đóng">
                         <materialDesign:PackIcon Kind="WindowClose" />
                     </Button>
                 </StackPanel>
 
-                <StackPanel DockPanel.Dock="Left"
-                            Orientation="Horizontal">
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                     <ToggleButton Foreground="White" Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
-                    <TextBlock VerticalAlignment="Center"
-                               Margin="16 0 0 0"
-                               Style="{StaticResource Parameter}"
-                               Foreground="White"
-                               Text="{Binding Tag}"></TextBlock>
+                    <TextBlock
+                        Margin="16,0,0,0"
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        Style="{StaticResource Parameter}"
+                        Text="{Binding Tag}" />
                 </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>

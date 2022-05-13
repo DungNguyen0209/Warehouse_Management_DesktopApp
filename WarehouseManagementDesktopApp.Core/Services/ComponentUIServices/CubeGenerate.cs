@@ -250,16 +250,16 @@ namespace WarehouseManagementDesktopApp.Core.Service.ComponentUIServices
             Canvas.SetRight(cube, setRight);
             canvas.Children.Add(cube);
         }
-        //public static void CreateEmptyBasket(Canvas canvas, double setRight, double setBottom)
-        //{
-        //    EmptyCabinet cube = new EmptyCabinet();
-        //    cube.Height = 100;
-        //    cube.Width = 100;
-        //    Canvas.SetBottom(cube, setBottom);
-        //    Canvas.SetRight(cube, setRight);
-        //    canvas.Children.Add(cube);
+        public static void CreateEmptyBasket(Canvas canvas, double setRight, double setBottom)
+        {
+            EmptyCabinet cube = new EmptyCabinet();
+            cube.Height = 100;
+            cube.Width = 100;
+            Canvas.SetBottom(cube, setBottom);
+            Canvas.SetRight(cube, setRight);
+            canvas.Children.Add(cube);
 
-        //}    
+        }
 
     }
 }

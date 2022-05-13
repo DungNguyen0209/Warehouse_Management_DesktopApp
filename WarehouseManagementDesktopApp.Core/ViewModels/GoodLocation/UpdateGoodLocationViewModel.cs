@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using MessageBox = WarehouseManagementDesktopApp.Core.ComponentUI.MessageBox;
 using WarehouseManagementDesktopApp.Core.Service.ComponentUIServices;
 
 namespace WarehouseManagementDesktopApp.Core.ViewModels;
@@ -9,16 +8,19 @@ public class UpdateGoodLocationViewModel : BaseViewModel
     private readonly IApiService _apiService;
     public ICommand SearchCommand { get; set; }
     public ICommand ConfirmCommand { get; set; }
+    public ICommand InsertNewItem { get; set; }
     private string _row;
     private string _column;
     private string _depth;
     private bool _isDialogOpen = false;
+    private bool _isUpdateCardDialogOpen = false;
     private ContentControl _contentControl = new ContentControl();
     private double _width;
     private double _height;
     private int ChoosenSliceIdOfCell { get; set; }
     private bool SearchFlag { get; set; }
     private bool ConfirmFlag { get; set; }
+    public bool IsUpdateCardDialogOpen { get { return _isUpdateCardDialogOpen; } set { _isUpdateCardDialogOpen = value; OnPropertyChanged(); } }
     public bool IsDialogOpen { get { return _isDialogOpen; } set { _isDialogOpen = value; OnPropertyChanged(); } }
     public string Row { get => _row; set { _row = value; OnPropertyChanged(); } }
     public string Column { get => _column; set { _column = value; OnPropertyChanged(); } }
@@ -67,6 +69,7 @@ public class UpdateGoodLocationViewModel : BaseViewModel
     public string Depth { get => _depth; set { _depth = value; OnPropertyChanged(); } }
     public LocationCardItemListViewModel LocationCardItemList { get; set; }
     public GoodLocationUpdateDialogViewModel GoodLocationUpdateDialog { get; set; }
+    public GoodLocationUpdateDialogViewModel UpdateLocationCardViewModel { get; set; }
     //List help to contain the item have update
     public List<UpdateSliceItem> UpdateitemSource { get; set; }
     public event EventHandler<List<int>> AddImageEvent;
@@ -82,10 +85,34 @@ public class UpdateGoodLocationViewModel : BaseViewModel
         ShelfInformation = new Shelf() { shelfId = "" };
         SearchCommand = new RelayCommand(async () => SearchSelf());
         ConfirmCommand = new RelayCommand(async () => UpdateGood());
+        InsertNewItem = new RelayCommand(async () => OpenInsertItemDialog());
         LocationCardItemList = new LocationCardItemListViewModel();
         GoodLocationUpdateDialog = new GoodLocationUpdateDialogViewModel();
+        UpdateLocationCardViewModel = new GoodLocationUpdateDialogViewModel();
         UpdateitemSource = new List<UpdateSliceItem>();
         GoodLocationUpdateDialog.Complete += UpdateItem;
+        UpdateLocationCardViewModel.Complete += UpdateCard;
+
+    }
+
+    private void UpdateCard(string productName, string productId, string piecesPerKilogram, int unit, int itemSource)
+    {
+        LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductId = productId;
+        LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductName = productName;
+        UpdateSliceItem sliceItem = new UpdateSliceItem()
+        {
+            shelfId = ShelfInformation.shelfId,
+            rowId = Convert.ToInt16(RowId),
+            cellId = Convert.ToInt16(CellId),
+            slices = this.ChoosenSliceIdOfCell,
+            itemid = productId,
+        };
+        UpdateitemSource.Add(sliceItem);
+    }
+
+    private void OpenInsertItemDialog()
+    {
+        IsDialogOpen = true;
     }
 
     private async void UpdateGood()
@@ -109,7 +136,7 @@ public class UpdateGoodLocationViewModel : BaseViewModel
         });
         if (idsliceComplete.Count() > 0)
         {
-            foreach(var id in idsliceComplete)
+            foreach (var id in idsliceComplete)
             {
                 UpdateitemSource.RemoveAll(x => x.slices == id);
             };
@@ -144,22 +171,37 @@ public class UpdateGoodLocationViewModel : BaseViewModel
         await RunCommandAsync(SearchFlag, async () =>
         {
 
-            if (!String.IsNullOrEmpty(SelfId) && ShelfInformation.shelfId != SelfId)
+            if (!String.IsNullOrEmpty(SelfId))
             {
+
                 var self = await _apiService.GetShelf(SelfId);
                 if (self.Success)
                 {
                     ShelfInformation = self.Resource;
-                        var cell = ShelfInformation.cells.Where(x => x.id == Convert.ToInt16(CellId) && x.rowId == Convert.ToInt16(RowId)).ToList().Last();
-                    if (cell.slices.Count()>0)
+                    if (ShelfInformation.cells.Any(x => x.id == Convert.ToInt16(CellId) && x.rowId == Convert.ToInt16(RowId)))
                     {
-                        TextAddImage(cell.slices.First().slots.Last().levelId, cell.slices.Count(), cell.slices.First().slots.Last().id, cell);
+
+                        var cell = ShelfInformation.cells.Where(x => x.id == Convert.ToInt16(CellId) && x.rowId == Convert.ToInt16(RowId)).ToList().Last();
+                        if (cell.slices.Count() > 0 && cell != null)
+                        {
+                            TextAddImage(cell.slices.First().slots.Last().levelId, cell.slices.Count(), cell.slices.First().slots.Last().id, cell);
+                        }
+                        else
+                        {
+                            Clear3DAndCard();
+                        }
                     }
                     else
                     {
+                        MessageBox messageBox = new MessageBox
+                        {
+                            IsWarning = true,
+                            ContentText = "Không có vị trí này !",
+                        };
+                        messageBox.Show();
                         Clear3DAndCard();
                     }
-                    
+
 
                 }
                 else
@@ -181,71 +223,65 @@ public class UpdateGoodLocationViewModel : BaseViewModel
 
     private async void UpdateItem(string productName, string productId, string piecesPerKilogram, int unit, int itemSource)
     {
-        //NewProduct newitem = new NewProduct
-        //{
-        //    itemId = productId,
-        //    name = productName,
-        //    piecesPerKilogram = Convert.ToInt32(piecesPerKilogram),
-        //    unit = (EUnit)unit,
-        //    itemSource = (EItemSource)itemSource,
-        //    managerId = "nhmdung"
-        //};
-        //var responenewitem =await _apiService.PostNewProduct(newitem);
-        //if (responenewitem.Success)
-        //{
-        //    MessageBox messageBox = new MessageBox()
-        //    {
-        //        ContentText = "Tạo sản phẩm mới thành công",
-        //        IsWarning = false,
-        //    };
-        //    messageBox.Show();
-        //    LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.id).ProductId = productId;
-        //    LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.id).ProductName = productName;
-        //    UpdateSliceItem sliceItem = new UpdateSliceItem()
-        //    {
-        //        shelfId = ShelfInformation.shelfId,
-        //        rowId = Convert.ToInt16(RowId),
-        //        cellId = Convert.ToInt16(CellId),
-        //        itemid = productId,
-        //    };
-        //    bool isduplicate = Updateitems.Any(s => s == sliceItem);
-        //    if(isduplicate)
-        //    {
-        //    Updateitems.Add(sliceItem);
-        //    }
-
-
-        //}
-        //else
-        //{
-        //    MessageBox messageBox = new MessageBox()
-        //    {
-        //        ContentText = "Tạo sản phẩm mới thành công",
-        //        IsWarning = false,
-        //    };
-        //    messageBox.Show();
-        //}
-        LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductId = productId;
-        LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductName = productName;
-        UpdateSliceItem sliceItem = new UpdateSliceItem()
+        if (IsDialogOpen == true)
         {
-            shelfId = ShelfInformation.shelfId,
-            rowId = Convert.ToInt16(RowId),
-            cellId = Convert.ToInt16(CellId),
-            slices = this.ChoosenSliceIdOfCell,
-            itemid = productId,
-        };
-        UpdateitemSource.Add(sliceItem);
+
+            NewProduct newitem = new NewProduct
+            {
+                itemId = productId,
+                name = productName,
+                piecesPerKilogram = Convert.ToInt32(piecesPerKilogram),
+                unit = (EUnit)unit,
+                itemSource = (EItemSource)itemSource,
+                managerId = "nhmdung"
+            };
+            var responenewitem = await _apiService.PostNewProduct(newitem);
+            if (responenewitem.Success)
+            {
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Tạo sản phẩm mới thành công",
+                    IsWarning = false,
+                };
+                messageBox.Show();
+
+
+            }
+            else
+            {
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Tạo sản phẩm mới không thành công",
+                    IsWarning = false,
+                };
+                messageBox.Show();
+            }
+        }
+
+
+        //Update Card
+        //LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductId = productId;
+        //LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductName = productName;
+        //UpdateSliceItem sliceItem = new UpdateSliceItem()
+        //{
+        //    shelfId = ShelfInformation.shelfId,
+        //    rowId = Convert.ToInt16(RowId),
+        //    cellId = Convert.ToInt16(CellId),
+        //    slices = this.ChoosenSliceIdOfCell,
+        //    itemid = productId,
+        //};
+        //UpdateitemSource.Add(sliceItem);
     }
 
+    // UpdateItemForCard
     private void OpenDialog(int id)
     {
-        if (IsDialogOpen == false)
+        if (IsUpdateCardDialogOpen == false)
         {
-            IsDialogOpen = true;
+            IsUpdateCardDialogOpen = true;
             this.ChoosenSliceIdOfCell = id;
-            GoodLocationUpdateDialog.ProductId = LocationCardItemList.Items[id - 1].ProductId;
-            GoodLocationUpdateDialog.ProductName = LocationCardItemList.Items[id - 1].ProductName;
+            UpdateLocationCardViewModel.ProductId = LocationCardItemList.Items[id - 1].ProductId;
+            UpdateLocationCardViewModel.ProductName = LocationCardItemList.Items[id - 1].ProductName;
         }
     }
     private void Clear3DAndCard()
@@ -286,7 +322,7 @@ public class UpdateGoodLocationViewModel : BaseViewModel
                         ProductName = item.item.name,
                         Id = item.id,
                         Collumn = "Hàng" + Convert.ToString(item.id),
-                        IsEmptySpace = cell.slices.Any(a => a.slots.Any(b => b.containerId != null))
+                        IsEmptySpace = item.slots.Any(a => a.container == null)
                     };
                     locationList.Add(card);
 

@@ -16,7 +16,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         /// <summary>
         /// The chat thread items for the list
         /// </summary>
-        public ObservableCollection<ChatMessageListItemViewModel> Items { get; set; }
+        public ObservableCollection<ChatMessageListItemDesignModel> Items { get; set; }
 
         /// <summary>
         /// True to show the attachment menu, false to hide it
@@ -101,10 +101,10 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         public void Send()
         {
             if (Items == null)
-                Items = new ObservableCollection<ChatMessageListItemViewModel>();
+                Items = new ObservableCollection<ChatMessageListItemDesignModel>();
 
             // Fake send a new message
-            Items.Add(new ChatMessageListItemViewModel
+            Items.Add(new ChatMessageListItemDesignModel
             {
                 Initials = "LM",
                 Message = PendingMessageText,

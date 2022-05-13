@@ -11,15 +11,9 @@ public class TimeToDisplayTimeConverter : BaseValueConverter<TimeToDisplayTimeCo
         var time = (DateTimeOffset)value;
         System.Globalization.CultureInfo cul = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 
-        // If it is today...
-        if (time.Date == DateTimeOffset.UtcNow.Date)
-        {
-
         return time.ToLocalTime().ToString("HH:mm", cul) +","+" Ngày "+ time.ToLocalTime().ToString("dd", cul) + " Tháng "+ time.ToLocalTime().ToString("MM", cul) + " Năm " + time.ToLocalTime().ToString("yyy", cul);
 
-        }    
-            // Return just time
-        return time.ToLocalTime().ToString("HH:mm");
+
 
         // Otherwise, return a full date
     }

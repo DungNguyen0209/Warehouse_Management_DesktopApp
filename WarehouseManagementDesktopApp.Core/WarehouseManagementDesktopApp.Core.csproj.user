@@ -8,6 +8,9 @@
     <Compile Update="ComponentUI\ControlBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ComponentUI\EmptyCabinet.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ComponentUI\MessageBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ComponentUI\ControlBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ComponentUI\EmptyCabinet.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ComponentUI\MessageBox.xaml">

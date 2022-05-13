@@ -18,13 +18,13 @@ public class ProductsDatabaseService: IProductsDatabaseService
 
     public async void Clear()
     {
-        _productRepository.ClearAll();
+        await _productRepository.ClearAll();
         await _unitOfWork.SaveChangeAsync();
     }
     public async void Insert(List<Product> products)
     {
-        await Task.Run(()=> _productRepository.InsertAsync(products));
-         await _unitOfWork.SaveChangeAsync();
+        await  _productRepository.InsertAsync(products);
+        await _unitOfWork.SaveChangeAsync();
     }
     public async Task<IList<Product>?> LoadSuggestName (string firstname)
     {

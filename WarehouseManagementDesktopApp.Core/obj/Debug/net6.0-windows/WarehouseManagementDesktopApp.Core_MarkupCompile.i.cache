@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
-3609840064
+41220254270
 3-1838325022
-1281994576337
+140-1260884928
 2441200280137
-ComponentUI\Cabinet.xaml;ComponentUI\ControlBar.xaml;ComponentUI\MessageBox.xaml;
+ComponentUI\Cabinet.xaml;ComponentUI\ControlBar.xaml;ComponentUI\EmptyCabinet.xaml;ComponentUI\MessageBox.xaml;
 
 False
 

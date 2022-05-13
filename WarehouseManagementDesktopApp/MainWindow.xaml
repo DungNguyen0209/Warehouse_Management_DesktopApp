@@ -40,14 +40,11 @@
     <Window.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-            <Style TargetType="Grid" x:Key="MenuPanelStyle">
-                <Setter Property="IsEnabled"
-                        Value="False" />
+            <Style x:Key="MenuPanelStyle" TargetType="Grid">
+                <Setter Property="IsEnabled" Value="False" />
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding IsLoged}"
-                                 Value="True">
-                        <Setter Property="IsEnabled"
-                                Value="True" />
+                    <DataTrigger Binding="{Binding IsLoged}" Value="True">
+                        <Setter Property="IsEnabled" Value="True" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -168,10 +165,7 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Style="{StaticResource MenuPanelStyle}">
-                            <component:MenuButton
-                                x:Name="Loginbtn"
-
-                                ContentText="TRANG CHỦ">
+                            <component:MenuButton x:Name="Loginbtn" ContentText="TRANG CHỦ">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <prism:InvokeCommandAction Command="{Binding LoggingCommand}" />
@@ -179,8 +173,7 @@
                                 </i:Interaction.Triggers>
                             </component:MenuButton>
                         </Grid>
-                        <Grid Grid.Row="1"
-                              Style="{StaticResource MenuPanelStyle}">
+                        <Grid Grid.Row="1" Style="{StaticResource MenuPanelStyle}">
                             <component:MenuButton
                                 x:Name="Settingbtn"
                                 ContentText="NHẬP KHO"
@@ -192,8 +185,7 @@
                                 </i:Interaction.Triggers>
                             </component:MenuButton>
                         </Grid>
-                        <Grid Grid.Row="2"
-                              Style="{StaticResource MenuPanelStyle}">
+                        <Grid Grid.Row="2" Style="{StaticResource MenuPanelStyle}">
                             <component:MenuButton
                                 x:Name="Supervisorbtn"
                                 ContentText="XUẤT KHO"
@@ -205,8 +197,7 @@
                                 </i:Interaction.Triggers>
                             </component:MenuButton>
                         </Grid>
-                        <Grid Grid.Row="3"
-                              Style="{StaticResource MenuPanelStyle}">
+                        <Grid Grid.Row="3" Style="{StaticResource MenuPanelStyle}">
                             <component:MenuButton
                                 x:Name="Reporttn"
                                 ContentText="VỊ TRÍ"
@@ -218,8 +209,7 @@
                                 </i:Interaction.Triggers>
                             </component:MenuButton>
                         </Grid>
-                        <Grid Grid.Row="4"
-                              Style="{StaticResource MenuPanelStyle}">
+                        <Grid Grid.Row="4" Style="{StaticResource MenuPanelStyle}">
                             <component:MenuButton
                                 x:Name="Alertbtn"
                                 ContentText="BÁO CÁO"
@@ -231,8 +221,7 @@
                                 </i:Interaction.Triggers>
                             </component:MenuButton>
                         </Grid>
-                        <Grid Grid.Row="5"
-                              Style="{StaticResource MenuPanelStyle}">
+                        <Grid Grid.Row="5" Style="{StaticResource MenuPanelStyle}">
                             <component:MenuButton
                                 x:Name="Historybtn"
                                 ContentText="LỊCH SỬ"
@@ -245,11 +234,11 @@
                                 </i:Interaction.Triggers>
                             </component:MenuButton>
                         </Grid>
-                        <Grid Grid.Row="6"
-                              Style="{StaticResource MenuPanelStyle}">
-                            <component:MenuButton x:Name="Helpbtn"
-                                                  ContentText="TRỢ GIÚP"
-                                                  IconValue="HelpBox" />
+                        <Grid Grid.Row="6" Style="{StaticResource MenuPanelStyle}">
+                            <component:MenuButton
+                                x:Name="Helpbtn"
+                                ContentText="TRỢ GIÚP"
+                                IconValue="HelpBox" />
                         </Grid>
 
 

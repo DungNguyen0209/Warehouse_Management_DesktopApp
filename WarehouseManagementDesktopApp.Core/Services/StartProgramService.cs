@@ -39,6 +39,8 @@ public class StartProgramService:IStartProgramService
     private async void LoadProduct()
     {
         var data = await _apiService.GetAllProduct();
+        if (data.Success)
+        {
         var fullproduct = data.Resource.Items;
         List<Persistence.SqliteDB.Model.Product> products = new List<Persistence.SqliteDB.Model.Product>();
         foreach (var item in fullproduct)
@@ -49,5 +51,6 @@ public class StartProgramService:IStartProgramService
         }
         _productsDatabaseService.Clear();
         await Task.Run(() => _productsDatabaseService.Insert(products));
+        }
     }
 }

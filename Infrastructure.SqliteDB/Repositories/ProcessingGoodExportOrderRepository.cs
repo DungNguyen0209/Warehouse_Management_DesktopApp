@@ -8,10 +8,10 @@ public class ProcessingGoodExportOrderRepository : IProcessingGoodExportOrderRep
         _context = context;
     }
 
-    public void DeleteAsync()
+    public async Task DeleteAsync()
     {
         if(_context.processingGoodExportOrders.Count()>0)
-        {
+        { 
         _context.processingGoodExportOrders.FromSqlRaw("DELETE FROM [processingGoodExportOrders]");
         }
     }
@@ -27,7 +27,7 @@ public class ProcessingGoodExportOrderRepository : IProcessingGoodExportOrderRep
         return data;
     }
 
-    public async void UpdateAsync(ProcessingGoodExportOrder data)
+    public async Task UpdateAsync(ProcessingGoodExportOrder data)
     {
         //foreach(var)
         //_context.issueBasketLists.Attach(data.issueBasketLists);

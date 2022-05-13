@@ -8,6 +8,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
     public class ChatMessageListItemViewModel : BaseViewModel
     {
         #pragma warning disable CS8618
+        public string Id { get; set; }
         /// <summary>
         /// The display name of the sender of the message
         /// </summary>
@@ -59,6 +60,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         /// Used as a flag for animating in
         /// </summary>
         public bool NewItem { get; set; }
-        #pragma warning restore CS8618
+        public Action<string> ClickEvent { get; set; }
+#pragma warning restore CS8618
     }
 }

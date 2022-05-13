@@ -10,7 +10,7 @@
     Name="root"
     Title="MessageBox"
     Width="550"
-    Height="300"
+    Height="350"
     MouseLeftButtonDown="root_MouseLeftButtonDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
@@ -20,8 +20,9 @@
         <Border BorderBrush="Black" BorderThickness="2">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*" />
-                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="7*" />
+                    <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
                 <Grid>
                     <local:ControlBar x:Name="ControlBarElement" />
@@ -36,7 +37,7 @@
                                     <materialDesign:PackIcon.Style>
                                         <Style TargetType="materialDesign:PackIcon">
                                             <Setter Property="Foreground"
-                                                    Value="#A5DC86" />
+                                                    Value="LawnGreen" />
                                             <Setter Property="Kind"
                                                     Value="CheckCircleOutline" />
                                             <Style.Triggers>
@@ -51,23 +52,28 @@
                                         </Style>
                                     </materialDesign:PackIcon.Style>
                                 </materialDesign:PackIcon>
-                                <TextBlock
+                                <WrapPanel>
+                                    <TextBlock
                                     Margin="5"
                                     HorizontalAlignment="Center"
                                     FontWeight="DemiBold"
                                     Style="{StaticResource HeadingText}"
                                     Text="{Binding ContentText, ElementName=root}" />
+                                </WrapPanel>
                             </StackPanel>
 
-                            <StackPanel
-                                Margin="10"
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                            <Grid
+                                Margin="0,5,0,20"
+                                Grid.Row="2"
                                 HorizontalAlignment="Center"
-                                VerticalAlignment="Bottom"
-                                Orientation="Horizontal">
+                                VerticalAlignment="Bottom">
                                 <Button
                                     Width="200"
-                                    Height="60"
-                                    Margin="0,5,0,0"
+                                    Height="70"
+                                    Margin="0,0,0,0"
                                     FontWeight="Bold"
                                     Background="{StaticResource SistrainColorBrush}"
                                     BorderThickness="0.5"
@@ -76,10 +82,7 @@
                                     FontSize="30"
                                     Foreground="White"
                                     Style="{StaticResource Flat}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
+                            </Grid>
             </Grid>
         </Border>
     </materialDesign:Card>

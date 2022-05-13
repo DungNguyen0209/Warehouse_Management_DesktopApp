@@ -8,5 +8,7 @@ public class LogicModelandDatabasModel : Profile
             .ReverseMap()
             .ForMember(dest => dest.IdProduct, expression => expression.MapFrom(src => src.itemId))
             .ForMember(dest => dest.Name, expression => expression.MapFrom(src => src.name));
+        CreateMap<ContainerLocation, Location>()
+           .ReverseMap();
     }
 }

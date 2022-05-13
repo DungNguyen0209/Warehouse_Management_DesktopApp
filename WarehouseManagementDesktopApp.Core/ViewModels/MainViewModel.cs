@@ -1,5 +1,4 @@
 ﻿using MaterialDesignThemes.Wpf;
-using MessageBox = WarehouseManagementDesktopApp.Core.ComponentUI.MessageBox;
 
 namespace WarehouseManagementDesktopApp.Core.ViewModels
 {

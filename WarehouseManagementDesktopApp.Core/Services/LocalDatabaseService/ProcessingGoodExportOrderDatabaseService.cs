@@ -15,7 +15,7 @@ public class ProcessingGoodExportOrderDatabaseService: IProcessingGoodExportOrde
 
     public async void Delete()
     {
-        await Task.Run(() => _repository.DeleteAsync());
+        await _repository.DeleteAsync();
         await _unitOfWork.SaveChangeAsync();
     }
 

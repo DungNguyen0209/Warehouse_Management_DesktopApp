@@ -17,6 +17,27 @@ namespace Persistence.SqliteDB.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
 
+            modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.ContainerLocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("cellId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("rowId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("shelfId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("containerLocations");
+                });
+
             modelBuilder.Entity("Persistence.SqliteDB.Domain.Model.GoodExport.FormulaListGoodIssue", b =>
                 {
                     b.Property<int>("Id")

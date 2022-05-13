@@ -1,5 +1,4 @@
 ﻿using Persistence.SqliteDB.Domain.Model.GoodExport;
-using MessageBox = WarehouseManagementDesktopApp.Core.ComponentUI.MessageBox;
 namespace WarehouseManagementDesktopApp.Core.ViewModels;
 #pragma warning disable CS8618
 
@@ -28,6 +27,7 @@ public class GoodExportViewModel : BaseViewModel
     public DialogGoodIssueViewModel DialogGoodIssue { get; set; }
     public ICommand ActualChanged { get; set; }
     public ICommand SearchCommand { get; set; }
+    public ICommand UpdateContainerCommand { get; set; }
     public ICommand FinishCommand { get; set; }
     public ICommand UploadFile { get; set; }
     public ICommand PostGoodReceiptToServer { get; set; }
@@ -68,10 +68,10 @@ public class GoodExportViewModel : BaseViewModel
         {
             _selectedIndexItem = value;
             OnPropertyChanged();
-            if(FormulaPlannedList.Count()>0)
+            if (FormulaPlannedList.Count() > 0)
             {
-            ChoosenItemId = FormulaPlannedList[_selectedIndexItem].ProductId;
-            SortBasket();
+                ChoosenItemId = FormulaPlannedList[_selectedIndexItem].ProductId;
+                SortBasket();
             }
         }
     }
@@ -89,6 +89,8 @@ public class GoodExportViewModel : BaseViewModel
         }
     }
 
+    public bool searchFlag { get; private set; }
+    public bool updateContainerFlag { get; private set; }
 
     public GoodExportViewModel(DialogGoodIssueViewModel dialogGoodIssue, IProcessingGoodExportOrderDatabaseService processingGoodExportOrderDatabaseService, IExcelExporter excelExporter, IMapper mapper, IApiService apiService)
     {
@@ -104,7 +106,7 @@ public class GoodExportViewModel : BaseViewModel
         };
         this.ProcessingGoodExportOrder = new ProcessingGoodExportOrder()
         {
-            orderId = ChoosenItemId,
+            orderId = GoodIssueId,
             formulaListGoodIssues = new List<FormulaListGoodIssue>(),
         };
         LoadData();
@@ -112,7 +114,126 @@ public class GoodExportViewModel : BaseViewModel
         OnPropertyChanged("FormulaPlannedList");
         FinishCommand = new RelayCommand(async () => FinishEntryIssue());
         UploadFile = new RelayCommand(async () => ReadExcel());
-        PostGoodReceiptToServer = new RelayCommand(async () => PostServerGoodReceipt());
+        PostGoodReceiptToServer = new RelayCommand(async () => PostServerGoodIssue());
+        UpdateContainerCommand = new RelayCommand(async () => InsertContainer());
+    }
+
+    private async void InsertContainer()
+    {
+        #region đã rào đk 
+        if (FormulaPlannedList.Any(s => s.IsFinished == false))
+        {
+            MessageBox messageBox = new MessageBox()
+            {
+                ContentText = "Vui lòng hoàn thành đầy đủ đề xuất",
+                IsWarning = true
+            };
+            messageBox.Show();
+        }
+        else
+        {
+            await RunCommandAsync(updateContainerFlag, async () =>
+            {
+                List<IssueEntryContainer> containerlist = new List<IssueEntryContainer>();
+                foreach (var item in ProcessingGoodExportOrder.formulaListGoodIssues)
+                {
+                    foreach (var miniitem in item.Baskets)
+                    {
+                        if (miniitem.IsChecked == true)
+                        {
+                            IssueEntryContainer container = new IssueEntryContainer();
+                            container.containerId = miniitem.BasketId;
+                            container.quantity = Convert.ToDouble(miniitem.Actual);
+                            containerlist.Add(container);
+                        }
+                    }
+                }
+                if (!String.IsNullOrEmpty(GoodIssueId))
+                {
+                    var result = await _apiService.PatchGoodsIssueEntryContainer(containerlist, GoodIssueId);
+                    if (result.Success)
+                    {
+                        MessageBox messageBox = new MessageBox()
+                        {
+                            ContentText = "Hoàn thành",
+                            IsWarning = false
+                        };
+                        messageBox.Show();
+                        ClearAllView();
+                    }
+                    else
+                    {
+                        MessageBox messageBox = new MessageBox()
+                        {
+                            ContentText = result.Error.Message,
+                            IsWarning = true
+                        };
+                        messageBox.Show();
+                    }
+                }
+                else
+                {
+                    MessageBox messageBox = new MessageBox()
+                    {
+                        ContentText = "Vui lòng điền thông tin đơn nhập kho",
+                        IsWarning = true
+                    };
+                    messageBox.Show();
+                }
+            });
+        }
+        #endregion
+        #region chưa rào ĐK
+        //await RunCommandAsync(updateContainerFlag, async () =>
+        //{
+        //    List<IssueEntryContainer> containerlist = new List<IssueEntryContainer>();
+        //    foreach (var item in ProcessingGoodExportOrder.formulaListGoodIssues)
+        //    {
+        //        foreach (var miniitem in item.Baskets)
+        //        {
+        //            if (miniitem.IsChecked == true)
+        //            {
+        //                IssueEntryContainer container = new IssueEntryContainer();
+        //                container.containerId = miniitem.BasketId;
+        //                container.quantity = Convert.ToDouble(miniitem.Actual);
+        //                containerlist.Add(container);
+        //            }
+        //        }
+        //    }
+        //    if (!String.IsNullOrEmpty(GoodIssueId))
+        //    {
+        //        var result = await _apiService.PatchGoodsIssueEntryContainer(containerlist, GoodIssueId);
+        //        if (result.Success)
+        //        {
+        //            MessageBox messageBox = new MessageBox()
+        //            {
+        //                ContentText = "Hoàn thành",
+        //                IsWarning = false
+        //            };
+        //            messageBox.Show();
+        //            ClearAllView();
+        //        }
+        //        else
+        //        {
+        //            MessageBox messageBox = new MessageBox()
+        //            {
+        //                ContentText = result.Error.Message,
+        //                IsWarning = true
+        //            };
+        //            messageBox.Show();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox messageBox = new MessageBox()
+        //        {
+        //            ContentText = "Vui lòng điền thông tin đơn nhập kho",
+        //            IsWarning = true
+        //        };
+        //        messageBox.Show();
+        //    }
+        //});
+        #endregion
     }
 
     //private async void PostServerGoodReceipt()
@@ -156,7 +277,7 @@ public class GoodExportViewModel : BaseViewModel
     //        }    
     //    });
     //}
-    private async void PostServerGoodReceipt()
+    private async void PostServerGoodIssue()
     {
         await RunCommandAsync(postExcelFlag, async () =>
         {
@@ -216,12 +337,12 @@ public class GoodExportViewModel : BaseViewModel
         await RunCommandAsync(loadExcelFlag, async () =>
         {
             ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> response = _excelExporter.ReadReceipt();
-        foreach (var item in response.Resource)
-        {
-            var convertitem = _mapper.Map<FormulaListInGoodIssueForViewModel>(item);
-            FormulaPlannedList.Add(convertitem);
-        }
-        GoodIssueId = _excelExporter.FilePath;
+            foreach (var item in response.Resource)
+            {
+                var convertitem = _mapper.Map<FormulaListInGoodIssueForViewModel>(item);
+                FormulaPlannedList.Add(convertitem);
+            }
+            GoodIssueId = _excelExporter.FilePath;
         });
     }
     #endregion
@@ -259,54 +380,139 @@ public class GoodExportViewModel : BaseViewModel
 
 
 #pragma warning restore
-    private void SortBasket()
+    private async void SortBasket()
     {
-        this.IssueBasketList.Clear();
-        int basketsum = 0;
-        RangeObservableCollection<IssueBasketForViewModel> issueBaskets = new RangeObservableCollection<IssueBasketForViewModel>();
-        #region Testing data
-        //RangeObservableCollection<IssueBasketForViewModel> issueBaskets = new RangeObservableCollection<IssueBasketForViewModel>();
-        //IssueBasketForViewModel item1 = new IssueBasketForViewModel()
-        //{
-        //    BasketId = "LR123",
-        //    ProductionDate = "22-2-2022",
-        //    Quantity = "12",
-        //    Mass = "20"
-        //};
-        //IssueBasketForViewModel item2 = new IssueBasketForViewModel()
-        //{
-        //    BasketId = "LR1234",
-        //    ProductionDate = "22-2-2022",
-        //    Quantity = "23",
-        //    Mass = "30"
-        //};
-        //IssueBasketForViewModel item3 = new IssueBasketForViewModel()
-        //{
-        //    BasketId = "LR12345",
-        //    ProductionDate = "22-2-2022",
-        //    Quantity = "25",
-        //    Mass = "50"
-        //};
-        //issueBaskets.AddRange(new List<IssueBasketForViewModel>() { item1, item2, item3 });
-        #endregion
-        foreach (var item in this.ProcessingGoodExportOrder.formulaListGoodIssues[_selectedIndexItem].Baskets)
+        var apiresult = await _apiService.GetContainerByProductId(FormulaPlannedList[_selectedIndexItem].ProductId);
+        if (apiresult.Success)
         {
-            var data = _mapper.Map<IssueBasketForViewModel>(item);
-            if(data.IsChecked)
+            var dataapi = apiresult.Resource;
+            this.IssueBasketList.Clear();
+            int basketsum = 0;
+            RangeObservableCollection<IssueBasketForViewModel> issueBaskets = new RangeObservableCollection<IssueBasketForViewModel>();
+            #region Testing data
+            //RangeObservableCollection<IssueBasketForViewModel> issueBaskets = new RangeObservableCollection<IssueBasketForViewModel>();
+            //IssueBasketForViewModel item1 = new IssueBasketForViewModel()
+            //{
+            //    BasketId = "LR123",
+            //    ProductionDate = "22-2-2022",
+            //    Quantity = "12",
+            //    Mass = "20"
+            //};
+            //IssueBasketForViewModel item2 = new IssueBasketForViewModel()
+            //{
+            //    BasketId = "LR1234",
+            //    ProductionDate = "22-2-2022",
+            //    Quantity = "23",
+            //    Mass = "30"
+            //};
+            //IssueBasketForViewModel item3 = new IssueBasketForViewModel()
+            //{
+            //    BasketId = "LR12345",
+            //    ProductionDate = "22-2-2022",
+            //    Quantity = "25",
+            //    Mass = "50"
+            //};
+            //issueBaskets.AddRange(new List<IssueBasketForViewModel>() { item1, item2, item3 });
+            #endregion
+
+            foreach (var item in dataapi)
             {
-                basketsum += Convert.ToInt32(data.Actual);
+                EUnit unit = item.item.unit;
+                if (unit == EUnit.Kilogram)
+                {
+
+                    IssueBasketForViewModel issueitem = new IssueBasketForViewModel()
+                    {
+                        BasketId = item.containerId,
+                        ProductionDate = item.productionDate.ToString("dd/MM/yyyy"),
+                        Mass = Convert.ToString(item.plannedQuantity),
+                        Quantity = "",
+                        IsChecked = false,
+                    };
+                    issueBaskets.Add(issueitem);
+                }
+                else
+                {
+                    IssueBasketForViewModel issueitem = new IssueBasketForViewModel()
+                    {
+                        BasketId = item.containerId,
+                        ProductionDate = item.productionDate.ToString("dd/MM/yyyy"),
+                        Quantity = Convert.ToString(item.plannedQuantity),
+                        Mass = ""
+                    };
+                    issueBaskets.Add(issueitem);
+                }
             }
-            issueBaskets.Add(data);
+
+            // help for database
+            //foreach (var item in this.ProcessingGoodExportOrder.formulaListGoodIssues[_selectedIndexItem].Baskets)
+            //{
+            //    var data = _mapper.Map<IssueBasketForViewModel>(item);
+            //    if (data.IsChecked)
+            //    {
+            //        basketsum += Convert.ToInt32(data.Actual);
+            //    }
+            //    issueBaskets.Add(data);
+            //}
+            //SumActual = Convert.ToString(basketsum);
+            //IssueBasketList = issueBaskets;
+            IssueBasketList = issueBaskets;
         }
-        SumActual = Convert.ToString(basketsum);
-        IssueBasketList = issueBaskets;
     }
 
     private async void Search()
     {
-        //IsDialogOpen = true;
+        await RunCommandAsync(searchFlag, async () =>
+        {
 
-        _processingGoodExportOrderDatabaseService.Delete();
+            _processingGoodExportOrderDatabaseService.Delete();
+            var data = await _apiService.GetGoodsIssueById(GoodIssueId);
+            if (data.Success)
+            {
+                var result = data.Resource;
+                RangeObservableCollection<FormulaListInGoodIssueForViewModel> list = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
+
+                foreach (var item in result.entries)
+                {
+                    EUnit unit = item.item.unit;
+                    if (unit == EUnit.Kilogram)
+                    {
+
+                        FormulaListInGoodIssueForViewModel formulaitem = new FormulaListInGoodIssueForViewModel();
+                        formulaitem.ProductId = item.item.itemId;
+                        formulaitem.ProductName = item.item.name;
+                        formulaitem.PlannedQuantity = "";
+                        formulaitem.PlannedMass = Convert.ToString(item.TotalQuantity);
+                        list.Add(formulaitem);
+                    }
+                    else
+                    {
+                        FormulaListInGoodIssueForViewModel formulaitem = new FormulaListInGoodIssueForViewModel();
+                        formulaitem.ProductId = item.item.itemId;
+                        formulaitem.ProductName = item.item.name;
+                        formulaitem.PlannedQuantity = Convert.ToString(item.TotalQuantity);
+                        formulaitem.PlannedMass = "";
+                        list.Add(formulaitem);
+                    }
+                }
+                FormulaPlannedList = list;
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Truy xuất thành công",
+                    IsWarning = false,
+                };
+                messageBox.Show();
+            }
+            else
+            {
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = data.Error.Message,
+                    IsWarning = false,
+                };
+                messageBox.Show();
+            }
+        });
     }
     private void EditFormulaInDatabase()
     {
@@ -343,7 +549,7 @@ public class GoodExportViewModel : BaseViewModel
     private async void LoadData()
     {
         var previousdata = await _processingGoodExportOrderDatabaseService.GetAll();
-        if ((previousdata.Count() > 0 ) && (previousdata != null ))
+        if ((previousdata.Count() > 0) && (previousdata != null))
         {
             var data = previousdata.Last();
             this.ProcessingGoodExportOrder = data;
@@ -365,6 +571,18 @@ public class GoodExportViewModel : BaseViewModel
             //    issueBasketForViewModelsprevious.Add(entry);
             //}
         }
+
+    }
+    //Use When finish the goodIssue
+    private void ClearAllView()
+    {
+        this.ProcessingGoodExportOrder = new ProcessingGoodExportOrder()
+        {
+            formulaListGoodIssues = new List<FormulaListGoodIssue>(),
+        }; 
+        FormulaPlannedList.Clear();
+        IssueBasketList.Clear();
+        GoodIssueId = "";
 
     }
 }
