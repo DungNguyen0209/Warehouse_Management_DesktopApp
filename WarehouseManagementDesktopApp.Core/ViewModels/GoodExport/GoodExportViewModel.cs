@@ -68,7 +68,7 @@ public class GoodExportViewModel : BaseViewModel
         {
             _selectedIndexItem = value;
             OnPropertyChanged();
-            if (FormulaPlannedList.Count() > 0)
+            if (FormulaPlannedList.Count() > 0 && _selectedIndexItem != -1)
             {
                 ChoosenItemId = FormulaPlannedList[_selectedIndexItem].ProductId;
                 SortBasket();
@@ -337,6 +337,7 @@ public class GoodExportViewModel : BaseViewModel
         await RunCommandAsync(loadExcelFlag, async () =>
         {
             ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> response = _excelExporter.ReadReceipt();
+            FormulaPlannedList.Clear();
             foreach (var item in response.Resource)
             {
                 var convertitem = _mapper.Map<FormulaListInGoodIssueForViewModel>(item);
@@ -425,7 +426,7 @@ public class GoodExportViewModel : BaseViewModel
                     {
                         BasketId = item.containerId,
                         ProductionDate = item.productionDate.ToString("dd/MM/yyyy"),
-                        Mass = Convert.ToString(item.plannedQuantity),
+                        Mass = Convert.ToString(item.actualQuantity),
                         Quantity = "",
                         IsChecked = false,
                     };
@@ -437,7 +438,7 @@ public class GoodExportViewModel : BaseViewModel
                     {
                         BasketId = item.containerId,
                         ProductionDate = item.productionDate.ToString("dd/MM/yyyy"),
-                        Quantity = Convert.ToString(item.plannedQuantity),
+                        Quantity = Convert.ToString(item.actualQuantity),
                         Mass = ""
                     };
                     issueBaskets.Add(issueitem);

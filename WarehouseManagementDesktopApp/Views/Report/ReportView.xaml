@@ -318,6 +318,41 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
+                                    <DataGridTextColumn Width="200"
+                                                        Binding="{Binding Unit}">
+
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="2,4,2,2"
+                                                            Orientation="Horizontal">
+                                                    <TextBlock Padding="0,0,5,5"
+                                                               FontSize="25"
+                                                               Text="Đơn vị" />
+                                                    <fa:FontAwesome Height="30"
+                                                                    Margin="5,10,0,-2"
+                                                                    Foreground="#FF68EB48"
+                                                                    Icon="ArrowDown" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.Foreground>
+                                            <SolidColorBrush Color="Black" />
+                                        </DataGridTextColumn.Foreground>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment"
+                                                        Value="Center" />
+                                                <Setter Property="Background"
+                                                        Value="Transparent" />
+                                                <Setter Property="IsEnabled"
+                                                        Value="False" />
+                                                <Setter Property="Height"
+                                                        Value="25" />
+                                                <Setter Property="FontSize"
+                                                        Value="20" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
                                 </DataGrid.Columns>
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="SelectionChanged">

@@ -146,6 +146,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                     Id = Convert.ToString(i++),
                     ProductId = item.item.itemId,
                     ProductName = item.item.name,
+                    Unit = GetUnit(item.item.unit),
                     TotalQuantity = CaculateRecepitQuantity(item.containers)
 
                 };
@@ -166,6 +167,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         Id = Convert.ToString(i++),
                         ProductId = item.item.itemId,
                         ProductName = item.item.name,
+                        Unit = GetUnit(item.item.unit),
                         TotalQuantity = CaculateIssueQuantity(item.containers)
 
                     };
@@ -175,6 +177,19 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                 GoodsList = datalist;
             }
         }
+
+        private string GetUnit(EUnit unit)
+        {
+            if(unit ==EUnit.Kilogram)
+            {
+                return "KG";
+            }
+            else
+            {
+                return "Bộ/Cái";
+            }
+        }
+
         private string CaculateRecepitQuantity(List<ContainerOfGoodReceiptReport> containers)
         {
             double Sum = 0;

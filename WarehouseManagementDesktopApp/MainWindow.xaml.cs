@@ -40,5 +40,10 @@
                 Helpbtn.UpdateNormalUI();
             }
         }
+
+        private void Main_Window_Closed(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

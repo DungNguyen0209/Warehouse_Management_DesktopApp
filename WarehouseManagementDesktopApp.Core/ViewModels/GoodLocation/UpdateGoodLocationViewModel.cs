@@ -322,7 +322,7 @@ public class UpdateGoodLocationViewModel : BaseViewModel
                         ProductName = item.item.name,
                         Id = item.id,
                         Collumn = "Hàng" + Convert.ToString(item.id),
-                        IsEmptySpace = item.slots.Any(a => a.container == null)
+                        IsEmptySpace = item.slots.Any(a => a.container != null)
                     };
                     locationList.Add(card);
 

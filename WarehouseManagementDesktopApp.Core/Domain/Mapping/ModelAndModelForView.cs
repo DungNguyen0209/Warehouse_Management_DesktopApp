@@ -12,7 +12,7 @@ public class ModelAndModelForView : Profile
             .ReverseMap()
             .ForMember(dest => dest.PlannedQuantity, expression => expression.MapFrom(src => src.Quantity))
             .ForMember(dest => dest.PlannedMass, expression => expression.MapFrom(src => src.Mass))
-            .ForMember(dest => dest.PlannedQuantity, expression => expression.MapFrom(src => src.Quantity));
+            .ForMember(dest => dest.note, expression => expression.MapFrom(src => src.Infomartion));
         CreateMap<ProductEntry, FormulaListInGoodIssueForViewModel>()
             .ReverseMap()
             .ForMember(dest => dest.itemId, expression => expression.MapFrom(src => src.ProductId));

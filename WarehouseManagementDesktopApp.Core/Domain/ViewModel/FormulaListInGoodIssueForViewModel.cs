@@ -9,6 +9,7 @@ public class FormulaListInGoodIssueForViewModel : BaseViewModel
     public string PlannedMass { get; set; }
     public string PlannedQuantity { get; set; }
     public string Actual { get; set; }
+    public string note { get; set; } = "";
     public bool IsFinished
     {
         get => _isfinished;
