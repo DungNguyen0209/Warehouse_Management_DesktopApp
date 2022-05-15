@@ -59,11 +59,13 @@ public class GoodLocationViewModel : BaseViewModel
             if (result.Success)
             {
                 Cell cell = result.Resource;
+                cell.slices.Reverse();
                 var width = cell.slices.Count();
                 var height = cell.slices.First().slots.Max(x => x.levelId);
                 var depth = cell.slices.First().slots.Max(X => X.id);
-                        emptySlot.Clear();
-                foreach (var item in cell.slices)
+                emptySlot.Clear();
+                List<Slice> reverseslices = Enumerable.Reverse(cell.slices).ToList();
+                foreach (var item in reverseslices)
                 {
                     var containers = item.slots.Where(s => s.container == null).ToList();
                     if (containers != null && containers.Count() > 0)
@@ -173,12 +175,12 @@ public class GoodLocationViewModel : BaseViewModel
                 for (int k = 1; k <= width; k++)
                 {
 
-                    double marginRight = (Slotpanel.Width - width * 100 + 30 * (width - 1)) / 2 + (k - 1) * 50 - 15 * j+40;
+                    double marginRight = (Slotpanel.Width - width * 100 + 30 * (width - 1)) / 2 + (k - 1) * 50 - 15 * j + 40;
                     int marginBottom = 10 - j * 20 + (80 + 8 * depth) * i + 200 + 100;
                     if (emptySlot != null)
                     {
 
-                        if (emptySlot.Any(s => s.Width == k && s.Height == i && s.Depth ==j))
+                        if (emptySlot.Any(s => s.Width == (width- k+1) && s.Height ==i && s.Depth == j))
                         {
                             CubeGenerate.CreateEmptyBasket(Slotpanel, marginRight, marginBottom);
                         }
@@ -191,6 +193,9 @@ public class GoodLocationViewModel : BaseViewModel
                 }
             }
         }
+
+
+
         return Slotpanel;
     }
 }

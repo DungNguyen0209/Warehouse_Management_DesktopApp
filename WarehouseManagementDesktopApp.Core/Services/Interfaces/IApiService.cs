@@ -15,6 +15,7 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
     {
         //Task<ServiceResourceResponse<WarehouseEmployee>> LogInAsync (string username, string password);
         Action LoginCompleteAction { get; set; }
+        Action LogoutCompleteAction { get; set; }
         Task<ServiceResponse> LogInAsync(string? token, Error error);
         void LogOut();
         Task<ServiceResourceResponse<QueryResult<Product>>> GetAllProduct();
@@ -22,6 +23,8 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
         Task<ServiceResponse> PostNewProduct(NewProduct resource);
         Task<ServiceResourceResponse<Shelf>> GetShelf(string shelfId);
         Task<ServiceResourceResponse<Cell>> GetCell(string shelfId, int rowId, int cellId);
+        Task<ServiceResourceResponse<List<WarningStockCard>>> GetUnderStockCards();
+        Task<ServiceResourceResponse<List<WarningStockCard>>> GetOverStockCards();
         Task<ServiceResourceResponse<GoodIssueFromServer>> GetGoodsIssueByTime(DateTime date);
         Task<ServiceResourceResponse<QueryResult<Product>>> GetProductById(string productId);
         Task<ServiceResourceResponse<IEnumerable<StorageSlot>>> GetStorageID();

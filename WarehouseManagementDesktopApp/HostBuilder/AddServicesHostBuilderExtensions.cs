@@ -13,7 +13,7 @@ namespace WarehouseManagementDesktopApp.HostBuilder
             {
                 services.AddTransient<NavigationStore>();
                 services.AddSingleton<GoodReceiptNavigationStore>();
-                services.AddSingleton<LoginNavigationStore>();
+                services.AddSingleton<MainStore>();
                 services.AddSingleton<WebBrowserContainer>();
                 services.AddSingleton<IGoodSlotService, GoodSlotService>();
                 services.AddSingleton<IExcelExporter, ExcelExporterService>();

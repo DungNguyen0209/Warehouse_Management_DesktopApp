@@ -4,10 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Views.GoodReceipts"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
     xmlns:uc="clr-namespace:WarehouseManagementDesktopApp.Resources.Components.Message"
@@ -320,7 +320,44 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Width="200" Binding="{Binding Information}">
+                                    <DataGridTextColumn Width="260"
+                                                        Binding="{Binding Quantity, Mode=TwoWay}">
+
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="0,4,0,2"
+                                                            HorizontalAlignment="Center"
+                                                            Orientation="Horizontal">
+                                                    <TextBlock Padding="0,0,5,5"
+                                                               FontSize="25"
+                                                               Text="Số Lượng (bộ/cái)" />
+                                                    <fa:FontAwesome Height="30"
+                                                                    Margin="5,10,0,-2"
+                                                                    Foreground="#FF68EB48"
+                                                                    Icon="ArrowDown" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.Foreground>
+                                            <SolidColorBrush Color="Black" />
+                                        </DataGridTextColumn.Foreground>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment"
+                                                        Value="Center" />
+                                                <Setter Property="Background"
+                                                        Value="Transparent" />
+                                                <Setter Property="IsEnabled"
+                                                        Value="False" />
+                                                <Setter Property="Height"
+                                                        Value="25" />
+                                                <Setter Property="FontSize"
+                                                        Value="20" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Width="200"
+                                                        Binding="{Binding Unit}">
 
                                         <DataGridTextColumn.HeaderTemplate>
                                             <DataTemplate>
@@ -328,7 +365,7 @@
                                                     <TextBlock
                                                         Padding="0,0,5,5"
                                                         FontSize="25"
-                                                        Text="Thông tin" />
+                                                               Text="Đơn vị" />
                                                     <fa:FontAwesome
                                                         Height="30"
                                                         Margin="5,10,0,-2"
@@ -372,59 +409,62 @@
                     </Button>
                 </Grid>
             </Grid>
-            <Grid  Grid.Column="0">
+            <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="9*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="9*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    
-            <materialDesign:Card
-               
-                Width="400"
-                Height="480"
-                HorizontalAlignment="Center"
-                HorizontalContentAlignment="Center">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                        <TextBlock
-                            Margin="0,7"
-                            FontSize="30"
-                            Style="{StaticResource PageModuleTitle}">
-                            <Bold>
-                                Đơn Hiện Có Trong Ngày
-                            </Bold>
-                        </TextBlock>
-                        <Grid
-                            Width="400"
-                            Height="8"
-                            Background="#FF00294D" />
-                    </StackPanel>
-                    <Grid Grid.Row="1" HorizontalAlignment="Center">
-                        <uc:ChatMessageListControl
-                            Margin="50,0,0,0"
-                            HorizontalAlignment="Center"
-                            DataContext="{Binding ChatMessageList}" />
-                    </Grid>
-                </Grid>
-            </materialDesign:Card>
+
+                    <materialDesign:Card
+                        Width="400"
+                        Height="480"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0">
+                                <TextBlock
+                                    Margin="0,7"
+                                    FontSize="30"
+                                    Style="{StaticResource PageModuleTitle}">
+                                    <Bold>
+                                        Đơn Hiện Có Trong Ngày
+                                    </Bold>
+                                </TextBlock>
+                                <Grid
+                                    Width="400"
+                                    Height="8"
+                                    Background="#FF00294D" />
+                            </StackPanel>
+                            <Grid Grid.Row="1" HorizontalAlignment="Center">
+                                <uc:ChatMessageListControl
+                                    Height="422"
+                                    Margin="50,0,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    DataContext="{Binding ChatMessageList}" />
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Card>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Grid.Column="1"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            BorderBrush="Black"
-                            BorderThickness="0,1,1,1"
-                            Command="{Binding ReloadCommand}"
-                            Style="{DynamicResource MaterialDesignIconButton}">
-                        <materialDesign:PackIcon Width="50"
-                                                 Height="50"
-                                                 Kind="Reload"
-                                                 Opacity="1" />
+                    <Button
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        BorderBrush="Black"
+                        BorderThickness="0,1,1,1"
+                        Command="{Binding ReloadCommand}"
+                        Style="{DynamicResource MaterialDesignIconButton}">
+                        <materialDesign:PackIcon
+                            Width="50"
+                            Height="50"
+                            Kind="Reload"
+                            Opacity="1" />
                     </Button>
 
                 </Grid>

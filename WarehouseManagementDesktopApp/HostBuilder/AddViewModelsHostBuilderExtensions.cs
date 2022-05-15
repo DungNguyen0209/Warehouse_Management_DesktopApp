@@ -14,19 +14,12 @@
                 services.AddTransient<MessageBoxViewModel>();
                 services.AddSingleton<LoginViewModel>((IServiceProvider serviceprovider) =>
                 {
-                    return new LoginViewModel(serviceprovider.GetRequiredService<IOidcClientService>());
+                    return new LoginViewModel(serviceprovider.GetRequiredService<IOidcClientService>(), serviceprovider.GetRequiredService<MainStore>(), serviceprovider.GetRequiredService<IApiService>());
                 });
                 services.AddSingleton<NotifyViewModel>((IServiceProvider serviceprovider) =>
                 {
-                    var LoginStore = serviceprovider.GetRequiredService<LoginNavigationStore>();
-                    return new NotifyViewModel(LoginStore, CreateLoginNavigationService(serviceprovider, LoginStore),serviceprovider.GetRequiredService<ChatMessageListDesignModel>());
-                });
-                services.AddSingleton<LoginLayOutViewModel>((IServiceProvider serviceprovider) =>
-                {
-                    var LoginStore = serviceprovider.GetRequiredService<LoginNavigationStore>();
-                    LoginStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginViewModel>();
-                    return new LoginLayOutViewModel(LoginStore);
-
+                    var Store = serviceprovider.GetRequiredService<MainStore>();
+                    return new NotifyViewModel(Store, serviceprovider.GetRequiredService<IApiService>(), serviceprovider.GetRequiredService<IOidcClientService>());
                 });
                 services.AddSingleton<GoodReceiptOrderViewModel>((IServiceProvider serviceprovider) =>
                 {
@@ -74,9 +67,9 @@
                 });
                 services.AddSingleton<MainViewModel>((IServiceProvider serviceprovider) =>
                 {
-                    var MainStore = serviceprovider.GetRequiredService<NavigationStore>();
+                    var MainStore = serviceprovider.GetRequiredService<MainStore>();
                     MainStore.CurrentViewModel = serviceprovider.GetRequiredService<LoginViewModel>();   
-                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationLayOutNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore),serviceprovider.GetRequiredService<IApiService>(),serviceprovider.GetRequiredService<IProductsDatabaseService>(),serviceprovider.GetRequiredService<IMapper>(),serviceprovider.GetRequiredService<IStartProgramService>());
+                    return new MainViewModel(MainStore, CreateLoginNavigationService(serviceprovider, MainStore), CreateNotifyNavigationService(serviceprovider,MainStore), CreateLayOutGoodRecieptNavigationService(serviceprovider, MainStore), CreateLayOutGoodExportNavigationService(serviceprovider, MainStore), CreateGoodLocationLayOutNavigationService(serviceprovider, MainStore), CreateReportNavigationService(serviceprovider, MainStore), CreateHistoryNavigationService(serviceprovider, MainStore),serviceprovider.GetRequiredService<IApiService>(),serviceprovider.GetRequiredService<IProductsDatabaseService>(),serviceprovider.GetRequiredService<IMapper>(),serviceprovider.GetRequiredService<IStartProgramService>());
                 });
             });
 
@@ -97,12 +90,6 @@
                 () => serviceprovider.GetRequiredService<UpdateGoodLocationViewModel>());
         }
 
-        private static INavigationService CreateLayOutNavigationService(IServiceProvider serviceprovider, NavigationStore store)
-        {
-            return new NavigationService<LoginLayOutViewModel>(
-                store,
-                () => serviceprovider.GetRequiredService<LoginLayOutViewModel>());
-        }
 
         private static INavigationService CreateLoginNavigationService(IServiceProvider serviceProvider, NavigationStore store)
         {

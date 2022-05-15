@@ -3,6 +3,7 @@
 public interface IOidcClientService
 {
     void LoginAsync();
-    public Window Window { get; set; }
-    public Action<WebView2> BrowserPage { get; set; }
+    Window Window { get; set; }
+    Action<WebView2> BrowserPage { get; set; }
+    Action LoginSuccess { get; set; }
 }

@@ -22,6 +22,7 @@ public class IssueBasketForViewModel : BaseViewModel
             }
         }
     }
+    public string Unit { get; set; }
 
     public bool IsChecked
     {

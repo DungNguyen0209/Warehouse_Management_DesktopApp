@@ -10,6 +10,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
         private const string serverUrl = "https://cha-warehouse-management.azurewebsites.net";
         private string token = "";
         public Action LoginCompleteAction { get; set; }
+        public Action LogoutCompleteAction { get; set; }
         public ApiService()
         {
             _httpClient = new HttpClient();
@@ -83,6 +84,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
         {
             token = "";
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            LogoutCompleteAction?.Invoke();
         }
 
         public async Task<ServiceResourceResponse<QueryResult<Product>>> GetAllProduct()
@@ -564,6 +566,71 @@ namespace WarehouseManagementDesktopApp.Core.Services
             {
                 var error = new Error("Api.GoodsIssue.Post", "Đã có lỗi xảy ra. Không thể gửi dữ liệu về Server được.");
                 result = ServiceResponse.Failed(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResourceResponse<List<WarningStockCard>>>  GetUnderStockCards()
+        {
+            ServiceResourceResponse<List<WarningStockCard>> result;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/stockcardentries/understock");
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("10000000000000000");
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var products = JsonConvert.DeserializeObject<List<WarningStockCard>>(responseBody);
+                        result = new ServiceResourceResponse<List<WarningStockCard>>(products);
+                        return result;
+                    default:
+                        var error = new Error("Api.Shelf.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<List<WarningStockCard>>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<List<WarningStockCard>>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GetGoodsIssueById.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<List<WarningStockCard>>(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResourceResponse<List<WarningStockCard>>> GetOverStockCards()
+        {
+            ServiceResourceResponse<List<WarningStockCard>> result;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/stockcardentries/overstock");
+                string responseBody = await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var products = JsonConvert.DeserializeObject<List<WarningStockCard>>(responseBody);
+                        result = new ServiceResourceResponse<List<WarningStockCard>>(products);
+                        return result;
+                    default:
+                        var error = new Error("Api.Shelf.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<List<WarningStockCard>>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<List<WarningStockCard>>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GetGoodsIssueById.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<List<WarningStockCard>>(error);
                 return result;
             }
             return result;

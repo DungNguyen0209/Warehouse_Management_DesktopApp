@@ -7,18 +7,40 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels;
 
 public class LoginViewModel : ViewModel.BaseViewModels.BaseViewModel
 {
-    private readonly LoginNavigationStore _navigationStore;
+
+    private readonly MainStore _navigationStore;
+    private readonly IApiService _apiService;
     private ContentControl _contentControl = new ContentControl();
-    public ViewModel.BaseViewModels.BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
     public ICommand NotifyViewnavigationCommand { get; set; }
     private readonly IOidcClientService _clientService;
-    public ContentControl Content { get=> _contentControl; set { _contentControl = value;OnPropertyChanged(); } }
+    public ContentControl Content { get => _contentControl; set { _contentControl = value; OnPropertyChanged(); } }
     //public Window BrowserWindow { get=>_window; set { _window = value;OnPropertyChanged(); } }
-    public LoginViewModel(IOidcClientService clientService)
+    public LoginViewModel(IOidcClientService clientService, MainStore navigationStore, IApiService apiService)
     {
         var _clientService = clientService;
-        _clientService.BrowserPage += BrowserWindow;
-        _clientService.LoginAsync();
+        if (_clientService == null)
+        {
+            MessageBox messageBox = new MessageBox()
+            {
+                ContentText = "Vui lòng chuyển tab để đăng xuất !",
+                IsWarning = false
+            };
+            messageBox.Show();
+        }
+        else
+        {
+            _clientService.BrowserPage += BrowserWindow;
+            _clientService.LoginSuccess += NavigateNotify;
+            _clientService.LoginAsync();
+        }
+            _navigationStore = navigationStore;
+            _apiService = apiService;
+    }
+
+    private void NavigateNotify()
+    {
+        var notifyvm = new NotifyViewModel(_navigationStore, _apiService, _clientService);
+        _navigationStore.CurrentViewModel = notifyvm;
     }
 
     private void BrowserWindow(WebView2 webView)

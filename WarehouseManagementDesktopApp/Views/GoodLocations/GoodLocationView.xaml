@@ -102,9 +102,9 @@
                             Height="50"
                             HorizontalAlignment="Center"
                             materialDesign:HintAssist.Hint="Vị Trí"
-                            Style="{StaticResource ComboBoxStyle}"
-                            SelectedIndex="{Binding SelectedIndex}"
                             ItemsSource="{Binding LocationSource}"
+                            SelectedIndex="{Binding SelectedIndex}"
+                            Style="{StaticResource ComboBoxStyle}"
                             Text="{Binding Testdepth}" />
                     </Grid>
                     <Button
@@ -119,12 +119,12 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <materialDesign:Card Grid.Column="1"
-                             x:Name="slotpanel"
-                             Margin="20,20,20,20"
-                             Content="{Binding Content}"
-                             HorizontalContentAlignment="Center">
-        </materialDesign:Card>
+        <materialDesign:Card
+            x:Name="slotpanel"
+            Grid.Column="1"
+            Margin="20,20,20,20"
+            HorizontalContentAlignment="Center"
+            Content="{Binding Content}" />
 
     </Grid>
 </UserControl>

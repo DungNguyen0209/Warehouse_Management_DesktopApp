@@ -427,8 +427,9 @@ public class GoodExportViewModel : BaseViewModel
                         BasketId = item.containerId,
                         ProductionDate = item.productionDate.ToString("dd/MM/yyyy"),
                         Mass = Convert.ToString(item.actualQuantity),
-                        Quantity = "",
+                        Quantity = Convert.ToString(item.actualQuantity / item.item.piecesPerKilogram),
                         IsChecked = false,
+                        Unit ="Kg"
                     };
                     issueBaskets.Add(issueitem);
                 }
@@ -439,7 +440,8 @@ public class GoodExportViewModel : BaseViewModel
                         BasketId = item.containerId,
                         ProductionDate = item.productionDate.ToString("dd/MM/yyyy"),
                         Quantity = Convert.ToString(item.actualQuantity),
-                        Mass = ""
+                        Mass = Convert.ToString(item.actualQuantity*(1/item.item.piecesPerKilogram)),
+                        Unit = "Bộ/Cái"
                     };
                     issueBaskets.Add(issueitem);
                 }

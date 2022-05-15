@@ -26,9 +26,9 @@
     d:DesignHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={tools:RatioConverter}, ConverterParameter='0.9'}"
     d:DesignWidth="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={tools:RatioConverter}, ConverterParameter='0.9'}"
     Background="{DynamicResource MaterialDesignPaper}"
+    Closed="Main_Window_Closed"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
-    Closed="Main_Window_Closed"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
@@ -46,6 +46,9 @@
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsLoged}" Value="True">
                         <Setter Property="IsEnabled" Value="True" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsLoged}" Value="False">
+                        <Setter Property="IsEnabled" Value="False" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -258,6 +261,9 @@
                     <ContentControl.Resources>
                         <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                             <uc:LoginView />
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type viewmodels:NotifyViewModel}">
+                            <uc:NotifyView />
                         </DataTemplate>
                         <DataTemplate DataType="{x:Type viewmodels:GoodReceiptLayOutViewModel}">
                             <uc2:GoodReceiptLayOutView />

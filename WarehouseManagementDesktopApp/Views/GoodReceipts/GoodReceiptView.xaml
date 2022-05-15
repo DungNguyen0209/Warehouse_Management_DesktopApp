@@ -370,9 +370,8 @@
 
                                     <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     <Setter Property="Background" Value="#FF00294D" />
-                                    <Setter Property="Foreground"
-                                            Value="White" />
-                                    <Setter Property="Height" Value="35"></Setter>
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Height" Value="35" />
                                     <Setter Property="VerticalContentAlignment" Value="Center" />
                                 </Style>
 

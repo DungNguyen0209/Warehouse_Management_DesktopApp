@@ -16,6 +16,19 @@ public class ModelAndModelForView : Profile
         CreateMap<ProductEntry, FormulaListInGoodIssueForViewModel>()
             .ReverseMap()
             .ForMember(dest => dest.itemId, expression => expression.MapFrom(src => src.ProductId));
+        CreateMap<WarningStock, WarningStockCard>()
+           .ReverseMap()
+           .ForMember(dest => dest.itemId, expression => expression.MapFrom(src => Convert.ToString(src.item.itemId)))
+           .ForMember(dest => dest.name, expression => expression.MapFrom(src => Convert.ToString(src.item.name)))
+           .ForMember(dest => dest.minimumStockLevel, expression => expression.MapFrom(src => Convert.ToString(src.item.minimumStockLevel)))
+           .ForMember(dest => dest.maximumStockLevel, expression => expression.MapFrom(src => Convert.ToString(src.item.maximumStockLevel)))
+           .ForMember(dest => dest.afterQuantity, expression => expression.MapFrom(src => Convert.ToString(src.outputQuantity)));
+
+
+
+
+
+
 
     }
 }

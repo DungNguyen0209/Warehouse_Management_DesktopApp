@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace WarehouseManagementDesktopApp.Core.Services.Interfaces;
 
-public  interface IStartProgramService
+public interface IStartProgramService
 {
     void LoadProgram();
     void LoadLoginView();
+    event Action WarningStockCardsChanged;
     Action FinishLogin { get; set; }
 }

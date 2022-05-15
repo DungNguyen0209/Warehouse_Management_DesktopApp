@@ -90,8 +90,7 @@
                                         <Trigger Property="IsSelected" Value="True">
 
                                             <Setter Property="Background" Value="White" />
-                                            <Setter Property="FontSize"
-                                                    Value="20" />
+                                            <Setter Property="FontSize" Value="20" />
                                         </Trigger>
 
                                     </Style.Triggers>
@@ -126,8 +125,7 @@
                                             <Setter Property="Background" Value="Transparent" />
                                             <Setter Property="IsEnabled" Value="False" />
                                             <Setter Property="Height" Value="25" />
-                                            <Setter Property="FontSize"
-                                                    Value="20" />
+                                            <Setter Property="FontSize" Value="20" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -159,8 +157,7 @@
                                             <Setter Property="HorizontalAlignment" Value="Center" />
                                             <Setter Property="Background" Value="Transparent" />
                                             <Setter Property="Height" Value="25" />
-                                            <Setter Property="FontSize"
-                                                    Value="20" />
+                                            <Setter Property="FontSize" Value="20" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -192,8 +189,7 @@
                                             <Setter Property="HorizontalAlignment" Value="Center" />
                                             <Setter Property="Background" Value="Transparent" />
                                             <Setter Property="Height" Value="25" />
-                                            <Setter Property="FontSize"
-                                                    Value="20" />
+                                            <Setter Property="FontSize" Value="20" />
                                         </Style>
                                     </DataGridTextColumn.ElementStyle>
                                 </DataGridTextColumn>
@@ -205,17 +201,19 @@
 
                     </Border>
                     <Grid Grid.Row="1" HorizontalAlignment="Center">
-                        <Button Grid.Column="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                BorderBrush="Black"
-                                BorderThickness="0,1,1,1"
-                                Command="{Binding ReloadCommand}"
-                                Style="{DynamicResource MaterialDesignIconButton}">
-                            <materialDesign:PackIcon Width="50"
-                                                     Height="50"
-                                                     Kind="Reload"
-                                                     Opacity="1" />
+                        <Button
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            BorderBrush="Black"
+                            BorderThickness="0,1,1,1"
+                            Command="{Binding ReloadCommand}"
+                            Style="{DynamicResource MaterialDesignIconButton}">
+                            <materialDesign:PackIcon
+                                Width="50"
+                                Height="50"
+                                Kind="Reload"
+                                Opacity="1" />
                         </Button>
                     </Grid>
                 </Grid>

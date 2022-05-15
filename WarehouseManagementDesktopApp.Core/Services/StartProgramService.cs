@@ -8,6 +8,8 @@ public class StartProgramService:IStartProgramService
     private readonly IProductsDatabaseService _productsDatabaseService;
     private readonly IMapper _mapper;
     private readonly IOidcClientService _idcClientService;
+    ObservableCollection<string> _warningStockCards = new ObservableCollection<string>();
+   ObservableCollection<string> WarningStockCards { get => _warningStockCards; set { _warningStockCards = value; OnCurrentViewModelChanged(); } }
     private readonly WebBrowserContainer _webBrowserContainer;
     public Action FinishLogin { get; set; }
     public StartProgramService(IApiService apiService, IProductsDatabaseService roductsDatabaseService, IMapper mapper, WebBrowserContainer webBrowserContainer,IOidcClientService oidcClientService)
@@ -52,5 +54,12 @@ public class StartProgramService:IStartProgramService
         _productsDatabaseService.Clear();
         await Task.Run(() => _productsDatabaseService.Insert(products));
         }
+    }
+    
+    public event Action WarningStockCardsChanged;
+
+    private void OnCurrentViewModelChanged()
+    {
+        WarningStockCardsChanged?.Invoke();
     }
 }
