@@ -8,7 +8,7 @@ public class GoodIssueEntry
 public class ProductEntry
 {
     public string itemId { get; set; }
-    public int TotalQuantity { get; set; }
+    public double TotalQuantity { get; set; }
     public string note { get; set; }
 }
 

@@ -23,6 +23,7 @@ public class GoodIssueItemEntry
     public Manager employee { get; set; }
     public NewProduct item { get; set; }
     public int totalQuantity { get; set; }
-    public List<object> containers { get; set; }
+    public List<object>? containers { get; set; }
     public string note { get; set; }
 }
+

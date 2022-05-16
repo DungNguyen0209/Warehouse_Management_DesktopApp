@@ -652,7 +652,7 @@
                                                 </DataGridTextColumn>
                                                 <DataGridTextColumn
                                                     Width="150"
-                                                    Binding="{Binding ProductionDate}"
+                                                    Binding="{Binding ProductionDate, StringFormat='{}{0:yyyy-MM-dd}'}"
                                                     IsReadOnly="True">
 
                                                     <DataGridTextColumn.HeaderTemplate>

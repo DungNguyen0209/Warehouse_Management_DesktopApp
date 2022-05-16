@@ -16,15 +16,12 @@
             {
                 case 0:
                     AddQuantitytb.IsReadOnly = false;
-                    Quantitytb.IsEnabled = false;
                     break;
                 case 1:
                     AddQuantitytb.IsReadOnly = false;
-                    Quantitytb.IsEnabled = false;
                     break;
                 case 2:
                     AddQuantitytb.Text = null;
-                    Quantitytb.IsEnabled = true;
                     break;
             }
         }

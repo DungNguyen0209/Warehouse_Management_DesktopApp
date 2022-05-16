@@ -1,4 +1,5 @@
 ﻿
+
 namespace WarehouseManagementDesktopApp.Core.Services
 {
     public class ApiService : IApiService
@@ -200,6 +201,87 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
+        public async Task<ServiceResponse> PatchContainerGoodsReceipts(List<ContainerGoodReceipt> resource, string id)
+        {
+            ServiceResponse result;
+            var json = JsonConvert.SerializeObject(resource);
+            try
+            {
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                string url = $"{serverUrl}/api/goodsreceipts/{id}/containers";
+                var response = await _httpClient.PatchAsync(url, content);
+
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        return ServiceResponse.Successful();
+                    case HttpStatusCode.BadRequest:
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        var serverError = JsonConvert.DeserializeObject<ServerError>(responseBody);
+                        var error = new Error("Api.ContainerGoodReceipt.Patch", serverError.Message);
+                        return ServiceResponse.Failed(error);
+                    case HttpStatusCode.Unauthorized:
+                        error = new Error("Api.ContainerGoodReceipt.Patch", "Vui lòng đăng nhập.");
+                        return ServiceResponse.Failed(error);
+                    default:
+                        error = new Error("Api.ContainerGoodReceipt.Patch", "Đã có lỗi xảy ra. Không thể Kết nối với Server.");
+                        return ServiceResponse.Failed(error);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Manager>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.ContainerGoodReceipt.Patch", "Đã có lỗi xảy ra. Không thể gửi dữ liệu về Server được.");
+                result = ServiceResponse.Failed(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResponse> PatchConFirmGoodsReceipts(string id)
+        {
+            ServiceResponse result;
+            var json = JsonConvert.SerializeObject("");
+            try
+            {
+                var stringContent = new StringContent(string.Empty);
+                stringContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/x-www-form-urlencoded");
+                string url = $"{serverUrl}/api/goodsreceipts/{id}/confirmed";
+                var response = await _httpClient.PatchAsync(url, null);
+
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        return ServiceResponse.Successful();
+                    case HttpStatusCode.BadRequest:
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        var serverError = JsonConvert.DeserializeObject<ServerError>(responseBody);
+                        var error = new Error("Api.ConFirmGoodsReceipts.Patch", serverError.Message);
+                        return ServiceResponse.Failed(error);
+                    case HttpStatusCode.Unauthorized:
+                        error = new Error("Api.ConFirmGoodsReceipts.Patch", "Vui lòng đăng nhập.");
+                        return ServiceResponse.Failed(error);
+                    default:
+                        error = new Error("Api.ConFirmGoodsReceipts.Patch", "Đã có lỗi xảy ra.");
+                        return ServiceResponse.Failed(error);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Manager>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GoodsIssue.Post", "Đã có lỗi xảy ra. Không thể gửi dữ liệu về Server được.");
+                result = ServiceResponse.Failed(error);
+                return result;
+            }
+            return result;
+        }
         public async Task<ServiceResourceResponse<QueryResult<Product>>> GetProductById(string productId)
         {
             ServiceResourceResponse<QueryResult<Product>> result;
@@ -260,6 +342,38 @@ namespace WarehouseManagementDesktopApp.Core.Services
             {
                 var error = new Error("Api.Basket.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
                 result = new ServiceResourceResponse<List<Container>>(error);
+                return result;
+            }
+            return result;
+        }
+        public async Task<ServiceResourceResponse<Container>> GetContainerById(string containerId)
+        {
+            ServiceResourceResponse<Container> result;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/containers/{containerId}");
+                string responseBody = await response.Content.ReadAsStringAsync();
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        var basket = JsonConvert.DeserializeObject<Container>(responseBody);
+                        result = new ServiceResourceResponse<Container>(basket);
+                        return result;
+                    default:
+                        var error = new Error("Api.Basket.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ server.");
+                        result = new ServiceResourceResponse<Container>(error);
+                        return result;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Container>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.Basket.Get", "Đã có lỗi xảy ra. Không thể truy xuất dữ liệu từ Server.");
+                result = new ServiceResourceResponse<Container>(error);
                 return result;
             }
             return result;
@@ -685,6 +799,46 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
+        public async Task<ServiceResponse> PatchConFirmGoodsIssue(string id,List<string> containerId)
+        {
+            ServiceResponse result;
+            var json = JsonConvert.SerializeObject(containerId);
+            try
+            {
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                string url = $"{serverUrl}/api/goodsissues/{id}/containers/confirmed";
+                var response = await _httpClient.PatchAsync(url, content);
+
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.OK:
+                        return ServiceResponse.Successful();
+                    case HttpStatusCode.BadRequest:
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        var serverError = JsonConvert.DeserializeObject<ServerError>(responseBody);
+                        var error = new Error("Api.PatchConFirmGoodsIssue.Patch", serverError.Message);
+                        return ServiceResponse.Failed(error);
+                    case HttpStatusCode.Unauthorized:
+                        error = new Error("Api.PatchConFirmGoodsIssue.Patch", "Vui lòng đăng nhập.");
+                        return ServiceResponse.Failed(error);
+                    default:
+                        error = new Error("Api.PatchConFirmGoodsIssue.Patch", "Đã có lỗi xảy ra.");
+                        return ServiceResponse.Failed(error);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                var error = new Error("Api.Connection", "Đã có lỗi xảy ra. Không thể kết nối được với Server.");
+                result = new ServiceResourceResponse<Manager>(error);
+            }
+            catch (Exception ex)
+            {
+                var error = new Error("Api.GoodsIssue.Post", "Đã có lỗi xảy ra. Không thể gửi dữ liệu về Server được.");
+                result = ServiceResponse.Failed(error);
+                return result;
+            }
+            return result;
+        }
         public async Task<ServiceResourceResponse<GoodsIssueById>> GetGoodsIssueById(string goodsIssueId)
         {
             ServiceResourceResponse<GoodsIssueById> result;
@@ -752,6 +906,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
+
 
         public async Task<ServiceResourceResponse<IEnumerable<StorageSlot>>> GetStorageID()
         {
@@ -999,5 +1154,6 @@ namespace WarehouseManagementDesktopApp.Core.Services
             }
             return result;
         }
+
     }
 }

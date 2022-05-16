@@ -149,7 +149,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         Id = Convert.ToString(i++),
                         ProductId = item.item.itemId,
                         ProductName = item.item.name,
-                        Mass = CaculateRecepitQuantity(item.containers),
+                        Mass = Convert.ToString(item.plannedQuantity),
                         Quantity ="",
                         Infomartion = item.note
                     };
@@ -162,7 +162,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         Id = Convert.ToString(i++),
                         ProductId = item.item.itemId,
                         ProductName = item.item.name,
-                        Quantity = CaculateRecepitQuantity(item.containers),
+                        Quantity = Convert.ToString(item.plannedQuantity),
                         Infomartion = item.note,
                         Mass =""
                     };

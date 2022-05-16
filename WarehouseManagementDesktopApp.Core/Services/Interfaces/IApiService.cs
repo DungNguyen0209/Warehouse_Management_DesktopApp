@@ -19,6 +19,8 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
         Task<ServiceResponse> LogInAsync(string? token, Error error);
         void LogOut();
         Task<ServiceResourceResponse<QueryResult<Product>>> GetAllProduct();
+        Task<ServiceResponse> PatchContainerGoodsReceipts(List<ContainerGoodReceipt> resource, string id);
+        Task<ServiceResponse> PatchConFirmGoodsReceipts(string id);
         Task<ServiceResourceResponse<Product>> GetProductbyId(string id);
         Task<ServiceResponse> PostNewProduct(NewProduct resource);
         Task<ServiceResourceResponse<Shelf>> GetShelf(string shelfId);
@@ -31,6 +33,7 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
 
         Task<ServiceResponse> PathSliceItem(string shelfId, int rowId, int cellId, int sliceId, string productId);
         Task<ServiceResourceResponse<List<Container>>> GetContainerByProductId(string Id);
+        Task<ServiceResourceResponse<Container>> GetContainerById(string containerId);
         Task<ServiceResponse> PostGoodsReceipts(GoodReceiptEntry resource);
         Task<ServiceResponse> PutBasket(string id, GoodsReceiptEntryPutAPI entry);
         Task<ServiceResponse> PostNewBasket(NewBasket newBasket);
@@ -38,6 +41,7 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces
         Task<ServiceResponse> PostGoodsIssue(GoodIssueEntry resource);
         Task<ServiceResponse> PatchGoodsIssueEntryContainer(List<IssueEntryContainer> resource, string goodsIssueId);
         Task<ServiceResourceResponse<GoodsIssueById>> GetGoodsIssueById(string goodsIssueId);
+        Task<ServiceResponse> PatchConFirmGoodsIssue(string id, List<string> containerId);
 
 
         Task<ServiceResourceResponse<List<Stockcardentries>>> GetAllStockCard(DateTime? startTime, DateTime? stopTime, string product);

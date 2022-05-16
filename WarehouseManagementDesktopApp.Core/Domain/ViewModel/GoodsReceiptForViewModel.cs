@@ -11,23 +11,23 @@ namespace WarehouseManagementDesktopApp.Core.Domain.ViewModel
     public class GoodsReceiptForViewModel 
     {
         [DisplayName("Mã rổ")]
-        public string BasketId { get; set; }
+        public string containerId { get; set; }
 
         [DisplayName("Mã SP")]
-        public string ProductId { get; set; }
+        public string itemId { get; set; }
 
         [DisplayName("Tên SP")]
-        public string ProductName { get; set; }
+        public string name { get; set; }
 
         [DisplayName("Ngày SX")]
         public string ProductionDate { get; set; }
 
 
         [DisplayName("Số Lượng")]
-        public string? Quantity { get; set; }
+        public string? plannedQuantity { get; set; }
 
         [DisplayName("Khối lượng")]
-        public string? Mass { get; set; }
+        public string? actualQuantity { get; set; }
 
         [DisplayName("Đơn vị")]
         public string Unit { get; set; }

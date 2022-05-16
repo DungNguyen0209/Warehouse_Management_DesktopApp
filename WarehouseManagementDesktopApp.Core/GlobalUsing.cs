@@ -49,6 +49,8 @@ global using Persistence.SqliteDB.Domain.Model;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.API.Containers;
 global using WarehouseManagementDesktopApp.Core.Domain.Model.API.StockCard;
 global using WarehouseManagementDesktopApp.Core.Domain.View.History;
+global using WarehouseManagementDesktopApp.Core.Domain.Model.API.GoodReceipt;
+global using WarehouseManagementDesktopApp.Core.ViewModels;
 #region Command
 global using System.ComponentModel;
 global using System.Runtime.CompilerServices;

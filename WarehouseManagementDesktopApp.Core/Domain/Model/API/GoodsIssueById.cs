@@ -20,8 +20,16 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model.Api
         public Manager employee { get; set; }
         public Product item { get; set; }
         public double TotalQuantity { get; set; }
-        public IEnumerable<object> containers { get; set; }
+        public List<ContainerOfIssue> containers { get; set; }
         public string note { get; set; }
+    }
+    public class ContainerOfIssue
+    {
+        public string? containerId { get; set; }
+        public double? quantity { get; set; }
+        public string? productionDate { get; set; }
+        public bool? isTaken { get; set; }
+
     }
 
     public class GoodsIssueEntryBasketById

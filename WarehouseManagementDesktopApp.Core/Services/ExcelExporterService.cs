@@ -10,7 +10,29 @@ public class ExcelExporterService : IExcelExporter
     public ExcelExporterService()
     {
     }
+    private ServiceResponse ReadExcelFile(string path)
+    {
+        ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+        try
+        {
+            // mở file excel
+            package = new ExcelPackage(new FileInfo(path));
 
+            // lấy ra sheet đầu tiên để thao tác
+            worksheet = package.Workbook.Worksheets[0];
+            return ServiceResponse.Successful();
+        }
+        catch (Exception ex)
+        {
+            Error error = new Error
+            {
+                ErrorCode = "ReadExcel",
+                Message = ex.ToString()
+            };
+            return ServiceResponse.Failed(error);
+        }
+
+    }
     private ServiceResponse ReadExcelFile()
     {
         ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -77,151 +99,137 @@ public class ExcelExporterService : IExcelExporter
         }
         return new ServiceResourceResponse<List<GoodReceiptOrderForViewModel>>(data);
     }
+    private async Task<ServiceResponse> EditIssueExcel(RangeObservableCollection<ContainerIssueEntry> ContainerEntry)
+    {
+        //package = new ExcelPackage(new FileInfo("Template_XK.xlsx"));
+        //// lấy ra sheet đầu tiên để thao tác
+        //worksheet = package.Workbook.Worksheets[0];
+        ReadExcelFile("Template_XK.xlsx");
+        try
+        {
+            int i = 1;
+            foreach (var sheet in ContainerEntry)
+            {
+                worksheet.Cells["A" + Convert.ToString(10 + i)].Value = i;
+                worksheet.Cells["B" + Convert.ToString(10 + i)].Value = sheet.containerId;
+                worksheet.Cells["C" + Convert.ToString(10 + i)].Value = sheet.itemId;
+                worksheet.Cells["D" + Convert.ToString(10 + i)].Value = sheet.name;
+                if(sheet.Unit == "Kg")
+                {
+
+                worksheet.Cells["E" + Convert.ToString(10 + i)].Value = sheet.Quantity;
+                }
+                else
+                {
+                worksheet.Cells["F" + Convert.ToString(10 + i)].Value = sheet.Quantity;
+                }
+                worksheet.Cells["H" + Convert.ToString(10 + i)].Value = sheet.Cell;
+                worksheet.Cells["I" + Convert.ToString(10 + i)].Value = sheet.Location;
+            }
+
+
+
+            return ServiceResponse.Successful();
+        }
+        catch (Exception ex)
+        {
+            Error error = new Error
+            {
+                ErrorCode = "EditExcel",
+                Message = ex.ToString()
+            };
+            return ServiceResponse.Failed(error);
+        }
+    }
+    private async Task<ServiceResponse> ExportExcelFile()
+    {
+        string filePath = "";
+        // tạo SaveFileDialog để lưu file excel
+        SaveFileDialog dialog = new SaveFileDialog();
+
+        // chỉ lọc ra các file có định dạng Excel
+        dialog.Filter = "Excel | *.xlsx | Excel 2003 | *.xls";
+        // Nếu mở file và chọn nơi lưu file thành công sẽ lưu đường dẫn lại dùng
+        if (dialog.ShowDialog() == true)
+        {
+            filePath = dialog.FileName;
+            var file = new FileInfo(filePath);
+            try
+            {
+                using (package)
+                {
+                    //Lưu file lại
+                    await package.SaveAsAsync(file);
+                }
+                return ServiceResponse.Successful();
+            }
+            catch (Exception ex)
+            {
+                Error error = new Error
+                {
+                    ErrorCode = "ExportExcel",
+                    Message = ex.ToString()
+                };
+                return ServiceResponse.Failed(error);
+            }
+        }
+        else
+        {
+            // nếu đường dẫn null hoặc rỗng thì báo không hợp lệ và return hàm
+            if (string.IsNullOrEmpty(filePath))
+            {
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Đường dẫn báo cáo không hợp lệ",
+                    IsWarning = true,
+                };
+                messageBox.Show();
+                Error error = new Error
+                {
+                    ErrorCode = "ExportExcel",
+                    Message = "Đường dẫn không hợp lệ"
+                };
+                return ServiceResponse.Failed(error);
+            }
+            else
+            {
+                Error error = new Error
+                {
+                    ErrorCode = "ExportExcel",
+                    Message = "Lỗi Lưu file"
+                };
+                return ServiceResponse.Failed(error);
+            }
+        }
+
+    }
+
     public ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> ReadReceipt()
     {
         ReadExcelFile();
         return ConvertReceiptFile();
     }
 
-    //private ServiceResponse EditExcelReliability(ReliabilityTestingMachine testingMachine)
-    //{
-    //    try
-    //    {
-    //        worksheet.Cells["F5"].Value = testingMachine.ProductId;
-    //        worksheet.Cells["C8"].Style.Numberformat.Format = "dd-MM-yyyy";
-    //        worksheet.Cells["C8"].Value = testingMachine.StartTime;
-    //        worksheet.Cells["K8"].Style.Numberformat.Format = "dd-MM-yyyy";
-    //        worksheet.Cells["K8"].Value = testingMachine.StopTime;
-    //        worksheet.Cells["K9"].Value = testingMachine.Note;
-    //        switch (testingMachine.Target.ToLower())
-    //        {
-    //            case "dinhky":
-    //                worksheet.Cells["P9"].Value = Convert.ToString(1);
-    //                break;
-    //            case "batthuong":
-    //                worksheet.Cells["P9"].Value = Convert.ToString(2);
-    //                break;
-    //            case "spmoi":
-    //                worksheet.Cells["P9"].Value = Convert.ToString(3);
-    //                break;
-    //            case "khac":
+    public async Task<ServiceResponse> ExportGoodIssue(RangeObservableCollection<ContainerIssueEntry> ContainerEntry)
+    {
+        var step2 = await EditIssueExcel(ContainerEntry);
+        var step3 = await ExportExcelFile();
 
-    //                worksheet.Cells["P9"].Value = Convert.ToString(4);
-    //                break;
-    //        }
-    //        int i = 0;
-    //        foreach (var sheet in testingMachine.Testsheet)
-    //        {
-    //            worksheet.Cells["B" + Convert.ToString(15 + i)].Value = sheet.TimeSmoothClosingLid;
-    //            worksheet.Cells["C" + Convert.ToString(15 + i)].Value = sheet.StatusLidNotFall;
-    //            worksheet.Cells["D" + Convert.ToString(15 + i)].Value = sheet.StatusLidNotLeak;
-    //            worksheet.Cells["E" + Convert.ToString(15 + i)].Value = sheet.StatusLidResult;
-    //            worksheet.Cells["F" + Convert.ToString(15 + i)].Value = sheet.TimeSmoothClosingPlinth;
-    //            worksheet.Cells["G" + Convert.ToString(15 + i)].Value = sheet.StatusPlinthNotFall;
-    //            worksheet.Cells["H" + Convert.ToString(15 + i)].Value = sheet.StatusPlinthNotLeak;
-    //            worksheet.Cells["I" + Convert.ToString(15 + i)].Value = sheet.StatusPlinthResult;
-    //            worksheet.Cells["J" + Convert.ToString(15 + i)].Value = sheet.TotalMistake;
-    //            worksheet.Cells["K" + Convert.ToString(15 + i)].Value = sheet.Note;
-    //            worksheet.Cells["N" + Convert.ToString(15 + i)].Value = sheet.StaffCheck;
-    //            i++;
-    //        }
-
-    //        return ServiceResponse.Successful();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Domain.Error error = new Domain.Error
-    //        {
-    //            ErrorCode = "EditExcel",
-    //            Message = ex.ToString()
-    //        };
-    //        return ServiceResponse.Failed(error);
-    //    }
-    //}
-
-    //private async Task<ServiceResponse> ExportExcelFile()
-    //{
-    //    string filePath = "";
-    //    // tạo SaveFileDialog để lưu file excel
-    //    Microsoft.Win32.SaveFileDialog dialog = new SaveFileDialog();
-
-    //    // chỉ lọc ra các file có định dạng Excel
-    //    dialog.Filter = "Excel | *.xlsx | Excel 2003 | *.xls";
-    //    // Nếu mở file và chọn nơi lưu file thành công sẽ lưu đường dẫn lại dùng
-    //    if (dialog.ShowDialog() == true)
-    //    {
-    //        filePath = dialog.FileName;
-    //        var file = new FileInfo(filePath);
-    //        try
-    //        {
-    //            using (package)
-    //            {
-    //                //Lưu file lại
-    //                await package.SaveAsAsync(file);
-    //            }
-    //            return ServiceResponse.Successful();
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            Error error = new Error
-    //            {
-    //                ErrorCode = "ExportExcel",
-    //                Message = ex.ToString()
-    //            };
-    //            return ServiceResponse.Failed(error);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        // nếu đường dẫn null hoặc rỗng thì báo không hợp lệ và return hàm
-    //        if (string.IsNullOrEmpty(filePath))
-    //        {
-    //            MessageBox.Show("Đường dẫn báo cáo không hợp lệ");
-    //            Error error = new Error
-    //            {
-    //                ErrorCode = "ExportExcel",
-    //                Message = "Đường dẫn không hợp lệ"
-    //            };
-    //            return ServiceResponse.Failed(error);
-    //        }
-    //        else
-    //        {
-    //            Error error = new Error
-    //            {
-    //                ErrorCode = "ExportExcel",
-    //                Message = "Lỗi Lưu file"
-    //            };
-    //            return ServiceResponse.Failed(error);
-    //        }
-    //    }
-
-    //}
-    //public async Task<ServiceResponse> ExportCurlingForce(string path, ReportCurlingForce report)
-    //{
-    //    var step1 = ReadExcelFile(path);
-    //    var step2 = EditExcelCurlingForce(report);
-    //    var step3 = await ExportExcelFile();
-    //    if (step1.Success != true)
-    //    {
-    //        return step1;
-    //    }
-    //    else
-    //    {
-    //        if (step2.Success != true)
-    //        {
-    //            return step2;
-    //        }
-    //        else
-    //        {
-    //            if (step3.Success != true)
-    //            {
-    //                return step3;
-    //            }
-    //            else
-    //            {
-    //                return ServiceResponse.Successful();
-    //            }
-    //        }
-    //    }
-    //}
+            if (step2.Success != true)
+            {
+                return step2;
+            }
+            else
+            {
+                if (step3.Success != true)
+                {
+                    return step3;
+                }
+                else
+                {
+                    return ServiceResponse.Successful();
+                }
+           }
+        
+    }
 }

@@ -24,7 +24,7 @@ public class ProductRepository:IProductRepository
 
     public async Task<List<Product>> LoadAsyncSuggestName(string name)
     {
-        var list = await _context.Products.Where(s => _context.Products.Any(c =>s.Name.StartsWith(name))).ToListAsync();
+        var list = await _context.Products.Where(s => _context.Products.Any(c =>s.IdProduct.StartsWith(name))).ToListAsync();
         //var list = await _context.Products.ToListAsync();
         return list;
     }

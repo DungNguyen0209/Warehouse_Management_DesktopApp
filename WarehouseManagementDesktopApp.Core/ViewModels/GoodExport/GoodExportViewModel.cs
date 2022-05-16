@@ -279,8 +279,7 @@ public class GoodExportViewModel : BaseViewModel
     //}
     private async void PostServerGoodIssue()
     {
-        await RunCommandAsync(postExcelFlag, async () =>
-        {
+
             GoodIssueEntry goodIssueEntry = new GoodIssueEntry()
             {
                 entries = new List<ProductEntry>(),
@@ -290,13 +289,14 @@ public class GoodExportViewModel : BaseViewModel
             foreach (var item in FormulaPlannedList)
             {
                 var converitem = _mapper.Map<ProductEntry>(item);
-                if (!String.IsNullOrEmpty(item.PlannedMass))
+            var check = String.IsNullOrEmpty(item.PlannedMass);
+                if (String.IsNullOrEmpty(item.PlannedMass))
                 {
                     converitem.TotalQuantity = Convert.ToInt16(item.PlannedQuantity);
                 }
                 else
                 {
-                    converitem.TotalQuantity = Convert.ToInt16(item.PlannedMass);
+                    converitem.TotalQuantity = Convert.ToDouble(item.PlannedMass);
                 }
                 goodIssueEntry.entries.Add(converitem);
             }
@@ -322,7 +322,6 @@ public class GoodExportViewModel : BaseViewModel
                 messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 messageBox.Show();
             }
-        });
     }
     #region testing
     private void Testing()
@@ -425,7 +424,7 @@ public class GoodExportViewModel : BaseViewModel
                     IssueBasketForViewModel issueitem = new IssueBasketForViewModel()
                     {
                         BasketId = item.containerId,
-                        ProductionDate = item.productionDate.ToString("dd/MM/yyyy"),
+                        ProductionDate = item.productionDate,
                         Mass = Convert.ToString(item.actualQuantity),
                         Quantity = Convert.ToString(item.actualQuantity / item.item.piecesPerKilogram),
                         IsChecked = false,
@@ -438,7 +437,7 @@ public class GoodExportViewModel : BaseViewModel
                     IssueBasketForViewModel issueitem = new IssueBasketForViewModel()
                     {
                         BasketId = item.containerId,
-                        ProductionDate = item.productionDate.ToString("dd/MM/yyyy"),
+                        ProductionDate = item.productionDate,
                         Quantity = Convert.ToString(item.actualQuantity),
                         Mass = Convert.ToString(item.actualQuantity*(1/item.item.piecesPerKilogram)),
                         Unit = "Bộ/Cái"
@@ -459,6 +458,9 @@ public class GoodExportViewModel : BaseViewModel
             //}
             //SumActual = Convert.ToString(basketsum);
             //IssueBasketList = issueBaskets;
+            var issuefollowingdays = issueBaskets.OrderBy(x => x.ProductionDate.Month).OrderBy(x => x.ProductionDate.Day).ToList();
+            issueBaskets.Clear();
+            issueBaskets.AddRange(issuefollowingdays);
             IssueBasketList = issueBaskets;
         }
     }

@@ -7,7 +7,7 @@ public class IssueBasketForViewModel : BaseViewModel
     private bool _isCheck;
     public event Notify ActualChanged;
     public string BasketId { get; set; }
-    public string ProductionDate { get; set; }
+    public DateTime ProductionDate { get; set; }
     public string Quantity { get; set; }
     public string Mass { get; set; }
     public string Actual
