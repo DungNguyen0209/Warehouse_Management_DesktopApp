@@ -11,9 +11,9 @@ public class NewProduct
 #pragma warning disable CS8618
     public string itemId { get; set; }
     public string name { get; set; }
-    public int piecesPerKilogram { get; set; }
-    public int minimumStockLevel { get; set; }
-    public int maximumStockLevel { get; set; }
+    public double piecesPerKilogram { get; set; }
+    public double minimumStockLevel { get; set; }
+    public double maximumStockLevel { get; set; }
     public EUnit unit { get; set; }
     public EItemSource itemSource { get; set; }
     public string managerId { get; set; }

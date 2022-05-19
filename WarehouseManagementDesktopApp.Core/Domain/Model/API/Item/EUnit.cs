@@ -8,7 +8,7 @@ namespace WarehouseManagementDesktopApp.Core.Domain.Model
 {
     public enum EUnit
     {
-        Kilogram = 1,
         Pieces = 0,
+        Kilogram = 1,
     }
 }

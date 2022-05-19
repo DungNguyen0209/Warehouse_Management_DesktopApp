@@ -95,7 +95,7 @@ public class UpdateGoodLocationViewModel : BaseViewModel
 
     }
 
-    private void UpdateCard(string productName, string productId, string piecesPerKilogram, int unit, int itemSource)
+    private void UpdateCard(string productName, string productId, string piecesPerKilogram, string minimumStockLevel, string maximumStockLevel, int unit, int itemSource)
     {
         LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductId = productId;
         LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductName = productName;
@@ -221,7 +221,7 @@ public class UpdateGoodLocationViewModel : BaseViewModel
         });
     }
 
-    private async void UpdateItem(string productName, string productId, string piecesPerKilogram, int unit, int itemSource)
+    private async void UpdateItem(string productName, string productId, string piecesPerKilogram,string minimumStockLevel,string maximumStockLevel, int unit, int itemSource)
     {
         if (IsDialogOpen == true)
         {
@@ -230,10 +230,12 @@ public class UpdateGoodLocationViewModel : BaseViewModel
             {
                 itemId = productId,
                 name = productName,
-                piecesPerKilogram = Convert.ToInt32(piecesPerKilogram),
+                piecesPerKilogram = Convert.ToDouble(piecesPerKilogram),
+                minimumStockLevel = Convert.ToDouble(minimumStockLevel),
+                maximumStockLevel = Convert.ToDouble(maximumStockLevel),
                 unit = (EUnit)unit,
                 itemSource = (EItemSource)itemSource,
-                managerId = "nhmdung"
+                managerId = "nhmd"
             };
             var responenewitem = await _apiService.PostNewProduct(newitem);
             if (responenewitem.Success)
@@ -316,19 +318,49 @@ public class UpdateGoodLocationViewModel : BaseViewModel
                 ObservableCollection<LocationCardItemViewModel> locationList = new ObservableCollection<LocationCardItemViewModel>();
                 foreach (var item in cell.slices)
                 {
-                    LocationCardItemViewModel card = new LocationCardItemViewModel()
+                    if (item.item != null)
                     {
-                        ProductId = item.item.itemId,
-                        ProductName = item.item.name,
-                        Id = item.id,
-                        Collumn = "Hàng" + Convert.ToString(item.id),
-                        IsEmptySpace = item.slots.Any(a => a.container != null)
-                    };
-                    locationList.Add(card);
+                        LocationCardItemViewModel card = new LocationCardItemViewModel()
+                        {
+                            ProductId = item.item.itemId,
+                            ProductName = item.item.name,
+                            Id = item.id,
+                            Collumn = "Hàng" + Convert.ToString(item.id),
+                            IsEmptySpace = item.slots.Any(a => a.container != null)
+                        };
+                        locationList.Add(card);
+                    }
+                    else
+                    {
+                        LocationCardItemViewModel card = new LocationCardItemViewModel()
+                        {
+                            ProductId = "",
+                            ProductName = "",
+                            Id = item.id,
+                            Collumn = "Hàng" + Convert.ToString(item.id),
+                            IsEmptySpace = item.slots.Any(a => a.container != null)
+                        };
+                        locationList.Add(card);
+                    }
 
                 }
                 LocationCardItemList.Items = locationList;
                 LocationCardItemList.ClickItem += OpenDialog;
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Truy xuất thành công !",
+                    IsWarning = false,
+                };
+                messageBox.Show();
+            }
+            else
+            {
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Không tìm kiếm được vị trí !",
+                    IsWarning = true,
+                };
+                messageBox.Show();
             }
         }
     }

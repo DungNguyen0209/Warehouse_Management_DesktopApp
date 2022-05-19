@@ -107,10 +107,11 @@ public class GoodLocationViewModel : BaseViewModel
         {
             MessageBox messageBox = new MessageBox()
             {
-                ContentText = data.Error.Message,
+                ContentText = "Không tìm kiếm được ô",
                 IsWarning = true,
             };
             messageBox.Show();
+
         }
     }
 
@@ -126,16 +127,18 @@ public class GoodLocationViewModel : BaseViewModel
             if (responeupdatedatbase.Success)
             {
                 LocationSource.Clear();
+                ObservableCollection<string> source = new ObservableCollection<string>();
                 foreach (var item in locations)
                 {
                     string itemsource = $"{item.shelfId}.{item.rowId}.{item.cellId}";
-                    if (!LocationSource.Any(s => s == itemsource))
+                    if (!source.Any(s => s == itemsource))
                     {
-                        LocationSource.Add(itemsource);
+                        source.Add(itemsource);
                     }
 
                 }
-                OnPropertyChanged("LocationSource");
+                LocationSource = source;
+                SelectedIndex = 0;
                 MessageBox messageBox = new MessageBox()
                 {
                     ContentText = "Truy xuất thành công !",
@@ -180,7 +183,7 @@ public class GoodLocationViewModel : BaseViewModel
                     if (emptySlot != null)
                     {
 
-                        if (emptySlot.Any(s => s.Width == (width- k+1) && s.Height ==i && s.Depth == j))
+                        if (emptySlot.Any(s => s.Width == (width - k + 1) && s.Height == i && s.Depth == j))
                         {
                             CubeGenerate.CreateEmptyBasket(Slotpanel, marginRight, marginBottom);
                         }

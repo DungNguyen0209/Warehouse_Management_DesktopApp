@@ -10,10 +10,8 @@ public class ProcessingGoodExportOrderRepository : IProcessingGoodExportOrderRep
 
     public async Task DeleteAsync()
     {
-        if(_context.processingGoodExportOrders.Count()>0)
-        { 
-        _context.processingGoodExportOrders.FromSqlRaw("DELETE FROM [processingGoodExportOrders]");
-        }
+        var items = await _context.processingGoodExportOrders.ToListAsync();
+        _context.processingGoodExportOrders.RemoveRange(items);
     }
 
     //public async void InsertAsync(ProcessingGoodExportOrder data)

@@ -2,7 +2,7 @@
 
 namespace WarehouseManagementDesktopApp.Core.Services.LocalDatabaseService;
 
-public class ProcessingGoodExportOrderDatabaseService: IProcessingGoodExportOrderDatabaseService
+public class ProcessingGoodExportOrderDatabaseService : IProcessingGoodExportOrderDatabaseService
 {
     private readonly IProcessingGoodExportOrderRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
@@ -27,8 +27,16 @@ public class ProcessingGoodExportOrderDatabaseService: IProcessingGoodExportOrde
 
     public async void Update(ProcessingGoodExportOrder processingGoodExportOrder)
     {
-        await Task.Run(() => _repository.UpdateAsync(processingGoodExportOrder)); 
-        await _unitOfWork.SaveChangeAsync();
+        await Task.Run(() => _repository.UpdateAsync(processingGoodExportOrder));
+        try
+        {
+
+            await _unitOfWork.SaveChangeAsync();
+        }
+        catch
+        {
+            _unitOfWork.DetachChange();
+        }
 
     }
 }

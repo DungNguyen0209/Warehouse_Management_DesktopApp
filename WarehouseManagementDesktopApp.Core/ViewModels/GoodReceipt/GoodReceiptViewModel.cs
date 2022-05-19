@@ -6,14 +6,14 @@ using WarehouseManagementDesktopApp.Core.Domain.ViewModel;
 #pragma warning disable CS8618
 namespace WarehouseManagementDesktopApp.Core.ViewModels
 {
-    public class GoodReceiptViewModel: ViewModel.BaseViewModels.BaseViewModel
+    public class GoodReceiptViewModel : ViewModel.BaseViewModels.BaseViewModel
     {
         private readonly IProductsDatabaseService _productsDatabaseService;
         private readonly IApiService _apiService;
         private readonly IMapper _mapper;
         private readonly GoodReceiptNavigationStore _navigationStore;
         private int _selected;
-        
+
         private string _basketId;
         private string _productId;
         private string _productName;
@@ -22,18 +22,18 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private string? _actualQuantity;
         private string? c;
         private string? _goodReceiptId;
-        private string _unit;  
+        private string _unit;
         private int _selectedTarget = 0;
-        public string BasketId { get => _basketId; set { _basketId = value;OnPropertyChanged(); } }
+        public string BasketId { get => _basketId; set { _basketId = value; OnPropertyChanged(); } }
         private DateTime date = DateTime.Now;
         public DateTime Date
         {
             get { return date; }
             set { date = value; OnPropertyChanged(); }
         }
-        public string GoodReceiptId { get => _goodReceiptId; set {_goodReceiptId = value; OnPropertyChanged(); } }
-        public string ProductId { get => _productId; set { _productId = value;OnPropertyChanged(); } }
-        
+        public string GoodReceiptId { get => _goodReceiptId; set { _goodReceiptId = value; OnPropertyChanged(); } }
+        public string ProductId { get => _productId; set { _productId = value; OnPropertyChanged(); } }
+
         public string ProductName { get => _productName; set { _productName = value; OnPropertyChanged(); } }
 
         public string ProductionDate { get => _productionDate; set { _productionDate = value; OnPropertyChanged(); } }
@@ -42,7 +42,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         public string Unit { get => _unit; set { _unit = value; OnPropertyChanged(); } }
         public int SelectedTarget { get => _selectedTarget; set { _selectedTarget = value; OnPropertyChanged(); } }
         private int selectedUnit = 0;
-        public int SelectedUnit { get => selectedUnit; set { selectedUnit = value;OnPropertyChanged(); } }
+        public int SelectedUnit { get => selectedUnit; set { selectedUnit = value; OnPropertyChanged(); } }
         private bool saveFlag { get; set; }
         private bool addFlag { get; set; }
         private bool searchFlag { get; set; }
@@ -50,12 +50,17 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private bool uploadFlag { get; set; }
         private ObservableCollection<GoodsReceiptForViewModel> _goodsReceiptList = new ObservableCollection<GoodsReceiptForViewModel>();
         public ViewModel.BaseViewModels.BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
-        public ObservableCollection<GoodsReceiptForViewModel> GoodsReceiptList { get => _goodsReceiptList; set { _goodsReceiptList = value;}}
-        public int SelectedIndexItem { get => _selected; set { 
-                
-                _selected = value; 
-                
-                InformationChanged(); } }
+        public ObservableCollection<GoodsReceiptForViewModel> GoodsReceiptList { get => _goodsReceiptList; set { _goodsReceiptList = value; } }
+        public int SelectedIndexItem
+        {
+            get => _selected; set
+            {
+
+                _selected = value;
+
+                InformationChanged();
+            }
+        }
         public AutoCompleteTextBoxViewModel AutoCompleteTextBoxDC { get; set; }
 
         public ICommand NavigateGoodReceiptOrderView { get; set; }
@@ -92,16 +97,16 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         {
             await RunCommandAsync(finishFlag, async () =>
             {
-                List<ContainerGoodReceipt> receiptlist = new List<ContainerGoodReceipt>(); 
+                List<ContainerGoodReceipt> receiptlist = new List<ContainerGoodReceipt>();
                 foreach (var item in GoodsReceiptList)
                 {
                     receiptlist.Add(_mapper.Map<ContainerGoodReceipt>(item));
                 }
-                var patchcontainer = await _apiService.PatchContainerGoodsReceipts(receiptlist,GoodReceiptId);
-                if(patchcontainer.Success)
+                var patchcontainer = await _apiService.PatchContainerGoodsReceipts(receiptlist, GoodReceiptId);
+                if (patchcontainer.Success)
                 {
                     var confirm = await _apiService.PatchConFirmGoodsReceipts(GoodReceiptId);
-                    if(confirm.Success)
+                    if (confirm.Success)
                     {
                         MessageBox messageBox = new MessageBox()
                         {
@@ -112,15 +117,15 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         GoodsReceiptList.Clear();
                         OnPropertyChanged("GoodsReceiptList");
                     }
-                else
-                {
-                    MessageBox messageBox = new MessageBox()
+                    else
                     {
-                        ContentText = "Xác nhận đơn nhập kho thất bại !",
-                        IsWarning = true
-                    };
-                    messageBox.Show();
-                }
+                        MessageBox messageBox = new MessageBox()
+                        {
+                            ContentText = "Xác nhận đơn nhập kho thất bại !",
+                            IsWarning = true
+                        };
+                        messageBox.Show();
+                    }
                 }
                 else
                 {
@@ -168,19 +173,32 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
 
         private async Task Add()
         {
-            GoodsReceiptForViewModel item = new GoodsReceiptForViewModel()
+            if (GoodsReceiptList.Any(s => s.containerId == BasketId))
             {
-                containerId = BasketId,
-                itemId = AutoCompleteTextBoxDC.Text,
-                name = ProductName,
-                ProductionDate = this.Date.ToString("yyyy-MM-dd"),
-                plannedQuantity = PlannedQuantity,
-                actualQuantity = ActualQuantity,
-                Unit = Convert.ToString(this.Unit),
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Trùng thông tin mã rổ !",
+                    IsWarning = true
+                };
+                messageBox.Show();
+            }
+            else
+            {
 
-            };
-            GoodsReceiptList.Add(item);
-            OnPropertyChanged("GoodsReceiptList");
+                GoodsReceiptForViewModel item = new GoodsReceiptForViewModel()
+                {
+                    containerId = BasketId,
+                    itemId = AutoCompleteTextBoxDC.Text,
+                    name = ProductName,
+                    ProductionDate = this.Date.ToString("yyyy-MM-dd"),
+                    plannedQuantity = PlannedQuantity,
+                    actualQuantity = ActualQuantity,
+                    Unit = Convert.ToString(this.Unit),
+
+                };
+                GoodsReceiptList.Add(item);
+                OnPropertyChanged("GoodsReceiptList");
+            }
         }
 
         private async void CheckTextSource()
@@ -195,13 +213,13 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
 #pragma warning disable CS8602
                 var productlist = await _productsDatabaseService.LoadSuggestName(typedString);
 #pragma warning restore
-                if(productlist!= null)
+                if (productlist != null)
                 {
-                foreach (var item in productlist)
-                {
-                    autoList.Add(item.IdProduct);
-                }
-                AutoCompleteTextBoxDC.SuggestionSource = autoList;
+                    foreach (var item in productlist)
+                    {
+                        autoList.Add(item.IdProduct);
+                    }
+                    AutoCompleteTextBoxDC.SuggestionSource = autoList;
 
                 }
 
@@ -215,6 +233,9 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             {
                 await Task.Delay(1);
                 GoodsReceiptList[SelectedIndexItem].plannedQuantity = PlannedQuantity;
+                GoodsReceiptList[SelectedIndexItem].actualQuantity = ActualQuantity;
+                GoodsReceiptList[SelectedIndexItem].containerId = BasketId;
+
                 CollectionViewSource.GetDefaultView(GoodsReceiptList).Refresh();
 
             });
@@ -229,6 +250,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                 ProductId = _goodsReceiptList[SelectedIndexItem].itemId;
                 ProductName = _goodsReceiptList[SelectedIndexItem].name;
                 PlannedQuantity = _goodsReceiptList[SelectedIndexItem].plannedQuantity;
+                ActualQuantity = _goodsReceiptList[SelectedIndexItem].actualQuantity;
                 Date = Convert.ToDateTime(_goodsReceiptList[SelectedIndexItem].ProductionDate);
 
             });

@@ -171,12 +171,15 @@
                             IsEditable="True"
                             Style="{StaticResource ComboBoxStyle}"
                             Text="{Binding RowId}">
-                            <ComboBoxItem>A</ComboBoxItem>
-                            <ComboBoxItem>B</ComboBoxItem>
-                            <ComboBoxItem>C</ComboBoxItem>
-                            <ComboBoxItem>D</ComboBoxItem>
-                            <ComboBoxItem>E</ComboBoxItem>
-                            <ComboBoxItem>F</ComboBoxItem>
+                            <ComboBoxItem>1</ComboBoxItem>
+                            <ComboBoxItem>2</ComboBoxItem>
+                            <ComboBoxItem>3</ComboBoxItem>
+                            <ComboBoxItem>4</ComboBoxItem>
+                            <ComboBoxItem>5</ComboBoxItem>
+                            <ComboBoxItem>6</ComboBoxItem>
+                            <ComboBoxItem>7</ComboBoxItem>
+                            <ComboBoxItem>8</ComboBoxItem>
+                            <ComboBoxItem>9</ComboBoxItem>
                         </ComboBox>
                     </Grid>
                     <ComboBox
@@ -186,12 +189,15 @@
                         IsEditable="True"
                         Style="{StaticResource ComboBoxStyle}"
                         Text="{Binding CellId}">
-                        <ComboBoxItem>A</ComboBoxItem>
-                        <ComboBoxItem>B</ComboBoxItem>
-                        <ComboBoxItem>C</ComboBoxItem>
-                        <ComboBoxItem>D</ComboBoxItem>
-                        <ComboBoxItem>E</ComboBoxItem>
-                        <ComboBoxItem>F</ComboBoxItem>
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                        <ComboBoxItem>3</ComboBoxItem>
+                        <ComboBoxItem>4</ComboBoxItem>
+                        <ComboBoxItem>5</ComboBoxItem>
+                        <ComboBoxItem>6</ComboBoxItem>
+                        <ComboBoxItem>7</ComboBoxItem>
+                        <ComboBoxItem>8</ComboBoxItem>
+                        <ComboBoxItem>9</ComboBoxItem>
                     </ComboBox>
                     <Grid Grid.Row="6">
                         <Button

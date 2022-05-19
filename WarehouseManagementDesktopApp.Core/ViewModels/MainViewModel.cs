@@ -13,6 +13,10 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private readonly INavigationService _notifynavigateService;
         private bool _isDialogOpen = false;
         private bool _isLoged;
+        private string _username = "UserName";
+        private string _role = "Role";
+        public string Username { get => _username; set { _username = value; OnPropertyChanged(); } }
+        public string Role { get => _role; set { _role = value; OnPropertyChanged(); } }
         public ViewModel.BaseViewModels.BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
         public bool IsDialogOpen { get => _isDialogOpen; set { _isDialogOpen = value; OnPropertyChanged(); } }
         public bool IsLoged
@@ -79,6 +83,8 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private void FinishLoging()
         {
             IsLoged = true;
+            Username = "nhmdung";
+            Role = "Trưởng kho";
             MessageBox messageBox = new MessageBox()
             {
                 IsWarning = false,

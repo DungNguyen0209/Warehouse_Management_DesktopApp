@@ -20,7 +20,7 @@
     xmlns:uc6="clr-namespace:WarehouseManagementDesktopApp.Views.History"
     xmlns:viewmodels="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
     x:Name="Main_Window"
-    Title="MainWindow"
+    Title="Quản lý xuất nhập kho"
     MinWidth="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={tools:RatioConverter}, ConverterParameter='0.6'}"
     MinHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={tools:RatioConverter}, ConverterParameter='0.6'}"
     d:DesignHeight="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={tools:RatioConverter}, ConverterParameter='0.9'}"
@@ -28,6 +28,7 @@
     Background="{DynamicResource MaterialDesignPaper}"
     Closed="Main_Window_Closed"
     FontFamily="{DynamicResource MaterialDesignFont}"
+    Icon="/Resources/images/BK_Logo.jpg"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -49,6 +50,7 @@
                     </DataTrigger>
                     <DataTrigger Binding="{Binding IsLoged}" Value="False">
                         <Setter Property="IsEnabled" Value="False" />
+                        <Setter Property="Background" Value="{StaticResource WordDarkBlueBrush}" />
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
@@ -137,25 +139,30 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                     </Grid>
-                    <WrapPanel>
+                    <WrapPanel HorizontalAlignment="Center">
                         <Image
                             x:Name="img1"
                             Grid.Row="0"
-                            Height="{Binding Path=ActualHeight, ElementName=Heading_panel, Converter={tools:RatioConverter}, ConverterParameter='0.1'}"
-                            Source="/Resources/images/CHA_Logo.png"
-                            Stretch="Uniform" />
-                        <Grid Width="{Binding Path=ActualWidth, ElementName=Heading_panel, Converter={tools:RatioConverter}, ConverterParameter='0.1'}" />
-                        <Image
-                            x:Name="img2"
-                            Grid.Row="1"
-                            Height="{Binding Path=ActualHeight, ElementName=Heading_panel, Converter={tools:RatioConverter}, ConverterParameter='0.1'}"
+                            Width="120"
+                            Height="120"
                             Source="/Resources/images/BK_Logo.jpg"
                             Stretch="Uniform" />
+
                     </WrapPanel>
                     <Grid Height="15" />
-                    <Label HorizontalAlignment="Center" Content="UserName" />
-                    <Grid Height="15" />
-                    <Label HorizontalAlignment="Center" Content="ID" />
+                    <Label
+                        HorizontalAlignment="Center"
+                        Content="{Binding Username}"
+                        FontSize="24"
+                        FontWeight="Heavy"
+                        Foreground="{StaticResource WordLightBlueBrush}" />
+                    <Grid Height="5" />
+                    <Label
+                        HorizontalAlignment="Center"
+                        Content="{Binding Role}"
+                        FontSize="20"
+                        FontWeight="Heavy"
+                        Foreground="{StaticResource WordLightBlueBrush}" />
                 </StackPanel>
                 <Grid Grid.Row="1">
                     <Grid>
@@ -181,7 +188,7 @@
                             <component:MenuButton
                                 x:Name="Settingbtn"
                                 ContentText="NHẬP KHO"
-                                IconValue="Settings">
+                                IconValue="Input">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <prism:InvokeCommandAction Command="{Binding GoodReceiptCommand}" />
@@ -216,8 +223,8 @@
                         <Grid Grid.Row="4" Style="{StaticResource MenuPanelStyle}">
                             <component:MenuButton
                                 x:Name="Alertbtn"
-                                ContentText="BÁO CÁO"
-                                IconValue="Paper">
+                                ContentText="LỊCH SỬ"
+                                IconValue="History">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <prism:InvokeCommandAction Command="{Binding ReportCommand}" />
@@ -228,8 +235,8 @@
                         <Grid Grid.Row="5" Style="{StaticResource MenuPanelStyle}">
                             <component:MenuButton
                                 x:Name="Historybtn"
-                                ContentText="LỊCH SỬ"
-                                IconValue="History">
+                                ContentText="BÁO CÁO"
+                                IconValue="Paper">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">

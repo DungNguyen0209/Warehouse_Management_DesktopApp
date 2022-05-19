@@ -10,7 +10,7 @@
     xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
     xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
     x:Name="root"
-    Width="1267.2"
+    Width="1300.2"
     Height="824"
     Background="{DynamicResource MaterialDesignPaper}"
     Content="{Binding Content}"

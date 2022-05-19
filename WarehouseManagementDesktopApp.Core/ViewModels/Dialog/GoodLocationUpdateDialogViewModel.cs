@@ -13,15 +13,18 @@ public class GoodLocationUpdateDialogViewModel : BaseViewModel
     private int _itemSource = 0;
     public string ProductId { get=> _productId; set { _productId = value;OnPropertyChanged(); } }
     public string ProductName { get=> _productName; set { _productName = value; OnPropertyChanged(); } }
+    public string MinimumStockLevel { get => _minimumStockLevel; set { _minimumStockLevel = value; OnPropertyChanged(); } }
+    public string MaximumStockLevel { get => _maximumStockLevel; set { _maximumStockLevel = value; OnPropertyChanged(); } }
+
     public string PiecesPerKilogram { get => _piecesPerKilogram;set { _piecesPerKilogram = value;OnPropertyChanged(); } }
     public int Unit { get => _unit; set { _unit = value;OnPropertyChanged(); } }
     public int ItemSource { get => _itemSource; set { _itemSource = value; OnPropertyChanged(); } }
     public ICommand CompleteCommand { get; set; }
     // item1 = productname , item2 = productId
-    public Action<string, string,string,int,int> Complete;
+    public Action<string, string,string,string, string,int, int> Complete;
 
     public GoodLocationUpdateDialogViewModel()
     {
-        CompleteCommand = new RelayCommand(() => Complete?.Invoke(ProductName, ProductId, PiecesPerKilogram,Unit,ItemSource));
+        CompleteCommand = new RelayCommand(() => Complete?.Invoke(ProductName, ProductId, PiecesPerKilogram,MinimumStockLevel,MaximumStockLevel,Unit,ItemSource));
     }
 }

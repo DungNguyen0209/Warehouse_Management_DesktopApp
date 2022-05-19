@@ -13,7 +13,7 @@
     xmlns:uc="clr-namespace:WarehouseManagementDesktopApp.Resources.Components"
     xmlns:uc1="clr-namespace:WarehouseManagementDesktopApp.Resources.Components.Message"
     x:Name="root"
-    Width="1267.2"
+             Width="1300.2"
     Height="741.6"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"

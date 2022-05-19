@@ -16,5 +16,5 @@ public class GoodReceiptEntry
 public class EntryOfGoodReceipt
 {
     public string itemId { get; set; }
-    public int TotalQuantity { get; set; }
+    public double TotalQuantity { get; set; }
 }

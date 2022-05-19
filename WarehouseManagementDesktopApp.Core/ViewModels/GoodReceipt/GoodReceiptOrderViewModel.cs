@@ -112,7 +112,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         ChatMessageList.Items.Clear();
                         var messageList = new ChatMessageListDesignModel();
                         goodReceiptReports = result.Resource;
-                        foreach (var item in goodReceiptReports.items)
+                        foreach (var item in goodReceiptReports.items.Where(s=>s.confirmed == false).ToList())
                         {
                             ChatMessageListItemDesignModel messageitem = new ChatMessageListItemDesignModel
                             {

@@ -60,7 +60,7 @@
                                 <Grid Grid.Column="1">
                                     <TextBox Width="150"
                                              Height="40"
-                                             Style="{StaticResource MaterialDesignTextBox}"
+                                             Style="{StaticResource TextBoxNormal}"                                            
                                              Text="{Binding ProductId}"></TextBox>
                                 </Grid>
                             </Grid>
@@ -76,7 +76,7 @@
                                 <Grid Grid.Column="1">
                                     <TextBox Width="150"
                                              Height="40"
-                                             Style="{StaticResource MaterialDesignTextBox}"
+                                             Style="{StaticResource TextBoxNormal}"
                                              Text="{Binding ProductName}"></TextBox>
                                 </Grid>
                             </Grid>

@@ -50,7 +50,7 @@ public class ExcelExporterService : IExcelExporter
             {
                 filePath = choofdlog.FileName;
                 FilePath = Path.GetFileName(filePath);
-            }    
+            }
             else
                 filePath = string.Empty;
             // mở file excel
@@ -72,7 +72,7 @@ public class ExcelExporterService : IExcelExporter
 
     }
 
-    private ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> ConvertReceiptFile ()
+    private ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> ConvertReceiptFile()
     {
         List<GoodReceiptOrderForViewModel> data = new List<GoodReceiptOrderForViewModel>();
         int i = 11;
@@ -114,17 +114,18 @@ public class ExcelExporterService : IExcelExporter
                 worksheet.Cells["B" + Convert.ToString(10 + i)].Value = sheet.containerId;
                 worksheet.Cells["C" + Convert.ToString(10 + i)].Value = sheet.itemId;
                 worksheet.Cells["D" + Convert.ToString(10 + i)].Value = sheet.name;
-                if(sheet.Unit == "Kg")
+                if (sheet.Unit == "Kg")
                 {
 
-                worksheet.Cells["E" + Convert.ToString(10 + i)].Value = sheet.Quantity;
+                    worksheet.Cells["E" + Convert.ToString(10 + i)].Value = sheet.Quantity;
                 }
                 else
                 {
-                worksheet.Cells["F" + Convert.ToString(10 + i)].Value = sheet.Quantity;
+                    worksheet.Cells["F" + Convert.ToString(10 + i)].Value = sheet.Quantity;
                 }
                 worksheet.Cells["H" + Convert.ToString(10 + i)].Value = sheet.Cell;
                 worksheet.Cells["I" + Convert.ToString(10 + i)].Value = sheet.Location;
+                i++;
             }
 
 
@@ -207,7 +208,12 @@ public class ExcelExporterService : IExcelExporter
     public ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> ReadReceipt()
     {
         ReadExcelFile();
-        return ConvertReceiptFile();
+        if (!String.IsNullOrEmpty(FilePath))
+        {
+            return ConvertReceiptFile();
+        }
+        else
+        { return null;}
     }
 
     public async Task<ServiceResponse> ExportGoodIssue(RangeObservableCollection<ContainerIssueEntry> ContainerEntry)
@@ -215,21 +221,21 @@ public class ExcelExporterService : IExcelExporter
         var step2 = await EditIssueExcel(ContainerEntry);
         var step3 = await ExportExcelFile();
 
-            if (step2.Success != true)
+        if (step2.Success != true)
+        {
+            return step2;
+        }
+        else
+        {
+            if (step3.Success != true)
             {
-                return step2;
+                return step3;
             }
             else
             {
-                if (step3.Success != true)
-                {
-                    return step3;
-                }
-                else
-                {
-                    return ServiceResponse.Successful();
-                }
-           }
-        
+                return ServiceResponse.Successful();
+            }
+        }
+
     }
 }

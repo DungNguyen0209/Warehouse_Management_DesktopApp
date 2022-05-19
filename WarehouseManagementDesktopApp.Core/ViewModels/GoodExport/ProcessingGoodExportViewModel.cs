@@ -8,7 +8,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private readonly IMapper _mapper;
         private RangeObservableCollection<ProcessingGoodIssue> _processingGoodIssues = new RangeObservableCollection<ProcessingGoodIssue>();
         private RangeObservableCollection<ContainerIssueEntry> _containerSources = new RangeObservableCollection<ContainerIssueEntry>();
-        private int _selectedIndexGoodIssue;
+        private int _selectedIndexGoodIssue=0;
         public RangeObservableCollection<ProcessingGoodIssue> ProcessingGoodIssue { get => _processingGoodIssues; set { _processingGoodIssues = value;
                 
                 OnPropertyChanged(); } }
@@ -30,7 +30,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             var goodIssue = await _apiService.GetGoodsIssueById(ProcessingGoodIssue[SelectedIndexGoodIssue].Id);
             if (goodIssue.Success)
             {
-                if (goodIssue.Resource != null)
+                if (goodIssue.Resource != null && goodIssue.Resource.entries!=null)
                 {
                     var containers = new RangeObservableCollection<ContainerIssueEntry>();
                     foreach (var item in goodIssue.Resource.entries)
@@ -157,6 +157,12 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         list.Add(itemprocess);
                     }
                 }
+                ProcessingGoodIssue emptyitem = new ProcessingGoodIssue()
+                {
+                    Id = "",
+                    DateTime = "",
+                };
+                list.Add(emptyitem);
                 ProcessingGoodIssue = list;
             }
             else
