@@ -6,4 +6,5 @@ public interface IProcessingGoodExportOrderRepository
       Task DeleteAsync();
      Task<List<ProcessingGoodExportOrder>> LoadAsync();
       Task UpdateAsync(ProcessingGoodExportOrder data);
+    Task<List<IssueBasket>> LoadBaseket(int id);
 }

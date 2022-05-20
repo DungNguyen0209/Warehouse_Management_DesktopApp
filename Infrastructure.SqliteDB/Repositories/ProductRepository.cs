@@ -28,5 +28,10 @@ public class ProductRepository:IProductRepository
         //var list = await _context.Products.ToListAsync();
         return list;
     }
+    public async Task<List<Product>> LoadAllItem()
+    {
+        var list = await _context.Products.ToListAsync();
+        return list;
+    }
 
 }

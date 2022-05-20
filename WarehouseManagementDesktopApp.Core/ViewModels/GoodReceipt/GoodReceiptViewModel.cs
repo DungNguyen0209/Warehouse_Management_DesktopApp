@@ -12,6 +12,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private readonly IApiService _apiService;
         private readonly IMapper _mapper;
         private readonly GoodReceiptNavigationStore _navigationStore;
+        private readonly ProductStore _productStore;
         private int _selected;
 
         private string _basketId;
@@ -20,10 +21,10 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private string _productionDate;
         private string? _plannedQuantity;
         private string? _actualQuantity;
-        private string? c;
         private string? _goodReceiptId;
         private string _unit;
         private int _selectedTarget = 0;
+        private ObservableCollection<string> productIdSource = new ObservableCollection<string>();
         public string BasketId { get => _basketId; set { _basketId = value; OnPropertyChanged(); } }
         private DateTime date = DateTime.Now;
         public DateTime Date
@@ -31,6 +32,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             get { return date; }
             set { date = value; OnPropertyChanged(); }
         }
+        public ObservableCollection<string> ProductIdSource { get => productIdSource; set { productIdSource = value; OnPropertyChanged();} }
         public string GoodReceiptId { get => _goodReceiptId; set { _goodReceiptId = value; OnPropertyChanged(); } }
         public string ProductId { get => _productId; set { _productId = value; OnPropertyChanged(); } }
 
@@ -70,27 +72,29 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         public ICommand DeleteCommand { get; set; }
         public ICommand SelectionCommand { get; set; }
         public ICommand FinishCommand { get; set; }
-        public GoodReceiptViewModel(GoodReceiptNavigationStore navigationStore, INavigationService _GoodReceiptOrdernavigationService, IProductsDatabaseService productsDatabaseService, IApiService apiService, IMapper mapper)
+        public GoodReceiptViewModel(GoodReceiptNavigationStore navigationStore, INavigationService _GoodReceiptOrdernavigationService, IProductsDatabaseService productsDatabaseService, IApiService apiService, IMapper mapper, ProductStore productStore)
         {
             _navigationStore = navigationStore;
             _productsDatabaseService = productsDatabaseService;
             _mapper = mapper;
+            _productStore = productStore;
             NavigateGoodReceiptOrderView = new NavigateCommand(_GoodReceiptOrdernavigationService);
             AutoCompleteTextBoxDC = new AutoCompleteTextBoxViewModel() { HintText = "Tên SP" };
             AutoCompleteTextBoxDC.TextChanged += CheckTextSource;
             GoodsReceiptList = new ObservableCollection<GoodsReceiptForViewModel>();
-            //GoodsReceiptForViewModel goodsReceipt = new GoodsReceiptForViewModel { BasketId = "basket1", ProductId = "123", ProductName = "SP_A", ProductionDate = "22-2-2222", Quantity = "100", Mass = "100", Unit = "KG" };
-            //GoodsReceiptForViewModel goodsReceipt1 = new GoodsReceiptForViewModel { BasketId = "basket2", ProductId = "1234", ProductName = "SP_B", ProductionDate = "22-2-2222", Quantity = "100", Mass = "100", Unit = "KG" };
-            //GoodsReceiptForViewModel goodsReceipt2 = new GoodsReceiptForViewModel { BasketId = "basket3", ProductId = "123", ProductName = "SP_C", ProductionDate = "22-2-2222", Quantity = "100", Mass = "100", Unit = "KG" };
-            //GoodsReceiptList.Add(goodsReceipt);
-            //GoodsReceiptList.Add(goodsReceipt1);
-            //GoodsReceiptList.Add(goodsReceipt2);
+            productIdSource = _productStore.ProductId;
+            _productStore.ProductUpdate += UpdateProduct;
             SaveCommand = new RelayCommand(async () => await Save());
             SearchCommand = new RelayCommand(async () => await Search());
             AddProductCommand = new RelayCommand(async () => await Add());
             DeleteCommand = new RelayCommand(async () => Delete());
             FinishCommand = new RelayCommand(async () => Finish());
             _apiService = apiService;
+        }
+
+        private void UpdateProduct()
+        {
+            ProductIdSource = _productStore.ProductId;
         }
 
         private async Task Finish()

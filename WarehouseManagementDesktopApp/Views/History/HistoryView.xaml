@@ -80,14 +80,16 @@
                 </Grid.RowDefinitions>
                 <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock HorizontalAlignment="Center" Style="{StaticResource HeadingText}">Mã Sản Phẩm</TextBlock>
+                    <ComboBox x:Name="ProductIdtb"
+                              Grid.Column="1"
+                              Width="200"
+                              Margin="25,5,0,5"
+                              materialDesign:HintAssist.Hint="Mã Hàng"
+                              IsEditable="True"
+                              Text="{Binding Path=ProductId}"
+                              ItemsSource="{Binding ProductIdSource}"
+                              Style="{StaticResource ComboBoxStyle}" />
 
-                    <ComboBox
-                        Width="200"
-                        Margin="25,5,0,5"
-                        materialDesign:HintAssist.Hint="Mã Hàng"
-                        IsEditable="True"
-                        Style="{StaticResource ComboBoxStyle}"
-                        Text="{Binding ProductId}" />
                 </WrapPanel>
                 <Grid Grid.Row="1">
                     <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center">

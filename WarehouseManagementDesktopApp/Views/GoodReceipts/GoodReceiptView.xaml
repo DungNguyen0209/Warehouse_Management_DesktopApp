@@ -145,9 +145,14 @@
                                 <Grid
                                     Grid.Column="1"
                                     Width="200"
-                                    Height="30">
+                                    Height="40">
 
-                                    <component:AutoCompleteTextBox x:Name="ProductIdtb" DataContext="{Binding AutoCompleteTextBoxDC}" />
+                                    <ComboBox x:Name="ProductIdtb"
+                                              materialDesign:HintAssist.Hint="Mã Hàng"
+                                              IsEditable="True"
+                                              FontSize="15"
+                                              ItemsSource="{Binding ProductIdSource,UpdateSourceTrigger=PropertyChanged}"
+                                              Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="4">

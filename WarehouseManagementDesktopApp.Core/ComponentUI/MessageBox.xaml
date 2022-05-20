@@ -10,7 +10,7 @@
     Name="root"
     Title="MessageBox"
     Width="550"
-    Height="350"
+    Height="300"
     MouseLeftButtonDown="root_MouseLeftButtonDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
@@ -21,32 +21,28 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="7*" />
-                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="6.5*" />
+                    <RowDefinition Height="3.5*" />
                 </Grid.RowDefinitions>
                 <Grid>
                     <local:ControlBar x:Name="ControlBarElement" />
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid>
-                        <StackPanel Margin="10">
+                        <StackPanel Margin="5">
                             <StackPanel HorizontalAlignment="Center">
-                                <materialDesign:PackIcon Width="80"
-                                                         Height="80"
-                                                         HorizontalAlignment="Center">
+                                <materialDesign:PackIcon
+                                    Width="80"
+                                    Height="80"
+                                    HorizontalAlignment="Center">
                                     <materialDesign:PackIcon.Style>
                                         <Style TargetType="materialDesign:PackIcon">
-                                            <Setter Property="Foreground"
-                                                    Value="LawnGreen" />
-                                            <Setter Property="Kind"
-                                                    Value="CheckCircleOutline" />
+                                            <Setter Property="Foreground" Value="LawnGreen" />
+                                            <Setter Property="Kind" Value="CheckCircleOutline" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsWarning, ElementName=root}"
-                                                             Value="True">
-                                                    <Setter Property="Foreground"
-                                                            Value="Red" />
-                                                    <Setter Property="Kind"
-                                                            Value="WarningCircleOutline" />
+                                                <DataTrigger Binding="{Binding IsWarning, ElementName=root}" Value="True">
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                    <Setter Property="Kind" Value="WarningCircleOutline" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -54,35 +50,38 @@
                                 </materialDesign:PackIcon>
                                 <WrapPanel>
                                     <TextBlock
-                                    Margin="5"
-                                    HorizontalAlignment="Center"
-                                    FontWeight="DemiBold"
-                                    Style="{StaticResource HeadingText}"
-                                    Text="{Binding ContentText, ElementName=root}" />
+                                        Margin="5"
+                                        HorizontalAlignment="Center"
+                                        FontWeight="DemiBold"
+                                        Style="{StaticResource HeadingText}"
+                                        Text="{Binding ContentText, ElementName=root}" />
                                 </WrapPanel>
                             </StackPanel>
 
                         </StackPanel>
                     </Grid>
                 </Grid>
-                            <Grid
-                                Margin="0,5,0,20"
-                                Grid.Row="2"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Bottom">
-                                <Button
-                                    Width="200"
-                                    Height="70"
-                                    Margin="0,0,0,0"
-                                    FontWeight="Bold"
-                                    Background="{StaticResource SistrainColorBrush}"
-                                    BorderThickness="0.5"
-                                    Click="Button_Click"
-                                        Content="đồng ý"
-                                    FontSize="30"
-                                    Foreground="White"
-                                    Style="{StaticResource Flat}" />
-                            </Grid>
+                <Grid
+                    Grid.Row="2"
+                    Margin="0,5,0,20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom">
+                    <Button
+                        Grid.Row="4"
+                        Width="170"
+                        Height="50"
+                        FontWeight="Bold"
+                        Background="WhiteSmoke"
+                        BorderThickness="0"
+                        Foreground="{StaticResource SistrainColorBrush}"
+                        Click="Button_Click"
+                        Command="{Binding ConfirmCommand}"
+                        FontSize="25"
+                        IsDefault="True"
+                        Style="{StaticResource MaterialDesignFlatButton}">
+                        Xác Nhận
+                    </Button>
+                </Grid>
             </Grid>
         </Border>
     </materialDesign:Card>

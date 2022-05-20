@@ -46,12 +46,18 @@
                         Style="{StaticResource Parameter}">
                         Mã Sản Phẩm
                     </TextBlock>
-                    <TextBox
+                    <ComboBox
+                        x:Name="ProductIdtb"
                         Grid.Column="1"
                         Margin="25,5,25,5"
-                        FontSize="25"
-                        Style="{StaticResource TextBoxNormal}"
+                        materialDesign:HintAssist.Hint="Mã Hàng"
+                        FontSize="17"
+                        IsEditable="True"
+                        ItemsSource="{Binding ProductIdSource, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}"
+                        Style="{StaticResource ComboBoxStyle}"
                         Text="{Binding Path=Id}" />
+
                 </Grid>
                 <Grid Grid.Row="1" Margin="0,10,0,10">
                     <Grid.ColumnDefinitions>
@@ -64,12 +70,15 @@
                         Style="{StaticResource Parameter}">
                         Tên Sản Phẩm
                     </TextBlock>
-                    <TextBox
+                    <ComboBox
                         Grid.Column="1"
-                        Margin="25,5,25,5"
-                        FontSize="25"
-                        Style="{StaticResource TextBoxNormal}"
-                        Text="{Binding Path=Name}" />
+                        materialDesign:HintAssist.Hint="Tên Hàng"
+                              Margin="25,5,25,5"
+                              FontSize="17"
+                        IsEditable="True"
+                        ItemsSource="{Binding ProductNameSource, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}"
+                        Style="{StaticResource ComboBoxStyle}" />
                 </Grid>
                 <Button
                     Grid.Row="4"

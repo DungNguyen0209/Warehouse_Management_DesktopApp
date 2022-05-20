@@ -2,17 +2,18 @@
 using MessageBox = WarehouseManagementDesktopApp.Core.ComponentUI.MessageBox;
 using Product = Persistence.SqliteDB.Model.Product;
 
-public class StartProgramService:IStartProgramService
+public class StartProgramService : IStartProgramService
 {
     private readonly IApiService _apiService;
     private readonly IProductsDatabaseService _productsDatabaseService;
     private readonly IMapper _mapper;
     private readonly IOidcClientService _idcClientService;
+    private readonly ProductStore _productStore;
     ObservableCollection<string> _warningStockCards = new ObservableCollection<string>();
-   ObservableCollection<string> WarningStockCards { get => _warningStockCards; set { _warningStockCards = value; OnCurrentViewModelChanged(); } }
+    ObservableCollection<string> WarningStockCards { get => _warningStockCards; set { _warningStockCards = value; OnCurrentViewModelChanged(); } }
     private readonly WebBrowserContainer _webBrowserContainer;
     public Action FinishLogin { get; set; }
-    public StartProgramService(IApiService apiService, IProductsDatabaseService roductsDatabaseService, IMapper mapper, WebBrowserContainer webBrowserContainer,IOidcClientService oidcClientService)
+    public StartProgramService(IApiService apiService, IProductsDatabaseService roductsDatabaseService, IMapper mapper, WebBrowserContainer webBrowserContainer, IOidcClientService oidcClientService, ProductStore productStore)
     {
         _idcClientService = oidcClientService;
         _webBrowserContainer = webBrowserContainer;
@@ -20,6 +21,7 @@ public class StartProgramService:IStartProgramService
         _productsDatabaseService = roductsDatabaseService;
         _mapper = mapper;
         _apiService.LoginCompleteAction += StartLoadProduct;
+        _productStore = productStore;
     }
 
     private void StartLoadProduct()
@@ -32,7 +34,7 @@ public class StartProgramService:IStartProgramService
     public async void LoadLoginView()
     {
         await Task.Delay(10);
-        await Task.Run(()=>_idcClientService.LoginAsync());
+        await Task.Run(() => _idcClientService.LoginAsync());
     }
     public async void LoadProgram()
     {
@@ -43,19 +45,30 @@ public class StartProgramService:IStartProgramService
         var data = await _apiService.GetAllProduct();
         if (data.Success)
         {
-        var fullproduct = data.Resource.Items;
-        List<Persistence.SqliteDB.Model.Product> products = new List<Persistence.SqliteDB.Model.Product>();
-        foreach (var item in fullproduct)
-        {
-            var itemdata = _mapper.Map<Persistence.SqliteDB.Model.Product>(item);
+            var fullproduct = data.Resource.Items;
+            List<Persistence.SqliteDB.Model.Product> products = new List<Persistence.SqliteDB.Model.Product>();
+            foreach (var item in fullproduct)
+            {
+                var itemdata = _mapper.Map<Persistence.SqliteDB.Model.Product>(item);
 
-            products.Add(itemdata);
+                products.Add(itemdata);
+                _productStore.ProductId.Add(item.itemId);
+                _productStore.ProductName.Add(item.name);
+            }
+            _productsDatabaseService.Clear();
+            await Task.Run(() => _productsDatabaseService.Insert(products));
         }
-        _productsDatabaseService.Clear();
-        await Task.Run(() => _productsDatabaseService.Insert(products));
+        else
+        {
+            var productList = await _productsDatabaseService.LoadAllProduct();
+            foreach (var item in productList)
+            {
+                _productStore.ProductId.Add(item.IdProduct);
+                _productStore.ProductName.Add(item.Name);
+            }
         }
     }
-    
+
     public event Action WarningStockCardsChanged;
 
     private void OnCurrentViewModelChanged()

@@ -43,7 +43,7 @@
                 services.AddSingleton<GoodReceiptViewModel>((IServiceProvider serviceprovider) =>
                 {
                     var goodReceiptStore = serviceprovider.GetRequiredService<GoodReceiptNavigationStore>();
-                    return new GoodReceiptViewModel(goodReceiptStore, CreateGoodReceiptOrderNavigationService(serviceprovider, goodReceiptStore),serviceprovider.GetRequiredService<IProductsDatabaseService>(), serviceprovider.GetRequiredService<IApiService>() , serviceprovider.GetRequiredService<IMapper>()) ;
+                    return new GoodReceiptViewModel(goodReceiptStore, CreateGoodReceiptOrderNavigationService(serviceprovider, goodReceiptStore),serviceprovider.GetRequiredService<IProductsDatabaseService>(), serviceprovider.GetRequiredService<IApiService>() , serviceprovider.GetRequiredService<IMapper>(),serviceprovider.GetRequiredService<ProductStore>()) ;
                 });
                 services.AddSingleton<GoodReceiptLayOutViewModel>((IServiceProvider serviceprovider) =>
                 {

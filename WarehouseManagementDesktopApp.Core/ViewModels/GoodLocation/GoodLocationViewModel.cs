@@ -7,20 +7,25 @@ public class GoodLocationViewModel : BaseViewModel
 {
 #pragma warning disable CS8618
     private readonly IApiService _apiService;
+    private readonly ProductStore _productStore;
     private readonly ILocationDatabaseService _locationDatabaseService;
     public ICommand SearchCommand { get; set; }
     public ICommand DrawingCommand { get; set; }
     private string _id;
     private string _name;
     private string _testdepth;
+    private int selectedIndex = 0;
+    private ObservableCollection<string> productNameSource = new ObservableCollection<string>();
     private ContentControl _contentControl = new ContentControl();
+    private ObservableCollection<string> productIdSource;
+    public int SelectedIndex { get => selectedIndex; set { selectedIndex = value;OnPropertyChanged(); } }
+    public ObservableCollection<string> ProductIdSource { get { return productIdSource; } set { productIdSource = value;OnPropertyChanged(); } }
+    public ObservableCollection<string> ProductNameSource { get { return productNameSource; } set { productNameSource = value;OnPropertyChanged(); } }
     public string Id { get => _id; set { _id = value; OnPropertyChanged(); } }
     public string Name { get => _name; set { _name = value; OnPropertyChanged(); } }
     public ContentControl Content { get => _contentControl; set { _contentControl = value; OnPropertyChanged(); } }
     private ObservableCollection<string> locationSource = new ObservableCollection<string>();
-    private int _selectedIndex;
     private List<EmptyContainer> emptySlot { get; set; } = new List<EmptyContainer>();
-    public int SelectedIndex { get => _selectedIndex; set { _selectedIndex = value; OnPropertyChanged(); } }
     public ObservableCollection<string> LocationSource
     {
         get => locationSource;
@@ -33,10 +38,14 @@ public class GoodLocationViewModel : BaseViewModel
 
     public string Testdepth { get => _testdepth; set { _testdepth = value; OnPropertyChanged(); } }
     //public List<BasketSlot> emptylist { get; set; }
-    public GoodLocationViewModel(IApiService apiService, ILocationDatabaseService locationDatabaseService)
+    public GoodLocationViewModel(IApiService apiService, ILocationDatabaseService locationDatabaseService, ProductStore productStore)
     {
         _apiService = apiService;
         _locationDatabaseService = locationDatabaseService;
+        _productStore = productStore;
+        ProductIdSource = _productStore.ProductId;
+        ProductNameSource = _productStore.ProductName;
+        _productStore.ProductUpdate += UpdateProduct;
         SearchCommand = new RelayCommand(() => SearchLocation());
         DrawingCommand = new RelayCommand(() => DrawCell());
         //BasketSlot EmptySlot = new BasketSlot()
@@ -47,6 +56,12 @@ public class GoodLocationViewModel : BaseViewModel
         //};
         //emptylist = new List<BasketSlot>();
         //emptylist.Add(EmptySlot);
+    }
+
+    private void UpdateProduct()
+    {
+        ProductIdSource = _productStore.ProductId;
+        ProductNameSource = _productStore.ProductName;
     }
 
     private async void DrawCell()
@@ -121,40 +136,53 @@ public class GoodLocationViewModel : BaseViewModel
         var httprequest = await _apiService.GetContainerByProductId(Id);
         if (httprequest.Success)
         {
-            var result = httprequest.Resource;
-            var locations = result.Select(s => s.location).ToList();
-            var responeupdatedatbase = await _locationDatabaseService.AddItemLocation(locations);
-            if (responeupdatedatbase.Success)
+            if(httprequest.Resource.Count()>0)
             {
-                LocationSource.Clear();
-                ObservableCollection<string> source = new ObservableCollection<string>();
-                foreach (var item in locations)
+                var result = httprequest.Resource;
+                var locations = result.Select(s => s.location).ToList();
+                var responeupdatedatbase = await _locationDatabaseService.AddItemLocation(locations);
+                if (responeupdatedatbase.Success)
                 {
-                    string itemsource = $"{item.shelfId}.{item.rowId}.{item.cellId}";
-                    if (!source.Any(s => s == itemsource))
+                    LocationSource.Clear();
+                    ObservableCollection<string> source = new ObservableCollection<string>();
+                    foreach (var item in locations)
                     {
-                        source.Add(itemsource);
-                    }
+                        string itemsource = $"{item.shelfId}.{item.rowId}.{item.cellId}";
+                        if (!source.Any(s => s == itemsource))
+                        {
+                            source.Add(itemsource);
+                        }
 
+                    }
+                    LocationSource = source;
+                    SelectedIndex = 0;
+                    MessageBox messageBox = new MessageBox()
+                    {
+                        ContentText = "Truy xuất thành công !",
+                        IsWarning = false,
+                    };
+                    messageBox.Show();
                 }
-                LocationSource = source;
-                SelectedIndex = 0;
-                MessageBox messageBox = new MessageBox()
+                else
                 {
-                    ContentText = "Truy xuất thành công !",
-                    IsWarning = false,
-                };
-                messageBox.Show();
+                    MessageBox messageBox = new MessageBox()
+                    {
+                        ContentText = responeupdatedatbase.Error.Message,
+                        IsWarning = true,
+                    };
+                    messageBox.Show();
+                }
             }
             else
             {
                 MessageBox messageBox = new MessageBox()
                 {
-                    ContentText = responeupdatedatbase.Error.Message,
+                    ContentText = "Không có vị trí của mã sản phẩm này !",
                     IsWarning = true,
                 };
                 messageBox.Show();
             }
+            
         }
         else
         {

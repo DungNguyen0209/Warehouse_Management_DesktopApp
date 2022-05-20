@@ -39,4 +39,9 @@ public class ProcessingGoodExportOrderDatabaseService : IProcessingGoodExportOrd
         }
 
     }
+    public async Task<List<IssueBasket>> LoadBasket(int FormulaListGoodIssueId)
+    {
+        var basketlist = await _repository.LoadBaseket(FormulaListGoodIssueId);
+        return basketlist;
+    }
 }

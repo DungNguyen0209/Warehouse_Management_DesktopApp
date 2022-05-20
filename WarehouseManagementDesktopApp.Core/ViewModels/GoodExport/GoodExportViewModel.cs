@@ -70,8 +70,16 @@ public class GoodExportViewModel : BaseViewModel
             OnPropertyChanged();
             if (FormulaPlannedList.Count() > 0 && _selectedIndexItem != -1)
             {
+                if(FormulaPlannedList[_selectedIndexItem].IsFinished == true)
+                {
+                    // Add 1 beacause database save from 1
+                    SortBasketIsChoosenInDatabase(_selectedIndexItem+1);
+                }
+                else
+                {
                 ChoosenItemId = FormulaPlannedList[_selectedIndexItem].ProductId;
                 SortBasket();
+                }
             }
         }
     }
@@ -89,8 +97,10 @@ public class GoodExportViewModel : BaseViewModel
         }
     }
 
-    public bool searchFlag { get; private set; }
-    public bool updateContainerFlag { get; private set; }
+    public bool searchFlag { get; set; }
+    public bool updateContainerFlag { get; set; }
+    public bool finishUpdateDataBaseFlag { get; set; }
+    public bool finishPostServerFlag { get; set; }
 
     public GoodExportViewModel(DialogGoodIssueViewModel dialogGoodIssue, IProcessingGoodExportOrderDatabaseService processingGoodExportOrderDatabaseService, IExcelExporter excelExporter, IMapper mapper, IApiService apiService)
     {
@@ -165,7 +175,7 @@ public class GoodExportViewModel : BaseViewModel
                     {
                         MessageBox messageBox = new MessageBox()
                         {
-                            ContentText = result.Error.Message,
+                            ContentText = "Kiểm tra lại mã đơn chưa có trên Server!",
                             IsWarning = true
                         };
                         messageBox.Show();
@@ -175,7 +185,7 @@ public class GoodExportViewModel : BaseViewModel
                 {
                     MessageBox messageBox = new MessageBox()
                     {
-                        ContentText = "Vui lòng điền thông tin đơn nhập kho",
+                        ContentText = "Vui lòng điền thông tin đơn xuất kho",
                         IsWarning = true
                     };
                     messageBox.Show();
@@ -279,49 +289,51 @@ public class GoodExportViewModel : BaseViewModel
     //}
     private async void PostServerGoodIssue()
     {
-
-        GoodIssueEntry goodIssueEntry = new GoodIssueEntry()
+        await RunCommandAsync(finishPostServerFlag, async () =>
         {
-            entries = new List<ProductEntry>(),
-        };
-        goodIssueEntry.goodsIssueId = GoodIssueId;
-        goodIssueEntry.timestamp = DateTime.Now.ToString("yyyy-MM-dd");
-        foreach (var item in FormulaPlannedList)
-        {
-            var converitem = _mapper.Map<ProductEntry>(item);
-            var check = String.IsNullOrEmpty(item.PlannedMass);
-            if (String.IsNullOrEmpty(item.PlannedMass))
+            GoodIssueEntry goodIssueEntry = new GoodIssueEntry()
             {
-                converitem.TotalQuantity = Convert.ToInt16(item.PlannedQuantity);
+                entries = new List<ProductEntry>(),
+            };
+            goodIssueEntry.goodsIssueId = GoodIssueId;
+            goodIssueEntry.timestamp = DateTime.Now.ToString("yyyy-MM-dd");
+            foreach (var item in FormulaPlannedList)
+            {
+                var converitem = _mapper.Map<ProductEntry>(item);
+                var check = String.IsNullOrEmpty(item.PlannedMass);
+                if (String.IsNullOrEmpty(item.PlannedMass))
+                {
+                    converitem.TotalQuantity = Convert.ToInt16(item.PlannedQuantity);
+                }
+                else
+                {
+                    converitem.TotalQuantity = Convert.ToDouble(item.PlannedMass);
+                }
+                goodIssueEntry.entries.Add(converitem);
+            }
+            var result = await _apiService.PostGoodsIssue(goodIssueEntry);
+            if (result.Success)
+            {
+                MessageBox messageBox = new MessageBox()
+                {
+                    IsWarning = false,
+                    ContentText = "Truy xuất thành công"
+                };
+                messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                messageBox.Show();
+                ClearAllView();
             }
             else
             {
-                converitem.TotalQuantity = Convert.ToDouble(item.PlannedMass);
+                MessageBox messageBox = new MessageBox()
+                {
+                    IsWarning = false,
+                    ContentText = result.Error.Message
+                };
+                messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                messageBox.Show();
             }
-            goodIssueEntry.entries.Add(converitem);
-        }
-        var result = await _apiService.PostGoodsIssue(goodIssueEntry);
-        if (result.Success)
-        {
-            MessageBox messageBox = new MessageBox()
-            {
-                IsWarning = false,
-                ContentText = "Truy xuất thành công"
-            };
-            messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            messageBox.Show();
-            ClearAllView();
-        }
-        else
-        {
-            MessageBox messageBox = new MessageBox()
-            {
-                IsWarning = false,
-                ContentText = result.Error.Message
-            };
-            messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            messageBox.Show();
-        }
+        });
     }
     #region testing
     private void Testing()
@@ -346,7 +358,7 @@ public class GoodExportViewModel : BaseViewModel
         });
     }
     #endregion
-    private void FinishEntryIssue()
+    private async void FinishEntryIssue()
     {
         if (SumActual == FormulaPlannedList[_selectedIndexItem].Actual)
         {
@@ -439,6 +451,21 @@ public class GoodExportViewModel : BaseViewModel
             IssueBasketList = issueBaskets;
         }
     }
+    private async void SortBasketIsChoosenInDatabase(int SelectedIndex)
+    {
+        var basketlist = await _processingGoodExportOrderDatabaseService.LoadBasket(SelectedIndex);
+        if(basketlist!= null)
+        {
+            IssueBasketList.Clear();
+            RangeObservableCollection<IssueBasketForViewModel> issuelist = new RangeObservableCollection<IssueBasketForViewModel>();
+            foreach(var basket in basketlist)
+            {
+                issuelist.Add(_mapper.Map<IssueBasketForViewModel>(basket));
+            }
+            IssueBasketList = issuelist;
+        }
+    }
+
 
     private async void Search()
     {
@@ -537,7 +564,7 @@ public class GoodExportViewModel : BaseViewModel
     }
     private void EditGoodIssueInDatabase()
     {
-        if (ProcessingGoodExportOrder.formulaListGoodIssues.Count()>0)
+        if (ProcessingGoodExportOrder.formulaListGoodIssues.Count() > 0)
         {
             this.ProcessingGoodExportOrder.formulaListGoodIssues[_selectedIndexItem].Baskets.Clear();
             foreach (var item in IssueBasketList)
@@ -552,11 +579,29 @@ public class GoodExportViewModel : BaseViewModel
 
     }
 
+    private void EditFormualaInDatabase()
+    {
+        if (FormulaPlannedList.Count() > 0)
+        {
+            for (int i = 0; i < FormulaPlannedList.Count(); i++)
+            {
+                ProcessingGoodExportOrder.formulaListGoodIssues[i].Actual = FormulaPlannedList[i].Actual;
+                ProcessingGoodExportOrder.formulaListGoodIssues[i].IsFinished = FormulaPlannedList[i].IsFinished;
+
+            }
+        }
+
+    }
+
     private async void UpdateDatabase()
     {
-        this.ProcessingGoodExportOrder.orderId = GoodIssueId;
-        EditGoodIssueInDatabase();
-        _processingGoodExportOrderDatabaseService.Update(this.ProcessingGoodExportOrder);
+        await RunCommandAsync(finishUpdateDataBaseFlag, async () =>
+        {
+            this.ProcessingGoodExportOrder.orderId = GoodIssueId;
+            EditFormualaInDatabase();
+            EditGoodIssueInDatabase();
+            _processingGoodExportOrderDatabaseService.Update(this.ProcessingGoodExportOrder);
+        });
     }
     private async void LoadData()
     {

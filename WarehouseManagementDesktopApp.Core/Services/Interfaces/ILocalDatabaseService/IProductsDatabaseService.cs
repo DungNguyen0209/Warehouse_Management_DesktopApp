@@ -6,6 +6,7 @@ namespace WarehouseManagementDesktopApp.Core.Services.Interfaces.ILocalDatabaseS
 public interface IProductsDatabaseService
 {
      Task<IList<Product>>? LoadSuggestName(string firstname);
-     void Clear();
+     Task<IList<Product>>? LoadAllProduct();
+    void Clear();
     void Insert(List<Product> products);
 }

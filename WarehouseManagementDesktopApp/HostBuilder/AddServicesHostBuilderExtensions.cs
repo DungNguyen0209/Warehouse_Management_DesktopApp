@@ -11,9 +11,12 @@ namespace WarehouseManagementDesktopApp.HostBuilder
             host.ConfigureServices(services =>
 
             {
+                // Store
                 services.AddTransient<NavigationStore>();
                 services.AddSingleton<GoodReceiptNavigationStore>();
                 services.AddSingleton<MainStore>();
+                services.AddSingleton<ProductStore>();
+                // Service
                 services.AddSingleton<WebBrowserContainer>();
                 services.AddSingleton<IGoodSlotService, GoodSlotService>();
                 services.AddSingleton<IExcelExporter, ExcelExporterService>();
@@ -45,7 +48,7 @@ namespace WarehouseManagementDesktopApp.HostBuilder
                 }));
                 services.AddSingleton<IStartProgramService, StartProgramService>((services =>
                 {
-                    return new StartProgramService(services.GetRequiredService<IApiService>(), services.GetRequiredService<IProductsDatabaseService>(), services.GetRequiredService<IMapper>(), services.GetRequiredService<WebBrowserContainer>(), services.GetRequiredService<IOidcClientService>());
+                    return new StartProgramService(services.GetRequiredService<IApiService>(), services.GetRequiredService<IProductsDatabaseService>(), services.GetRequiredService<IMapper>(), services.GetRequiredService<WebBrowserContainer>(), services.GetRequiredService<IOidcClientService>(),services.GetRequiredService<ProductStore>());
                 }));
             });
 

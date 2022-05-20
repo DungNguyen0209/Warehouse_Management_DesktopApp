@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
 41220254270
 3-1838325022
-143-268033457
+1441426448915
 2441200280137
 ComponentUI\Cabinet.xaml;ComponentUI\ControlBar.xaml;ComponentUI\EmptyCabinet.xaml;ComponentUI\MessageBox.xaml;
 
-False
+True
 

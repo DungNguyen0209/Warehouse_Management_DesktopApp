@@ -25,6 +25,12 @@ public class ProcessingGoodExportOrderRepository : IProcessingGoodExportOrderRep
         return data;
     }
 
+    public async Task<List<IssueBasket>> LoadBaseket(int id)
+    {
+        var baskets = await _context.issueBaskets.Where(s => s.FormulaListGoodIssueId == id).ToListAsync();
+        return baskets;
+    }
+
     public async Task UpdateAsync(ProcessingGoodExportOrder data)
     {
         //foreach(var)

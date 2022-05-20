@@ -47,6 +47,9 @@ namespace Persistence.SqliteDB.Migrations
                     b.Property<string>("Actual")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("PlannedMass")
                         .IsRequired()
                         .HasColumnType("TEXT");
