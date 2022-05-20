@@ -70,15 +70,15 @@ public class GoodExportViewModel : BaseViewModel
             OnPropertyChanged();
             if (FormulaPlannedList.Count() > 0 && _selectedIndexItem != -1)
             {
-                if(FormulaPlannedList[_selectedIndexItem].IsFinished == true)
+                if (FormulaPlannedList[_selectedIndexItem].IsFinished == true)
                 {
                     // Add 1 beacause database save from 1
-                    SortBasketIsChoosenInDatabase(_selectedIndexItem+1);
+                    SortBasketIsChoosenInDatabase(_selectedIndexItem + 1);
                 }
                 else
                 {
-                ChoosenItemId = FormulaPlannedList[_selectedIndexItem].ProductId;
-                SortBasket();
+                    ChoosenItemId = FormulaPlannedList[_selectedIndexItem].ProductId;
+                    SortBasket();
                 }
             }
         }
@@ -114,6 +114,8 @@ public class GoodExportViewModel : BaseViewModel
             ContentText = "You are Confirm",
             Icon = PackIconKind.Warning,
         };
+        MessageBox.Cancel += OpenDiaLog;
+        MessageBox.Confirm += OpenDiaLog;
         this.ProcessingGoodExportOrder = new ProcessingGoodExportOrder()
         {
             orderId = GoodIssueId,
@@ -374,6 +376,10 @@ public class GoodExportViewModel : BaseViewModel
         UpdateDatabase();
 
     }
+    private void OpenDiaLog()
+    {
+        IsMessageDialogOpen = true;
+    }
 
     private void CaculateActual()
     {
@@ -454,11 +460,11 @@ public class GoodExportViewModel : BaseViewModel
     private async void SortBasketIsChoosenInDatabase(int SelectedIndex)
     {
         var basketlist = await _processingGoodExportOrderDatabaseService.LoadBasket(SelectedIndex);
-        if(basketlist!= null)
+        if (basketlist != null)
         {
             IssueBasketList.Clear();
             RangeObservableCollection<IssueBasketForViewModel> issuelist = new RangeObservableCollection<IssueBasketForViewModel>();
-            foreach(var basket in basketlist)
+            foreach (var basket in basketlist)
             {
                 issuelist.Add(_mapper.Map<IssueBasketForViewModel>(basket));
             }
@@ -469,82 +475,95 @@ public class GoodExportViewModel : BaseViewModel
 
     private async void Search()
     {
-        await RunCommandAsync(searchFlag, async () =>
+        if (!String.IsNullOrEmpty(GoodIssueId))
         {
 
-            _processingGoodExportOrderDatabaseService.Delete();
-            var data = await _apiService.GetGoodsIssueById(GoodIssueId);
-            if (data.Success)
+            await RunCommandAsync(searchFlag, async () =>
             {
-                if (data.Resource == null)
+
+                _processingGoodExportOrderDatabaseService.Delete();
+                var data = await _apiService.GetGoodsIssueById(GoodIssueId);
+                if (data.Success)
                 {
-                    MessageBox messageBox = new MessageBox()
+                    if (data.Resource == null)
                     {
-                        ContentText = "Vui lòng kiểm tra lại đơn xuất kho",
-                        IsWarning = false,
-                    };
-                    messageBox.Show();
-                }
-                else
-                {
-
-                    var result = data.Resource;
-                    RangeObservableCollection<FormulaListInGoodIssueForViewModel> list = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
-                    if (result != null && result.entries.Count() > 0 && result.entries != null)
-                    {
-
-                        foreach (var item in result.entries)
-                        {
-                            EUnit unit = item.item.unit;
-                            if (unit == EUnit.Kilogram)
-                            {
-
-                                FormulaListInGoodIssueForViewModel formulaitem = new FormulaListInGoodIssueForViewModel();
-                                formulaitem.ProductId = item.item.itemId;
-                                formulaitem.ProductName = item.item.name;
-                                formulaitem.PlannedQuantity = "";
-                                formulaitem.PlannedMass = Convert.ToString(item.TotalQuantity);
-                                list.Add(formulaitem);
-                            }
-                            else
-                            {
-                                FormulaListInGoodIssueForViewModel formulaitem = new FormulaListInGoodIssueForViewModel();
-                                formulaitem.ProductId = item.item.itemId;
-                                formulaitem.ProductName = item.item.name;
-                                formulaitem.PlannedQuantity = Convert.ToString(item.TotalQuantity);
-                                formulaitem.PlannedMass = "";
-                                list.Add(formulaitem);
-                            }
-                        }
-                        FormulaPlannedList = list;
-                        IssueBasketList.Clear();
                         MessageBox messageBox = new MessageBox()
                         {
-                            ContentText = "Truy xuất thành công",
+                            ContentText = "Vui lòng kiểm tra lại đơn xuất kho",
                             IsWarning = false,
                         };
                         messageBox.Show();
                     }
                     else
                     {
-                        MessageBox messageBox = new MessageBox()
+
+                        var result = data.Resource;
+                        RangeObservableCollection<FormulaListInGoodIssueForViewModel> list = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
+                        if (result != null && result.entries.Count() > 0 && result.entries != null)
                         {
-                            ContentText = data.Error.Message,
-                            IsWarning = false,
-                        };
-                        messageBox.Show();
+
+                            foreach (var item in result.entries)
+                            {
+                                EUnit unit = item.item.unit;
+                                if (unit == EUnit.Kilogram)
+                                {
+
+                                    FormulaListInGoodIssueForViewModel formulaitem = new FormulaListInGoodIssueForViewModel();
+                                    formulaitem.ProductId = item.item.itemId;
+                                    formulaitem.ProductName = item.item.name;
+                                    formulaitem.PlannedQuantity = "";
+                                    formulaitem.PlannedMass = Convert.ToString(item.TotalQuantity);
+                                    list.Add(formulaitem);
+                                }
+                                else
+                                {
+                                    FormulaListInGoodIssueForViewModel formulaitem = new FormulaListInGoodIssueForViewModel();
+                                    formulaitem.ProductId = item.item.itemId;
+                                    formulaitem.ProductName = item.item.name;
+                                    formulaitem.PlannedQuantity = Convert.ToString(item.TotalQuantity);
+                                    formulaitem.PlannedMass = "";
+                                    list.Add(formulaitem);
+                                }
+                            }
+                            FormulaPlannedList = list;
+                            IssueBasketList.Clear();
+                            MessageBox messageBox = new MessageBox()
+                            {
+                                ContentText = "Truy xuất thành công",
+                                IsWarning = false,
+                            };
+                            messageBox.Show();
+                        }
+                        else
+                        {
+                            MessageBox messageBox = new MessageBox()
+                            {
+                                ContentText = data.Error.Message,
+                                IsWarning = false,
+                            };
+                            messageBox.Show();
+                        }
                     }
                 }
-            }
-            else
-            {
-                MessageBox messageBox = new MessageBox()
+                else
                 {
-                    ContentText = "Mã đơn không tìm thấy !",
-                    IsWarning = false,
-                };
-            }
-        });
+                    MessageBox messageBox = new MessageBox()
+                    {
+                        ContentText = "Mã đơn không tìm thấy !",
+                        IsWarning = false,
+                    };
+                }
+            });
+        }
+        else
+        {
+            MessageBox messageBox = new MessageBox()
+            {
+                ContentText = "Vui lòng điền thông tin đơn xuất kho !",
+                IsWarning = false,
+            };
+            messageBox.Show();
+        }
     }
     private void EditFormulaInDatabase()
     {

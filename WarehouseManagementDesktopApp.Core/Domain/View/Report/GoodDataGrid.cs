@@ -13,4 +13,5 @@ public class GoodDataGrid
     public string ProductName { get; set; }
     public string TotalQuantity { get; set; }
     public string Unit { get; set; }
+    public string note { get; set; }
 }

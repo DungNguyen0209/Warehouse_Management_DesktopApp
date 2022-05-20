@@ -83,7 +83,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                     MessageBox messageBox = new MessageBox()
                     {
                         IsWarning = true,
-                        ContentText = "Lỗi Trong Qúa Trình Truy Xuất Server"
+                        ContentText = result.Error.Message,
                     };
                     messageBox.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                     messageBox.Show();

@@ -1,16 +1,17 @@
-﻿<UserControl x:Class="WarehouseManagementDesktopApp.Resources.Components.EmptyCube"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Resources.Components"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="WarehouseManagementDesktopApp.Resources.Components.EmptyCube"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WarehouseManagementDesktopApp.Resources.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
     <Grid>
         <Viewport3D>
             <Viewport3D.Camera>
-                <PerspectiveCamera Position="5,5,5"
-                                   LookDirection="-1,-1,-1" />
+                <PerspectiveCamera LookDirection="-1,-1,-1" Position="5,5,5" />
             </Viewport3D.Camera>
             <Viewport3D.Children>
                 <ModelVisual3D>
@@ -27,9 +28,10 @@
                                     <DiffuseMaterial Brush="Red" />
                                 </GeometryModel3D.Material>
                                 <GeometryModel3D.Geometry>
-                                    <MeshGeometry3D Positions="1,1,1 -1,1,1 -1,-1,1 1,-1,1"
-                                                    TextureCoordinates="1,1 0,1 0,0 1,0"
-                                                    TriangleIndices="0 1 2 0 2 3" />
+                                    <MeshGeometry3D
+                                        Positions="1,1,1 -1,1,1 -1,-1,1 1,-1,1"
+                                        TextureCoordinates="1,1 0,1 0,0 1,0"
+                                        TriangleIndices="0 1 2 0 2 3" />
                                 </GeometryModel3D.Geometry>
                             </GeometryModel3D>
 
@@ -38,9 +40,10 @@
                                     <DiffuseMaterial Brush="#F54245" />
                                 </GeometryModel3D.Material>
                                 <GeometryModel3D.Geometry>
-                                    <MeshGeometry3D Positions="1,1,-1 -1,1,-1 -1,1,1 1,1,1"
-                                                    TextureCoordinates="0,0 1,0 1,1 0,1"
-                                                    TriangleIndices="0 1 2 0 2 3" />
+                                    <MeshGeometry3D
+                                        Positions="1,1,-1 -1,1,-1 -1,1,1 1,1,1"
+                                        TextureCoordinates="0,0 1,0 1,1 0,1"
+                                        TriangleIndices="0 1 2 0 2 3" />
                                 </GeometryModel3D.Geometry>
                             </GeometryModel3D>
 
@@ -50,9 +53,10 @@
                                     <DiffuseMaterial Brush="#f54266" />
                                 </GeometryModel3D.Material>
                                 <GeometryModel3D.Geometry>
-                                    <MeshGeometry3D Positions="1,-1,1 1,-1,-1 1,1,-1 1,1,1"
-                                                    TextureCoordinates="1,1 0,1 0,0 1,0"
-                                                    TriangleIndices="0 1 2 0 2 3" />
+                                    <MeshGeometry3D
+                                        Positions="1,-1,1 1,-1,-1 1,1,-1 1,1,1"
+                                        TextureCoordinates="1,1 0,1 0,0 1,0"
+                                        TriangleIndices="0 1 2 0 2 3" />
                                 </GeometryModel3D.Geometry>
                             </GeometryModel3D>
                         </Model3DGroup>

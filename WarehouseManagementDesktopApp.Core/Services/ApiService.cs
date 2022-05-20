@@ -515,7 +515,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
                     case HttpStatusCode.BadRequest:
                         string responseBody = await response.Content.ReadAsStringAsync();
                         var serverError = JsonConvert.DeserializeObject<ServerError>(responseBody);
-                        var error = new Error("Api.GoodsReceipts.Post", serverError.Message);
+                        var error = new Error("Api.GoodsReceipts.Post", "Vui lòng kiểm tra đơn nhập kho");
                         return ServiceResponse.Failed(error);
                     case HttpStatusCode.Unauthorized:
                         error = new Error("Api.GoodsReceipts.Post", "Vui lòng đăng nhập.");

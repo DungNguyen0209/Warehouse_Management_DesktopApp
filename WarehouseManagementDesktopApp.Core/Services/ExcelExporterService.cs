@@ -65,7 +65,7 @@ public class ExcelExporterService : IExcelExporter
             Error error = new Error
             {
                 ErrorCode = "ReadExcel Error",
-                Message = ex.ToString()
+                Message = "Đường dẫn báo cáo không hợp lệ"
             };
             return ServiceResponse.Failed(error);
         }
@@ -104,7 +104,7 @@ public class ExcelExporterService : IExcelExporter
         //package = new ExcelPackage(new FileInfo("Template_XK.xlsx"));
         //// lấy ra sheet đầu tiên để thao tác
         //worksheet = package.Workbook.Worksheets[0];
-        ReadExcelFile("Template_XK.xlsx");
+        ReadExcelFile("Template_XK_rổ.xlsx");
         try
         {
             int i = 1;
@@ -138,6 +138,71 @@ public class ExcelExporterService : IExcelExporter
             {
                 ErrorCode = "EditExcel",
                 Message = ex.ToString()
+            };
+            return ServiceResponse.Failed(error);
+        }
+    }
+    // id is represent for issue 1 or receipt=0 
+    private async Task<ServiceResponse> EditReportExcel(RangeObservableCollection<GoodDataGrid> GoodsList, int id)
+    {
+        //package = new ExcelPackage(new FileInfo("Template_XK.xlsx"));
+        //// lấy ra sheet đầu tiên để thao tác
+        //worksheet = package.Workbook.Worksheets[0];
+        ServiceResponse readExcelrespone;
+        if (id == 0)
+        {
+
+             readExcelrespone = ReadExcelFile("Template_NK.xlsx");
+        }
+        else
+        {
+           readExcelrespone =  ReadExcelFile("Template_XK.xlsx");
+        }
+        if(readExcelrespone.Success)
+        {
+
+        try
+        {
+            int i = 1;
+            foreach (var item in GoodsList)
+            {
+                worksheet.Cells["B" + Convert.ToString(10 + i)].Value = i;
+                worksheet.Cells["C" + Convert.ToString(10 + i)].Value = item.ProductId;
+                worksheet.Cells["D" + Convert.ToString(10 + i)].Value = item.ProductName;
+                if (item.Unit == "Kg")
+                {
+
+                    worksheet.Cells["E" + Convert.ToString(10 + i)].Value = item.TotalQuantity;
+                }
+                else
+                {
+                    worksheet.Cells["F" + Convert.ToString(10 + i)].Value = item.TotalQuantity;
+                }
+                worksheet.Cells["G" + Convert.ToString(10 + i)].Value = item.note;
+                
+                i++;
+            }
+
+
+
+            return ServiceResponse.Successful();
+        }
+        catch (Exception ex)
+        {
+            Error error = new Error
+            {
+                ErrorCode = "EditExcel",
+                Message = ex.ToString()
+            };
+            return ServiceResponse.Failed(error);
+        }
+        }
+        else
+        {
+             Error error = new Error
+            {
+                ErrorCode = "ReadExcel Error",
+                Message = "Đường dẫn báo cáo không hợp lệ"
             };
             return ServiceResponse.Failed(error);
         }
@@ -179,12 +244,6 @@ public class ExcelExporterService : IExcelExporter
             // nếu đường dẫn null hoặc rỗng thì báo không hợp lệ và return hàm
             if (string.IsNullOrEmpty(filePath))
             {
-                MessageBox messageBox = new MessageBox()
-                {
-                    ContentText = "Đường dẫn báo cáo không hợp lệ",
-                    IsWarning = true,
-                };
-                messageBox.Show();
                 Error error = new Error
                 {
                     ErrorCode = "ExportExcel",
@@ -237,5 +296,26 @@ public class ExcelExporterService : IExcelExporter
             }
         }
 
+    }
+    public async Task<ServiceResponse> ExporTReportOrder(RangeObservableCollection<GoodDataGrid> ContainerEntry, int id)
+    {
+        var step2 = await EditReportExcel(ContainerEntry,id);
+
+        if (step2.Success != true)
+        {
+            return step2;
+        }
+        else
+        {
+        var step3 = await ExportExcelFile();
+            if (step3.Success != true)
+            {
+                return step3;
+            }
+            else
+            {
+                return ServiceResponse.Successful();
+            }
+        }
     }
 }

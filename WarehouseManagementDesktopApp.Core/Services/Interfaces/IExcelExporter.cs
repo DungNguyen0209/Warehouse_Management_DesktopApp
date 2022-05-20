@@ -6,4 +6,5 @@ public interface IExcelExporter
 
     ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> ReadReceipt();
     Task<ServiceResponse> ExportGoodIssue(RangeObservableCollection<ContainerIssueEntry> ContainerEntry);
+    Task<ServiceResponse> ExporTReportOrder(RangeObservableCollection<GoodDataGrid> ContainerEntry, int id);
 }

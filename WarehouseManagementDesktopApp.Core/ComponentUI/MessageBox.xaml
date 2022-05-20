@@ -48,13 +48,15 @@
                                         </Style>
                                     </materialDesign:PackIcon.Style>
                                 </materialDesign:PackIcon>
-                                <WrapPanel>
+                                <WrapPanel HorizontalAlignment="Center">
                                     <TextBlock
                                         Margin="5"
                                         HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
                                         FontWeight="DemiBold"
                                         Style="{StaticResource HeadingText}"
-                                        Text="{Binding ContentText, ElementName=root}" />
+                                        Text="{Binding ContentText, ElementName=root}"
+                                        TextWrapping="Wrap" />
                                 </WrapPanel>
                             </StackPanel>
 
@@ -70,13 +72,13 @@
                         Grid.Row="4"
                         Width="170"
                         Height="50"
-                        FontWeight="Bold"
                         Background="WhiteSmoke"
                         BorderThickness="0"
-                        Foreground="{StaticResource SistrainColorBrush}"
                         Click="Button_Click"
                         Command="{Binding ConfirmCommand}"
                         FontSize="25"
+                        FontWeight="Bold"
+                        Foreground="{StaticResource SistrainColorBrush}"
                         IsDefault="True"
                         Style="{StaticResource MaterialDesignFlatButton}">
                         Xác Nhận

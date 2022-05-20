@@ -320,21 +320,23 @@
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Width="260"
-                                                        Binding="{Binding Quantity, Mode=TwoWay}">
+                                    <DataGridTextColumn Width="260" Binding="{Binding Quantity, Mode=TwoWay}">
 
                                         <DataGridTextColumn.HeaderTemplate>
                                             <DataTemplate>
-                                                <StackPanel Margin="0,4,0,2"
-                                                            HorizontalAlignment="Center"
-                                                            Orientation="Horizontal">
-                                                    <TextBlock Padding="0,0,5,5"
-                                                               FontSize="25"
-                                                               Text="Số Lượng (bộ/cái)" />
-                                                    <fa:FontAwesome Height="30"
-                                                                    Margin="5,10,0,-2"
-                                                                    Foreground="#FF68EB48"
-                                                                    Icon="ArrowDown" />
+                                                <StackPanel
+                                                    Margin="0,4,0,2"
+                                                    HorizontalAlignment="Center"
+                                                    Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Padding="0,0,5,5"
+                                                        FontSize="25"
+                                                        Text="Số Lượng (bộ/cái)" />
+                                                    <fa:FontAwesome
+                                                        Height="30"
+                                                        Margin="5,10,0,-2"
+                                                        Foreground="#FF68EB48"
+                                                        Icon="ArrowDown" />
                                                 </StackPanel>
                                             </DataTemplate>
                                         </DataGridTextColumn.HeaderTemplate>
@@ -343,21 +345,15 @@
                                         </DataGridTextColumn.Foreground>
                                         <DataGridTextColumn.ElementStyle>
                                             <Style TargetType="TextBlock">
-                                                <Setter Property="HorizontalAlignment"
-                                                        Value="Center" />
-                                                <Setter Property="Background"
-                                                        Value="Transparent" />
-                                                <Setter Property="IsEnabled"
-                                                        Value="False" />
-                                                <Setter Property="Height"
-                                                        Value="25" />
-                                                <Setter Property="FontSize"
-                                                        Value="20" />
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="FontSize" Value="20" />
                                             </Style>
                                         </DataGridTextColumn.ElementStyle>
                                     </DataGridTextColumn>
-                                    <DataGridTextColumn Width="200"
-                                                        Binding="{Binding Unit}">
+                                    <DataGridTextColumn Width="200" Binding="{Binding Unit}">
 
                                         <DataGridTextColumn.HeaderTemplate>
                                             <DataTemplate>
@@ -365,7 +361,7 @@
                                                     <TextBlock
                                                         Padding="0,0,5,5"
                                                         FontSize="25"
-                                                               Text="Đơn vị" />
+                                                        Text="Đơn vị" />
                                                     <fa:FontAwesome
                                                         Height="30"
                                                         Margin="5,10,0,-2"
@@ -399,13 +395,28 @@
                     </ScrollViewer>
                 </materialDesign:Card>
                 <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Button
                         Width="200"
                         Height="80"
+                        Margin="100,0,0,0"
                         Command="{Binding PostServerExcel}"
                         FontSize="30"
                         Style="{StaticResource MenuButton}">
                         Hoàn Thành
+                    </Button>
+                    <Button
+                        Grid.Column="1"
+                        Width="200"
+                        Height="80"
+                        Margin="0,0,100,0"
+                        Command="{Binding ExcelExport}"
+                        FontSize="30"
+                        Style="{StaticResource MenuButton}">
+                        Xuất Excel
                     </Button>
                 </Grid>
             </Grid>

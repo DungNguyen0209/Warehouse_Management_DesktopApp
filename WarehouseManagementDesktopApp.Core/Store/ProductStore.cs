@@ -20,6 +20,7 @@ public class ProductStore : BaseViewModel
         get => _productId;
         set
         {
+
             _productId = value;
             OnPropertyChanged();
             ProductChanged();
