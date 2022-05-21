@@ -52,9 +52,14 @@ public partial class MessageBox : Window
 
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private async void Button_Click(object sender, RoutedEventArgs e)
     {
-        root.Close();
+        try
+        {
+            await Task.Delay(500);
+            root.Close();
+        }
+        catch { }
     }
 
     private void root_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -114,8 +114,8 @@ public class GoodExportViewModel : BaseViewModel
             ContentText = "You are Confirm",
             Icon = PackIconKind.Warning,
         };
-        MessageBox.Cancel += OpenDiaLog;
-        MessageBox.Confirm += OpenDiaLog;
+        MessageBox.Cancel += CloseDialog;
+        MessageBox.Confirm += CloseDialog;
         this.ProcessingGoodExportOrder = new ProcessingGoodExportOrder()
         {
             orderId = GoodIssueId,
@@ -380,7 +380,10 @@ public class GoodExportViewModel : BaseViewModel
     {
         IsMessageDialogOpen = true;
     }
-
+    private void CloseDialog()
+    {
+        IsMessageDialogOpen = false;
+    }
     private void CaculateActual()
     {
         int sum = 0;
@@ -616,10 +619,16 @@ public class GoodExportViewModel : BaseViewModel
     {
         await RunCommandAsync(finishUpdateDataBaseFlag, async () =>
         {
-            this.ProcessingGoodExportOrder.orderId = GoodIssueId;
-            EditFormualaInDatabase();
-            EditGoodIssueInDatabase();
-            _processingGoodExportOrderDatabaseService.Update(this.ProcessingGoodExportOrder);
+            try
+            {
+
+                this.ProcessingGoodExportOrder.orderId = GoodIssueId;
+                EditFormualaInDatabase();
+                EditGoodIssueInDatabase();
+                _processingGoodExportOrderDatabaseService.Update(this.ProcessingGoodExportOrder);
+            }
+            catch (Exception ex)
+            { }
         });
     }
     private async void LoadData()
@@ -659,6 +668,13 @@ public class GoodExportViewModel : BaseViewModel
         FormulaPlannedList.Clear();
         IssueBasketList.Clear();
         GoodIssueId = "";
+        try
+        {
+
+            UpdateDatabase();
+        }
+        catch (Exception ex)
+        { }
 
     }
 }

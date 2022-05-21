@@ -121,6 +121,9 @@
                 <ColumnDefinition Width="1.75*" />
                 <ColumnDefinition Width="8.25*" />
             </Grid.ColumnDefinitions>
+            <Viewbox>
+                
+            </Viewbox>
             <Grid
                 x:Name="Heading_panel"
                 Grid.Column="0"
@@ -143,24 +146,27 @@
                         <Image
                             x:Name="img1"
                             Grid.Row="0"
-                            Width="120"
-                            Height="120"
+                            Width="100"
+                            Height="100"
                             Source="/Resources/images/BK_Logo.jpg"
                             Stretch="Uniform" />
 
                     </WrapPanel>
-                    <Grid Height="15" />
-                    <Label
-                        HorizontalAlignment="Center"
-                        Content="{Binding Username}"
-                        FontSize="24"
-                        FontWeight="Heavy"
-                        Foreground="{StaticResource WordLightBlueBrush}" />
-                    <Grid Height="5" />
+
+                    <Grid Height="10" />
+                    <Viewbox>
+                        
+                    </Viewbox>
+                    <Label HorizontalAlignment="Center"
+                           Content="{Binding Username}"
+                           FontSize="20"
+                           FontWeight="Heavy"
+                           Foreground="{StaticResource WordLightBlueBrush}" />
+
                     <Label
                         HorizontalAlignment="Center"
                         Content="{Binding Role}"
-                        FontSize="20"
+                        FontSize="15"
                         FontWeight="Heavy"
                         Foreground="{StaticResource WordLightBlueBrush}" />
                 </StackPanel>

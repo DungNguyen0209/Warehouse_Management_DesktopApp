@@ -70,7 +70,6 @@
                             Height="40"
                             Background="WhiteSmoke"
                             BorderThickness="0"
-                            Click="Button_Click"
                             Command="{Binding CancelCommand}"
                             FontSize="15"
                             IsDefault="True"

@@ -16,5 +16,5 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 2441200280137
 ComponentUI\Cabinet.xaml;ComponentUI\ControlBar.xaml;ComponentUI\EmptyCabinet.xaml;ComponentUI\MessageBox.xaml;
 
-True
+False
 

@@ -8,12 +8,24 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private readonly IMapper _mapper;
         private RangeObservableCollection<ProcessingGoodIssue> _processingGoodIssues = new RangeObservableCollection<ProcessingGoodIssue>();
         private RangeObservableCollection<ContainerIssueEntry> _containerSources = new RangeObservableCollection<ContainerIssueEntry>();
-        private int _selectedIndexGoodIssue=0;
-        public RangeObservableCollection<ProcessingGoodIssue> ProcessingGoodIssue { get => _processingGoodIssues; set { _processingGoodIssues = value;
-                
-                OnPropertyChanged(); } }
-        public RangeObservableCollection<ContainerIssueEntry> IssueContainerSources { get => _containerSources; set { _containerSources = value; 
-                OnPropertyChanged(); } }
+        private int _selectedIndexGoodIssue = 0;
+        public RangeObservableCollection<ProcessingGoodIssue> ProcessingGoodIssue
+        {
+            get => _processingGoodIssues; set
+            {
+                _processingGoodIssues = value;
+
+                OnPropertyChanged();
+            }
+        }
+        public RangeObservableCollection<ContainerIssueEntry> IssueContainerSources
+        {
+            get => _containerSources; set
+            {
+                _containerSources = value;
+                OnPropertyChanged();
+            }
+        }
         public int SelectedIndexGoodIssue
         {
             get => _selectedIndexGoodIssue;
@@ -27,48 +39,62 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
 
         private async Task SortContainer()
         {
-            var goodIssue = await _apiService.GetGoodsIssueById(ProcessingGoodIssue[SelectedIndexGoodIssue].Id);
-            if (goodIssue.Success)
+            try
             {
-                if (goodIssue.Resource != null && goodIssue.Resource.entries!=null)
+
+                var goodIssue = await _apiService.GetGoodsIssueById(ProcessingGoodIssue[SelectedIndexGoodIssue].Id);
+                if (goodIssue.Success)
                 {
-                    var containers = new RangeObservableCollection<ContainerIssueEntry>();
-                    foreach (var item in goodIssue.Resource.entries)
+                    if (goodIssue.Resource != null && goodIssue.Resource.entries != null)
                     {
-                        foreach (var itemmini in item.containers)
+                        var containers = new RangeObservableCollection<ContainerIssueEntry>();
+                        if (goodIssue.Resource.entries != null)
                         {
-                            var ContainerLocation = await _apiService.GetContainerById(itemmini.containerId);
-                            var issuecontainer = _mapper.Map<ContainerIssueEntry>(ContainerLocation.Resource);
-                            issuecontainer.Quantity = Convert.ToString(item.TotalQuantity);
-                            if(item.item.unit == EUnit.Kilogram)
+                            foreach (var item in goodIssue.Resource.entries)
                             {
-                                issuecontainer.Unit = "Kg";
+                                foreach (var itemmini in item.containers)
+                                {
+                                    var ContainerLocation = await _apiService.GetContainerById(itemmini.containerId);
+                                    if (ContainerLocation.Resource != null)
+                                    {
+
+                                        var issuecontainer = _mapper.Map<ContainerIssueEntry>(ContainerLocation.Resource);
+                                        issuecontainer.Quantity = Convert.ToString(item.TotalQuantity);
+                                        if (item.item.unit == EUnit.Kilogram)
+                                        {
+                                            issuecontainer.Unit = "Kg";
+                                        }
+                                        else
+                                        {
+                                            issuecontainer.Unit = "Bộ/Cái";
+                                        }
+                                        containers.Add(issuecontainer);
+                                    }
+                                }
                             }
-                            else
-                            {
-                                issuecontainer.Unit = "Bộ/Cái";
-                            }
-                            containers.Add(issuecontainer);
+                            IssueContainerSources = containers;
+
                         }
                     }
-                    IssueContainerSources = containers;
+                }
+                else
+                {
+                    MessageBox messageBox = new MessageBox()
+                    {
+                        ContentText = "Vui lòng thử lại !",
+                        IsWarning = false
+                    };
+                    messageBox.Show();
                 }
             }
-            else
-            {
-                MessageBox messageBox = new MessageBox()
-                {
-                    ContentText = "Vui lòng thử lại !",
-                    IsWarning = false
-                };
-                messageBox.Show();
-            }
+            catch (Exception ex)
+            { }
         }
 
         public ICommand ReloadCommand { get; set; }
         public ICommand FinishCommand { get; set; }
         public ICommand ExcelExportCommand { get; set; }
-        public bool ExcelExportFlag { get;  set; }
+        public bool ExcelExportFlag { get; set; }
 
         public ProcessingGoodExportViewModel(IApiService apiService, IMapper mapper, IExcelExporter excelExporter)
         {
@@ -84,39 +110,39 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private async Task ExportExcel()
         {
 
-                var result =await _excelExporter.ExportGoodIssue(IssueContainerSources);
-                if(result.Success)
+            var result = await _excelExporter.ExportGoodIssue(IssueContainerSources);
+            if (result.Success)
+            {
+                MessageBox messageBox = new MessageBox()
                 {
-                    MessageBox messageBox = new MessageBox()
-                    {
-                        ContentText = "Xuất thành công !",
-                        IsWarning = false
-                    };
-                    messageBox.Show();
-                }
-                else
+                    ContentText = "Xuất thành công !",
+                    IsWarning = false
+                };
+                messageBox.Show();
+            }
+            else
+            {
+                MessageBox messageBox = new MessageBox()
                 {
-                    MessageBox messageBox = new MessageBox()
-                    {
-                        ContentText = "Xuất thất bại !",
-                        IsWarning = true
-                    };
-                    messageBox.Show();
-                }
+                    ContentText = "Xuất thất bại !",
+                    IsWarning = true
+                };
+                messageBox.Show();
+            }
         }
 
         private async void Finish()
         {
             var goodIssueId = ProcessingGoodIssue[SelectedIndexGoodIssue].Id;
-            if(goodIssueId != null)
+            if (goodIssueId != null)
             {
                 List<string> containers = new List<string>();
-                foreach(var item in IssueContainerSources)
+                foreach (var item in IssueContainerSources)
                 {
                     containers.Add(item.containerId);
                 }
                 var confirmResult = await _apiService.PatchConFirmGoodsIssue(goodIssueId, containers);
-                if(confirmResult.Success)
+                if (confirmResult.Success)
                 {
                     ProcessingGoodIssue.Clear();
                     IssueContainerSources.Clear();

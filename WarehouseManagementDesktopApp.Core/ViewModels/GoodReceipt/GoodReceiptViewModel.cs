@@ -32,7 +32,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             get { return date; }
             set { date = value; OnPropertyChanged(); }
         }
-        public ObservableCollection<string> ProductIdSource { get => productIdSource; set { productIdSource = value; OnPropertyChanged();} }
+        public ObservableCollection<string> ProductIdSource { get => productIdSource; set { productIdSource = value; OnPropertyChanged(); } }
         public string GoodReceiptId { get => _goodReceiptId; set { _goodReceiptId = value; OnPropertyChanged(); } }
         public string ProductId { get => _productId; set { _productId = value; OnPropertyChanged(); } }
 
@@ -133,7 +133,6 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                 }
                 else
                 {
-                    var confirm = await _apiService.PatchConFirmGoodsReceipts(GoodReceiptId);
                     MessageBox messageBox = new MessageBox()
                     {
                         ContentText = "Kiểm tra lại thông tin rổ !",
@@ -154,7 +153,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             await RunCommandAsync(searchFlag, async () =>
             {
 
-                var requestItem = await _apiService.GetProductbyId(AutoCompleteTextBoxDC.Text);
+                var requestItem = await _apiService.GetProductbyId(ProductId);
                 if (requestItem.Success)
                 {
                     if (requestItem.Resource == null)
@@ -192,7 +191,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                 GoodsReceiptForViewModel item = new GoodsReceiptForViewModel()
                 {
                     containerId = BasketId,
-                    itemId = AutoCompleteTextBoxDC.Text,
+                    itemId = ProductId,
                     name = ProductName,
                     ProductionDate = this.Date.ToString("yyyy-MM-dd"),
                     plannedQuantity = PlannedQuantity,
@@ -239,7 +238,9 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                 GoodsReceiptList[SelectedIndexItem].plannedQuantity = PlannedQuantity;
                 GoodsReceiptList[SelectedIndexItem].actualQuantity = ActualQuantity;
                 GoodsReceiptList[SelectedIndexItem].containerId = BasketId;
-
+                GoodsReceiptList[SelectedIndexItem].itemId = ProductId;
+                GoodsReceiptList[SelectedIndexItem].name = ProductName;
+                // cap nhat len giao dien
                 CollectionViewSource.GetDefaultView(GoodsReceiptList).Refresh();
 
             });
@@ -249,13 +250,19 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             await RunCommandAsync(saveFlag, async () =>
             {
                 await Task.Delay(1);
+                try
+                {
+                    BasketId = _goodsReceiptList[SelectedIndexItem].containerId;
+                    ProductId = _goodsReceiptList[SelectedIndexItem].itemId;
+                    ProductName = _goodsReceiptList[SelectedIndexItem].name;
+                    PlannedQuantity = _goodsReceiptList[SelectedIndexItem].plannedQuantity;
+                    ActualQuantity = _goodsReceiptList[SelectedIndexItem].actualQuantity;
+                    Date = Convert.ToDateTime(_goodsReceiptList[SelectedIndexItem].ProductionDate);
+                }
+                catch
+                {
 
-                BasketId = _goodsReceiptList[SelectedIndexItem].containerId;
-                ProductId = _goodsReceiptList[SelectedIndexItem].itemId;
-                ProductName = _goodsReceiptList[SelectedIndexItem].name;
-                PlannedQuantity = _goodsReceiptList[SelectedIndexItem].plannedQuantity;
-                ActualQuantity = _goodsReceiptList[SelectedIndexItem].actualQuantity;
-                Date = Convert.ToDateTime(_goodsReceiptList[SelectedIndexItem].ProductionDate);
+                }
 
             });
         }

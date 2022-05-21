@@ -166,7 +166,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             ServiceResponse result;
             var json = JsonConvert.SerializeObject(resource);
             try
-            {
+            {   
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 string url = $"{serverUrl}/api/items/";
                 var response = await _httpClient.PostAsync(url, content);

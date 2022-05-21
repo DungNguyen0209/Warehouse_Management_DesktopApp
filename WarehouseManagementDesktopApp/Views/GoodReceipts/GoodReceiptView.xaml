@@ -151,6 +151,7 @@
                                               materialDesign:HintAssist.Hint="Mã Hàng"
                                               IsEditable="True"
                                               FontSize="15"
+                                              Text="{Binding ProductId}"
                                               ItemsSource="{Binding ProductIdSource,UpdateSourceTrigger=PropertyChanged}"
                                               Style="{StaticResource MaterialDesignFloatingHintComboBox}" />
                                 </Grid>
@@ -359,7 +360,6 @@
                             Margin="5,5,5,10"
                             HorizontalAlignment="Center"
                             CanUserReorderColumns="False"
-                            IsEnabled="False"
                             ItemsSource="{Binding GoodsReceiptList, Mode=TwoWay}"
                             SelectedIndex="{Binding SelectedIndexItem, Mode=TwoWay}"
                             Style="{StaticResource DataGrid}">

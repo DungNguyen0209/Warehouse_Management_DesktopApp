@@ -235,7 +235,7 @@ public class UpdateGoodLocationViewModel : BaseViewModel
                 maximumStockLevel = Convert.ToDouble(maximumStockLevel),
                 unit = (EUnit)unit,
                 itemSource = (EItemSource)itemSource,
-                managerId = "nhmd"
+                managerId = "nhmdung"
             };
             var responenewitem = await _apiService.PostNewProduct(newitem);
             if (responenewitem.Success)

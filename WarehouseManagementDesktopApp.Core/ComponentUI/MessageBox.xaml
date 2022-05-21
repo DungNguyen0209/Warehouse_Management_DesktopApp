@@ -72,7 +72,7 @@
                         Grid.Row="4"
                         Width="170"
                         Height="50"
-                        Background="WhiteSmoke"
+                            Background="#DDDDDD"
                         BorderThickness="0"
                         Click="Button_Click"
                         Command="{Binding ConfirmCommand}"

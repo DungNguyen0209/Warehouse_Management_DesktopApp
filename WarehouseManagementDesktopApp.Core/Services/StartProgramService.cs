@@ -53,16 +53,21 @@ public class StartProgramService : IStartProgramService
             foreach (var item in fullproduct)
             {
                 var itemdata = _mapper.Map<Persistence.SqliteDB.Model.Product>(item);
-
-                products.Add(itemdata);
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-                Dispatcher.CurrentDispatcher.Invoke(new Action(() =>
+                try
                 {
+
+                    products.Add(itemdata);
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                    Dispatcher.CurrentDispatcher.Invoke(new Action(() =>
+                    {
                     // code...
-                _productStore.ProductId.Add(item.itemId);
-                _productStore.ProductName.Add(item.name);
-                }));
+                    _productStore.ProductId.Add(item.itemId);
+                        _productStore.ProductName.Add(item.name);
+                    }));
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                }
+                catch (Exception ex)
+                { }
             }
             _productsDatabaseService.Clear();
             await Task.Run(() => _productsDatabaseService.Insert(products));
