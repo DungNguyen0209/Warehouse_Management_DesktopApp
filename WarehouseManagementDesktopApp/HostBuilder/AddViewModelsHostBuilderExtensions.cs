@@ -34,7 +34,7 @@
                 services.AddSingleton<UpdateGoodLocationViewModel>(
                     (IServiceProvider serviceprovider) =>
                     {
-                        return new UpdateGoodLocationViewModel(serviceprovider.GetRequiredService<IApiService>());
+                        return new UpdateGoodLocationViewModel(serviceprovider.GetRequiredService<IApiService>(),serviceprovider.GetRequiredService<ProductStore>());
                     });
                 services.AddSingleton<ProcessingGoodExportViewModel>();
                 services.AddSingleton<ReportViewModel>();

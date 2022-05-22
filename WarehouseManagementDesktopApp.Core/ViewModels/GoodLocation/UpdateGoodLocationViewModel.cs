@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Threading;
 using WarehouseManagementDesktopApp.Core.Service.ComponentUIServices;
 
 namespace WarehouseManagementDesktopApp.Core.ViewModels;
@@ -6,6 +7,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels;
 public class UpdateGoodLocationViewModel : BaseViewModel
 {
     private readonly IApiService _apiService;
+    private readonly ProductStore _productStore;
     public ICommand SearchCommand { get; set; }
     public ICommand ConfirmCommand { get; set; }
     public ICommand InsertNewItem { get; set; }
@@ -79,9 +81,10 @@ public class UpdateGoodLocationViewModel : BaseViewModel
     public ContentControl Content { get => _contentControl; set { _contentControl = value; OnPropertyChanged(); } }
 
 
-    public UpdateGoodLocationViewModel(IApiService apiService)
+    public UpdateGoodLocationViewModel(IApiService apiService, ProductStore productStore)
     {
         _apiService = apiService;
+        _productStore = productStore;
         ShelfInformation = new Shelf() { shelfId = "" };
         SearchCommand = new RelayCommand(async () => SearchSelf());
         ConfirmCommand = new RelayCommand(async () => UpdateGood());
@@ -89,12 +92,22 @@ public class UpdateGoodLocationViewModel : BaseViewModel
         LocationCardItemList = new LocationCardItemListViewModel();
         GoodLocationUpdateDialog = new GoodLocationUpdateDialogViewModel();
         UpdateLocationCardViewModel = new GoodLocationUpdateDialogViewModel();
+        UpdateLocationCardViewModel.ProductIdSource = _productStore.ProductId;
+        UpdateLocationCardViewModel.ProductNameSource = _productStore.ProductName;
         UpdateitemSource = new List<UpdateSliceItem>();
+        GoodLocationUpdateDialog.ProductIdSource = _productStore.ProductId;
+        GoodLocationUpdateDialog.ProductNameSource = _productStore.ProductName;
+        _productStore.ProductUpdate += UpdateProduct;
         GoodLocationUpdateDialog.Complete += UpdateItem;
         UpdateLocationCardViewModel.Complete += UpdateCard;
-
     }
-
+    private void UpdateProduct()
+    {
+        GoodLocationUpdateDialog.ProductIdSource = _productStore.ProductId;
+        GoodLocationUpdateDialog.ProductNameSource = _productStore.ProductName;
+        UpdateLocationCardViewModel.ProductIdSource = _productStore.ProductId;
+        UpdateLocationCardViewModel.ProductNameSource = _productStore.ProductName;
+    }
     private async void UpdateCard(string productName, string productId, string piecesPerKilogram, string minimumStockLevel, string maximumStockLevel, int unit, int itemSource)
     {
         var productInfo =await _apiService.GetProductbyId(productId);
@@ -129,7 +142,10 @@ public class UpdateGoodLocationViewModel : BaseViewModel
     {
         IsDialogOpen = true;
     }
-
+    private void CloseInsertItemDialog()
+    {
+        IsDialogOpen = false;
+    }
     private async void UpdateGood()
     {
         List<int> idsliceError = new List<int>();
@@ -261,7 +277,40 @@ public class UpdateGoodLocationViewModel : BaseViewModel
                     IsWarning = false,
                 };
                 messageBox.Show();
+                CloseInsertItemDialog();
+                var newProductSource = await _apiService.GetAllProduct();
+                if(newProductSource.Success)
+                {
+                    if(newProductSource.Resource != null)
+                    {
+                        ObservableCollection<string> productIdlist = new ObservableCollection<string>();
+                        ObservableCollection<string> productNamelist = new ObservableCollection<string>();
+                        foreach (var item in newProductSource.Resource.Items)
+                        {
+                        productIdlist.Add(item.itemId);
+                        productNamelist.Add(item.name);
 
+                        }
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                    Dispatcher.CurrentDispatcher.Invoke(new Action(() =>
+                    {
+                        _productStore.ProductName = productNamelist;
+                        _productStore.ProductId = productIdlist;
+                    }));
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox messageBoxUpdate = new MessageBox()
+                    {
+                        ContentText = "Gặp lỗi khi cập nhật lại thông tin sản phẩm vui lòng chạy lại phần mềm",
+                        IsWarning = false,
+                    };
+                    messageBoxUpdate.Show();
+                }
 
             }
             else

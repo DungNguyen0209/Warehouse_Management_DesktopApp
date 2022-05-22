@@ -82,8 +82,8 @@
                                     <TextBox
                                         Width="150"
                                         Height="40"
-                                             FontSize="17"
-                                             Style="{StaticResource MaterialDesignTextBox}"
+                                        FontSize="17"
+                                        Style="{StaticResource MaterialDesignTextBox}"
                                         Text="{Binding ProductName}" />
                                 </Grid>
                             </Grid>
@@ -99,8 +99,8 @@
                                     <TextBox
                                         Width="150"
                                         Height="40"
-                                             FontSize="17"
-                                             Style="{StaticResource MaterialDesignTextBox}"
+                                        FontSize="17"
+                                        Style="{StaticResource MaterialDesignTextBox}"
                                         Text="{Binding PiecesPerKilogram}" />
                                 </Grid>
                             </Grid>
@@ -116,8 +116,8 @@
                                     <TextBox
                                         Width="150"
                                         Height="40"
-                                             FontSize="17"
-                                             Style="{StaticResource MaterialDesignTextBox}"
+                                        FontSize="17"
+                                        Style="{StaticResource MaterialDesignTextBox}"
                                         Text="{Binding MinimumStockLevel}" />
                                 </Grid>
                             </Grid>
@@ -133,8 +133,8 @@
                                     <TextBox
                                         Width="150"
                                         Height="40"
-                                             FontSize="17"
-                                             Style="{StaticResource MaterialDesignTextBox}"
+                                        FontSize="17"
+                                        Style="{StaticResource MaterialDesignTextBox}"
                                         Text="{Binding MaximumStockLevel}" />
                                 </Grid>
                             </Grid>
@@ -150,9 +150,10 @@
                                     <ComboBox
                                         Width="150"
                                         Height="40"
+                                        Padding="0,-10,0,0"
+                                        FontSize="17"
                                         IsEditable="True"
-                                              FontSize="17"
-                                              SelectedIndex="{Binding Unit}"
+                                        SelectedIndex="{Binding Unit}"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                         <ComboBoxItem IsSelected="True">
                                             Cái
@@ -175,8 +176,9 @@
                                     <ComboBox
                                         Width="150"
                                         Height="40"
-                                              FontSize="17"
-                                              IsEditable="True"
+                                        Padding="0,-10,0,0"
+                                        FontSize="17"
+                                        IsEditable="True"
                                         SelectedIndex="{Binding ItemSource}"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                         <ComboBoxItem IsSelected="True">

@@ -58,11 +58,17 @@
                                     <TextBlock FontSize="20" Style="{StaticResource Parameter}">Mã Sản Phẩm</TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <TextBox
-                                        Width="150"
-                                        Height="40"
-                                        Style="{StaticResource TextBoxNormal}"
-                                        Text="{Binding ProductId}" />
+                                    <ComboBox x:Name="ProductIdtb"
+                                              Width="150"
+                                              Height="40"
+                                              Padding="0,-10,0,0"
+                                              materialDesign:HintAssist.Hint="Mã Hàng"
+                                              FontSize="17"
+                                              IsEditable="True"
+                                              ItemsSource="{Binding ProductIdSource, UpdateSourceTrigger=PropertyChanged}"
+                                              SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}"
+                                              Style="{StaticResource ComboBoxStyle}"
+                                              Text="{Binding ProductId}" />
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="1">
@@ -74,11 +80,17 @@
                                     <TextBlock FontSize="20" Style="{StaticResource Parameter}">Tên Sản Phẩm</TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <TextBox
-                                        Width="150"
-                                        Height="40"
-                                        Style="{StaticResource TextBoxNormal}"
-                                        Text="{Binding ProductName}" />
+                                    <ComboBox Width="150"
+                                              Height="40"
+                                              materialDesign:HintAssist.Hint="Tên Hàng"
+                                              Margin="25,5,25,5"
+                                              Padding="0,-10,0,0"
+                                              FontSize="17"
+                                              IsEditable="True"
+                                              ItemsSource="{Binding ProductNameSource, UpdateSourceTrigger=PropertyChanged}"
+                                              Text="{Binding ProductName}"
+                                              SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}"
+                                              Style="{StaticResource ComboBoxStyle}" />
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="7">

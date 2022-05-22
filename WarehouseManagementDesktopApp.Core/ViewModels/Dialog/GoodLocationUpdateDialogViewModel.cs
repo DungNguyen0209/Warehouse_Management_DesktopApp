@@ -11,6 +11,13 @@ public class GoodLocationUpdateDialogViewModel : BaseViewModel
     private string? _maximumStockLevel = string.Empty;
     private int _unit = 0;
     private int _itemSource = 0;
+    private int selectedIndex = 0;
+    private ObservableCollection<string> productNameSource = new ObservableCollection<string>();
+    private ObservableCollection<string> productIdSource = new ObservableCollection<string>();
+
+    public int SelectedIndex { get => selectedIndex; set { selectedIndex = value; OnPropertyChanged(); } }
+    public ObservableCollection<string> ProductIdSource { get { return productIdSource; } set { productIdSource = value; OnPropertyChanged(); } }
+    public ObservableCollection<string> ProductNameSource { get { return productNameSource; } set { productNameSource = value; OnPropertyChanged(); } }
     public string ProductId { get=> _productId; set { _productId = value;OnPropertyChanged(); } }
     public string ProductName { get=> _productName; set { _productName = value; OnPropertyChanged(); } }
     public string MinimumStockLevel { get => _minimumStockLevel; set { _minimumStockLevel = value; OnPropertyChanged(); } }

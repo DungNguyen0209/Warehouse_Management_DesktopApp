@@ -15,17 +15,17 @@ public class GoodLocationViewModel : BaseViewModel
     private string _name;
     private string _testdepth;
     private int selectedIndex = 0;
-    private ObservableCollection<string> productNameSource = new ObservableCollection<string>();
     private ContentControl _contentControl = new ContentControl();
-    private ObservableCollection<string> productIdSource;
+    private ObservableCollection<string> productNameSource = new ObservableCollection<string>();
+    private ObservableCollection<string> productIdSource = new ObservableCollection<string>();
     public int SelectedIndex { get => selectedIndex; set { selectedIndex = value; OnPropertyChanged(); } }
     public ObservableCollection<string> ProductIdSource { get { return productIdSource; } set { productIdSource = value; OnPropertyChanged(); } }
     public ObservableCollection<string> ProductNameSource { get { return productNameSource; } set { productNameSource = value; OnPropertyChanged(); } }
     public string Id { get => _id; set { _id = value; OnPropertyChanged(); } }
     public string Name { get => _name; set { _name = value; OnPropertyChanged(); } }
     public ContentControl Content { get => _contentControl; set { _contentControl = value; OnPropertyChanged(); } }
-    private ObservableCollection<string> locationSource = new ObservableCollection<string>();
     private List<EmptyContainer> emptySlot { get; set; } = new List<EmptyContainer>();
+    private ObservableCollection<string> locationSource = new ObservableCollection<string>();
     public ObservableCollection<string> LocationSource
     {
         get => locationSource;
