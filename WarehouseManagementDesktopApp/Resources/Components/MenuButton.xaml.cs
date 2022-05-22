@@ -19,7 +19,7 @@ namespace WarehouseManagementDesktopApp.Resources.Components
     /// <summary>
     /// Interaction logic for MenuButton.xaml
     /// </summary>
-    public partial class MenuButton : UserControl
+    public partial class MenuButton : UserControl,INotifyPropertyChanged
     {
         #region Icon and Content
         private string _content = String.Empty;
@@ -33,6 +33,51 @@ namespace WarehouseManagementDesktopApp.Resources.Components
                 _content = value;
                 }
             }  
+        }
+        private bool animation1 = true;
+        public bool Animation1 { get => animation1; set { animation1 = value; OnPropertyChanged(); } }
+        private bool animation2 = false;
+        public bool Animation2 { get => animation2; set { animation2 = value; OnPropertyChanged(); } }
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public SolidColorBrush Selected
+        {
+            get { return (SolidColorBrush)GetValue(BackProperty); }
+            set { SetValue(BackProperty, value); }
+        }
+        public static readonly DependencyProperty BackProperty =
+         DependencyProperty.Register("Selected", typeof(SolidColorBrush), typeof(MenuButton), new PropertyMetadata((SolidColorBrush)new BrushConverter().ConvertFrom("#3099c5")));
+        public bool IsEnable
+        {
+            get { return (bool)GetValue(IsEnableProperty); }
+            set { SetValue(IsEnableProperty, value); }
+
+        }
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsEnableProperty =
+            DependencyProperty.RegisterAttached("IsEnable", typeof(bool), typeof(MenuButton), new PropertyMetadata(false, OnRequiredAnimation));
+
+        private static void OnRequiredAnimation(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MenuButton Btn = d as MenuButton;
+            if (e != null)
+            {
+                if (e.NewValue.ToString() == "True")
+                {
+                    Btn.Animation1 = false;
+                    Btn.Animation2 = true;
+                    Btn.Selected = new SolidColorBrush(Colors.White);
+                }
+                else
+                {
+                    Btn.Animation1 = true;
+                    Btn.Animation2 = false;
+                    Btn.Selected = (SolidColorBrush)(Brush)new BrushConverter().ConvertFrom("#45b6e5");
+                }
+            }
         }
         public PackIconKind IconValue
         {

@@ -32,7 +32,7 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
                 <Border CornerRadius="20">
-                    <component:MenuButton Margin="0,20,0,20" ContentText="ĐĂNG XUẤT">
+                    <component:MenuButton Selected="White" Margin="0,20,0,20" ContentText="ĐĂNG XUẤT">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <prism:InvokeCommandAction Command="{Binding LoginViewnavigationCommand}" />

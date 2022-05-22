@@ -151,7 +151,8 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         ProductName = item.item.name,
                         Mass = Convert.ToString(item.plannedQuantity),
                         Quantity ="",
-                        Infomartion = item.note
+                        Infomartion = item.note,
+                        Unit = "Kg"
                     };
                     goodReceiptOrderlist.Add(gooditem);
                 }
@@ -164,7 +165,8 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         ProductName = item.item.name,
                         Quantity = Convert.ToString(item.plannedQuantity),
                         Infomartion = item.note,
-                        Mass =""
+                        Mass ="",
+                        Unit = "Bộ/Cái"
                     };
                     goodReceiptOrderlist.Add(gooditem);
                 }

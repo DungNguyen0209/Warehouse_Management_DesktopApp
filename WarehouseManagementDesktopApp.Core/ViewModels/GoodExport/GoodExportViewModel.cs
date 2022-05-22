@@ -351,12 +351,16 @@ public class GoodExportViewModel : BaseViewModel
         {
             ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> response = _excelExporter.ReadReceipt();
             FormulaPlannedList.Clear();
-            foreach (var item in response.Resource)
+            if (response.Resource != null)
             {
-                var convertitem = _mapper.Map<FormulaListInGoodIssueForViewModel>(item);
-                FormulaPlannedList.Add(convertitem);
+
+                foreach (var item in response.Resource)
+                {
+                    var convertitem = _mapper.Map<FormulaListInGoodIssueForViewModel>(item);
+                    FormulaPlannedList.Add(convertitem);
+                }
+                GoodIssueId = _excelExporter.FilePath;
             }
-            GoodIssueId = _excelExporter.FilePath;
         });
     }
     #endregion
@@ -633,18 +637,24 @@ public class GoodExportViewModel : BaseViewModel
     }
     private async void LoadData()
     {
-        var previousdata = await _processingGoodExportOrderDatabaseService.GetAll();
-        if ((previousdata.Count() > 0) && (previousdata != null))
+        try
         {
-            var data = previousdata.Last();
-            this.ProcessingGoodExportOrder = data;
-            GoodIssueId = data.orderId;
-            RangeObservableCollection<FormulaListInGoodIssueForViewModel> formulaListGoodIssuesprevious = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
-            foreach (var item in data.formulaListGoodIssues)
+            var previousdata = await _processingGoodExportOrderDatabaseService.GetAll();
+            if ((previousdata.Count() > 0) && (previousdata != null))
             {
-                formulaListGoodIssuesprevious.Add(_mapper.Map<FormulaListGoodIssue, FormulaListInGoodIssueForViewModel>(item));
+                var data = previousdata.Last();
+                this.ProcessingGoodExportOrder = data;
+                GoodIssueId = data.orderId;
+                RangeObservableCollection<FormulaListInGoodIssueForViewModel> formulaListGoodIssuesprevious = new RangeObservableCollection<FormulaListInGoodIssueForViewModel>();
+                foreach (var item in data.formulaListGoodIssues)
+                {
+                    formulaListGoodIssuesprevious.Add(_mapper.Map<FormulaListGoodIssue, FormulaListInGoodIssueForViewModel>(item));
+                }
+                this.FormulaPlannedList = formulaListGoodIssuesprevious;
             }
-            this.FormulaPlannedList = formulaListGoodIssuesprevious;
+        }
+        catch { }
+        
             //foreach (var item in data.issueBasketLists)
             //{
             //    ObservableCollection<IssueBasketForViewModel> entry = new ObservableCollection<IssueBasketForViewModel>();
@@ -655,7 +665,6 @@ public class GoodExportViewModel : BaseViewModel
             //    }
             //    issueBasketForViewModelsprevious.Add(entry);
             //}
-        }
 
     }
     //Use When finish the goodIssue

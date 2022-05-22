@@ -95,8 +95,13 @@ public class UpdateGoodLocationViewModel : BaseViewModel
 
     }
 
-    private void UpdateCard(string productName, string productId, string piecesPerKilogram, string minimumStockLevel, string maximumStockLevel, int unit, int itemSource)
+    private async void UpdateCard(string productName, string productId, string piecesPerKilogram, string minimumStockLevel, string maximumStockLevel, int unit, int itemSource)
     {
+        var productInfo =await _apiService.GetProductbyId(productId);
+        if(productInfo.Success)
+        {
+
+        productName = productInfo.Resource.name;
         LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductId = productId;
         LocationCardItemList.Items.FirstOrDefault(x => x.Id == this.ChoosenSliceIdOfCell).ProductName = productName;
         UpdateSliceItem sliceItem = new UpdateSliceItem()
@@ -108,6 +113,16 @@ public class UpdateGoodLocationViewModel : BaseViewModel
             itemid = productId,
         };
         UpdateitemSource.Add(sliceItem);
+        }
+        else
+        {
+            MessageBox messageBox = new MessageBox()
+            {
+                ContentText = "Vui lòng kiểm tra mã sản phẩm !",
+                IsWarning = true
+            };
+            messageBox.Show();
+        }
     }
 
     private void OpenInsertItemDialog()
@@ -376,8 +391,8 @@ public class UpdateGoodLocationViewModel : BaseViewModel
 
             for (int k = 1; k <= column; k++)
             {
-                double marginright = (panel.Width - column * 60 + 30 * (column - 1)) / 2 + (k - 1) * 50;
-                double marginbottom = (panel.Height - row * 50) / 2 + (j - 1) * 25 + 200;
+                double marginright = (panel.Width - column * 80 + 30 * (column - 1)) / 2 + (k - 1) * 60;
+                double marginbottom = (panel.Height - row * 50) / 2 + (j - 1) * 40 + 200;
                 CubeGenerate.CreateBasketForUpdateLocation(panel, marginright, marginbottom);
             }
         }

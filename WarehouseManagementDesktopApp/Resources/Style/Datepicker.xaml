@@ -10,5 +10,6 @@
         <Setter Property="FontSize" Value="20" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Language" Value="vi-VN" />
     </Style>
 </ResourceDictionary>

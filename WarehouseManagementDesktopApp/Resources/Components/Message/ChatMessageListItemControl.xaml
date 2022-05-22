@@ -71,9 +71,11 @@
                     materialDesign:ThemeAssist.Theme="Dark"
                     Background="White"
                     UniformCornerRadius="35">
-                    <Viewbox>
+                    <Grid>
                         <Button
                             Background="Transparent"
+                                Width="{Binding RelativeSource={RelativeSource self},Path=Parent.ActualWidth}"
+                                Height="{Binding RelativeSource={RelativeSource self},Path=Parent.ActualHeight}"
                             BorderBrush="Transparent"
                             Command="{Binding ClickCommand}">
 
@@ -87,7 +89,7 @@
                                 Text="{Binding Message}"
                                 TextWrapping="Wrap" />
                         </Button>
-                    </Viewbox>
+                    </Grid>
                 </materialDesign:Card>
 
 

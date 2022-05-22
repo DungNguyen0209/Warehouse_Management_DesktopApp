@@ -36,6 +36,19 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                 };
             }
         }
+        public int SelectButton { get; set; }
+        private bool isButtonLogin;
+        public bool IsButtonLogin { get => isButtonLogin; set { isButtonLogin = value; OnPropertyChanged(); } }
+        private bool isButtonGoodReceipt;
+        public bool IsButtonGoodReceipt { get => isButtonGoodReceipt; set { isButtonGoodReceipt = value; OnPropertyChanged(); } }
+        private bool isButtonGoodIssue;
+        public bool IsButtonGoodIssue { get => isButtonGoodIssue; set { isButtonGoodIssue = value; OnPropertyChanged(); } }
+        private bool isButtonGoodLocation;
+        public bool IsButtonGoodLocation { get => isButtonGoodLocation; set { isButtonGoodLocation = value; OnPropertyChanged(); } }
+        private bool isButtonReport;
+        public bool IsButtonReport { get => isButtonReport; set { isButtonReport = value; OnPropertyChanged(); } }
+        private bool isButtonHistory;
+        public bool IsButtonHistory { get => isButtonHistory; set { isButtonHistory = value; OnPropertyChanged(); } }
         public ICommand LoggingCommand { get; set; }
         public ICommand GoodReceiptCommand { get; set; }
         public ICommand GoodExportCommand { get; set; }
@@ -64,6 +77,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             GoodlocationCommand = new NavigateCommand(_GoodLocationnavigationService);
             ReportCommand = new NavigateCommand(_ReportnavigationService);
             HistoryCommand = new NavigateCommand(_HistorynavigationService);
+            _navigationStore.CurrentButtonChanged += _navigationStore_CurrentButtonChanged;
             _navigationStore.MainCurrentViewModelChanged += OnCurrentViewModelChanged;
             _startProgramService.FinishLogin += FinishLoging;
             _apiService.LogoutCompleteAction += SignOut;
@@ -92,7 +106,68 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
             };
             messageBox.Show();
         }
+        private void _navigationStore_CurrentButtonChanged()
+        {
+            SelectButton = _navigationStore.SelectButton;
+            SwitchAnimationButton(SelectButton);
+        }
 
+        public void SwitchAnimationButton(int selectButton)
+        {
+            //     CustomMessageBoxWindow cx = new CustomMessageBoxWindow("Đây là Messag Thông số cài đại là Cảnh báo","kkkk", MessageBoxButton.YesNo, MessageBoxImage.Error);
+            //cx.ShowDialog();
+            switch (selectButton)
+            {
+                case 1:
+                    IsButtonLogin = true;
+                    IsButtonGoodReceipt = false;
+                    IsButtonGoodIssue = false;
+                    IsButtonGoodLocation = false;
+                    IsButtonReport = false;
+                    IsButtonHistory = false;
+                    break;
+                case 2:
+                    IsButtonLogin = false;
+                    IsButtonGoodReceipt = true;
+                    IsButtonGoodIssue = false;
+                    IsButtonGoodLocation = false;
+                    IsButtonReport = false;
+                    IsButtonHistory = false;
+                    break;
+                case 3:
+                    IsButtonLogin = false;
+                    IsButtonGoodReceipt = false;
+                    IsButtonGoodIssue = true;
+                    IsButtonGoodLocation = false;
+                    IsButtonReport = false;
+                    IsButtonHistory = false;
+                    break;
+                case 4:
+                    IsButtonLogin = false;
+                    IsButtonGoodReceipt = false;
+                    IsButtonGoodIssue = false;
+                    IsButtonGoodLocation = true;
+                    IsButtonReport = false;
+                    IsButtonHistory = false;
+                    break;
+                case 5:
+                    IsButtonLogin = false;
+                    IsButtonGoodReceipt = false;
+                    IsButtonGoodIssue = false;
+                    IsButtonGoodLocation = false;
+                    IsButtonReport = false;
+                    IsButtonHistory = true;
+                    break;
+                case 6:
+                    IsButtonLogin = false;
+                    IsButtonGoodReceipt = false;
+                    IsButtonGoodIssue = false;
+                    IsButtonGoodLocation = false;
+                    IsButtonReport = true;
+                    IsButtonHistory = false;
+                    break;
+            }
+        }
         private void Close()
         {
             IsDialogOpen = false;

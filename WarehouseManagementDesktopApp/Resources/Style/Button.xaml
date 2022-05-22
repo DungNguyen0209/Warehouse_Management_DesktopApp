@@ -22,7 +22,8 @@
         BasedOn="{StaticResource Flat}"
         TargetType="Button">
         <Setter Property="Background" Value="#FF00294D" />
-        <Setter Property="Width" Value="auto" />
+        <Setter Property="Width"
+                Value="auto" />
         <Setter Property="FontSize" Value="20pt" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Cursor" Value="Hand" />

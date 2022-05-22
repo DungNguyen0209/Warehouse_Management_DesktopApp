@@ -19,6 +19,8 @@ public class GoodReceiptOrderForViewModel
 
     [DisplayName("Khối lượng")]
     public string? Mass { get; set; }
+    [DisplayName("Đơn vị")]
+    public string? Unit { get; set; }
 
     [DisplayName("Thông tin sản xuất")]
     public string? Infomartion { get; set; }

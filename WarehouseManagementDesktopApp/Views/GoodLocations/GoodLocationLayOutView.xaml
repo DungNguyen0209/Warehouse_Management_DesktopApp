@@ -29,19 +29,44 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button
-                Grid.Column="0"
-                Margin="0,0,1,0"
-                Command="{Binding GooLocationnavigationCommand}"
-                Style="{StaticResource MenuButton}">
-                Kiểm Tra Vị Trí
+            <Button Grid.Column="0"
+                    Margin="0,0,1,0"
+                    Content="Kiểm Tra Vị Trí"
+                    Command="{Binding GooLocationnavigationCommand}">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource MenuButton}"
+                           TargetType="Button">
+                        <Setter Property="Background"
+                                Value="{StaticResource SistrainColorBrush}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsButtonGoodLocation}"
+                                         Value="True">
+                                <Setter Property="Background"
+                                        Value="{StaticResource WordBlueBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
             <Button
                 Grid.Column="1"
                 Margin="1,0,0,1"
-                Command="{Binding UpdateGoodLocationnavigationCommand}"
-                Style="{StaticResource MenuButton}">
-                Cập Nhật Vị Trí
+                    Content="Cập Nhật Vị Trí"
+                Command="{Binding UpdateGoodLocationnavigationCommand}">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource MenuButton}"
+                           TargetType="Button">
+                        <Setter Property="Background"
+                                Value="{StaticResource SistrainColorBrush}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsButtonUpdateGoodLocation}"
+                                         Value="True">
+                                <Setter Property="Background"
+                                        Value="{StaticResource WordBlueBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </Grid>
         <Viewbox Grid.Row="1">

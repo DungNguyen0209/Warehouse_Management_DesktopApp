@@ -9,6 +9,32 @@
         <Setter Property="EnableColumnVirtualization" Value="False" />
         <Setter Property="CanUserAddRows" Value="False" />
     </Style>
+    <Style
+        x:Key="DataGridColumnHeaderStyle2"
+        BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}"
+        TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="#FF2894C8" />
+        <Setter Property="BorderThickness" Value="0,0,2.5,0" />
+        <Setter Property="BorderBrush" Value="#FFA6E5ED" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontSize" Value="13pt" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="Padding" Value="3" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Regular" />
+        <Style.Triggers>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Foreground" Value="#FFF" />
+                <Setter Property="Background" Value="#FF2894C8" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Background" Value="#B25BABE8" />
+                <Setter Property="BorderBrush" Value="#B25BABE8" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     <Style x:Key="DataGridColumnHeader" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Background" Value="CadetBlue" />
         <Setter Property="FontWeight" Value="DemiBold" />

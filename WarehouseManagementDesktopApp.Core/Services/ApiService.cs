@@ -879,7 +879,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             try
             {
                 var url = $"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=10&StartTime={startDateString}&EndTime={endDateString}";
-                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=10&StartTime={startDateString}&EndTime={endDateString}");
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=1000&StartTime={startDateString}&EndTime={endDateString}");
                 string responseBody = await response.Content.ReadAsStringAsync();
                 switch (response.StatusCode)
                 {
@@ -1023,7 +1023,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
             string endDateString = stopTime.AddDays(1).ToString("yyyy-MM-dd");
             try
             {
-                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=10&StartTime={startDateString}&EndTime={ endDateString}");
+                HttpResponseMessage response = await _httpClient.GetAsync($"{serverUrl}/api/goodsissues/?Page=1&ItemsPerPage=100&StartTime={startDateString}&EndTime={ endDateString}");
                 string responseBody = await response.Content.ReadAsStringAsync();
                 switch (response.StatusCode)
                 {

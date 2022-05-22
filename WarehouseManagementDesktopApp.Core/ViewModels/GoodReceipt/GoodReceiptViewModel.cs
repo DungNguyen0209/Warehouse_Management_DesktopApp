@@ -239,6 +239,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                 GoodsReceiptList[SelectedIndexItem].actualQuantity = ActualQuantity;
                 GoodsReceiptList[SelectedIndexItem].containerId = BasketId;
                 GoodsReceiptList[SelectedIndexItem].itemId = ProductId;
+                GoodsReceiptList[SelectedIndexItem].ProductionDate = Date.ToString("yyyy-MM-dd");
                 GoodsReceiptList[SelectedIndexItem].name = ProductName;
                 // cap nhat len giao dien
                 CollectionViewSource.GetDefaultView(GoodsReceiptList).Refresh();

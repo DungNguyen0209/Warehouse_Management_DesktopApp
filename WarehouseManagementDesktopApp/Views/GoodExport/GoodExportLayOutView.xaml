@@ -9,7 +9,7 @@
     xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
     xmlns:viewmodels="clr-namespace:WarehouseManagementDesktopApp.Core.ViewModels;assembly=WarehouseManagementDesktopApp.Core"
     x:Name="GoodExport"
-             Width="1300.2"
+    Width="1300.2"
     Height="824"
     Background="{DynamicResource MaterialDesignPaper}"
     FontFamily="{DynamicResource MaterialDesignFont}"
@@ -33,15 +33,34 @@
                 Grid.Column="0"
                 Margin="0,0,1,0"
                 Command="{Binding GoodExportnavigationCommand}"
-                Style="{StaticResource MenuButton}">
-                XUẤT KHO
+                Content="XUẤT KHO">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource MenuButton}" TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource SistrainColorBrush}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsButtonGoodReceipt}" Value="True">
+                                <Setter Property="Background" Value="{StaticResource WordBlueBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
+
             <Button
                 Grid.Column="1"
                 Margin="1,0,0,1"
                 Command="{Binding ProcessingGoodExportCommand}"
-                Style="{StaticResource MenuButton}">
-                XỬ LÝ
+                Content="XỬ LÝ">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource MenuButton}" TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource SistrainColorBrush}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsButtonGoodProcess}" Value="True">
+                                <Setter Property="Background" Value="{StaticResource WordBlueBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </Grid>
         <Viewbox Grid.Row="1">

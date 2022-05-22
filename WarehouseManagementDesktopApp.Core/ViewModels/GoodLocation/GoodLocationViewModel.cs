@@ -18,9 +18,9 @@ public class GoodLocationViewModel : BaseViewModel
     private ObservableCollection<string> productNameSource = new ObservableCollection<string>();
     private ContentControl _contentControl = new ContentControl();
     private ObservableCollection<string> productIdSource;
-    public int SelectedIndex { get => selectedIndex; set { selectedIndex = value;OnPropertyChanged(); } }
-    public ObservableCollection<string> ProductIdSource { get { return productIdSource; } set { productIdSource = value;OnPropertyChanged(); } }
-    public ObservableCollection<string> ProductNameSource { get { return productNameSource; } set { productNameSource = value;OnPropertyChanged(); } }
+    public int SelectedIndex { get => selectedIndex; set { selectedIndex = value; OnPropertyChanged(); } }
+    public ObservableCollection<string> ProductIdSource { get { return productIdSource; } set { productIdSource = value; OnPropertyChanged(); } }
+    public ObservableCollection<string> ProductNameSource { get { return productNameSource; } set { productNameSource = value; OnPropertyChanged(); } }
     public string Id { get => _id; set { _id = value; OnPropertyChanged(); } }
     public string Name { get => _name; set { _name = value; OnPropertyChanged(); } }
     public ContentControl Content { get => _contentControl; set { _contentControl = value; OnPropertyChanged(); } }
@@ -136,7 +136,7 @@ public class GoodLocationViewModel : BaseViewModel
         var httprequest = await _apiService.GetContainerByProductId(Id);
         if (httprequest.Success)
         {
-            if(httprequest.Resource.Count()>0)
+            if (httprequest.Resource.Count() > 0)
             {
                 var result = httprequest.Resource;
                 var locations = result.Select(s => s.location).ToList();
@@ -147,15 +147,18 @@ public class GoodLocationViewModel : BaseViewModel
                     ObservableCollection<string> source = new ObservableCollection<string>();
                     foreach (var item in locations)
                     {
-                        string itemsource = $"{item.shelfId}.{item.rowId}.{item.cellId}";
-                        if (!source.Any(s => s == itemsource))
+                        if (item != null)
                         {
-                            source.Add(itemsource);
+
+                            string itemsource = $"{item.shelfId}.{item.rowId}.{item.cellId}";
+                            if (!source.Any(s => s == itemsource))
+                            {
+                                source.Add(itemsource);
+                            }
                         }
 
                     }
                     LocationSource = source;
-                    SelectedIndex = 0;
                     MessageBox messageBox = new MessageBox()
                     {
                         ContentText = "Truy xuất thành công !",
@@ -182,7 +185,7 @@ public class GoodLocationViewModel : BaseViewModel
                 };
                 messageBox.Show();
             }
-            
+
         }
         else
         {

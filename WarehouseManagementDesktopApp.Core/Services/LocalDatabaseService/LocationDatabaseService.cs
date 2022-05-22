@@ -28,11 +28,16 @@ public class LocationDatabaseService : ILocationDatabaseService
             int i = 1;
             foreach (var item in container)
             {
-                var location = _mapper.Map<ContainerLocation>(item);
-                if (!containerLocations.Any(s => s.shelfId == location.shelfId && s.rowId == location.rowId && s.cellId ==location.cellId))
+                if (item != null)
                 {
-                    location.Id = i++;
-                    containerLocations.Add(location);
+
+                    ContainerLocation location = new ContainerLocation();
+                    location = _mapper.Map<ContainerLocation>(item);
+                    if (!containerLocations.Any(s => s.shelfId == location.shelfId && s.rowId == location.rowId && s.cellId == location.cellId))
+                    {
+                        location.Id = i++;
+                        containerLocations.Add(location);
+                    }
                 }
             }
             await _locationRepository.InsertAsync(containerLocations);

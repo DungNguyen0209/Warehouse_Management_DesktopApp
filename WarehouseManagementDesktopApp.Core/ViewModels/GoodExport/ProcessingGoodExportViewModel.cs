@@ -144,7 +144,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                 var confirmResult = await _apiService.PatchConFirmGoodsIssue(goodIssueId, containers);
                 if (confirmResult.Success)
                 {
-                    ProcessingGoodIssue.Clear();
+                    Reload();
                     IssueContainerSources.Clear();
                     MessageBox messageBox = new MessageBox()
                     {
@@ -178,7 +178,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         ProcessingGoodIssue itemprocess = new ProcessingGoodIssue()
                         {
                             Id = item.goodsIssueId,
-                            DateTime = Convert.ToString(item.timestamp),
+                            DateTime = item.timestamp.ToString("yyyy-MM-dd"),
                         };
                         list.Add(itemprocess);
                     }

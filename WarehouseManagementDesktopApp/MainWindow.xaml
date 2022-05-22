@@ -121,9 +121,7 @@
                 <ColumnDefinition Width="1.75*" />
                 <ColumnDefinition Width="8.25*" />
             </Grid.ColumnDefinitions>
-            <Viewbox>
-                
-            </Viewbox>
+            <Viewbox />
             <Grid
                 x:Name="Heading_panel"
                 Grid.Column="0"
@@ -154,14 +152,13 @@
                     </WrapPanel>
 
                     <Grid Height="10" />
-                    <Viewbox>
-                        
-                    </Viewbox>
-                    <Label HorizontalAlignment="Center"
-                           Content="{Binding Username}"
-                           FontSize="20"
-                           FontWeight="Heavy"
-                           Foreground="{StaticResource WordLightBlueBrush}" />
+                    <Viewbox />
+                    <Label
+                        HorizontalAlignment="Center"
+                        Content="{Binding Username}"
+                        FontSize="20"
+                        FontWeight="Heavy"
+                        Foreground="{StaticResource WordLightBlueBrush}" />
 
                     <Label
                         HorizontalAlignment="Center"
@@ -182,7 +179,10 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Style="{StaticResource MenuPanelStyle}">
-                            <component:MenuButton x:Name="Loginbtn" ContentText="TRANG CHỦ">
+                            <component:MenuButton
+                                x:Name="Loginbtn"
+                                ContentText="TRANG CHỦ"
+                                IsEnable="{Binding IsButtonLogin}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <prism:InvokeCommandAction Command="{Binding LoggingCommand}" />
@@ -194,7 +194,8 @@
                             <component:MenuButton
                                 x:Name="Settingbtn"
                                 ContentText="NHẬP KHO"
-                                IconValue="Input">
+                                IconValue="Input"
+                                IsEnable="{Binding IsButtonGoodReceipt}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <prism:InvokeCommandAction Command="{Binding GoodReceiptCommand}" />
@@ -206,7 +207,8 @@
                             <component:MenuButton
                                 x:Name="Supervisorbtn"
                                 ContentText="XUẤT KHO"
-                                IconValue="Truck">
+                                IconValue="Truck"
+                                IsEnable="{Binding IsButtonGoodIssue}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <prism:InvokeCommandAction Command="{Binding GoodExportCommand}" />
@@ -218,7 +220,8 @@
                             <component:MenuButton
                                 x:Name="Reporttn"
                                 ContentText="VỊ TRÍ"
-                                IconValue="Warehouse">
+                                IconValue="Warehouse"
+                                IsEnable="{Binding IsButtonGoodLocation}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <prism:InvokeCommandAction Command="{Binding GoodlocationCommand}" />
@@ -230,7 +233,8 @@
                             <component:MenuButton
                                 x:Name="Alertbtn"
                                 ContentText="LỊCH SỬ"
-                                IconValue="History">
+                                IconValue="History"
+                                IsEnable="{Binding IsButtonHistory}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <prism:InvokeCommandAction Command="{Binding ReportCommand}" />
@@ -242,7 +246,8 @@
                             <component:MenuButton
                                 x:Name="Historybtn"
                                 ContentText="BÁO CÁO"
-                                IconValue="Paper">
+                                IconValue="Paper"
+                                IsEnable="{Binding IsButtonReport}">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">

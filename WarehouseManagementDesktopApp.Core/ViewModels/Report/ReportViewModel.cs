@@ -50,6 +50,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                             if (result.Success)
                             {
                                 ChatMessageList.Items.Clear();
+                                GoodsList.Clear();
                                 var messageList = new ChatMessageListDesignModel();
                                 goodReceiptReports = result.Resource;
                                 foreach (var item in goodReceiptReports.items)

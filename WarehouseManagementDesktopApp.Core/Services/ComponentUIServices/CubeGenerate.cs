@@ -244,8 +244,8 @@ namespace WarehouseManagementDesktopApp.Core.Service.ComponentUIServices
         public static void CreateBasketForUpdateLocation(Canvas canvas, double setRight, double setBottom)
         {
             Cabinet cube = new Cabinet();
-            cube.Height = 60;
-            cube.Width = 60;
+            cube.Height = 80;
+            cube.Width = 80;
             Canvas.SetBottom(cube, setBottom);
             Canvas.SetRight(cube, setRight);
             canvas.Children.Add(cube);

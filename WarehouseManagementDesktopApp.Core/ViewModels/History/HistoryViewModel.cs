@@ -4,11 +4,13 @@
     {
         private readonly IApiService _apiService;
         private readonly IMapper _mapper;
-        public ICommand GetProdcutCommand { get; set; }
+        private readonly ProductStore _productStore;
+        public ICommand GetProductCommand { get; set; }
         private DateTime _startDate = DateTime.Now;
+        private ObservableCollection<string> productIdSource = new ObservableCollection<string>();
         private RangeObservableCollection<Stockcardentries> _stockcardentries = new RangeObservableCollection<Stockcardentries>();
         public RangeObservableCollection<Stockcardentries> Stockcardentries { get => _stockcardentries; set { _stockcardentries = value; OnPropertyChanged(); } }
-
+        public ObservableCollection<string> ProductIdSource { get => productIdSource; set { productIdSource = value; OnPropertyChanged(); } }
         private RangeObservableCollection<WarningStock> warningStockStockcardentries = new RangeObservableCollection<WarningStock>();
         public RangeObservableCollection<WarningStock> WarningStockStockcardentries { get => warningStockStockcardentries; set { warningStockStockcardentries = value; OnPropertyChanged(); } }
         private bool warningItemDataGrid = false;
@@ -51,11 +53,18 @@
         }
 
 
-        public HistoryViewModel(IApiService apiService, IMapper mapper = null)
+        public HistoryViewModel(IApiService apiService, IMapper mapper = null, ProductStore productStore = null)
         {
             _apiService = apiService;
             _mapper = mapper;
-            GetProdcutCommand = new RelayCommand(async () => GetProduct());
+            _productStore = productStore;
+            ProductIdSource = _productStore.ProductId;
+            _productStore.ProductUpdate += UpdateProduct;
+            GetProductCommand = new RelayCommand(async () => GetProduct());
+        }
+        private void UpdateProduct()
+        {
+            ProductIdSource = _productStore.ProductId;
         }
 
         private async void GetProduct()
@@ -74,7 +83,7 @@
                                 Stockcardentries = stockcarlist;
                                 MessageBox messageBox = new MessageBox()
                                 {
-                                    ContentText = "Thành Công",
+                                    ContentText = "Truy xuất Thành Công",
                                     IsWarning = false,
                                 };
                                 messageBox.Show();
@@ -83,7 +92,7 @@
                             {
                                 MessageBox messageBox = new MessageBox()
                                 {
-                                    ContentText = "Truy xuất không thành Công",
+                                    ContentText = "Truy xuất không thành Công !",
                                     IsWarning = true,
                                 };
                                 messageBox.Show();
@@ -116,7 +125,7 @@
                                 WarningStockStockcardentries = stockcarlist;
                                 MessageBox messageBox = new MessageBox()
                                 {
-                                    ContentText = "Thành Công",
+                                    ContentText = "Truy xuất Thành Công",
                                     IsWarning = false,
                                 };
                                 messageBox.Show();
@@ -125,7 +134,7 @@
                             {
                                 MessageBox messageBox = new MessageBox()
                                 {
-                                    ContentText = "Truy xuất không thành Công",
+                                    ContentText = "Truy xuất không thành Công !",
                                     IsWarning = true,
                                 };
                                 messageBox.Show();
@@ -158,7 +167,7 @@
                                 WarningStockStockcardentries = stockcarlist;
                                 MessageBox messageBox = new MessageBox()
                                 {
-                                    ContentText = "Thành Công",
+                                    ContentText = "Truy xuất Thành Công",
                                     IsWarning = false,
                                 };
                                 messageBox.Show();

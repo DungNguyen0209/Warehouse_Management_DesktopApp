@@ -10,6 +10,9 @@
     <Compile Update="Resources\Components\AutoCompleteTextBox.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Resources\Components\ButtonCustom\CustomButtonMenu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Resources\Components\Cabinet.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +97,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Components\AutoCompleteTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Components\ButtonCustom\CustomButtonMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Components\Cabinet.xaml">

@@ -17,32 +17,81 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0"
+                   Fill="{Binding ElementName=root, Path=Selected}"
+                   Margin="0 0 0 0" />
+
         <Button
             x:Name="MainButton"
+            Grid.Column="1"
             HorizontalContentAlignment="Left"
             Click="OnClick"
+            
             Command="{Binding Command}"
-            Cursor="Hand"
-            Style="{StaticResource MenuButton}">
+            Cursor="Hand">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius"
+                            Value="0" />
+                </Style>
+                <Style BasedOn="{StaticResource MenuButton}"
+                       TargetType="Button">
+                    <Setter Property="Background"
+                            Value="{StaticResource SistrainColorBrush}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEnable, ElementName=root}"
+                                     Value="True">
+                            <Setter Property="Background"
+                                    Value="{StaticResource WordLightBlueBrush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Resources>
             <Button.Content>
-                <WrapPanel HorizontalAlignment="Left">
-                    <materialDesign:PackIcon
-                        Width="{Binding Path=ActualWidth, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='0.2'}"
-                        Height="{Binding Path=ActualHeight, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='1'}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Foreground="#fff"
-                        Kind="{Binding IconValue, ElementName=root}"
-                        MouseDown="OnClick" />
-                    <Grid Width="{Binding Path=ActualWidth, ElementName=MainButton, Converter={tools:RatioConverter}, ConverterParameter='0.02'}" />
-                    <TextBlock
-                        x:Name="ContentValue"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        FontSize="{Binding Path=ActualWidth, ElementName=MainButton, Converter={tools:RatioConverter}, ConverterParameter='0.101'}"
-                        Text="{Binding ContentText, ElementName=root}" />
-                </WrapPanel>
+                <Grid>
+                    <WrapPanel HorizontalAlignment="Left" Visibility="{Binding Animation1, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <materialDesign:PackIcon
+                            Width="{Binding Path=ActualWidth, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='0.2'}"
+                            Height="{Binding Path=ActualHeight, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='1'}"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="#fff"
+                            Kind="{Binding IconValue, ElementName=root}"
+                            MouseDown="OnClick" />
+                        <Grid Width="{Binding Path=ActualWidth, ElementName=MainButton, Converter={tools:RatioConverter}, ConverterParameter='0.02'}" />
+                        <TextBlock
+                            x:Name="ContentValue"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="{Binding Path=ActualWidth, ElementName=MainButton, Converter={tools:RatioConverter}, ConverterParameter='0.101'}"
+                            Text="{Binding ContentText, ElementName=root}" />
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Right"
+                               Visibility="{Binding Animation2, ElementName=root, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontSize="{Binding Path=ActualWidth, ElementName=MainButton, Converter={tools:RatioConverter}, ConverterParameter='0.101'}"
+                                   Text="{Binding ContentText, ElementName=root}" />
+                        <Grid Width="{Binding Path=ActualWidth, ElementName=MainButton, Converter={tools:RatioConverter}, ConverterParameter='0.02'}" />
+                        <materialDesign:PackIcon Width="{Binding Path=ActualWidth, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='0.2'}"
+                                                 Height="{Binding Path=ActualHeight, ElementName=root, Converter={tools:RatioConverter}, ConverterParameter='1'}"
+                                                 HorizontalAlignment="Left"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="#fff"
+                                                 Kind="{Binding IconValue, ElementName=root}"
+                                                 MouseDown="OnClick" />
+                    </WrapPanel>
+                </Grid>
             </Button.Content>
         </Button>
     </Grid>
