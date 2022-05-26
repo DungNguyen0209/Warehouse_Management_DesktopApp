@@ -15,10 +15,12 @@ public class GoodLocationViewModel : BaseViewModel
     private string _name;
     private string _testdepth;
     private int selectedIndex = 0;
+    private int selectedIndexLocation = 0;
     private ContentControl _contentControl = new ContentControl();
     private ObservableCollection<string> productNameSource = new ObservableCollection<string>();
     private ObservableCollection<string> productIdSource = new ObservableCollection<string>();
     public int SelectedIndex { get => selectedIndex; set { selectedIndex = value; OnPropertyChanged(); } }
+    public int SelectedIndexLocation { get => selectedIndexLocation; set { selectedIndexLocation = value; OnPropertyChanged(); } }
     public ObservableCollection<string> ProductIdSource { get { return productIdSource; } set { productIdSource = value; OnPropertyChanged(); } }
     public ObservableCollection<string> ProductNameSource { get { return productNameSource; } set { productNameSource = value; OnPropertyChanged(); } }
     public string Id { get => _id; set { _id = value; OnPropertyChanged(); } }
@@ -67,7 +69,7 @@ public class GoodLocationViewModel : BaseViewModel
     private async void DrawCell()
     {
 
-        var data = await _locationDatabaseService.LoadDatabase(SelectedIndex + 1);
+        var data = await _locationDatabaseService.LoadDatabase(SelectedIndexLocation + 1);
         if (data.Success && data.Resource != null)
         {
             var result = await _apiService.GetCell(data.Resource.shelfId, data.Resource.rowId, data.Resource.cellId);

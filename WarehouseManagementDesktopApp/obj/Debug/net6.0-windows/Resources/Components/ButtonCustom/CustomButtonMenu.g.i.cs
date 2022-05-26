@@ -89,8 +89,8 @@ namespace WarehouseManagementDesktopApp.Resources.Components.ButtonCustom {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;component/resources/components/buttoncustom/custom" +
-                    "buttonmenu.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;V1.0.0.0;component/resources/components/buttoncust" +
+                    "om/custombuttonmenu.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Resources\Components\ButtonCustom\CustomButtonMenu.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

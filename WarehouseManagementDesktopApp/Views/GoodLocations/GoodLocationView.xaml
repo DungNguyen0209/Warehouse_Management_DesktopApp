@@ -9,18 +9,18 @@
     xmlns:tools="clr-namespace:WarehouseManagementDesktopApp.Core.ValueConverter.MyApp.Tools;assembly=WarehouseManagementDesktopApp.Core"
     x:Name="GoodLocation"
     Width="1267.2"
-    Height="741.6"
-    Background="{DynamicResource MaterialDesignPaper}"
-    FontFamily="{DynamicResource MaterialDesignFont}"
+    Height="741.6" Background="White"
+    FontFamily="Calibri"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="7*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
@@ -28,112 +28,115 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Margin="0,70,0,0">
+            <Grid Grid.Row="0" Margin="10 20 0 20"
+                  Background="#FFEDEFF0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1.3*" />
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Margin="0,10,0,10">
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="4*" />
                         <ColumnDefinition Width="6*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        FontSize="20"
+                    <TextBlock HorizontalAlignment="Center"
+                        FontSize="25"
                         Style="{StaticResource Parameter}">
                         Mã Sản Phẩm
                     </TextBlock>
-                    <ComboBox
+                    <ComboBox BorderThickness="1"
                         x:Name="ProductIdtb"
                         Grid.Column="1"
-                        Margin="25,5,25,5"
+                        Margin="10 25" Padding="5 10 5 0"
                         materialDesign:HintAssist.Hint="Mã Hàng"
-                        FontSize="17"
+                        FontSize="22"
                         IsEditable="True"
                         ItemsSource="{Binding ProductIdSource, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}"
-                        Style="{StaticResource ComboBoxStyle}"
+                        SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}"
                         Text="{Binding Path=Id}" />
 
                 </Grid>
-                <Grid Grid.Row="1" Margin="0,10,0,10">
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="4*" />
                         <ColumnDefinition Width="6*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        FontSize="20"
-                        Style="{StaticResource Parameter}">
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="25"
+                               Style="{StaticResource Parameter}">
                         Tên Sản Phẩm
                     </TextBlock>
-                    <ComboBox
-                        Grid.Column="1"
-                        materialDesign:HintAssist.Hint="Tên Hàng"
-                              Margin="25,5,25,5"
-                              FontSize="17"
-                        IsEditable="True"
-                        ItemsSource="{Binding ProductNameSource, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}"
-                        Style="{StaticResource ComboBoxStyle}" />
+                    <ComboBox BorderThickness="1"
+                              Grid.Column="1"
+                              Margin="10 25"
+                              Padding="5 10 5 0"
+                              materialDesign:HintAssist.Hint="Tên Hàng"
+                              FontSize="22"
+                              IsEditable="True"
+                              ItemsSource="{Binding ProductNameSource, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedIndex="{Binding SelectedIndex,Mode=TwoWay}"/>
                 </Grid>
                 <Button
-                    Grid.Row="4"
-                    Width="200"
-                    Height="50"
-                    Margin="0,40,0,10"
+                    Grid.Row="3"
+                    Width="210"
+                    Height="70"
                     Command="{Binding SearchCommand}"
                     Style="{StaticResource MenuButton}">
-                    Tìm Kiếm
+                    TÌM KIẾM
                 </Button>
             </Grid>
-            <Grid Grid.Row="1">
-                <StackPanel Margin="0,30,0,0">
-
-                    <Grid Margin="0,10,0,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4*" />
-                            <ColumnDefinition Width="6*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock
-                            Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            FontSize="20"
-                            Style="{StaticResource Parameter}">
-                            Vị Trí
-                        </TextBlock>
-                        <ComboBox
-                            Grid.Column="1"
-                            Width="170"
-                            Height="50"
-                            HorizontalAlignment="Center"
-                            materialDesign:HintAssist.Hint="Vị Trí"
-                            ItemsSource="{Binding LocationSource}"
-                            SelectedIndex="{Binding SelectedIndex}"
-                            Style="{StaticResource ComboBoxStyle}"
-                            Text="{Binding Testdepth}" />
-                    </Grid>
-                    <Button
-                        Grid.Row="4"
-                        Width="200"
-                        Height="50"
-                        Margin="0,40,0,10"
+            <Grid Grid.Row="1"
+                  Margin="10 20 0 20"
+                  Background="#FFEDEFF0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="6*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="25"
+                               Style="{StaticResource Parameter}">
+                            Vị Trí ô hàng
+                    </TextBlock>
+                    <ComboBox BorderThickness="1"
+                              Grid.Column="1"
+                              Margin="10 25"
+                              Padding="5 10 5 0"
+                              materialDesign:HintAssist.Hint="Vị trí"
+                              FontSize="22"
+                              IsEditable="True"
+                              ItemsSource="{Binding LocationSource}"
+                              SelectedIndex="{Binding SelectedIndexLocation}"
+                              Text="{Binding Testdepth}" />
+                </Grid>
+                <Button Grid.Row="1"
+                        Width="210"
+                        Height="70"
                         Command="{Binding DrawingCommand}"
                         Style="{StaticResource MenuButton}">
-                        Kiểm tra
-                    </Button>
-                </StackPanel>
+                    KIỂM TRA
+                </Button>
             </Grid>
         </Grid>
-        <materialDesign:Card
-            x:Name="slotpanel"
-            Grid.Column="1"
-            Margin="20,20,20,20"
-            HorizontalContentAlignment="Center"
-            Content="{Binding Content}" />
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="MÔ PHỎNG VỊ TRÍ Ô HÀNG" Margin="0 15 0 0"
+                       FontWeight="Medium" FontFamily="Arial"  
+                       FontSize="30" HorizontalAlignment="Center"/>
+            <materialDesign:Card x:Name="slotpanel"
+                                 Margin="20" Grid.Row="1"
+                                 HorizontalContentAlignment="Center"
+                                 Content="{Binding Content}" />
+        </Grid>
 
     </Grid>
 </UserControl>

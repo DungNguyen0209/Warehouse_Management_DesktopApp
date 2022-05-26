@@ -98,7 +98,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         {
             IsLoged = true;
             Username = "nhmdung";
-            Role = "Trưởng kho";
+            Role = "Trưởng Kho";
             MessageBox messageBox = new MessageBox()
             {
                 IsWarning = false,

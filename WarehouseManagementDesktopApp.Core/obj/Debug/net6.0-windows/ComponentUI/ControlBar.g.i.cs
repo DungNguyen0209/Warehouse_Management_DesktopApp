@@ -65,7 +65,8 @@ namespace WarehouseManagementDesktopApp.Core.ComponentUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp.Core;component/componentui/controlbar.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp.Core;V1.0.0.0;component/componentui/controlbar.xam" +
+                    "l", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\ComponentUI\ControlBar.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

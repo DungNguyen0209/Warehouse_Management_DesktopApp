@@ -59,7 +59,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                                     {
 
                                         var issuecontainer = _mapper.Map<ContainerIssueEntry>(ContainerLocation.Resource);
-                                        issuecontainer.Quantity = Convert.ToString(item.TotalQuantity);
+                                        issuecontainer.Quantity = goodIssue.Resource.entries.SelectMany(s => s.containers).Distinct().Where(s => s.containerId == issuecontainer.containerId).First().quantity.ToString();
                                         if (item.item.unit == EUnit.Kilogram)
                                         {
                                             issuecontainer.Unit = "Kg";

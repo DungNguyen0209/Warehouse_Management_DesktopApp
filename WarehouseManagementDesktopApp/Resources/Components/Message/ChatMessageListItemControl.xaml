@@ -67,15 +67,15 @@
                 <materialDesign:Card
                     Width="300"
                     Height="80"
-                    Padding="15"
+                    Margin="10,15"
+                    Padding="5,2"
                     materialDesign:ThemeAssist.Theme="Dark"
-                    Background="White"
-                    UniformCornerRadius="35">
+                    Background="White">
                     <Grid>
                         <Button
+                            Width="{Binding RelativeSource={RelativeSource self}, Path=Parent.ActualWidth}"
+                            Height="{Binding RelativeSource={RelativeSource self}, Path=Parent.ActualHeight}"
                             Background="Transparent"
-                                Width="{Binding RelativeSource={RelativeSource self},Path=Parent.ActualWidth}"
-                                Height="{Binding RelativeSource={RelativeSource self},Path=Parent.ActualHeight}"
                             BorderBrush="Transparent"
                             Command="{Binding ClickCommand}">
 
@@ -83,8 +83,8 @@
                                 VerticalAlignment="Center"
                                 Cursor="Hand"
                                 FontFamily="Arial"
-                                FontSize="15"
-                                FontWeight="UltraLight"
+                                FontSize="20"
+                                FontWeight="Medium"
                                 Foreground="{StaticResource SistrainColorBrush}"
                                 Text="{Binding Message}"
                                 TextWrapping="Wrap" />
@@ -116,9 +116,9 @@
 
                     <!--  Sent time  -->
                     <TextBlock
-                        Margin="0,0,15,0"
+                        Margin="0,0,15,5"
                         FontFamily="{StaticResource MaterialDesignFont}"
-                        FontSize="{StaticResource FontSizeSmall}"
+                        FontSize="18"
                         Foreground="{StaticResource SistrainColorBrush}"
                         Text="{Binding MessageSentTime, Converter={converter:TimeToDisplayTimeConverter}}" />
 

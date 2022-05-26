@@ -5,11 +5,13 @@ public class NotifyViewModel: BaseViewModel
     private readonly MainStore _navigationStore;
     private readonly IApiService _apiService;
     private readonly IOidcClientService _clientService;
+    private bool isRequired = false;
     public ViewModel.BaseViewModels.BaseViewModel CurrentViewModel => _navigationStore.CurrentViewModel;
     ObservableCollection<string> WarningStockCards { get; set; } = new ObservableCollection<string>();
     private ChatMessageListDesignModel _chatMessageListDesignModel = new ChatMessageListDesignModel();
     public ChatMessageListDesignModel ChatMessageList { get=>_chatMessageListDesignModel; set { _chatMessageListDesignModel = value;OnPropertyChanged(); } }
     public ICommand LoginViewnavigationCommand { get; set; }
+    public bool IsRequired { get => isRequired; set { isRequired = false;OnPropertyChanged(); } }
     public NotifyViewModel(MainStore navigationStore, IApiService apiService, IOidcClientService clientService)
     {
         _navigationStore = navigationStore;
@@ -21,6 +23,7 @@ public class NotifyViewModel: BaseViewModel
 
     private void LogOut()
     {
+        IsRequired = false;
         if (_clientService == null)
         {
             MessageBox messageBox = new MessageBox()

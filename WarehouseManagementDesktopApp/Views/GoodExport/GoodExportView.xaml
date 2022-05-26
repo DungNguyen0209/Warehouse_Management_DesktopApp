@@ -127,7 +127,6 @@
         </Grid>
         <Grid>
             <Grid.Resources>
-
                 <Style TargetType="Grid">
                     <Setter Property="Opacity" Value="1" />
                     <Style.Triggers>
@@ -138,8 +137,8 @@
                 </Style>
             </Grid.Resources>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
-                <RowDefinition Height="7*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="10*" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -151,22 +150,31 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="6*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Style="{StaticResource Parameter}">Mã đơn xuất kho</TextBlock>
+                    <TextBlock
+                        Grid.Column="0"
+                        Margin="25,0,0,0"
+                        FontSize="27"
+                        Style="{StaticResource Parameter}">
+                        Mã đơn xuất kho
+                    </TextBlock>
                     <TextBox
                         Grid.Column="1"
-                        Margin="1,80,1,90"
+                        Margin="15,28"
+                        Padding="5,17,5,0"
                         materialDesign:HintAssist.Hint="Mã Đơn"
-                        Style="{StaticResource SearchBox}"
+                        Background="#FFF2F4F4"
+                        FontSize="25"
                         Text="{Binding GoodIssueId}" />
                 </Grid>
                 <Button
                     Grid.Column="1"
-                    Height="55"
+                    Height="65"
                     Margin="20,0,15,0"
-                    Content="Tìm Kiếm"
+                    materialDesign:ButtonAssist.CornerRadius="0"
+                    Content="TÌM KIẾM"
                     Style="{StaticResource MenuButton}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -176,39 +184,41 @@
                 </Button>
                 <Button
                     Grid.Column="2"
-                    Height="55"
+                    Height="65"
                     Margin="20,0,15,0"
+                    materialDesign:ButtonAssist.CornerRadius="0"
                     Command="{Binding UploadFile}"
                     Style="{StaticResource MenuButton}">
-                    Tải Excel
+                    TẢI EXCEL
                 </Button>
                 <Button
                     Grid.Column="3"
-                    Height="55"
+                    Height="65"
                     Margin="20,0,15,0"
+                    materialDesign:ButtonAssist.CornerRadius="0"
                     Command="{Binding UpdateContainerCommand}"
                     Style="{StaticResource MenuButton}">
-                    Cập nhật
+                    CẬP NHẬT
                 </Button>
                 <Button
                     Grid.Column="4"
-                    Height="55"
+                    Height="65"
                     Margin="20,0,15,0"
+                    materialDesign:ButtonAssist.CornerRadius="0"
                     Command="{Binding PostGoodReceiptToServer}"
                     Style="{StaticResource MenuButton}">
-                    Xuất Excel
+                    LƯU
                 </Button>
             </Grid>
             <Grid Grid.Row="1">
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*" />
                     <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
                 <materialDesign:Card
                     Grid.Column="0"
-                    Width="600"
-                    Margin="0,10,0,10"
+                    Width="610"
+                    Margin="0,0,0,20"
                     HorizontalAlignment="Center"
                     HorizontalContentAlignment="Center">
                     <Grid>
@@ -219,267 +229,259 @@
                         <StackPanel Grid.Row="0">
                             <TextBlock
                                 Margin="0,7"
-                                FontSize="30"
-                                Style="{StaticResource PageModuleTitle}">
-                                <Bold>
-                                    Thông tin đơn hàng
-                                </Bold>
-                            </TextBlock>
+                                FontSize="27"
+                                Style="{StaticResource PageModuleTitle}"
+                                Text="THÔNG TIN ĐƠN HÀNG" />
                             <Grid
                                 Width="400"
                                 Height="8"
                                 Background="#FF00294D" />
                         </StackPanel>
                         <Grid Grid.Row="1">
-                            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <Border>
-                                    <DataGrid
-                                        Height="441"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        AlternatingRowBackground="White"
-                                        AreRowDetailsFrozen="True"
-                                        AutoGenerateColumns="False"
-                                        BorderBrush="Black"
-                                        BorderThickness="0"
-                                        CanUserReorderColumns="False"
-                                        ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle2}"
-                                        EnableColumnVirtualization="False"
-                                        GridLinesVisibility="None"
-                                        HorizontalScrollBarVisibility="Auto"
-                                        ItemsSource="{Binding FormulaPlannedList, Mode=TwoWay}"
-                                        RowBackground="#FFD4D6EA"
-                                        SelectedIndex="{Binding SelectedIndexItem, Mode=TwoWay}"
-                                        SelectionMode="Extended"
-                                        Style="{StaticResource DataGrid}">
-                                        <!--  Font Color/ Type of Column Headings  -->
-                                        <DataGrid.Resources>
-                                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <DataGrid Margin="5 0"
+                                Height="520"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                AlternatingRowBackground="White"
+                                AreRowDetailsFrozen="True"
+                                AutoGenerateColumns="False"
+                                BorderBrush="Black"
+                                BorderThickness="0"
+                                CanUserReorderColumns="False"
+                                ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle2}"
+                                EnableColumnVirtualization="False"
+                                GridLinesVisibility="None"
+                                HorizontalScrollBarVisibility="Auto"
+                                ItemsSource="{Binding FormulaPlannedList, Mode=TwoWay}"
+                                RowBackground="#FFD4D6EA"
+                                SelectedIndex="{Binding SelectedIndexItem, Mode=TwoWay}"
+                                SelectionMode="Extended"
+                                Style="{StaticResource DataGrid}">
+                                <!--  Font Color/ Type of Column Headings  -->
+                                <DataGrid.Resources>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
 
-                                                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                <Setter Property="Background" Value="#FF00294D" />
-                                                <Setter Property="Foreground" Value="White" />
-                                                <Setter Property="Height" Value="35" />
-                                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="Background" Value="#FF00294D" />
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="Height" Value="35" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+
+                                </DataGrid.Resources>
+
+                                <DataGrid.CellStyle>
+
+                                    <Style TargetType="DataGridCell">
+
+                                        <Style.Triggers>
+
+                                            <Trigger Property="IsSelected" Value="True">
+
+                                                <Setter Property="Background" Value="White" />
+                                                <Setter Property="FontSize" Value="24" />
+
+                                            </Trigger>
+
+                                        </Style.Triggers>
+
+                                    </Style>
+
+                                </DataGrid.CellStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn
+                                        Width="150"
+                                        Binding="{Binding ProductId}"
+                                        IsReadOnly="True">
+
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Padding="0,0,5,5"
+                                                        FontSize="25"
+                                                        Text="Mã SP" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.Foreground>
+                                            <SolidColorBrush Color="Black" />
+                                        </DataGridTextColumn.Foreground>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="Opacity" Value="0.5" />
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="FontSize" Value="20" />
                                             </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
+                                        Width="300"
+                                        Binding="{Binding ProductName}"
+                                        IsReadOnly="True">
 
-                                        </DataGrid.Resources>
-
-                                        <DataGrid.CellStyle>
-
-                                            <Style TargetType="DataGridCell">
-
-                                                <Style.Triggers>
-
-                                                    <Trigger Property="IsSelected" Value="True">
-
-                                                        <Setter Property="Background" Value="White" />
-                                                        <Setter Property="FontSize" Value="24" />
-
-                                                    </Trigger>
-
-                                                </Style.Triggers>
-
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Padding="0,0,5,5"
+                                                        FontSize="25"
+                                                        Text="Tên SP" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.Foreground>
+                                            <SolidColorBrush Color="Black" />
+                                        </DataGridTextColumn.Foreground>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="Opacity" Value="0.5" />
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="FontSize" Value="20" />
                                             </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
+                                        Width="150"
+                                        Binding="{Binding PlannedMass, Mode=TwoWay}"
+                                        IsReadOnly="True">
 
-                                        </DataGrid.CellStyle>
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn
-                                                Width="150"
-                                                Binding="{Binding ProductId}"
-                                                IsReadOnly="True">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Padding="0,0,5,5"
+                                                        FontSize="25"
+                                                        Text="Khối Lượng" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.Foreground>
+                                            <SolidColorBrush Color="Black" />
+                                        </DataGridTextColumn.Foreground>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="Opacity" Value="0.5" />
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="FontSize" Value="20" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn
+                                        Width="200"
+                                        Binding="{Binding PlannedQuantity}"
+                                        IsReadOnly="True">
 
-                                                <DataGridTextColumn.HeaderTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                            <TextBlock
-                                                                Padding="0,0,5,5"
-                                                                FontSize="25"
-                                                                Text="Mã SP" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </DataGridTextColumn.HeaderTemplate>
-                                                <DataGridTextColumn.Foreground>
-                                                    <SolidColorBrush Color="Black" />
-                                                </DataGridTextColumn.Foreground>
-                                                <DataGridTextColumn.ElementStyle>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        <Setter Property="Opacity" Value="0.5" />
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Height" Value="25" />
-                                                        <Setter Property="FontSize" Value="20" />
-                                                    </Style>
-                                                </DataGridTextColumn.ElementStyle>
-                                            </DataGridTextColumn>
-                                            <DataGridTextColumn
-                                                Width="200"
-                                                Binding="{Binding ProductName}"
-                                                IsReadOnly="True">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Padding="0,0,5,5"
+                                                        FontSize="25"
+                                                        Text="Bộ/Cái" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.Foreground>
+                                            <SolidColorBrush Color="Black" />
+                                        </DataGridTextColumn.Foreground>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="Opacity" Value="0.5" />
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="FontSize" Value="20" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Width="100" Binding="{Binding Actual}">
 
-                                                <DataGridTextColumn.HeaderTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                            <TextBlock
-                                                                Padding="0,0,5,5"
-                                                                FontSize="25"
-                                                                Text="Tên SP" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </DataGridTextColumn.HeaderTemplate>
-                                                <DataGridTextColumn.Foreground>
-                                                    <SolidColorBrush Color="Black" />
-                                                </DataGridTextColumn.Foreground>
-                                                <DataGridTextColumn.ElementStyle>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        <Setter Property="Opacity" Value="0.5" />
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Height" Value="25" />
-                                                        <Setter Property="FontSize" Value="20" />
-                                                    </Style>
-                                                </DataGridTextColumn.ElementStyle>
-                                            </DataGridTextColumn>
-                                            <DataGridTextColumn
-                                                Width="150"
-                                                Binding="{Binding PlannedMass, Mode=TwoWay}"
-                                                IsReadOnly="True">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Padding="0,0,5,5"
+                                                        FontSize="25"
+                                                        Text="Thực tế" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.Foreground>
+                                            <SolidColorBrush Color="Black" />
+                                        </DataGridTextColumn.Foreground>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="FontSize" Value="20" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Width="200" Binding="{Binding note}">
 
-                                                <DataGridTextColumn.HeaderTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                            <TextBlock
-                                                                Padding="0,0,5,5"
-                                                                FontSize="25"
-                                                                Text="Khối Lượng" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </DataGridTextColumn.HeaderTemplate>
-                                                <DataGridTextColumn.Foreground>
-                                                    <SolidColorBrush Color="Black" />
-                                                </DataGridTextColumn.Foreground>
-                                                <DataGridTextColumn.ElementStyle>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        <Setter Property="Opacity" Value="0.5" />
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Height" Value="25" />
-                                                        <Setter Property="FontSize" Value="20" />
-                                                    </Style>
-                                                </DataGridTextColumn.ElementStyle>
-                                            </DataGridTextColumn>
-                                            <DataGridTextColumn
-                                                Width="200"
-                                                Binding="{Binding PlannedQuantity}"
-                                                IsReadOnly="True">
+                                        <DataGridTextColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        Padding="0,0,5,5"
+                                                        FontSize="25"
+                                                        Text="Ghi chú" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTextColumn.HeaderTemplate>
+                                        <DataGridTextColumn.Foreground>
+                                            <SolidColorBrush Color="Black" />
+                                        </DataGridTextColumn.Foreground>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="IsEnabled" Value="False" />
+                                                <Setter Property="Height" Value="25" />
+                                                <Setter Property="FontSize" Value="20" />
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTemplateColumn>
 
-                                                <DataGridTextColumn.HeaderTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                            <TextBlock
-                                                                Padding="0,0,5,5"
-                                                                FontSize="25"
-                                                                Text="Bộ/Cái" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </DataGridTextColumn.HeaderTemplate>
-                                                <DataGridTextColumn.Foreground>
-                                                    <SolidColorBrush Color="Black" />
-                                                </DataGridTextColumn.Foreground>
-                                                <DataGridTextColumn.ElementStyle>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        <Setter Property="Opacity" Value="0.5" />
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Height" Value="25" />
-                                                        <Setter Property="FontSize" Value="20" />
-                                                    </Style>
-                                                </DataGridTextColumn.ElementStyle>
-                                            </DataGridTextColumn>
-                                            <DataGridTextColumn Width="100" Binding="{Binding Actual}">
-
-                                                <DataGridTextColumn.HeaderTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                            <TextBlock
-                                                                Padding="0,0,5,5"
-                                                                FontSize="25"
-                                                                Text="Thực tế" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </DataGridTextColumn.HeaderTemplate>
-                                                <DataGridTextColumn.Foreground>
-                                                    <SolidColorBrush Color="Black" />
-                                                </DataGridTextColumn.Foreground>
-                                                <DataGridTextColumn.ElementStyle>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Height" Value="25" />
-                                                        <Setter Property="FontSize" Value="20" />
-                                                    </Style>
-                                                </DataGridTextColumn.ElementStyle>
-                                            </DataGridTextColumn>
-                                            <DataGridTextColumn Width="200" Binding="{Binding note}">
-
-                                                <DataGridTextColumn.HeaderTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                            <TextBlock
-                                                                Padding="0,0,5,5"
-                                                                FontSize="25"
-                                                                Text="Ghi chú" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </DataGridTextColumn.HeaderTemplate>
-                                                <DataGridTextColumn.Foreground>
-                                                    <SolidColorBrush Color="Black" />
-                                                </DataGridTextColumn.Foreground>
-                                                <DataGridTextColumn.ElementStyle>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                                        <Setter Property="Background" Value="Transparent" />
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                        <Setter Property="Height" Value="25" />
-                                                        <Setter Property="FontSize" Value="20" />
-                                                    </Style>
-                                                </DataGridTextColumn.ElementStyle>
-                                            </DataGridTextColumn>
-                                            <DataGridTemplateColumn>
-
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <CheckBox IsChecked="{Binding Path=IsFinished, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                            <CheckBox.LayoutTransform>
-                                                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                                            </CheckBox.LayoutTransform>
-                                                            <CheckBox.Style>
-                                                                <Style BasedOn="{StaticResource MaterialDesignCheckBox}" TargetType="CheckBox">
-                                                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                                                    <Setter Property="IsHitTestVisible" Value="False" />
-                                                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                                                    <Setter Property="Width" Value="50" />
-                                                                </Style>
-                                                            </CheckBox.Style>
-                                                        </CheckBox>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
-                                        </DataGrid.Columns>
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding SelectionCommand}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </DataGrid>
-
-                                </Border>
-                            </ScrollViewer>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <CheckBox IsChecked="{Binding Path=IsFinished, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <CheckBox.LayoutTransform>
+                                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                                    </CheckBox.LayoutTransform>
+                                                    <CheckBox.Style>
+                                                        <Style BasedOn="{StaticResource MaterialDesignCheckBox}" TargetType="CheckBox">
+                                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                                            <Setter Property="IsHitTestVisible" Value="False" />
+                                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                                            <Setter Property="Width" Value="50" />
+                                                        </Style>
+                                                    </CheckBox.Style>
+                                                </CheckBox>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding SelectionCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </DataGrid>
                         </Grid>
                     </Grid>
                 </materialDesign:Card>
@@ -491,298 +493,327 @@
                     <materialDesign:Card
                         Grid.Column="0"
                         Width="600"
-                        Height="400"
+                        Height="510"
                         HorizontalAlignment="Center"
                         HorizontalContentAlignment="Center">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
-                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1.2*" />
                                 <RowDefinition Height="9*" />
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0">
                                 <TextBlock
                                     Margin="0,7"
                                     FontSize="30"
-                                    Style="{StaticResource PageModuleTitle}">
-                                    <Bold>
-                                        Lựa chọn xuất kho
-                                    </Bold>
-                                </TextBlock>
+                                    Style="{StaticResource PageModuleTitle}"
+                                    Text="THÔNG TIN RỔ" />
                                 <Grid
                                     Width="400"
                                     Height="8"
                                     Background="#FF00294D" />
                             </StackPanel>
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="1" Margin="10,0">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
                                     <ColumnDefinition />
+                                    <ColumnDefinition Width="auto" />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Style="{StaticResource Parameter}">Mã sản phẩm</TextBlock>
-                                    <TextBox
-                                        Grid.Column="1"
-                                        Style="{StaticResource SearchBox}"
-                                        Text="{Binding ChoosenItemId}" />
-                                </Grid>
-                                <Grid Grid.Column="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource Parameter}">Số Lượng</TextBlock>
-                                    <TextBox
-                                        Grid.Column="1"
-                                        Style="{StaticResource SearchBox}"
-                                        Text="{Binding SumActual}" />
-                                </Grid>
+                                <TextBlock Grid.Column="0" Style="{StaticResource Parameter}">Mã sản phẩm</TextBlock>
+                                <TextBox
+                                    Grid.Column="1"
+                                    Margin="5 5 10 5"
+                                    Background="#FFF2F4F4"
+                                    Style="{StaticResource SearchBox}"
+                                    Text="{Binding ChoosenItemId}" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource Parameter}">
+                                    Số Lượng
+                                </TextBlock>
+                                <TextBox
+                                    Grid.Column="3"
+                                    Margin="5"
+                                    Background="#FFF2F4F4"
+                                    Style="{StaticResource SearchBox}"
+                                    Text="{Binding SumActual}" />
                             </Grid>
                             <Grid Grid.Row="2">
+                                <DataGrid Height="400"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          AlternatingRowBackground="White"
+                                          AreRowDetailsFrozen="True"
+                                          AutoGenerateColumns="False"
+                                          BorderBrush="Black"
+                                          BorderThickness="0"
+                                          CanUserReorderColumns="False"
+                                          ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle2}"
+                                          EnableColumnVirtualization="False"
+                                          GridLinesVisibility="None"
+                                          HorizontalScrollBarVisibility="Auto"
+                                          ItemsSource="{Binding IssueBasketList, Mode=TwoWay}"
+                                          RowBackground="#FFD4D6EA"
+                                          SelectedIndex="{Binding IssueBasketSelectedIndex}"
+                                          SelectionMode="Extended"
+                                          Style="{StaticResource DataGrid}">
+                                    <!--  Font Color/ Type of Column Headings  -->
+                                    <DataGrid.Resources>
+                                        <Style TargetType="{x:Type DataGridColumnHeader}">
 
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <Border>
-                                        <DataGrid
-                                            Height="308"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            AlternatingRowBackground="White"
-                                            AreRowDetailsFrozen="True"
-                                            AutoGenerateColumns="False"
-                                            BorderBrush="Black"
-                                            BorderThickness="0"
-                                            CanUserReorderColumns="False"
-                                            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle2}"
-                                            EnableColumnVirtualization="False"
-                                            GridLinesVisibility="None"
-                                            HorizontalScrollBarVisibility="Auto"
-                                            ItemsSource="{Binding IssueBasketList, Mode=TwoWay}"
-                                            RowBackground="#FFD4D6EA"
-                                            SelectedIndex="{Binding IssueBasketSelectedIndex}"
-                                            SelectionMode="Extended"
-                                            Style="{StaticResource DataGrid}">
-                                            <!--  Font Color/ Type of Column Headings  -->
-                                            <DataGrid.Resources>
-                                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="HorizontalContentAlignment"
+                                                    Value="Center" />
+                                            <Setter Property="Background"
+                                                    Value="#FF00294D" />
+                                            <Setter Property="Foreground"
+                                                    Value="White" />
+                                            <Setter Property="Height"
+                                                    Value="35" />
+                                            <Setter Property="VerticalContentAlignment"
+                                                    Value="Center" />
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.CellStyle>
 
-                                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                                                    <Setter Property="Background" Value="#FF00294D" />
-                                                    <Setter Property="Foreground" Value="White" />
-                                                    <Setter Property="Height" Value="35" />
-                                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                        <Style TargetType="DataGridCell">
+
+                                            <Style.Triggers>
+
+                                                <Trigger Property="IsSelected"
+                                                         Value="True">
+
+                                                    <Setter Property="Background"
+                                                            Value="White" />
+                                                    <Setter Property="FontSize"
+                                                            Value="20" />
+
+                                                </Trigger>
+
+                                            </Style.Triggers>
+
+                                        </Style>
+
+                                    </DataGrid.CellStyle>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Width="270"
+                                                            Binding="{Binding BasketId}"
+                                                            IsReadOnly="True">
+
+                                            <DataGridTextColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="2,4,2,2"
+                                                                Orientation="Horizontal">
+                                                        <TextBlock Padding="0,0,5,5"
+                                                                   FontSize="25"
+                                                                   Text="Mã Rổ" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTextColumn.HeaderTemplate>
+                                            <DataGridTextColumn.Foreground>
+                                                <SolidColorBrush Color="Black" />
+                                            </DataGridTextColumn.Foreground>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="VerticalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="FontSize"
+                                                            Value="17" />
+                                                    <Setter Property="Opacity"
+                                                            Value="0.5" />
+                                                    <Setter Property="Background"
+                                                            Value="Transparent" />
+                                                    <Setter Property="IsEnabled"
+                                                            Value="False" />
+                                                    <Setter Property="Height"
+                                                            Value="25" />
                                                 </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Width="150"
+                                                            Binding="{Binding ProductionDate, StringFormat='{}{0:yyyy-MM-dd}'}"
+                                                            IsReadOnly="True">
 
-                                            </DataGrid.Resources>
-
-                                            <DataGrid.CellStyle>
-
-                                                <Style TargetType="DataGridCell">
-
-                                                    <Style.Triggers>
-
-                                                        <Trigger Property="IsSelected" Value="True">
-
-                                                            <Setter Property="Background" Value="White" />
-                                                            <Setter Property="FontSize" Value="20" />
-
-                                                        </Trigger>
-
-                                                    </Style.Triggers>
-
+                                            <DataGridTextColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="2,4,2,2"
+                                                                Orientation="Horizontal">
+                                                        <TextBlock Padding="0,0,5,5"
+                                                                   FontSize="25"
+                                                                   Text="Ngày SX" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTextColumn.HeaderTemplate>
+                                            <DataGridTextColumn.Foreground>
+                                                <SolidColorBrush Color="Black" />
+                                            </DataGridTextColumn.Foreground>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="VerticalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="FontSize"
+                                                            Value="17" />
+                                                    <Setter Property="Opacity"
+                                                            Value="0.5" />
+                                                    <Setter Property="Background"
+                                                            Value="Transparent" />
+                                                    <Setter Property="IsEnabled"
+                                                            Value="False" />
+                                                    <Setter Property="Height"
+                                                            Value="25" />
                                                 </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Width="150"
+                                                            Binding="{Binding Mass, Mode=TwoWay}"
+                                                            IsReadOnly="True">
 
-                                            </DataGrid.CellStyle>
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn
-                                                    Width="270"
-                                                    Binding="{Binding BasketId}"
-                                                    IsReadOnly="True">
+                                            <DataGridTextColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="2,4,2,2"
+                                                                Orientation="Horizontal">
+                                                        <TextBlock Padding="0,0,5,5"
+                                                                   FontSize="25"
+                                                                   Text="Khối Lượng" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTextColumn.HeaderTemplate>
+                                            <DataGridTextColumn.Foreground>
+                                                <SolidColorBrush Color="Black" />
+                                            </DataGridTextColumn.Foreground>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="Opacity"
+                                                            Value="0.5" />
+                                                    <Setter Property="Background"
+                                                            Value="Transparent" />
+                                                    <Setter Property="IsEnabled"
+                                                            Value="False" />
+                                                    <Setter Property="Height"
+                                                            Value="25" />
+                                                    <Setter Property="VerticalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="FontSize"
+                                                            Value="17" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Width="200"
+                                                            Binding="{Binding Quantity}"
+                                                            IsReadOnly="True">
 
-                                                    <DataGridTextColumn.HeaderTemplate>
-                                                        <DataTemplate>
-                                                            <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                                <TextBlock
-                                                                    Padding="0,0,5,5"
-                                                                    FontSize="25"
-                                                                    Text="Mã Rổ" />
-                                                            </StackPanel>
-                                                        </DataTemplate>
-                                                    </DataGridTextColumn.HeaderTemplate>
-                                                    <DataGridTextColumn.Foreground>
-                                                        <SolidColorBrush Color="Black" />
-                                                    </DataGridTextColumn.Foreground>
-                                                    <DataGridTextColumn.ElementStyle>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                            <Setter Property="VerticalAlignment" Value="Center" />
-                                                            <Setter Property="FontSize" Value="17" />
-                                                            <Setter Property="Opacity" Value="0.5" />
-                                                            <Setter Property="Background" Value="Transparent" />
-                                                            <Setter Property="IsEnabled" Value="False" />
-                                                            <Setter Property="Height" Value="25" />
-                                                        </Style>
-                                                    </DataGridTextColumn.ElementStyle>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn
-                                                    Width="150"
-                                                    Binding="{Binding ProductionDate, StringFormat='{}{0:yyyy-MM-dd}'}"
-                                                    IsReadOnly="True">
+                                            <DataGridTextColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="2,4,2,2"
+                                                                Orientation="Horizontal">
+                                                        <TextBlock Padding="0,0,5,5"
+                                                                   FontSize="25"
+                                                                   Text="Số Lượng" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTextColumn.HeaderTemplate>
+                                            <DataGridTextColumn.Foreground>
+                                                <SolidColorBrush Color="Black" />
+                                            </DataGridTextColumn.Foreground>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="Opacity"
+                                                            Value="0.5" />
+                                                    <Setter Property="Background"
+                                                            Value="Transparent" />
+                                                    <Setter Property="IsEnabled"
+                                                            Value="False" />
+                                                    <Setter Property="Height"
+                                                            Value="25" />
+                                                    <Setter Property="VerticalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="FontSize"
+                                                            Value="17" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTextColumn Width="150"
+                                                            Binding="{Binding Actual, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                            <DataGridTextColumn.HeaderTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="2,4,2,2"
+                                                                Orientation="Horizontal">
+                                                        <TextBlock Padding="0,0,5,5"
+                                                                   FontSize="25"
+                                                                   Text="Thực Lấy" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTextColumn.HeaderTemplate>
+                                            <DataGridTextColumn.Foreground>
+                                                <SolidColorBrush Color="Black" />
+                                            </DataGridTextColumn.Foreground>
+                                            <DataGridTextColumn.ElementStyle>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="HorizontalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="IsEnabled"
+                                                            Value="True" />
+                                                    <Setter Property="Background"
+                                                            Value="Transparent" />
+                                                    <Setter Property="Height"
+                                                            Value="25" />
+                                                    <Setter Property="VerticalAlignment"
+                                                            Value="Center" />
+                                                    <Setter Property="FontSize"
+                                                            Value="17" />
+                                                </Style>
+                                            </DataGridTextColumn.ElementStyle>
+                                        </DataGridTextColumn>
+                                        <DataGridTemplateColumn>
 
-                                                    <DataGridTextColumn.HeaderTemplate>
-                                                        <DataTemplate>
-                                                            <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                                <TextBlock
-                                                                    Padding="0,0,5,5"
-                                                                    FontSize="25"
-                                                                    Text="Ngày SX" />
-                                                            </StackPanel>
-                                                        </DataTemplate>
-                                                    </DataGridTextColumn.HeaderTemplate>
-                                                    <DataGridTextColumn.Foreground>
-                                                        <SolidColorBrush Color="Black" />
-                                                    </DataGridTextColumn.Foreground>
-                                                    <DataGridTextColumn.ElementStyle>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                            <Setter Property="VerticalAlignment" Value="Center" />
-                                                            <Setter Property="FontSize" Value="17" />
-                                                            <Setter Property="Opacity" Value="0.5" />
-                                                            <Setter Property="Background" Value="Transparent" />
-                                                            <Setter Property="IsEnabled" Value="False" />
-                                                            <Setter Property="Height" Value="25" />
-                                                        </Style>
-                                                    </DataGridTextColumn.ElementStyle>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn
-                                                    Width="150"
-                                                    Binding="{Binding Mass, Mode=TwoWay}"
-                                                    IsReadOnly="True">
-
-                                                    <DataGridTextColumn.HeaderTemplate>
-                                                        <DataTemplate>
-                                                            <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                                <TextBlock
-                                                                    Padding="0,0,5,5"
-                                                                    FontSize="25"
-                                                                    Text="Khối Lượng" />
-                                                            </StackPanel>
-                                                        </DataTemplate>
-                                                    </DataGridTextColumn.HeaderTemplate>
-                                                    <DataGridTextColumn.Foreground>
-                                                        <SolidColorBrush Color="Black" />
-                                                    </DataGridTextColumn.Foreground>
-                                                    <DataGridTextColumn.ElementStyle>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                            <Setter Property="Opacity" Value="0.5" />
-                                                            <Setter Property="Background" Value="Transparent" />
-                                                            <Setter Property="IsEnabled" Value="False" />
-                                                            <Setter Property="Height" Value="25" />
-                                                            <Setter Property="VerticalAlignment" Value="Center" />
-                                                            <Setter Property="FontSize" Value="17" />
-                                                        </Style>
-                                                    </DataGridTextColumn.ElementStyle>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn
-                                                    Width="200"
-                                                    Binding="{Binding Quantity}"
-                                                    IsReadOnly="True">
-
-                                                    <DataGridTextColumn.HeaderTemplate>
-                                                        <DataTemplate>
-                                                            <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                                <TextBlock
-                                                                    Padding="0,0,5,5"
-                                                                    FontSize="25"
-                                                                    Text="Số Lượng" />
-                                                            </StackPanel>
-                                                        </DataTemplate>
-                                                    </DataGridTextColumn.HeaderTemplate>
-                                                    <DataGridTextColumn.Foreground>
-                                                        <SolidColorBrush Color="Black" />
-                                                    </DataGridTextColumn.Foreground>
-                                                    <DataGridTextColumn.ElementStyle>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                            <Setter Property="Opacity" Value="0.5" />
-                                                            <Setter Property="Background" Value="Transparent" />
-                                                            <Setter Property="IsEnabled" Value="False" />
-                                                            <Setter Property="Height" Value="25" />
-                                                            <Setter Property="VerticalAlignment" Value="Center" />
-                                                            <Setter Property="FontSize" Value="17" />
-                                                        </Style>
-                                                    </DataGridTextColumn.ElementStyle>
-                                                </DataGridTextColumn>
-                                                <DataGridTextColumn Width="150" Binding="{Binding Actual, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                    <DataGridTextColumn.HeaderTemplate>
-                                                        <DataTemplate>
-                                                            <StackPanel Margin="2,4,2,2" Orientation="Horizontal">
-                                                                <TextBlock
-                                                                    Padding="0,0,5,5"
-                                                                    FontSize="25"
-                                                                    Text="Thực Lấy" />
-                                                            </StackPanel>
-                                                        </DataTemplate>
-                                                    </DataGridTextColumn.HeaderTemplate>
-                                                    <DataGridTextColumn.Foreground>
-                                                        <SolidColorBrush Color="Black" />
-                                                    </DataGridTextColumn.Foreground>
-                                                    <DataGridTextColumn.ElementStyle>
-                                                        <Style TargetType="TextBlock">
-                                                            <Setter Property="HorizontalAlignment" Value="Center" />
-                                                            <Setter Property="IsEnabled" Value="True" />
-                                                            <Setter Property="Background" Value="Transparent" />
-                                                            <Setter Property="Height" Value="25" />
-                                                            <Setter Property="VerticalAlignment" Value="Center" />
-                                                            <Setter Property="FontSize"
-                                                                    Value="17" />
-                                                        </Style>
-                                                    </DataGridTextColumn.ElementStyle>
-                                                </DataGridTextColumn>
-                                                <DataGridTemplateColumn>
-
-                                                    <DataGridTemplateColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                                                <CheckBox.LayoutTransform>
-                                                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                                                                </CheckBox.LayoutTransform>
-                                                                <CheckBox.Style>
-                                                                    <Style BasedOn="{StaticResource MaterialDesignCheckBox}" TargetType="CheckBox">
-                                                                        <Setter Property="HorizontalAlignment" Value="Center" />
-                                                                        <Setter Property="VerticalAlignment" Value="Center" />
-                                                                        <Setter Property="Width" Value="50" />
-                                                                    </Style>
-                                                                </CheckBox.Style>
-                                                            </CheckBox>
-                                                        </DataTemplate>
-                                                    </DataGridTemplateColumn.CellTemplate>
-                                                </DataGridTemplateColumn>
-                                            </DataGrid.Columns>
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="SelectionChanged">
-                                                    <i:InvokeCommandAction Command="{Binding SelectionCommand}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </DataGrid>
-
-                                    </Border>
-                                </ScrollViewer>
-
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <CheckBox IsChecked="{Binding Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                        <CheckBox.LayoutTransform>
+                                                            <ScaleTransform ScaleX="1.5"
+                                                                            ScaleY="1.5" />
+                                                        </CheckBox.LayoutTransform>
+                                                        <CheckBox.Style>
+                                                            <Style BasedOn="{StaticResource MaterialDesignCheckBox}"
+                                                                   TargetType="CheckBox">
+                                                                <Setter Property="HorizontalAlignment"
+                                                                        Value="Center" />
+                                                                <Setter Property="VerticalAlignment"
+                                                                        Value="Center" />
+                                                                <Setter Property="Width"
+                                                                        Value="50" />
+                                                            </Style>
+                                                        </CheckBox.Style>
+                                                    </CheckBox>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding SelectionCommand}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DataGrid>
                             </Grid>
                         </Grid>
                     </materialDesign:Card>
                     <Grid Grid.Row="1">
-                        <Button
+                        <Button materialDesign:ButtonAssist.CornerRadius="0"
                             Width="200"
                             Height="80"
                             Command="{Binding FinishCommand}"
                             Style="{StaticResource MenuButton}">
-                            Hoàn Thành
+                            HOÀN THÀNH
                         </Button>
                     </Grid>
                 </Grid>

@@ -17,7 +17,7 @@
         BasedOn="{StaticResource MaterialDesignTextBox}"
         TargetType="TextBox">
         <Setter Property="Background" Value="#FFE6E7ED" />
-        <Setter Property="Padding" Value="-20" />
-        <Setter Property="FontSize" Value="25" />
+        <Setter Property="Padding" Value="-10" />
+        <Setter Property="FontSize" Value="23" />
     </Style>
 </ResourceDictionary>

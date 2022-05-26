@@ -53,7 +53,8 @@ namespace WarehouseManagementDesktopApp.Core.ComponentUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp.Core;component/componentui/emptycabinet.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp.Core;V1.0.0.0;component/componentui/emptycabinet.x" +
+                    "aml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\ComponentUI\EmptyCabinet.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

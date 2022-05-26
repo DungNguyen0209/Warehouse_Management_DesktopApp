@@ -65,8 +65,8 @@ namespace WarehouseManagementDesktopApp.Resources.Components.Message {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;component/resources/components/message/messagebox." +
-                    "xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;V1.0.0.0;component/resources/components/message/me" +
+                    "ssagebox.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Resources\Components\Message\MessageBox.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

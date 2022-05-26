@@ -198,3 +198,5 @@ E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDe
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\UpdateLocationCard.baml
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\ButtonCustom\CustomButtonMenu.g.cs
 E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\obj\Debug\net6.0-windows\Resources\Components\ButtonCustom\CustomButtonMenu.baml
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Resources\images\logo_bachkhoa-nobackgr.png
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\WarehouseManagementDesktopApp\bin\Debug\net6.0-windows\Resources\images\logo_bachkhoa.jpg

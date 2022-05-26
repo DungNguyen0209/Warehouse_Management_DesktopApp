@@ -426,7 +426,7 @@ public class GoodExportViewModel : BaseViewModel
                         BasketId = item.containerId,
                         ProductionDate = item.productionDate,
                         Mass = Convert.ToString(item.actualQuantity),
-                        Quantity = Convert.ToString(item.actualQuantity / item.item.piecesPerKilogram),
+                        Quantity = String.Format("{0:N0}%", item.actualQuantity / item.item.piecesPerKilogram),
                         IsChecked = false,
                         Unit = "Kg"
                     };
@@ -439,7 +439,7 @@ public class GoodExportViewModel : BaseViewModel
                         BasketId = item.containerId,
                         ProductionDate = item.productionDate,
                         Quantity = Convert.ToString(item.actualQuantity),
-                        Mass = Convert.ToString(item.actualQuantity * (1 / item.item.piecesPerKilogram)),
+                        Mass = String.Format("{0:N2}", item.actualQuantity * (1 / item.item.piecesPerKilogram)),
                         Unit = "Bộ/Cái"
                     };
                     issueBaskets.Add(issueitem);
@@ -676,6 +676,8 @@ public class GoodExportViewModel : BaseViewModel
         };
         FormulaPlannedList.Clear();
         IssueBasketList.Clear();
+        SumActual = "0";
+        ChoosenItemId = "";
         GoodIssueId = "";
         try
         {

@@ -58,8 +58,8 @@ namespace WarehouseManagementDesktopApp.Resources.Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;component/resources/components/dialoggoodissue.xam" +
-                    "l", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;V1.0.0.0;component/resources/components/dialoggood" +
+                    "issue.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Resources\Components\DialogGoodIssue.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

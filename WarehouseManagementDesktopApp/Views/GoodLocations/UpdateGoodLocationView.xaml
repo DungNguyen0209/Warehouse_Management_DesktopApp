@@ -117,78 +117,64 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="7*" />
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="3.1*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="7*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" Margin="0,50,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="10" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="7*" />
+            </Grid.ColumnDefinitions>
 
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="10" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="80" />
-                        <RowDefinition Height="150" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0" HorizontalAlignment="Left">
-                        <Button
-                            Grid.Row="4"
-                            Width="130"
-                            Height="50"
-                            Command="{Binding InsertNewItem}"
-                            FontSize="20"
-                            Style="{StaticResource MenuButton}">
-                            Thêm MSP
-                        </Button>
-                    </Grid>
-                    <Grid Grid.Row="1">
+            <Grid
+                Grid.Row="0"
+                Grid.Column="0"
+                Background="#FFEDEFF0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" HorizontalAlignment="Left">
+                    <Button
+                        Grid.Row="4"
+                        Width="130"
+                        Height="50"
+                        Command="{Binding InsertNewItem}"
+                        FontSize="20"
+                        Style="{StaticResource MenuButton}">
+                        Thêm MSP
+                    </Button>
+                </Grid>
+                <Grid Grid.Row="1">
 
-                        <ComboBox
-                            Margin="25,2,25,2"
-                            materialDesign:HintAssist.Hint="Vị Trí Kệ"
-                            Style="{StaticResource ComboBoxStyle}"
-                            Text="{Binding SelfId}">
-                            <ComboBoxItem>A</ComboBoxItem>
-                            <ComboBoxItem>B</ComboBoxItem>
-                            <ComboBoxItem>C</ComboBoxItem>
-                            <ComboBoxItem>D</ComboBoxItem>
-                            <ComboBoxItem>E</ComboBoxItem>
-                            <ComboBoxItem>F</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-                    <Grid Grid.Row="3">
-
-                        <ComboBox
-                            Margin="25,2,25,2"
-                            materialDesign:HintAssist.Hint="Vị Trí Hàng"
-                            IsEditable="True"
-                            Style="{StaticResource ComboBoxStyle}"
-                            Text="{Binding RowId}">
-                            <ComboBoxItem>1</ComboBoxItem>
-                            <ComboBoxItem>2</ComboBoxItem>
-                            <ComboBoxItem>3</ComboBoxItem>
-                            <ComboBoxItem>4</ComboBoxItem>
-                            <ComboBoxItem>5</ComboBoxItem>
-                            <ComboBoxItem>6</ComboBoxItem>
-                            <ComboBoxItem>7</ComboBoxItem>
-                            <ComboBoxItem>8</ComboBoxItem>
-                            <ComboBoxItem>9</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
                     <ComboBox
-                        Grid.Row="5"
-                        Margin="25,2,25,2"
-                        materialDesign:HintAssist.Hint="Vị Trí Ô"
+                        Margin="10"
+                        Padding="5,10,5,0"
+                        materialDesign:HintAssist.Hint="Vị trí kệ"
+                        BorderThickness="1"
+                        FontSize="22"
                         IsEditable="True"
-                        Style="{StaticResource ComboBoxStyle}"
-                        Text="{Binding CellId}">
+                        Text="{Binding SelfId}">
+                        <ComboBoxItem>A</ComboBoxItem>
+                        <ComboBoxItem>B</ComboBoxItem>
+                        <ComboBoxItem>C</ComboBoxItem>
+                        <ComboBoxItem>D</ComboBoxItem>
+                        <ComboBoxItem>E</ComboBoxItem>
+                        <ComboBoxItem>F</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+                <Grid Grid.Row="2">
+
+                    <ComboBox
+                        Margin="10"
+                        Padding="5,10,5,0"
+                        materialDesign:HintAssist.Hint="Vị Trí Hàng"
+                        BorderThickness="1"
+                        FontSize="22"
+                        IsEditable="True"
+                        Text="{Binding RowId}">
                         <ComboBoxItem>1</ComboBoxItem>
                         <ComboBoxItem>2</ComboBoxItem>
                         <ComboBoxItem>3</ComboBoxItem>
@@ -199,86 +185,103 @@
                         <ComboBoxItem>8</ComboBoxItem>
                         <ComboBoxItem>9</ComboBoxItem>
                     </ComboBox>
-                    <Grid Grid.Row="6">
-                        <Button
-                            Grid.Row="4"
-                            Width="200"
-                            Height="50"
-                            Command="{Binding SearchCommand}"
-                            Style="{StaticResource MenuButton}">
-                            Tìm Kiếm
-                        </Button>
-                    </Grid>
-                    <Grid Grid.Row="7" Margin="20,30,20,10">
-                        <materialDesign:Card>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="7*" />
-                                    </Grid.ColumnDefinitions>
-                                    <materialDesign:Card
-                                        Width="25"
-                                        Height="25"
-                                        Background="{StaticResource WordGreenBrush}" />
-                                    <Grid Grid.Column="1">
-                                        <TextBlock Style="{StaticResource Parameter}">Cột trống rổ</TextBlock>
-                                    </Grid>
-                                </Grid>
-                                <Grid Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*" />
-                                        <ColumnDefinition Width="7*" />
-                                    </Grid.ColumnDefinitions>
-                                    <materialDesign:Card
-                                        Width="25"
-                                        Height="25"
-                                        Background="{StaticResource WordRedBrush}" />
-                                    <Grid Grid.Column="1">
-                                        <TextBlock Style="{StaticResource Parameter}">Cột còn rổ</TextBlock>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-
-                        </materialDesign:Card>
-                    </Grid>
                 </Grid>
-
-                <materialDesign:Card
-                    Name="BasketSlotpanel"
-                    Grid.Column="1"
-                    Margin="20,20,20,20"
-                    VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    Content="{Binding Content}" />
-
-            </Grid>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*" />
-                    <ColumnDefinition Width="7*" />
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <ComboBox
+                    Grid.Row="3"
+                    Margin="10"
+                    Padding="5,10,5,0"
+                    materialDesign:HintAssist.Hint="Vị Trí Ô"
+                    BorderThickness="1"
+                    FontSize="22"
+                    IsEditable="True"
+                    Text="{Binding CellId}">
+                    <ComboBoxItem>1</ComboBoxItem>
+                    <ComboBoxItem>2</ComboBoxItem>
+                    <ComboBoxItem>3</ComboBoxItem>
+                    <ComboBoxItem>4</ComboBoxItem>
+                    <ComboBoxItem>5</ComboBoxItem>
+                    <ComboBoxItem>6</ComboBoxItem>
+                    <ComboBoxItem>7</ComboBoxItem>
+                    <ComboBoxItem>8</ComboBoxItem>
+                    <ComboBoxItem>9</ComboBoxItem>
+                </ComboBox>
+                <Grid Grid.Row="4">
                     <Button
                         Grid.Row="4"
                         Width="200"
-                        Height="100"
-                        Command="{Binding ConfirmCommand}"
+                        Height="70"
+                        Command="{Binding SearchCommand}"
                         Style="{StaticResource MenuButton}">
-                        Xác Nhận
+                        TÌM KIẾM
                     </Button>
                 </Grid>
-                <materialDesign:Card
-                    Grid.Column="1"
-                    Margin="20,20,20,20"
-                    HorizontalAlignment="Left">
-                    <locationcard:LocationCardItemList HorizontalAlignment="Center" DataContext="{Binding LocationCardItemList}" />
-                </materialDesign:Card>
+                <Grid Grid.Row="5" Margin="20,30,20,10">
+                    <materialDesign:Card>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="7*" />
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:Card
+                                    Width="25"
+                                    Height="25"
+                                    Background="{StaticResource WordGreenBrush}" />
+                                <Grid Grid.Column="1">
+                                    <TextBlock Style="{StaticResource Parameter}">Cột trống rổ</TextBlock>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="7*" />
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:Card
+                                    Width="25"
+                                    Height="25"
+                                    Background="{StaticResource WordRedBrush}" />
+                                <Grid Grid.Column="1">
+                                    <TextBlock Style="{StaticResource Parameter}">Cột còn rổ</TextBlock>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                    </materialDesign:Card>
+                </Grid>
             </Grid>
+            <materialDesign:Card
+                Name="BasketSlotpanel"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="20,20,20,20"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Content="{Binding Content}" />
+
+            <Grid
+                Grid.Row="1"
+                Grid.Column="0"
+                Background="#FFEDEFF0">
+                <Button
+                    Width="200"
+                    Height="70"
+                    Command="{Binding ConfirmCommand}"
+                    Style="{StaticResource MenuButton}">
+                    XÁC NHẬN
+                </Button>
+            </Grid>
+            <materialDesign:Card
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="20,20,20,20"
+                HorizontalAlignment="Left">
+                <locationcard:LocationCardItemList HorizontalAlignment="Center" DataContext="{Binding LocationCardItemList}" />
+            </materialDesign:Card>
+
         </Grid>
     </Grid>
 </UserControl>

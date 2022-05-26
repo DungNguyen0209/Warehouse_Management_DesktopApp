@@ -69,8 +69,8 @@ namespace WarehouseManagementDesktopApp.Resources.Components {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;component/resources/components/autocompletetextbox" +
-                    ".xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;V1.0.0.0;component/resources/components/autocomple" +
+                    "tetextbox.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Resources\Components\AutoCompleteTextBox.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

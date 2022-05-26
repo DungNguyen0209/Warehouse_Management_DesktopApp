@@ -69,8 +69,8 @@ namespace WarehouseManagementDesktopApp.Resources.Components.LocationCard {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;component/resources/components/locationcard/locati" +
-                    "oncarditem.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WarehouseManagementDesktopApp;V1.0.0.0;component/resources/components/locationca" +
+                    "rd/locationcarditem.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\Resources\Components\LocationCard\LocationCardItem.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

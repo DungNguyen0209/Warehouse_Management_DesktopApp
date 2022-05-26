@@ -94,11 +94,36 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         private void ReadExcel()
         {
             ServiceResourceResponse<List<GoodReceiptOrderForViewModel>> response = _excelExporter.ReadReceipt();
-            foreach (var item in response.Resource)
+            if (response != null)
             {
-                GoodsReceiptList.Add(item);
+                if (response.Resource != null)
+                {
+
+                    foreach (var item in response.Resource)
+                    {
+                        GoodsReceiptList.Add(item);
+                    }
+                    FilePath = _excelExporter.FilePath;
+                }
+                else
+                {
+                    MessageBox messageBox = new MessageBox()
+                    {
+                        ContentText = "Kiểm tra lại đơn nhập kho !",
+                        IsWarning = true
+                    };
+                    messageBox.Show();
+                }
             }
-            FilePath = _excelExporter.FilePath;
+            else
+            {
+                MessageBox messageBox = new MessageBox()
+                {
+                    ContentText = "Kiểm tra lại đơn nhập kho !",
+                    IsWarning = true
+                };
+                messageBox.Show();
+            }
         }
         private async void LoadUnfinishedGoodReceipt()
         {
@@ -112,7 +137,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         ChatMessageList.Items.Clear();
                         var messageList = new ChatMessageListDesignModel();
                         goodReceiptReports = result.Resource;
-                        foreach (var item in goodReceiptReports.items.Where(s=>s.confirmed == false).ToList())
+                        foreach (var item in goodReceiptReports.items.Where(s => s.confirmed == false).ToList())
                         {
                             ChatMessageListItemDesignModel messageitem = new ChatMessageListItemDesignModel
                             {
@@ -150,7 +175,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         ProductId = item.item.itemId,
                         ProductName = item.item.name,
                         Mass = Convert.ToString(item.plannedQuantity),
-                        Quantity ="",
+                        Quantity = "",
                         Infomartion = item.note,
                         Unit = "Kg"
                     };
@@ -165,7 +190,7 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
                         ProductName = item.item.name,
                         Quantity = Convert.ToString(item.plannedQuantity),
                         Infomartion = item.note,
-                        Mass ="",
+                        Mass = "",
                         Unit = "Bộ/Cái"
                     };
                     goodReceiptOrderlist.Add(gooditem);
@@ -185,4 +210,4 @@ namespace WarehouseManagementDesktopApp.Core.ViewModels
         }
     }
 #pragma warning restore
-    }
+}

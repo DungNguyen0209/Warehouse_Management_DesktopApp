@@ -21,9 +21,11 @@
         x:Key="MenuButton"
         BasedOn="{StaticResource Flat}"
         TargetType="Button">
-        <Setter Property="Background" Value="#FF00294D" />
-        <Setter Property="Width"
-                Value="auto" />
+        <Setter Property="Background"
+                Value="#FF1563A7" />
+        <Setter Property="BorderBrush"
+                Value="Transparent" />
+        <Setter Property="Width" Value="auto" />
         <Setter Property="FontSize" Value="20pt" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Cursor" Value="Hand" />
@@ -35,6 +37,65 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style x:Key="MenuPanelButton"
+           BasedOn="{StaticResource MaterialDesignRaisedButton}"
+           TargetType="Button">
+        <Setter Property="FontWeight"
+                Value="DemiBold" />
+        <Setter Property="Width"
+                Value="auto" />
+        <Setter Property="Background"
+                Value="Transparent" />
+        <Setter Property="Foreground"
+                Value="Transparent" />
+        <Setter Property="Height"
+                Value="auto" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="IsFocused"
+                     Value="True">
+                <Setter Property="FontWeight"
+                        Value="DemiBold" />
+                <Setter Property="Background"
+                        Value="#E8EAF6" />
+                <Setter Property="BorderBrush"
+                        Value="White" />
+
+            </Trigger>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="#B20080FF" />
+                <Setter Property="Control.BorderBrush"
+                        Value="#B20080FF" />
+                <Setter Property="Control.Foreground"
+                        Value="Black" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style BasedOn="{StaticResource MaterialDesignIconButton}"
+           x:Key="CloseButton"
+           TargetType="Button">
+        <Setter Property="BorderBrush"
+                Value="{x:Null}" />
+        <Setter Property="Background"
+                Value="{x:Null}" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="BorderBrush"
+                        Value="{x:Null}" />
+                <Setter Property="Background"
+                        Value="#4C477BFB" />
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
     <Style
         x:Key="MoveBackButton"
         BasedOn="{StaticResource MaterialDesignFloatingActionLightButton}"
@@ -43,7 +104,8 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Background" Value="#FF00294D" />
+        <Setter Property="Background"
+                Value="#FF1563A7" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#FF3564A0" />
