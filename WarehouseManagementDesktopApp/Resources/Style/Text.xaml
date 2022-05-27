@@ -20,16 +20,11 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="Calibri" />
     </Style>
-    <Style x:Key="Title"
-           TargetType="TextBlock">
-        <Setter Property="FontSize"
-                Value="34" />
-        <Setter Property="FontWeight"
-                Value="DemiBold" />
-        <Setter Property="Foreground"
-                Value="White"></Setter>
-        <Setter Property="VerticalAlignment"
-                Value="Center" />
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+    <Style x:Key="Title" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="34" />
+        <Setter Property="FontWeight" Value="DemiBold" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
 </ResourceDictionary>

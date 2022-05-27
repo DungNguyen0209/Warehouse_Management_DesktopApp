@@ -278,7 +278,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="20,20,20,20"
-                HorizontalAlignment="Left">
+                HorizontalAlignment="Center">
                 <locationcard:LocationCardItemList HorizontalAlignment="Center" DataContext="{Binding LocationCardItemList}" />
             </materialDesign:Card>
 

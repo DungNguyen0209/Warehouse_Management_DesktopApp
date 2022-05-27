@@ -55,7 +55,7 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Mã Sản Phẩm</TextBlock>
+                                    <TextBlock Margin="20" FontSize="20" Style="{StaticResource Parameter}">Mã Sản Phẩm</TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <ComboBox x:Name="ProductIdtb"
@@ -77,7 +77,7 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Tên Sản Phẩm</TextBlock>
+                                    <TextBlock Margin="20" FontSize="20" Style="{StaticResource Parameter}">Tên Sản Phẩm</TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <ComboBox Width="150"

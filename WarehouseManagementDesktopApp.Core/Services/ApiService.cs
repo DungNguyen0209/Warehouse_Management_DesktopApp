@@ -9,6 +9,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
         //private const string serverUrl = "https://hung-anh-storage-web-api.herokuapp.com";
         //private const string serverUrl = "https://storagewebapi20210714122113.azurewebsites.net";
         private const string serverUrl = "https://cha-warehouse-management.azurewebsites.net";
+        //private const string serverUrl = "http://10.84.50.10:8084";
         private string token = "";
         public Action LoginCompleteAction { get; set; }
         public Action LogoutCompleteAction { get; set; }
@@ -67,7 +68,7 @@ namespace WarehouseManagementDesktopApp.Core.Services
         //}
         public async Task<ServiceResponse> LogInAsync(string? token, Error error)
         {
-            await Task.Delay(1);
+             await Task.Delay(1);
             if (string.IsNullOrEmpty(error.Message))
             {
                 this.token = token;

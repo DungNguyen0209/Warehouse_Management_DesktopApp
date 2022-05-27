@@ -426,7 +426,7 @@ public class GoodExportViewModel : BaseViewModel
                         BasketId = item.containerId,
                         ProductionDate = item.productionDate,
                         Mass = Convert.ToString(item.actualQuantity),
-                        Quantity = String.Format("{0:N0}%", item.actualQuantity / item.item.piecesPerKilogram),
+                        Quantity = String.Format("{0:N0}", item.actualQuantity / item.item.piecesPerKilogram),
                         IsChecked = false,
                         Unit = "Kg"
                     };

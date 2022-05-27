@@ -145,8 +145,8 @@
                     <WrapPanel HorizontalAlignment="Center">
                         <Image x:Name="img1"
                                Grid.Row="0"
-                               Width="120"
-                               Height="115"
+                               Width="130"
+                               Height="130"
                                Source="/Resources/images/logo_bachkhoa.jpg"
                                Stretch="Uniform" />
 

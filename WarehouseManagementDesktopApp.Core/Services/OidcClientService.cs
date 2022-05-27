@@ -21,6 +21,11 @@ public class OidcClientService : IOidcClientService
 
         OidcConfigure = new OidcClientOptions()
         {
+            //Authority = "https://10.84.50.10:8088",
+            //RedirectUri = "https://10.84.50.10:8088/account/login",
+            //ClientId = "native-client",
+            //Scope = "openid native-client-scope profile IdentityServerApi",
+
             Authority = "https://authenticationserver20220111094343.azurewebsites.net",
             ClientId = "native-client",
             Scope = "openid native-client-scope profile",

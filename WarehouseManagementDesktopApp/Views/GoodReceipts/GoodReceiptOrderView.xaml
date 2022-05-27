@@ -412,7 +412,7 @@
                             Background="#FF0061B7" />
                         <uc:ChatMessageListControl
                             Height="480"
-                            HorizontalAlignment="Right"
+                            HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Background="#FFF2F4F4"
                             DataContext="{Binding ChatMessageList}" />

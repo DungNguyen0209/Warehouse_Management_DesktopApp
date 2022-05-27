@@ -1,0 +1,15 @@
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\bin\Release\net6.0-windows\Persistence.SqliteDB.deps.json
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\bin\Release\net6.0-windows\Persistence.SqliteDB.runtimeconfig.json
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\bin\Release\net6.0-windows\Persistence.SqliteDB.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\bin\Release\net6.0-windows\ref\Persistence.SqliteDB.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\bin\Release\net6.0-windows\Persistence.SqliteDB.pdb
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.csproj.AssemblyReference.cache
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.GeneratedMSBuildEditorConfig.editorconfig
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.AssemblyInfoInputs.cache
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.AssemblyInfo.cs
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.csproj.CoreCompileInputs.cache
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.csproj.Fody.CopyLocal.cache
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\ref\Persistence.SqliteDB.dll
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.pdb
+E:\LVTN\Warehouse_DesktopApp\WarehouseManagementDesktopApp\Infrastructure.SqliteDB\obj\Release\net6.0-windows\Persistence.SqliteDB.genruntimeconfig.cache

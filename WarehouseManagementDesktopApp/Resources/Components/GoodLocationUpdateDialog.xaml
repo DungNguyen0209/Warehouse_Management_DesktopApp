@@ -59,14 +59,20 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Mã Sản Phẩm</TextBlock>
+                                    <TextBlock
+                                        Margin="15,5"
+                                        FontSize="20"
+                                        Style="{StaticResource Parameter}">
+                                        Mã Sản Phẩm
+                                    </TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <TextBox
                                         Width="150"
                                         Height="40"
+                                        Margin="30,6,29,6"
                                         FontSize="17"
-                                        Style="{StaticResource MaterialDesignTextBox}"
+                                        Style="{StaticResource TextBoxNormal}"
                                         Text="{Binding ProductId}" />
                                 </Grid>
                             </Grid>
@@ -76,15 +82,20 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Tên Sản Phẩm</TextBlock>
+                                    <TextBlock
+                                        Margin="15,5"
+                                        FontSize="20"
+                                        Style="{StaticResource Parameter}">
+                                        Tên Sản Phẩm
+                                    </TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <TextBox
-                                        Width="150"
-                                        Height="40"
-                                        FontSize="17"
-                                        Style="{StaticResource MaterialDesignTextBox}"
-                                        Text="{Binding ProductName}" />
+                                    <TextBox Width="150"
+                                             Height="40"
+                                             Margin="30,6,29,6"
+                                             FontSize="17"
+                                             Style="{StaticResource TextBoxNormal}"
+                                             Text="{Binding ProductName}" />
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="2">
@@ -93,15 +104,20 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Khối Lượng Đơn</TextBlock>
+                                    <TextBlock
+                                        Margin="15,5"
+                                        FontSize="20"
+                                        Style="{StaticResource Parameter}">
+                                        Khối Lượng Đơn
+                                    </TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <TextBox
-                                        Width="150"
-                                        Height="40"
-                                        FontSize="17"
-                                        Style="{StaticResource MaterialDesignTextBox}"
-                                        Text="{Binding PiecesPerKilogram}" />
+                                    <TextBox Width="150"
+                                             Height="40"
+                                             Margin="30,6,29,6"
+                                             FontSize="17"
+                                             Style="{StaticResource TextBoxNormal}"
+                                             Text="{Binding PiecesPerKilogram}" />
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="3">
@@ -110,15 +126,21 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Tồn Tối Thiểu</TextBlock>
+                                    <TextBlock
+                                        Margin="15,5"
+                                        FontSize="20"
+                                        Style="{StaticResource Parameter}">
+                                        Tồn Tối Thiểu
+                                    </TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <TextBox
-                                        Width="150"
-                                        Height="40"
-                                        FontSize="17"
-                                        Style="{StaticResource MaterialDesignTextBox}"
-                                        Text="{Binding MinimumStockLevel}" />
+                                             Width="150"
+                                             Height="40"
+                                             Margin="30,6,29,6"
+                                             FontSize="17"
+                                             Style="{StaticResource TextBoxNormal}"
+                                             Text="{Binding MinimumStockLevel}" />
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="4">
@@ -127,15 +149,20 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Tồn Tối Đa</TextBlock>
+                                    <TextBlock
+                                        Margin="20,5"
+                                        FontSize="20"
+                                        Style="{StaticResource Parameter}">
+                                        Tồn Tối Đa
+                                    </TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <TextBox
-                                        Width="150"
-                                        Height="40"
-                                        FontSize="17"
-                                        Style="{StaticResource MaterialDesignTextBox}"
-                                        Text="{Binding MaximumStockLevel}" />
+                                    <TextBox Width="150"
+                                             Height="40"
+                                             Margin="30,6,29,6"
+                                             FontSize="17"
+                                             Style="{StaticResource TextBoxNormal}"
+                                             Text="{Binding MaximumStockLevel}" />
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="5">
@@ -144,7 +171,12 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Đơn Vị</TextBlock>
+                                    <TextBlock
+                                        Margin="20,5"
+                                        FontSize="20"
+                                        Style="{StaticResource Parameter}">
+                                        Đơn Vị
+                                    </TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <ComboBox
@@ -170,7 +202,12 @@
                                     <ColumnDefinition Width="6*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <TextBlock FontSize="20" Style="{StaticResource Parameter}">Bộ Phận</TextBlock>
+                                    <TextBlock
+                                        Margin="20,5"
+                                        FontSize="20"
+                                        Style="{StaticResource Parameter}">
+                                        Bộ Phận
+                                    </TextBlock>
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <ComboBox
