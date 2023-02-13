@@ -1,17 +1,53 @@
-# <div align="center">Phần mềm quản lý kho cho doanh nghiệp vừa và nhỏ</div>
+# <div align="center">Desktop Application for Warehouse Proccess in Plastics Company</div>
 
-### ⭕Nội dung đề tài: 
+### ⭕The Mission: 
 
-***Mục tiêu:*** Xây dựng hệ thống quản lý xuất nhập kho và kiểm soát vị trí các rổ trong hệ thống quản lý kho hàng trong doanh nghiệp nhỏ kết hợp với việc xây dựng phần mềm máy tính và phần mềm điện thoại, có giao tiếp và trao đổi dữ liệu với máy chủ của doanh nghiệp nhằm tăng cường khả năng kiểm soát hệ thống quản lý kho. 
+***Target:*** 
+ - Design the Application to automatic control the warehouse
+ - Tracking all status of product and inventory automatically
+ - Communicate with Server of company to store the important data
+ 
 
-***Phạm vi:*** Ứng dụng cho kho hàng tại những công ty quy mô nhỏ, cụ thể là ứng dụng thực tế vào kho hàng của một nhà máy sản xuất nhựa.
+***Scope:*** The application for all small and medium manufacturing company.
 
-***Đối tượng:*** Phần mềm chạy trên máy tính để bàn trên hệ điều hành Windows.
+### ⭕The Reality:
+The company control all data by paper and the worker have to deal with the task by manual action
+Disadvantages:
+- Lost data
+- Missing Materials
+- Time-consuming
 
-***Phương pháp thực hiện:***  Khảo sát quy trình quản lý kho thực tế tại công ty, đề xuất những phương án cải tiến của quy trình thực tế tại nhà máy nhựa. Lựa chọn công nghệ phần mềm và phương pháp để cải tiến hệ thống quản lý kho.
+////// hinh hien trang
 
-### 💻Công nghệ: C#, WPF, MVVM, Entity Framework, XML, SignalR EPPLus library, Restfull API, IOC
+### ⭕Solution and design Model:
+After the survey in factory in two month. I have the design for the database to store the information in all process. It must start from mini item to the fully item.
+Moreover, The database should have clear phase.
 
-#### 📰 tài liệu: <a href="https://docs.google.com/document/d/13omfPOKXVdKNevfmOzXdDiz1iWZ8hwlh/edit" target="_blank">Warehouse management Application document</a>
+/// hinh anh bang data
+
+### ⭕Main design of Application:
+Application Architecture: MVVM
+The App is seperate to three mini project:
+- WarehouseManagementDesktopApp: Contains all UI page and the custom component
+- WarehouseManagementDesktopApp.Core: Contains the main logic to execute of project
+- Infrastructure.SqliteDB: Contains all infrastructure to store data at SQLite
+
+/// hinh anh 
+
+
+
+Pattern: IOC Container
+Using: using Microsoft.Extensions.DependencyInjection
+- Control all life cycle of any View Model
+- Automatic dependency inject by the library
+
+/// hinh anh
+
+
+
+
+### 💻Techniques: C#, WPF, MVVM, Entity Framework, XML, SignalR EPPLus library, Restfull API, IOC
+
+#### 📰 Document by myself: <a href="https://docs.google.com/document/d/13omfPOKXVdKNevfmOzXdDiz1iWZ8hwlh/edit" target="_blank">Warehouse management Application document</a>
 
 #### 🔗 Demo: <a href="https://www.youtube.com/watch?v=L_-mhe4PxEY" target="_blank">Product_Vertification_DesktopApp</a>
