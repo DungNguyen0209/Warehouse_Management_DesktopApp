@@ -17,33 +17,28 @@ Disadvantages:
 - Missing Materials
 - Time-consuming
 
-////// hinh hien trang
+![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/IMG_1789.jpg?raw=true)
+![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/Reality.png?raw=true)
 
 ### ⭕Solution and design Model:
 After the survey in factory in two month. I have the design for the database to store the information in all process. It must start from mini item to the fully item.
 Moreover, The database should have clear phase.
 
-/// hinh anh bang data
+![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/uml.png?raw=true)
 
 ### ⭕Main design of Application:
-Application Architecture: MVVM
+**Application Architecture**: MVVM
 The App is seperate to three mini project:
 - WarehouseManagementDesktopApp: Contains all UI page and the custom component
 - WarehouseManagementDesktopApp.Core: Contains the main logic to execute of project
 - Infrastructure.SqliteDB: Contains all infrastructure to store data at SQLite
 
-/// hinh anh 
-
-
-
-Pattern: IOC Container
+**Pattern**: IOC Container
 Using: using Microsoft.Extensions.DependencyInjection
 - Control all life cycle of any View Model
 - Automatic dependency inject by the library
 
-/// hinh anh
-
-
+![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/IOC.png?raw=true)
 
 
 ### 💻Techniques: C#, WPF, MVVM, Entity Framework, XML, SignalR EPPLus library, Restfull API, IOC
