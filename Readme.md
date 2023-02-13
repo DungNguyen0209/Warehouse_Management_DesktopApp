@@ -18,13 +18,13 @@ Disadvantages:
 - Time-consuming
 
 ![img](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/blob/main/Assert/IMG_1789.jpg)
-![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/Reality.png)
+![img](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/blob/main/Assert/Reality.png)
 
 ### ⭕Solution and design Model:
 After the survey in factory in two month. I have the design for the database to store the information in all process. It must start from mini item to the fully item.
 Moreover, The database should have clear phase.
 
-![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/uml.png)
+![img](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/blob/main/Assert/uml.png)
 
 ### ⭕Main design of Application:
 **Application Architecture**: MVVM
@@ -38,7 +38,7 @@ Using: using Microsoft.Extensions.DependencyInjection
 - Control all life cycle of any View Model
 - Automatic dependency inject by the library
 
-![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/IOC.png =250x250)
+![img](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/blob/main/Assert/IOC.png)
 
 
 ### 💻Techniques: C#, WPF, MVVM, Entity Framework, XML, SignalR EPPLus library, Restfull API, IOC
