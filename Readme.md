@@ -17,14 +17,14 @@ Disadvantages:
 - Missing Materials
 - Time-consuming
 
-![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/IMG_1789.jpg =250x250)
-![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/Reality.png =250x250)
+![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/IMG_1789.jpg)
+![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/Reality.png)
 
 ### ⭕Solution and design Model:
 After the survey in factory in two month. I have the design for the database to store the information in all process. It must start from mini item to the fully item.
 Moreover, The database should have clear phase.
 
-<img source = "https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/uml.png" width="800" height="800">
+![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/uml.png)
 
 ### ⭕Main design of Application:
 **Application Architecture**: MVVM
