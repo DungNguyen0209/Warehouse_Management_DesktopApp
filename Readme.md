@@ -24,7 +24,7 @@ Disadvantages:
 After the survey in factory in two month. I have the design for the database to store the information in all process. It must start from mini item to the fully item.
 Moreover, The database should have clear phase.
 
-<img source = "https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/uml.png" width="400" height="790">
+<img source = "https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/uml.png" width="800" height="800">
 
 ### ⭕Main design of Application:
 **Application Architecture**: MVVM
