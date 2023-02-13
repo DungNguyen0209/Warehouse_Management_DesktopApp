@@ -17,7 +17,7 @@ Disadvantages:
 - Missing Materials
 - Time-consuming
 
-![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/IMG_1789.jpg)
+![800x800](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/IMG_1789.jpg)
 ![alt text](https://github.com/DungNguyen0209/Warehouse_Management_DesktopApp/tree/main/Assert/Reality.png)
 
 ### ⭕Solution and design Model:
