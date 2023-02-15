@@ -43,6 +43,3 @@ Using: using Microsoft.Extensions.DependencyInjection
 
 ### 💻Techniques: C#, WPF, MVVM, Entity Framework, XML, SignalR EPPLus library, Restfull API, IOC
 
-#### 📰 Document by myself: <a href="https://docs.google.com/document/d/13omfPOKXVdKNevfmOzXdDiz1iWZ8hwlh/edit" target="_blank">Warehouse management Application document</a>
-
-#### 🔗 Demo: <a href="https://www.youtube.com/watch?v=L_-mhe4PxEY" target="_blank">Product_Vertification_DesktopApp</a>
